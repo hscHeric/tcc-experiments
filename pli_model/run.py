@@ -11,6 +11,7 @@ sys.path.insert(0, str(project_root))
 from pli_model.io import iter_instance_files, load_instance
 from pli_model.io import append_result, RunResultRow
 from pli_model.solve import SolveConfig, solve_graph
+from pli_model import heuristics
 
 
 def read_nm_header(path: str | Path) -> tuple[int, int]:
@@ -60,6 +61,8 @@ def main() -> None:
         time_limit_s=args.time_limit,
         solver=args.solver,
         tee=args.tee,
+        heuristics=(heuristics.trivial, heuristics.h1),
+        use_warmstart=True,
     )
 
     print("=== PLI Model - MR3DP ===")

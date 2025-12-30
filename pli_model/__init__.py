@@ -6,4 +6,5 @@ __all__ = [
     "solve_graph",
     "SolveConfig",
     "SolveResult",
+    "heuristics",
 ]
