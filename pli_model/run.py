@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import argparse
+import os
 import sys
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 
 # Adiciona a raiz do projeto ao Python path
@@ -13,9 +15,43 @@ from pli_model.io import append_result, RunResultRow
 from pli_model.solve import SolveConfig, solve_graph
 
 
+def process_instance(
+    file_path: Path,
+    input_root: Path,
+    output_root: Path,
+    cfg: SolveConfig,
+):
+    """
+    Processa UMA instância: carrega, resolve e grava no CSV do grupo.
+    Precisa ficar no topo do módulo (não dentro da main) para funcionar com ProcessPool.
+    """
+    rel = file_path.relative_to(input_root)
+    group = rel.parts[0] if len(rel.parts) > 1 else "root"
+    csv_path = output_root / group / "resultados.csv"
+
+    inst = load_instance(file_path)
+    res = solve_graph(inst.G, cfg)
+
+    append_result(
+        csv_path,
+        RunResultRow(
+            filename=file_path.name,
+            vertex=inst.n,
+            edge=inst.m,
+            density=inst.density,
+            objective=res.objective,
+            runtime_s=res.runtime_s,
+            status=res.status,
+            message=f"solver={res.solver_name}; term={res.termination_condition}",
+        ),
+    )
+
+    return file_path.name, res
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(
-        description="Executa o PLI (MR3DP) nas instâncias e salva CSV por subpasta."
+        description="Executa o PLI (MR3DP) nas instâncias e salva CSV por subpasta (paralelo)."
     )
     ap.add_argument(
         "--input", default="data/instances", help="Pasta raiz das instâncias"
@@ -34,6 +70,12 @@ def main() -> None:
         default=None,
         help="Extensões permitidas (ex.: .txt .edgelist). Se vazio, pega tudo.",
     )
+    ap.add_argument(
+        "--jobs",
+        type=int,
+        default=os.cpu_count() or 1,
+        help="Quantidade de workers (processos). Padrão: nº de CPUs.",
+    )
     args = ap.parse_args()
 
     input_root = Path(args.input)
@@ -46,60 +88,40 @@ def main() -> None:
         tee=args.tee,
     )
 
-    print(f"=== PLI Model - MR3DP ===")
+    print("=== PLI Model - MR3DP ===")
     print(f"Buscando instâncias em: {input_root}")
     print(f"Salvando resultados em: {output_root}")
-    print(f"Configuração: solver={cfg.solver}, time_limit={cfg.time_limit_s}s")
+    print(
+        f"Configuração: solver={cfg.solver}, time_limit={cfg.time_limit_s}s, jobs={args.jobs}"
+    )
     print("-" * 60)
 
-    total = 0
+    files = list(iter_instance_files(input_root, extensions=exts))
+    total = len(files)
     success = 0
 
-    for file_path in iter_instance_files(input_root, extensions=exts):
-        total += 1
-        # Mantém a lógica "1 CSV por subpasta"
-        rel = file_path.relative_to(input_root)
-        group = rel.parts[0] if len(rel.parts) > 1 else "root"
-        csv_path = output_root / group / "resultados.csv"
+    if total == 0:
+        print("Nenhuma instância encontrada.")
+        return
 
-        print(f"[{total}] Processando: {file_path.name}...", end=" ", flush=True)
+    # ProcessPoolExecutor: 1 instância por processo (melhor para CPU/solver externo)
+    with ProcessPoolExecutor(max_workers=max(1, args.jobs)) as executor:
+        futures = [
+            executor.submit(process_instance, file_path, input_root, output_root, cfg)
+            for file_path in files
+        ]
 
-        try:
-            inst = load_instance(file_path)
-            res = solve_graph(inst.G, cfg)
-
-            append_result(
-                csv_path,
-                RunResultRow(
-                    filename=file_path.name,
-                    vertex=inst.n,
-                    edge=inst.m,
-                    density=inst.density,
-                    objective=res.objective,
-                    runtime_s=res.runtime_s,
-                    status=res.status,
-                    message=f"solver={res.solver_name}; term={res.termination_condition}",
-                ),
-            )
-
-            success += 1
-            print(f"✓ [{res.status}] obj={res.objective}, tempo={res.runtime_s:.2f}s")
-
-        except Exception as e:
-            append_result(
-                csv_path,
-                RunResultRow(
-                    filename=file_path.name,
-                    vertex=0,
-                    edge=0,
-                    density=0.0,
-                    objective=None,
-                    runtime_s=0.0,
-                    status="Error",
-                    message=str(e),
-                ),
-            )
-            print(f"✗ ERRO: {str(e)}")
+        for i, fut in enumerate(as_completed(futures), start=1):
+            try:
+                name, res = fut.result()
+                success += 1
+                print(
+                    f"[{i}/{total}] {name} [{res.status}] obj={res.objective}, tempo={res.runtime_s:.2f}s"
+                )
+            except Exception as e:
+                # Se der erro aqui, pode ser erro de carga/solve ou erro de pickle/worker.
+                # Tenta ao menos imprimir.
+                print(f"[{i}/{total}]  ERRO: {e}")
 
     print("-" * 60)
     print(f"Concluído! {success}/{total} instâncias processadas com sucesso.")
