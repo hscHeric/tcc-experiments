@@ -87,3 +87,4 @@ def solve_graph(G: nx.Graph, cfg: SolveConfig = SolveConfig()) -> SolveResult:
         solver_name=solver_name,
         termination_condition=str(term),
     )
+

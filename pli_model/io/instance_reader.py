@@ -103,3 +103,19 @@ def load_instance(path: str | Path) -> GraphInstance:
         m=m,
         density=dens,
     )
+
+
+def read_nm_header(path: str | Path) -> tuple[int, int]:
+    """
+    Lê apenas a primeira linha (n m) do arquivo.
+    Útil para ordenar instâncias sem carregar o grafo inteiro.
+    """
+    path = Path(path)
+    with open(path, "r", encoding="utf-8") as f:
+        header = f.readline()
+        if not header:
+            raise ValueError("Arquivo vazio")
+        parts = header.strip().split()
+        if len(parts) < 2:
+            raise ValueError("Primeira linha deve conter: n m")
+        return int(parts[0]), int(parts[1])
