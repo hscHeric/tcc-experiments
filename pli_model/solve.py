@@ -13,7 +13,7 @@ from .model import build_model_mr3dp
 @dataclass(frozen=True)
 class SolveConfig:
     time_limit_s: int = 900
-    prefer_cplex_under_n: int = 333
+    solver: str = "cbc"  # "cbc" ou "gurobi"
     tee: bool = False
 
 
@@ -26,25 +26,24 @@ class SolveResult:
     termination_condition: str
 
 
-def _pick_solver(n_nodes: int, cfg: SolveConfig) -> Tuple[str, pyo.SolverFactory]:
-    """
-    Escolhe solver e aplica time limit.
-    - Tenta CPLEX para instâncias menores (se disponível)
-    - Caso contrário usa CBC (se disponível)
-    """
-    if n_nodes <= cfg.prefer_cplex_under_n:
-        cplex = pyo.SolverFactory("cplex")
-        if cplex is not None and cplex.available(exception_flag=False):
-            cplex.options["timelimit"] = cfg.time_limit_s
-            return "cplex", cplex
+def _pick_solver(cfg: SolveConfig) -> Tuple[str, pyo.SolverFactory]:
+    solver_name = cfg.solver.lower().strip()
 
-    cbc = pyo.SolverFactory("cbc")
-    if cbc is None or not cbc.available(exception_flag=False):
-        raise RuntimeError(
-            "Solver CBC não está disponível. Instale o CBC ou configure outro solver."
-        )
-    cbc.options["seconds"] = cfg.time_limit_s
-    return "cbc", cbc
+    if solver_name == "gurobi":
+        solver = pyo.SolverFactory("gurobi")
+        if solver is None or not solver.available(exception_flag=False):
+            raise RuntimeError("Solver GUROBI não está disponível no Pyomo.")
+        solver.options["TimeLimit"] = cfg.time_limit_s
+        return "gurobi", solver
+
+    # if solver_name == "cbc":
+    #     solver = pyo.SolverFactory("cbc")
+    #     if solver is None or not solver.available(exception_flag=False):
+    #         raise RuntimeError("Solver CBC não está disponível no Pyomo.")
+    #     solver.options["seconds"] = cfg.time_limit_s
+    #     return "cbc", solver
+    #
+    raise ValueError(f"Solver inválido: {cfg.solver}. Use 'cbc' ou 'gurobi'.")
 
 
 def solve_graph(G: nx.Graph, cfg: SolveConfig = SolveConfig()) -> SolveResult:
@@ -52,17 +51,21 @@ def solve_graph(G: nx.Graph, cfg: SolveConfig = SolveConfig()) -> SolveResult:
     Monta e resolve o PLI MR3DP para um grafo.
     """
     model, _ = build_model_mr3dp(G)
-    solver_name, solver = _pick_solver(G.number_of_nodes(), cfg)
+    solver_name, solver = _pick_solver(cfg)
 
-    t0 = time.time()
+    start = time.time()
     results = solver.solve(model, tee=cfg.tee)
-    runtime = time.time() - t0
+    runtime = time.time() - start
 
     term = results.solver.termination_condition
 
     if term == pyo.TerminationCondition.optimal:
         return SolveResult(
-            "Optimal", float(pyo.value(model.obj)), runtime, solver_name, str(term)
+            status="Optimal",
+            objective=float(pyo.value(model.obj)),
+            runtime_s=runtime,
+            solver_name=solver_name,
+            termination_condition=str(term),
         )
 
     if term in {
@@ -70,7 +73,17 @@ def solve_graph(G: nx.Graph, cfg: SolveConfig = SolveConfig()) -> SolveResult:
         pyo.TerminationCondition.maxTimeLimit,
     }:
         return SolveResult(
-            "Best Found", float(pyo.value(model.obj)), runtime, solver_name, str(term)
+            status="Best Found",
+            objective=float(pyo.value(model.obj)),
+            runtime_s=runtime,
+            solver_name=solver_name,
+            termination_condition=str(term),
         )
 
-    return SolveResult("Infeasible", None, runtime, solver_name, str(term))
+    return SolveResult(
+        status="Infeasible",
+        objective=None,
+        runtime_s=runtime,
+        solver_name=solver_name,
+        termination_condition=str(term),
+    )

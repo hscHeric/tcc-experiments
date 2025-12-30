@@ -1,88 +1,51 @@
 from __future__ import annotations
 
-import argparse
+import csv
+from dataclasses import dataclass, fields
 from pathlib import Path
-
-from pli_model.io import iter_instance_files, load_instance
-from pli_model.io import append_result, RunResultRow
-from pli_model.solve import SolveConfig, solve_graph
+from typing import Optional
 
 
-def main() -> None:
-    ap = argparse.ArgumentParser(
-        description="Executa o PLI (MR3DP) nas instâncias e salva um resultados.csv por subpasta."
-    )
-    ap.add_argument(
-        "--input", default="data/instances", help="Pasta raiz das instâncias"
-    )
-    ap.add_argument("--output", default="data/results/pli", help="Pasta raiz de saída")
-    ap.add_argument(
-        "--time-limit", type=int, default=900, help="Limite de tempo (segundos)"
-    )
-    ap.add_argument(
-        "--prefer-cplex-under-n",
-        type=int,
-        default=333,
-        help="Preferir CPLEX se n <= este valor (se disponível)",
-    )
-    ap.add_argument("--tee", action="store_true", help="Mostrar log do solver")
-    ap.add_argument(
-        "--ext",
-        nargs="*",
-        default=None,
-        help="Extensões permitidas (ex.: .txt .edgelist). Se vazio, pega tudo.",
-    )
-    args = ap.parse_args()
+@dataclass(frozen=True)
+class RunResultRow:
+    """Representa uma linha de resultado no CSV."""
 
-    input_root = Path(args.input)
-    output_root = Path(args.output)
-    exts = set(args.ext) if args.ext else None
-
-    cfg = SolveConfig(
-        time_limit_s=args.time_limit,
-        prefer_cplex_under_n=args.prefer_cplex_under_n,
-        tee=args.tee,
-    )
-
-    for file_path in iter_instance_files(input_root, extensions=exts):
-        # 1 CSV por subpasta dentro de data/instances (ex.: small/medium/large)
-        rel = file_path.relative_to(input_root)
-        group = rel.parts[0] if len(rel.parts) > 1 else "root"
-        csv_path = output_root / group / "resultados.csv"
-
-        try:
-            inst = load_instance(file_path)
-            res = solve_graph(inst.G, cfg)
-
-            append_result(
-                csv_path,
-                RunResultRow(
-                    filename=file_path.name,
-                    vertex=inst.n,
-                    edge=inst.m,
-                    density=inst.density,
-                    objective=res.objective,
-                    runtime_s=res.runtime_s,
-                    status=res.status,
-                    message=f"solver={res.solver_name}; term={res.termination_condition}",
-                ),
-            )
-
-        except Exception as e:
-            append_result(
-                csv_path,
-                RunResultRow(
-                    filename=file_path.name,
-                    vertex=0,
-                    edge=0,
-                    density=0.0,
-                    objective=None,
-                    runtime_s=0.0,
-                    status="Error",
-                    message=str(e),
-                ),
-            )
+    filename: str
+    vertex: int
+    edge: int
+    density: float
+    objective: Optional[float]
+    runtime_s: float
+    status: str
+    message: str
 
 
-if __name__ == "__main__":
-    main()
+def ensure_csv_with_header(csv_path: Path) -> None:
+    """Cria o CSV com cabeçalho se não existir."""
+    csv_path.parent.mkdir(parents=True, exist_ok=True)
+
+    if not csv_path.exists():
+        with open(csv_path, "w", newline="", encoding="utf-8") as f:
+            writer = csv.writer(f)
+            header = [field.name for field in fields(RunResultRow)]
+            writer.writerow(header)
+
+
+def append_result(csv_path: Path, row: RunResultRow) -> None:
+    """Adiciona uma linha de resultado ao CSV."""
+    ensure_csv_with_header(csv_path)
+
+    with open(csv_path, "a", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(
+            [
+                row.filename,
+                row.vertex,
+                row.edge,
+                row.density,
+                row.objective if row.objective is not None else "",
+                row.runtime_s,
+                row.status,
+                row.message,
+            ]
+        )

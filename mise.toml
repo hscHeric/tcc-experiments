@@ -1,3 +1,40 @@
 [tools]
 cmake = "4.2.1"
 python = "3.13.11"
+
+[env]
+PROJECT_ROOT = "{{cwd}}"
+PYTHONPATH = "{{cwd}}"
+_.file = ".env"
+
+[tasks.setup]
+description = "Configura o ambiente (cria venv e instala dependências)"
+run = """
+python -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+echo "Ambiente configurado com sucesso!"
+echo "Ative o ambiente com: source .venv/bin/activate"
+"""
+
+[tasks.pli]
+description = "Executa o PLI em todas as instâncias (Gurobi, 900s)"
+run = """
+python pli_model/run.py \
+  --input data/instances \
+  --output data/results/pli \
+  --time-limit 900 \
+  --solver gurobi
+"""
+
+[tasks.pli-debug]
+description = "Executa o PLI com log do solver visível"
+run = """
+python pli_model/run.py \
+  --input data/instances \
+  --output data/results/pli \
+  --time-limit 900 \
+  --solver gurobi \
+  --tee
+"""

@@ -1,7 +1,12 @@
 from __future__ import annotations
 
 import argparse
+import sys
 from pathlib import Path
+
+# Adiciona a raiz do projeto ao Python path
+project_root = Path(__file__).parent.parent
+sys.path.insert(0, str(project_root))
 
 from pli_model.io import iter_instance_files, load_instance
 from pli_model.io import append_result, RunResultRow
@@ -19,13 +24,10 @@ def main() -> None:
     ap.add_argument(
         "--time-limit", type=int, default=900, help="Limite de tempo (segundos)"
     )
-    ap.add_argument(
-        "--prefer-cplex-under-n",
-        type=int,
-        default=333,
-        help="Usar CPLEX se n <= este valor (se disponível)",
-    )
     ap.add_argument("--tee", action="store_true", help="Mostrar log do solver")
+    ap.add_argument(
+        "--solver", default="cbc", choices=["cbc", "gurobi"], help="Solver a ser usado"
+    )
     ap.add_argument(
         "--ext",
         nargs="*",
@@ -40,15 +42,27 @@ def main() -> None:
 
     cfg = SolveConfig(
         time_limit_s=args.time_limit,
-        prefer_cplex_under_n=args.prefer_cplex_under_n,
+        solver=args.solver,
         tee=args.tee,
     )
 
+    print(f"=== PLI Model - MR3DP ===")
+    print(f"Buscando instâncias em: {input_root}")
+    print(f"Salvando resultados em: {output_root}")
+    print(f"Configuração: solver={cfg.solver}, time_limit={cfg.time_limit_s}s")
+    print("-" * 60)
+
+    total = 0
+    success = 0
+
     for file_path in iter_instance_files(input_root, extensions=exts):
-        # Mantém a lógica “1 CSV por subpasta”
+        total += 1
+        # Mantém a lógica "1 CSV por subpasta"
         rel = file_path.relative_to(input_root)
         group = rel.parts[0] if len(rel.parts) > 1 else "root"
         csv_path = output_root / group / "resultados.csv"
+
+        print(f"[{total}] Processando: {file_path.name}...", end=" ", flush=True)
 
         try:
             inst = load_instance(file_path)
@@ -61,13 +75,15 @@ def main() -> None:
                     vertex=inst.n,
                     edge=inst.m,
                     density=inst.density,
-                    isolates=inst.n_isolates,
                     objective=res.objective,
                     runtime_s=res.runtime_s,
                     status=res.status,
                     message=f"solver={res.solver_name}; term={res.termination_condition}",
                 ),
             )
+
+            success += 1
+            print(f"✓ [{res.status}] obj={res.objective}, tempo={res.runtime_s:.2f}s")
 
         except Exception as e:
             append_result(
@@ -77,13 +93,16 @@ def main() -> None:
                     vertex=0,
                     edge=0,
                     density=0.0,
-                    isolates=0,
                     objective=None,
                     runtime_s=0.0,
                     status="Error",
                     message=str(e),
                 ),
             )
+            print(f"✗ ERRO: {str(e)}")
+
+    print("-" * 60)
+    print(f"Concluído! {success}/{total} instâncias processadas com sucesso.")
 
 
 if __name__ == "__main__":

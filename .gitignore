@@ -1,0 +1,54 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Ambientes virtuais
+.env.local
+.venv.local
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# C++
+*.o
+*.out
+*.exe
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+
+# Resultados (opcional - comente se quiser versionar)
+data/results/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
