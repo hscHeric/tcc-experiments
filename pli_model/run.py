@@ -61,7 +61,7 @@ def main() -> None:
         time_limit_s=args.time_limit,
         solver=args.solver,
         tee=args.tee,
-        heuristics=(heuristics.trivial, heuristics.h1),
+        heuristics=(heuristics.trivial, heuristics.h1, heuristics.h2, heuristics.h3),
         use_warmstart=True,
     )
 
