@@ -3,17 +3,15 @@ cmake = "4.2.1"
 python = "3.13.11"
 
 [env]
+_.python.venv = { path = ".venv", create = true }
 PROJECT_ROOT = "{{cwd}}"
-PYTHONPATH = "{{cwd}}"
-VENV_PYTHON = "{{cwd}}/.venv/bin/python"
-_.file = ".env"
 
 [tasks.setup]
 description = "Configura o ambiente (cria venv e instala dependências)"
 run = """
 python -m venv .venv
-{{env.VENV_PYTHON}} -m pip install --upgrade pip
-{{env.VENV_PYTHON}} -m pip install -r requirements.txt
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 echo "Ambiente configurado com sucesso!"
 """
 
