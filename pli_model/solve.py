@@ -107,7 +107,7 @@ def solve_graph(G: nx.Graph, cfg: SolveConfig = SolveConfig()) -> SolveResult:
 
     if term == pyo.TerminationCondition.optimal:
         return SolveResult(
-            "Optimal", float(pyo.value(model.obj)), runtime, solver_name, str(term)
+            "Ótimo", float(pyo.value(model.obj)), runtime, solver_name, str(term)
         )
 
     if term in {
@@ -115,7 +115,7 @@ def solve_graph(G: nx.Graph, cfg: SolveConfig = SolveConfig()) -> SolveResult:
         pyo.TerminationCondition.maxTimeLimit,
     }:
         return SolveResult(
-            "Best Found", float(pyo.value(model.obj)), runtime, solver_name, str(term)
+            "Melhor", float(pyo.value(model.obj)), runtime, solver_name, str(term)
         )
 
     return SolveResult("Infeasible", None, runtime, solver_name, str(term))

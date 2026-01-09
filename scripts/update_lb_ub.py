@@ -1,29 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""
-Atualiza (substitui) as colunas LB e UB em um ou mais CSVs, recalculando bounds
-para Dominação {3}-Romana em QUALQUER grafo (inclusive desconexo e com isolados).
-
-Definição assumida (Roman {3}-domination):
-  f: V -> {0,1,2,3}
-  se f(v)=0 então sum_{u in N(v)} f(u) >= 3
-  se f(v)=1 então sum_{u in N(v)} f(u) >= 2
-
-LB usado (válido, por componente):
-  - componente com 1 vértice isolado: LB = 2
-  - caso geral: ceil( 3*n / (Delta + 3) )
-
-UB usado (sempre factível, construtivo):
-  - vértices isolados: atribui 2
-  - resto: acha conjunto dominante D por greedy e atribui 3 em D, 0 no resto
-    => UB = 2*#isolados + 3*|D|
-
-Uso:
-  python update_bounds.py --graphs ./grafos --csv resultados1.csv resultados2.csv --outdir ./atualizados
-  python update_bounds.py --graphs ./grafos --csv resultados.csv --inplace
-"""
-
 from __future__ import annotations
 
 import argparse
@@ -36,70 +13,108 @@ from typing import Dict, Iterator, List, Optional, Set, Tuple
 import networkx as nx
 
 
-# ----------------------------
-# Leitura do grafo (.txt)
-# ----------------------------
+# ============================================================
+# Localização de arquivos de grafo por stem (recursivo)
+# ============================================================
 
 
-def read_graph_edgelist_with_header_n(path: Path, nodetype=int) -> nx.Graph:
-    """
-    Formato:
-        n m
-        u v
-        ...
-    Respeita n do header adicionando nós isolados ausentes na lista de arestas.
-    Re-rotula para 0..n-1 (contíguo) para consistência interna.
-    """
-    with open(path, "r", encoding="utf-8") as f:
-        header = f.readline()
-        if not header:
-            raise ValueError("Arquivo vazio")
+def build_stem_index(graphs_root: Path) -> Dict[str, Path]:
+    idx: Dict[str, Path] = {}
+    for p in graphs_root.rglob("*"):
+        if p.is_file():
+            key = p.stem.lower()
+            if key not in idx:
+                idx[key] = p
+    return idx
 
-        parts = header.strip().split()
-        if len(parts) < 2:
-            raise ValueError("Primeira linha deve conter: n m")
 
-        n_header = int(parts[0])
+# ============================================================
+# Leitura de grafos (edgelist com "n m" e DIMACS)
+#   - Se o formato informa n: adiciona nós 0..n-1 (isolados inclusos)
+# ============================================================
 
-        edges: List[Tuple[int, int]] = []
-        for line in f:
-            line = line.strip()
-            if not line:
-                continue
-            pl = line.split()
-            if len(pl) < 2:
-                continue
-            u = nodetype(pl[0])
-            v = nodetype(pl[1])
-            if u == v:
-                continue
-            edges.append((u, v))
+
+def read_graph_any_format(path: Path) -> nx.Graph:
+    with open(path, "r", encoding="utf-8", errors="ignore") as f:
+        lines = [ln.strip() for ln in f if ln.strip()]
+
+    if not lines:
+        raise ValueError("Arquivo vazio")
+
+    # DIMACS se tiver linha "p ..."
+    if any(ln.startswith("p ") for ln in lines):
+        return read_dimacs(lines)
+
+    # caso contrário, tenta "n m" + arestas
+    return read_n_m_edgelist(lines)
+
+
+def read_dimacs(lines: List[str]) -> nx.Graph:
+    n_header: Optional[int] = None
+    edges: List[Tuple[int, int]] = []
+
+    for ln in lines:
+        if ln.startswith("c"):
+            continue
+        if ln.startswith("p"):
+            parts = ln.split()
+            # p edge n m
+            if len(parts) >= 4:
+                n_header = int(parts[2])
+            continue
+        if ln.startswith("e"):
+            parts = ln.split()
+            if len(parts) >= 3:
+                u = int(parts[1])
+                v = int(parts[2])
+                if u != v:
+                    # DIMACS normalmente é 1-indexed
+                    edges.append((u - 1, v - 1))
+
+    g = nx.Graph()
+    if n_header is not None:
+        g.add_nodes_from(range(n_header))
+    g.add_edges_from(edges)
+    return g
+
+
+def read_n_m_edgelist(lines: List[str]) -> nx.Graph:
+    header = lines[0].split()
+    if len(header) < 2:
+        raise ValueError("Primeira linha deve conter: n m (ou use DIMACS)")
+
+    n_header = int(header[0])
 
     g_raw = nx.Graph()
-    g_raw.add_edges_from(edges)
+    for ln in lines[1:]:
+        parts = ln.split()
+        if len(parts) < 2:
+            continue
+        u = int(parts[0])
+        v = int(parts[1])
+        if u == v:
+            continue
+        g_raw.add_edge(u, v)
 
-    # Re-rotula os nós que apareceram nas arestas para 0..k-1
+    # re-rotula nós que aparecem para 0..k-1
     nodes_sorted = sorted(g_raw.nodes())
     mapping = {old: new for new, old in enumerate(nodes_sorted)}
     g = nx.relabel_nodes(g_raw, mapping, copy=True)
 
-    # Adiciona nós isolados faltantes até n_header
+    # adiciona isolados implícitos do header
     k = g.number_of_nodes()
     if n_header > k:
         g.add_nodes_from(range(n_header))
-    # Se n_header < k, mantemos o que foi lido (arquivo inconsistente)
+
     return g
 
 
-# ----------------------------
-# Greedy para conjunto dominante
-# ----------------------------
+# ============================================================
+# Greedy para conjunto dominante (sobre N[v])
+# ============================================================
 
 
 def greedy_dominating_set(G: nx.Graph) -> Set[int]:
-    """
-    Conjunto dominante sobre vizinhança fechada N[v]. Heurística greedy.
-    """
     if G.number_of_nodes() == 0:
         return set()
 
@@ -111,6 +126,7 @@ def greedy_dominating_set(G: nx.Graph) -> Set[int]:
     while undominated:
         best_v = None
         best_gain = -1
+
         for v in G.nodes():
             gain = len(closed_nb[v] & undominated)
             if gain > best_gain:
@@ -128,60 +144,66 @@ def greedy_dominating_set(G: nx.Graph) -> Set[int]:
     return D
 
 
-# ----------------------------
-# Bounds Roman {3} para qualquer grafo
-# ----------------------------
+# ============================================================
+# Bounds Roman {3} válidos para QUALQUER grafo (inclui isolados)
+# Definição (Mojdeh–Volkmann / Chakradhar–Reddy):
+#   f:V->{0,1,2,3}
+#   f(v)=0 => sum_{u in N(v)} f(u) >= 3
+#   f(v)=1 => sum_{u in N(v)} f(u) >= 2
+# ============================================================
 
 
-def roman3_bounds_any_graph(G: nx.Graph) -> Tuple[int, int]:
+def roman3_bounds_any_graph(G: nx.Graph) -> Tuple[int, int, int]:
     """
-    LB e UB válidos para qualquer grafo (desconexo e com isolados).
+    Retorna (LB, UB, iso_count).
     """
     if G.number_of_nodes() == 0:
-        return 0, 0
+        return 0, 0, 0
 
-    # LB por componente
-    lb = 0
-    for comp_nodes in nx.connected_components(G):
-        H = G.subgraph(comp_nodes)
-        n = H.number_of_nodes()
-        if n == 1:
-            lb += 2  # isolado precisa ser 2 ou 3
-        else:
-            Delta = max((d for _, d in H.degree()), default=0)
-            lb += math.ceil((3 * n) / (Delta + 3))
-
-    # UB construtivo
     iso_nodes = [v for v, d in G.degree() if d == 0]
-    iso_count = len(iso_nodes)
+    iso = len(iso_nodes)
 
+    # Subgrafo sem isolados (componentes não-triviais)
     H = G.copy()
     H.remove_nodes_from(iso_nodes)
 
+    # LB:
+    #  - cada isolado contribui >= 2
+    #  - por componente conectada não-trivial C: ceil(3|C| / (Δ(C)+3))
+    lb = 2 * iso
+    for comp_nodes in nx.connected_components(H):
+        C = H.subgraph(comp_nodes)
+        nC = C.number_of_nodes()
+        if nC == 0:
+            continue
+        Delta = max((d for _, d in C.degree()), default=0)
+        lb += math.ceil((3 * nC) / (Delta + 3))
+
+    # UB construtivo:
+    #  - isolados: 2
+    #  - resto: 3 em um conjunto dominante D, 0 no resto
     D = greedy_dominating_set(H) if H.number_of_nodes() > 0 else set()
-    ub = 2 * iso_count + 3 * len(D)
+    ub = 2 * iso + 3 * len(D)
 
     if ub < lb:
         ub = lb
 
-    return lb, ub
+    return lb, ub, iso
 
 
-# ----------------------------
-# Utilidades CSV
-# ----------------------------
+# ============================================================
+# CSV
+# ============================================================
 
 
 def iter_csv_paths(csv_args: List[str]) -> Iterator[Path]:
     for s in csv_args:
-        p = Path(s)
-        # permite glob simples tipo *.csv
         if any(ch in s for ch in ["*", "?", "["]):
             for m in Path(".").glob(s):
                 if m.is_file():
                     yield m
         else:
-            yield p
+            yield Path(s)
 
 
 def ensure_out_path(in_csv: Path, outdir: Optional[Path], inplace: bool) -> Path:
@@ -193,15 +215,10 @@ def ensure_out_path(in_csv: Path, outdir: Optional[Path], inplace: bool) -> Path
     return outdir / in_csv.name
 
 
-def update_one_csv(graphs_dir: Path, in_csv: Path, out_csv: Path, strict: bool) -> None:
-    """
-    Lê CSV, recalcula LB/UB para cada linha com grafo GRAFO.txt, e sobrescreve colunas LB/UB.
-    """
-    if not in_csv.exists():
-        raise FileNotFoundError(f"CSV não encontrado: {in_csv}")
-
-    # cache para não reler o mesmo grafo várias vezes
-    bounds_cache: Dict[str, Tuple[int, int]] = {}
+def update_one_csv(
+    graph_index: Dict[str, Path], in_csv: Path, out_csv: Path, strict: bool
+) -> None:
+    cache: Dict[str, Tuple[int, int, int]] = {}
 
     with open(in_csv, "r", encoding="utf-8", newline="") as f_in:
         reader = csv.DictReader(f_in)
@@ -209,38 +226,50 @@ def update_one_csv(graphs_dir: Path, in_csv: Path, out_csv: Path, strict: bool) 
             raise ValueError("CSV sem cabeçalho")
 
         fieldnames = list(reader.fieldnames)
-        if "Grafo" not in fieldnames:
-            raise ValueError("CSV precisa ter coluna 'Grafo'")
-        if "LB" not in fieldnames or "UB" not in fieldnames:
-            raise ValueError("CSV precisa ter colunas 'LB' e 'UB'")
+        for col in ("Grafo", "LB", "UB"):
+            if col not in fieldnames:
+                raise ValueError(f"CSV precisa ter coluna '{col}'")
 
+        has_obj = "Objetivo" in fieldnames
         rows = list(reader)
 
-    # Atualiza linhas
     for row in rows:
         name = row["Grafo"].strip()
         if not name:
             continue
+        key = name.lower()
 
-        if name in bounds_cache:
-            lb, ub = bounds_cache[name]
+        if key in cache:
+            lb, ub, iso = cache[key]
         else:
-            gpath = graphs_dir / f"{name}.txt"
-            if not gpath.exists():
-                msg = f"[AVISO] Grafo não encontrado: {gpath}"
+            gpath = graph_index.get(key)
+            if gpath is None:
+                msg = f"[AVISO] Grafo não encontrado (stem): {name}"
                 if strict:
                     raise FileNotFoundError(msg)
                 print(msg, file=sys.stderr)
                 continue
 
-            G = read_graph_edgelist_with_header_n(gpath, nodetype=int)
-            lb, ub = roman3_bounds_any_graph(G)
-            bounds_cache[name] = (lb, ub)
+            G = read_graph_any_format(gpath)
+            lb, ub, iso = roman3_bounds_any_graph(G)
+            cache[key] = (lb, ub, iso)
 
         row["LB"] = str(lb)
         row["UB"] = str(ub)
 
-    # Escreve saída
+        # Warning útil: objetivo não pode ser < 2*iso se o objetivo conta isolados
+        if has_obj and row.get("Objetivo"):
+            try:
+                obj = int(float(row["Objetivo"]))
+                if obj < 2 * iso:
+                    print(
+                        f"[AVISO] {name}: Objetivo={obj} < 2*isolados={2 * iso}. "
+                        f"Isso sugere que o Objetivo/PLI pode estar ignorando isolados do arquivo.",
+                        file=sys.stderr,
+                    )
+            except Exception:
+                pass
+
     out_csv.parent.mkdir(parents=True, exist_ok=True)
     with open(out_csv, "w", encoding="utf-8", newline="") as f_out:
         writer = csv.DictWriter(f_out, fieldnames=fieldnames)
@@ -250,47 +279,44 @@ def update_one_csv(graphs_dir: Path, in_csv: Path, out_csv: Path, strict: bool) 
 
 def main() -> int:
     ap = argparse.ArgumentParser(
-        description="Recalcula e substitui LB/UB em CSVs usando grafos .txt"
+        description="Recalcula e substitui LB/UB (Roman {3}) para qualquer grafo, incluindo isolados."
     )
     ap.add_argument(
-        "--graphs",
-        required=True,
-        help="Pasta onde estão os grafos .txt (nome = Grafo + .txt)",
+        "--graphs", required=True, help="Pasta raiz com os grafos (recursivo)."
     )
     ap.add_argument(
         "--csv",
         required=True,
         nargs="+",
-        help="Um ou mais CSVs (aceita glob, ex: *.csv)",
+        help="Um ou mais CSVs (aceita glob, ex: *.csv).",
     )
     ap.add_argument(
-        "--outdir", default=None, help="Pasta de saída (ignorado se --inplace)"
+        "--outdir", default=None, help="Pasta de saída (ignorado se --inplace)."
     )
     ap.add_argument(
-        "--inplace", action="store_true", help="Sobrescreve os CSVs de entrada"
+        "--inplace", action="store_true", help="Sobrescreve os CSVs de entrada."
     )
     ap.add_argument(
-        "--strict",
-        action="store_true",
-        help="Falha se algum .txt não for encontrado (ao invés de avisar)",
+        "--strict", action="store_true", help="Falha se algum grafo não for encontrado."
     )
     args = ap.parse_args()
 
-    graphs_dir = Path(args.graphs)
-    if not graphs_dir.exists():
-        print(f"[ERRO] Pasta de grafos não existe: {graphs_dir}", file=sys.stderr)
+    graphs_root = Path(args.graphs)
+    if not graphs_root.exists():
+        print(f"[ERRO] Pasta de grafos não existe: {graphs_root}", file=sys.stderr)
+        return 2
+
+    graph_index = build_stem_index(graphs_root)
+    if not graph_index:
+        print(f"[ERRO] Nenhum arquivo encontrado em: {graphs_root}", file=sys.stderr)
         return 2
 
     outdir = Path(args.outdir) if args.outdir else None
 
     for in_csv in iter_csv_paths(args.csv):
         out_csv = ensure_out_path(in_csv, outdir, args.inplace)
-        try:
-            update_one_csv(graphs_dir, in_csv, out_csv, strict=args.strict)
-            print(f"[OK] {in_csv} -> {out_csv}")
-        except Exception as e:
-            print(f"[ERRO] {in_csv}: {e}", file=sys.stderr)
-            return 1
+        update_one_csv(graph_index, in_csv, out_csv, strict=args.strict)
+        print(f"[OK] {in_csv} -> {out_csv}")
 
     return 0
 
