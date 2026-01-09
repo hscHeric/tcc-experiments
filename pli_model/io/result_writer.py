@@ -17,6 +17,7 @@ class RunResultRow:
     objective: Optional[int]  # Mantido como inteiro
     runtime_s: float
     status: str
+    message: Optional[str] = None  # <-
 
 
 def ensure_csv_with_header(csv_path: Path) -> None:

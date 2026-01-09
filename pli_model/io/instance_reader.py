@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterator, Optional
+from typing import Iterator, Optional, Tuple
 
 import networkx as nx
 
@@ -23,7 +23,7 @@ def iter_instance_files(
     """
     Itera recursivamente em arquivos de instância.
     Por padrão, pega todos os arquivos. Se quiser filtrar:
-      extensions={".txt", ".edgelist", ".dat"} (por exemplo)
+      extensions={".col"} (por exemplo)
     """
     root = Path(root)
     for p in root.rglob("*"):
@@ -34,8 +34,14 @@ def iter_instance_files(
 
 def load_instance(path: str | Path) -> GraphInstance:
     """
-    Carrega 1 instância (1 arquivo) como GraphInstance,
-    assumindo cabeçalho 'n m' na primeira linha.
+    Carrega 1 instância (1 arquivo) como GraphInstance.
+
+    Agora suporta:
+      - DIMACS .col (linhas 'c', 'p edge n m', 'e u v')
+      - Formato antigo:
+            n m
+            u v
+            u v
     """
     path = Path(path)
     g = read_graph_edgelist(path, nodetype=int)
@@ -54,20 +60,124 @@ def load_instance(path: str | Path) -> GraphInstance:
     )
 
 
-def read_graph_edgelist(path: str | Path, nodetype=int) -> nx.Graph:
+def _peek_nonempty_noncomment_line(path: Path) -> str:
     """
-    Lê um grafo no formato:
+    Retorna a primeira linha relevante para detecção de formato:
+    - ignora vazias
+    - ignora comentários DIMACS (c ...)
+    """
+    with open(path, "r", encoding="utf-8") as f:
+        for raw in f:
+            line = raw.strip()
+            if not line:
+                continue
+            if line.startswith("c"):
+                continue
+            return line
+    return ""
+
+
+def _is_dimacs_col(path: Path) -> bool:
+    """
+    Heurística de detecção:
+      - extensão .col, ou
+      - primeira linha relevante começa com 'p ' (DIMACS), ou
+      - contém tokens típicos 'p edge'/'p col'
+    """
+    if path.suffix.lower() == ".col":
+        return True
+    first = _peek_nonempty_noncomment_line(path)
+    if not first:
+        return False
+    if first.startswith("p "):
+        return True
+    parts = first.split()
+    return len(parts) >= 2 and parts[0] == "p" and parts[1] in {"edge", "col"}
+
+
+def _read_dimacs_col(path: Path) -> nx.Graph:
+    """
+    Lê grafo em DIMACS (.col), típico de instâncias de coloração:
+      c comment...
+      p edge n m
+      e u v
+      e u v
+    Nós geralmente são 1..n. Aqui convertemos para 0..n-1.
+
+    Saneamento:
+      - remove laços
+      - ignora linhas inválidas
+      - garante nós isolados (0..n-1) conforme header
+      - não duplica arestas (nx.Graph já garante)
+    """
+    n_header = None
+    g = nx.Graph()
+
+    with open(path, "r", encoding="utf-8") as f:
+        for raw in f:
+            line = raw.strip()
+            if not line:
+                continue
+            if line.startswith("c"):
+                continue
+
+            parts = line.split()
+            if not parts:
+                continue
+
+            tag = parts[0]
+
+            # Header: p edge n m  (ou p col n m)
+            if tag == "p":
+                # aceita "p edge n m" e "p col n m"
+                if len(parts) < 4:
+                    raise ValueError("Header DIMACS inválido. Esperado: 'p edge n m'")
+                if parts[1] not in {"edge", "col"}:
+                    raise ValueError(
+                        f"Header DIMACS inválido. Esperado 'p edge' ou 'p col', veio: {parts[1]!r}"
+                    )
+                n_header = int(parts[2])
+                # m_header = int(parts[3])  # pode divergir; não é necessário
+                continue
+
+            # Aresta: e u v
+            if tag == "e":
+                if len(parts) < 3:
+                    continue
+                u = int(parts[1])
+                v = int(parts[2])
+
+                # DIMACS costuma ser 1-based
+                u0 = u - 1
+                v0 = v - 1
+                if u0 == v0:
+                    continue
+                g.add_edge(u0, v0)
+                continue
+
+            # Algumas variações usam "a u v" ou outras linhas; ignoramos.
+            continue
+
+    if n_header is None:
+        raise ValueError("Arquivo DIMACS sem linha de header 'p edge n m'.")
+
+    # Garante nós isolados (0..n-1)
+    g.add_nodes_from(range(n_header))
+    return g
+
+
+def _read_legacy_nm_edgelist(path: Path, nodetype=int) -> nx.Graph:
+    """
+    Formato antigo:
         n m
         u v
         u v
 
-    Faz saneamento:
+    Saneamento:
       - remove laços
       - relabela nós para 0..k-1 (ordem determinística)
       - ADICIONA vértices isolados implícitos do header, completando até n_header
     """
-    path = Path(path)
-
     with open(path, "r", encoding="utf-8") as f:
         header = f.readline()
         if not header:
@@ -101,7 +211,7 @@ def read_graph_edgelist(path: str | Path, nodetype=int) -> nx.Graph:
     mapping = {old: new for new, old in enumerate(nodes_sorted)}
     g = nx.relabel_nodes(g_raw, mapping, copy=True)
 
-    # >>> CORREÇÃO: inclui isolados do header (se existirem)
+    # inclui isolados do header (se existirem)
     k = g.number_of_nodes()
     if n_header > k:
         g.add_nodes_from(range(n_header))
@@ -109,12 +219,51 @@ def read_graph_edgelist(path: str | Path, nodetype=int) -> nx.Graph:
     return g
 
 
-def read_nm_header(path: str | Path) -> tuple[int, int]:
+def read_graph_edgelist(path: str | Path, nodetype=int) -> nx.Graph:
     """
-    Lê apenas a primeira linha (n m) do arquivo.
-    Útil para ordenar instâncias sem carregar o grafo inteiro.
+    Mantém a interface original, mas agora suporta DIMACS .col.
+
+    - Se detectar DIMACS (.col), lê via _read_dimacs_col()
+    - Caso contrário, lê no formato antigo "n m" + arestas
     """
     path = Path(path)
+    if _is_dimacs_col(path):
+        return _read_dimacs_col(path)
+    return _read_legacy_nm_edgelist(path, nodetype=nodetype)
+
+
+def read_nm_header(path: str | Path) -> tuple[int, int]:
+    """
+    Lê (n, m) do arquivo sem carregar o grafo inteiro.
+
+    Suporta:
+      - DIMACS .col: lê a linha "p edge n m" (ou "p col n m")
+      - Formato antigo: lê a primeira linha "n m"
+    """
+    path = Path(path)
+
+    if _is_dimacs_col(path):
+        with open(path, "r", encoding="utf-8") as f:
+            for raw in f:
+                line = raw.strip()
+                if not line:
+                    continue
+                if line.startswith("c"):
+                    continue
+                parts = line.split()
+                if parts and parts[0] == "p":
+                    if len(parts) < 4:
+                        raise ValueError(
+                            "Header DIMACS inválido. Esperado: 'p edge n m'"
+                        )
+                    if parts[1] not in {"edge", "col"}:
+                        raise ValueError(
+                            f"Header DIMACS inválido. Esperado 'p edge' ou 'p col', veio: {parts[1]!r}"
+                        )
+                    return int(parts[2]), int(parts[3])
+        raise ValueError("Arquivo DIMACS sem linha de header 'p edge n m'.")
+
+    # legado
     with open(path, "r", encoding="utf-8") as f:
         header = f.readline()
         if not header:

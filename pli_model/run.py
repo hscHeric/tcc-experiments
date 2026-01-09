@@ -8,26 +8,10 @@ from pathlib import Path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-from pli_model.io import iter_instance_files, load_instance
+from pli_model.io import iter_instance_files, load_instance, read_nm_header
 from pli_model.io import append_result, RunResultRow
 from pli_model.solve import SolveConfig, solve_graph
 from pli_model import heuristics
-
-
-def read_nm_header(path: str | Path) -> tuple[int, int]:
-    """
-    Lê apenas a primeira linha (n m) do arquivo.
-    Usado para ordenar instâncias sem carregar o grafo inteiro.
-    """
-    path = Path(path)
-    with open(path, "r", encoding="utf-8") as f:
-        header = f.readline()
-        if not header:
-            raise ValueError("Arquivo vazio")
-        parts = header.strip().split()
-        if len(parts) < 2:
-            raise ValueError("Primeira linha deve conter: n m")
-        return int(parts[0]), int(parts[1])
 
 
 def main() -> None:
@@ -49,7 +33,7 @@ def main() -> None:
         "--ext",
         nargs="*",
         default=None,
-        help="Extensões permitidas (ex.: .txt .edgelist). Se vazio, pega tudo.",
+        help="Extensões permitidas (ex.: .col .txt .edgelist). Se vazio, pega tudo.",
     )
     args = ap.parse_args()
 
