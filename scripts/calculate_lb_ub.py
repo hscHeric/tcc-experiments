@@ -209,3 +209,4 @@ if __name__ == "__main__":
 
     # Chama a função principal passando os argumentos
     process_dataset(args.input_folder, args.output_file)
+
