@@ -18,7 +18,7 @@ echo "Ambiente configurado com sucesso!"
 [tasks.pli]
 description = "Executa o PLI em todas as instâncias (Gurobi, 900s)"
 run = """
-{{env.VENV_PYTHON}} pli_model/run.py \
+python pli_model/run.py \
   --input data/instances \
   --output data/results/pli \
   --time-limit 900 \
@@ -28,7 +28,7 @@ run = """
 [tasks.pli-debug]
 description = "Executa o PLI com log do solver visível"
 run = """
-{{env.VENV_PYTHON}} pli_model/run.py \
+python pli_model/run.py \
   --input data/instances \
   --output data/results/pli \
   --time-limit 900 \
