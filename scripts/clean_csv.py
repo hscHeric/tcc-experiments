@@ -33,11 +33,11 @@ def expandir_arquivos(entradas):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Limpa CSV: remove coluna message e normaliza nome dos grafos"
+        description="Limpa CSV: normaliza tipos, remove message e ajusta filename"
     )
 
     parser.add_argument(
-        "inputs", nargs="+", help="Arquivos CSV de entrada (aceita wildcard, ex: *.csv)"
+        "inputs", nargs="+", help="Arquivos CSV de entrada (aceita wildcard)"
     )
 
     parser.add_argument("--out", required=True, help="Arquivo CSV de saída")
@@ -50,18 +50,36 @@ def main():
     for arquivo in arquivos:
         df = pd.read_csv(arquivo)
 
-        # remove coluna message se existir
+        # remove coluna message
         if "message" in df.columns:
             df = df.drop(columns=["message"])
 
-        # limpa nome do grafo
+        # verifica filename
         if "filename" not in df.columns:
             print(
-                f"Erro: coluna 'filename' não encontrada em {arquivo}", file=sys.stderr
+                f"Erro: coluna 'filename' não encontrada em {arquivo}",
+                file=sys.stderr,
             )
             sys.exit(1)
 
+        # limpa nome do grafo
         df["filename"] = df["filename"].apply(limpar_nome_grafo)
+
+        # normalização de tipos
+        if "vertex" in df.columns:
+            df["vertex"] = df["vertex"].astype(int)
+
+        if "edge" in df.columns:
+            df["edge"] = df["edge"].astype(int)
+
+        if "objective" in df.columns:
+            df["objective"] = df["objective"].astype(int)
+
+        if "density" in df.columns:
+            df["density"] = df["density"].round(3)
+
+        if "runtime_s" in df.columns:
+            df["runtime_s"] = df["runtime_s"].round(3)
 
         dfs.append(df)
 
