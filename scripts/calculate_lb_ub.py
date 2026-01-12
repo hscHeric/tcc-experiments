@@ -1,11 +1,11 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import math
+import csv
+import sys
 from pathlib import Path
 from typing import Iterator, Optional, Tuple
-import csv
-import math
-import sys
 
 import networkx as nx
 
@@ -100,72 +100,73 @@ def _is_dimacs_col(path: Path) -> bool:
 
 def _read_dimacs_col(path: Path) -> nx.Graph:
     """
-    Lê grafo em DIMACS (.col), típico de instâncias de coloração:
-      c comment...
-      p edge n m
-      e u v
-      e u v
-    Nós geralmente são 1..n. Aqui convertemos para 0..n-1.
+    Lê grafo em formato DIMACS (.col).
+
+    Suporta:
+      - DIMACS padrão (vértices 1..n)
+      - Arquivos convertidos 0-based (vértices 0..n-1)
 
     Saneamento:
       - remove laços
       - ignora linhas inválidas
-      - garante nós isolados (0..n-1) conforme header
-      - não duplica arestas (nx.Graph já garante)
+      - garante exatamente n_header vértices
     """
     n_header = None
     g = nx.Graph()
 
+    min_label = None  # para detectar base (0-based ou 1-based)
+    edges_tmp = []
+
     with open(path, "r", encoding="utf-8") as f:
         for raw in f:
             line = raw.strip()
-            if not line:
-                continue
-            if line.startswith("c"):
+            if not line or line.startswith("c"):
                 continue
 
             parts = line.split()
-            if not parts:
-                continue
-
             tag = parts[0]
 
-            # Header: p edge n m  (ou p col n m)
+            # Header
             if tag == "p":
-                # aceita "p edge n m" e "p col n m"
-                if len(parts) < 4:
-                    raise ValueError("Header DIMACS inválido. Esperado: 'p edge n m'")
-                if parts[1] not in {"edge", "col"}:
-                    raise ValueError(
-                        f"Header DIMACS inválido. Esperado 'p edge' ou 'p col', veio: {parts[1]!r}"
-                    )
+                if len(parts) < 4 or parts[1] not in {"edge", "col"}:
+                    raise ValueError("Header DIMACS inválido.")
                 n_header = int(parts[2])
-                # m_header = int(parts[3])  # pode divergir; não é necessário
                 continue
 
-            # Aresta: e u v
-            if tag == "e":
-                if len(parts) < 3:
-                    continue
+            # Arestas
+            if tag == "e" and len(parts) >= 3:
                 u = int(parts[1])
                 v = int(parts[2])
-
-                # DIMACS costuma ser 1-based
-                u0 = u - 1
-                v0 = v - 1
-                if u0 == v0:
+                if u == v:
                     continue
-                g.add_edge(u0, v0)
-                continue
-
-            # Algumas variações usam "a u v" ou outras linhas; ignoramos.
-            continue
+                edges_tmp.append((u, v))
+                if min_label is None:
+                    min_label = min(u, v)
+                else:
+                    min_label = min(min_label, u, v)
 
     if n_header is None:
-        raise ValueError("Arquivo DIMACS sem linha de header 'p edge n m'.")
+        raise ValueError("Arquivo DIMACS sem linha 'p edge n m'.")
 
-    # Garante nós isolados (0..n-1)
+    # Detecta base
+    zero_based = min_label == 0
+
+    for u, v in edges_tmp:
+        if zero_based:
+            u0, v0 = u, v
+        else:
+            u0, v0 = u - 1, v - 1
+        g.add_edge(u0, v0)
+
+    # Garante exatamente os vértices esperados
     g.add_nodes_from(range(n_header))
+
+    # Checagem defensiva (opcional, mas recomendada)
+    if g.number_of_nodes() != n_header:
+        raise RuntimeError(
+            f"Número incorreto de vértices: esperado {n_header}, obtido {g.number_of_nodes()}"
+        )
+
     return g
 
 
