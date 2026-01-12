@@ -3,6 +3,9 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterator, Optional, Tuple
+import csv
+import math
+import sys
 
 import networkx as nx
 
@@ -97,73 +100,72 @@ def _is_dimacs_col(path: Path) -> bool:
 
 def _read_dimacs_col(path: Path) -> nx.Graph:
     """
-    Lê grafo em formato DIMACS (.col).
-
-    Suporta:
-      - DIMACS padrão (vértices 1..n)
-      - Arquivos convertidos 0-based (vértices 0..n-1)
+    Lê grafo em DIMACS (.col), típico de instâncias de coloração:
+      c comment...
+      p edge n m
+      e u v
+      e u v
+    Nós geralmente são 1..n. Aqui convertemos para 0..n-1.
 
     Saneamento:
       - remove laços
       - ignora linhas inválidas
-      - garante exatamente n_header vértices
+      - garante nós isolados (0..n-1) conforme header
+      - não duplica arestas (nx.Graph já garante)
     """
     n_header = None
     g = nx.Graph()
 
-    min_label = None  # para detectar base (0-based ou 1-based)
-    edges_tmp = []
-
     with open(path, "r", encoding="utf-8") as f:
         for raw in f:
             line = raw.strip()
-            if not line or line.startswith("c"):
+            if not line:
+                continue
+            if line.startswith("c"):
                 continue
 
             parts = line.split()
-            tag = parts[0]
-
-            # Header
-            if tag == "p":
-                if len(parts) < 4 or parts[1] not in {"edge", "col"}:
-                    raise ValueError("Header DIMACS inválido.")
-                n_header = int(parts[2])
+            if not parts:
                 continue
 
-            # Arestas
-            if tag == "e" and len(parts) >= 3:
+            tag = parts[0]
+
+            # Header: p edge n m  (ou p col n m)
+            if tag == "p":
+                # aceita "p edge n m" e "p col n m"
+                if len(parts) < 4:
+                    raise ValueError("Header DIMACS inválido. Esperado: 'p edge n m'")
+                if parts[1] not in {"edge", "col"}:
+                    raise ValueError(
+                        f"Header DIMACS inválido. Esperado 'p edge' ou 'p col', veio: {parts[1]!r}"
+                    )
+                n_header = int(parts[2])
+                # m_header = int(parts[3])  # pode divergir; não é necessário
+                continue
+
+            # Aresta: e u v
+            if tag == "e":
+                if len(parts) < 3:
+                    continue
                 u = int(parts[1])
                 v = int(parts[2])
-                if u == v:
+
+                # DIMACS costuma ser 1-based
+                u0 = u - 1
+                v0 = v - 1
+                if u0 == v0:
                     continue
-                edges_tmp.append((u, v))
-                if min_label is None:
-                    min_label = min(u, v)
-                else:
-                    min_label = min(min_label, u, v)
+                g.add_edge(u0, v0)
+                continue
+
+            # Algumas variações usam "a u v" ou outras linhas; ignoramos.
+            continue
 
     if n_header is None:
-        raise ValueError("Arquivo DIMACS sem linha 'p edge n m'.")
+        raise ValueError("Arquivo DIMACS sem linha de header 'p edge n m'.")
 
-    # Detecta base
-    zero_based = min_label == 0
-
-    for u, v in edges_tmp:
-        if zero_based:
-            u0, v0 = u, v
-        else:
-            u0, v0 = u - 1, v - 1
-        g.add_edge(u0, v0)
-
-    # Garante exatamente os vértices esperados
+    # Garante nós isolados (0..n-1)
     g.add_nodes_from(range(n_header))
-
-    # Checagem defensiva (opcional, mas recomendada)
-    if g.number_of_nodes() != n_header:
-        raise RuntimeError(
-            f"Número incorreto de vértices: esperado {n_header}, obtido {g.number_of_nodes()}"
-        )
-
     return g
 
 
@@ -273,3 +275,94 @@ def read_nm_header(path: str | Path) -> tuple[int, int]:
         if len(parts) < 2:
             raise ValueError("Primeira linha deve conter: n m")
         return int(parts[0]), int(parts[1])
+
+
+def component_lb(n: int, delta: int) -> int:
+    if n == 1:
+        return 2
+    if n in {2, 3}:
+        return 3
+    return math.ceil(
+        min(
+            3 * n / (delta + 2),
+            (2 * n + delta) / (delta + 1),
+        )
+    )
+
+
+def component_ub(n: int, delta: int) -> int:
+    if n == 1:
+        return 2
+    if n in {2, 3}:
+        return 3
+    return n - delta + 2
+
+
+def graph_bounds(G: nx.Graph) -> tuple[int, int]:
+    lb_total = 0
+    ub_total = 0
+
+    for nodes in nx.connected_components(G):
+        Gi = G.subgraph(nodes)
+        ni = Gi.number_of_nodes()
+        deltai = max(dict(Gi.degree()).values())
+
+        lb_total += component_lb(ni, deltai)
+        ub_total += component_ub(ni, deltai)
+
+    return lb_total, ub_total
+
+
+def process_csv(instances_dir: Path, csv_in: Path, csv_out: Path) -> None:
+    # indexa arquivos de instância por stem (nome sem extensão)
+    instance_map = {}
+    for p in iter_instance_files(instances_dir):
+        instance_map[p.stem] = p
+
+    with (
+        open(csv_in, newline="", encoding="utf-8") as fin,
+        open(csv_out, "w", newline="", encoding="utf-8") as fout,
+    ):
+        reader = csv.DictReader(fin)
+        fieldnames = reader.fieldnames + ["LB", "UB"]
+
+        writer = csv.DictWriter(fout, fieldnames=fieldnames)
+        writer.writeheader()
+
+        for row in reader:
+            raw_name = row["Grafo"]
+            stem = Path(raw_name).stem
+            row["Grafo"] = stem  # remove .col do CSV
+
+            if stem not in instance_map:
+                raise FileNotFoundError(
+                    f"Instância '{stem}' não encontrada em {instances_dir}"
+                )
+
+            G = read_graph_edgelist(instance_map[stem])
+
+            lb, ub = graph_bounds(G)
+
+            row["LB"] = lb
+            row["UB"] = ub
+
+            writer.writerow(row)
+
+
+def main():
+    if len(sys.argv) != 4:
+        print(
+            "Uso:\n  python add_bounds.py <pasta_instancias> <entrada.csv> <saida.csv>",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    instances_dir = Path(sys.argv[1])
+    csv_in = Path(sys.argv[2])
+    csv_out = Path(sys.argv[3])
+
+    process_csv(instances_dir, csv_in, csv_out)
+
+
+if __name__ == "__main__":
+    main()

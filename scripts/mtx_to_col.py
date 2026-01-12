@@ -64,3 +64,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     converter_e_substituir_mtx_por_col(args.pasta)
+
