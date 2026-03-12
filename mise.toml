@@ -1,5 +1,6 @@
 [tools]
 cmake = "4.2.1"
+ninja = "1.13.1"
 python = "3.13.11"
 
 [env]
@@ -34,4 +35,88 @@ python pli_model/run.py \
   --time-limit 900 \
   --solver gurobi \
   --tee \
+"""
+
+[tasks.cmake-configure]
+description = "Configura o projeto CMake em Release e gera compile_commands.json na raiz"
+run = """
+cmake -S . -B build/release \
+  -G "Ninja" \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DTCC_ENABLE_LTO=ON \
+  -DTCC_ENABLE_NATIVE=ON \
+  -DTCC_ENABLE_OPENMP=ON \
+  -DHSCOPT_ENABLE_LTO=ON \
+  -DHSCOPT_ENABLE_NATIVE=ON \
+  -DHSCOPT_ENABLE_OPENMP=ON \
+"""
+
+[tasks.cmake-configure-debug]
+description = "Configura o projeto CMake em Debug e gera compile_commands.json na raiz"
+run = """
+cmake -S . -B build/debug \
+  -G "Ninja" \
+  -DCMAKE_BUILD_TYPE=Debug \
+  -DTCC_ENABLE_LTO=OFF \
+  -DTCC_ENABLE_NATIVE=OFF \
+  -DTCC_ENABLE_OPENMP=ON \
+  -DHSCOPT_ENABLE_LTO=OFF \
+  -DHSCOPT_ENABLE_NATIVE=OFF \
+  -DHSCOPT_ENABLE_OPENMP=ON \
+"""
+
+[tasks.cmake-build-metaheuristics]
+description = "Compila os stubs de metaheurísticas em Release"
+depends = ["cmake-configure"]
+run = """
+cmake --build build/release --target aco_ts hho_rvns brkga
+"""
+
+[tasks.cmake-build-aco-ts]
+description = "Compila o main stub aco_ts"
+depends = ["cmake-configure"]
+run = """
+cmake --build build/release --target aco_ts
+"""
+
+[tasks.cmake-build-hho-rvns]
+description = "Compila o main stub hho_rvns"
+depends = ["cmake-configure"]
+run = """
+cmake --build build/release --target hho_rvns
+"""
+
+[tasks.cmake-build-brkga]
+description = "Compila o main stub brkga"
+depends = ["cmake-configure"]
+run = """
+cmake --build build/release --target brkga
+"""
+
+[tasks.cmake-build-metaheuristics-debug]
+description = "Compila os stubs de metaheurísticas em Debug"
+depends = ["cmake-configure-debug"]
+run = """
+cmake --build build/debug --target aco_ts hho_rvns brkga
+"""
+
+[tasks.cmake-build-aco-ts-debug]
+description = "Compila o main stub aco_ts em Debug"
+depends = ["cmake-configure-debug"]
+run = """
+cmake --build build/debug --target aco_ts
+"""
+
+[tasks.cmake-build-hho-rvns-debug]
+description = "Compila o main stub hho_rvns em Debug"
+depends = ["cmake-configure-debug"]
+run = """
+cmake --build build/debug --target hho_rvns
+"""
+
+[tasks.cmake-build-brkga-debug]
+description = "Compila o main stub brkga em Debug"
+depends = ["cmake-configure-debug"]
+run = """
+cmake --build build/debug --target brkga
 """

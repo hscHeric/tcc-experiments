@@ -1,0 +1,12 @@
+function(tcc_setup_openmp target)
+  if (TCC_ENABLE_OPENMP)
+    find_package(OpenMP)
+    if (OpenMP_CXX_FOUND)
+      target_link_libraries(${target} PUBLIC OpenMP::OpenMP_CXX)
+      target_compile_definitions(${target} PUBLIC TCC_HAVE_OPENMP=1)
+      return()
+    endif()
+  endif()
+
+  target_compile_definitions(${target} PUBLIC TCC_HAVE_OPENMP=0)
+endfunction()
