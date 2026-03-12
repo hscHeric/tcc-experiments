@@ -1,5 +1,5 @@
-#ifndef METAHEURISTICS_APP_STUB_COMMON_HPP
-#define METAHEURISTICS_APP_STUB_COMMON_HPP
+#ifndef METAHEURISTIC_APP_STUB_COMMON_HPP
+#define METAHEURISTIC_APP_STUB_COMMON_HPP
 
 /**
  * @file app_stub_common.hpp
@@ -9,7 +9,6 @@
 #include <filesystem>
 #include <iostream>
 #include <string>
-#include <string_view>
 
 #include "graph.hpp"
 #include "hscopt/hscopt.h"

@@ -8,8 +8,7 @@ Projeto de experimentos para TCC com duas frentes principais:
 
 - [data](/home/hscheric/Work/tcc-experiments/data): instâncias e resultados
 - [pli_model](/home/hscheric/Work/tcc-experiments/pli_model): pipeline Python para PLI
-- [metaheuristic](/home/hscheric/Work/tcc-experiments/metaheuristic): biblioteca de grafo CSR em C++
-- [metaheuristics](/home/hscheric/Work/tcc-experiments/metaheuristics): mains stub das metaheurísticas
+- [metaheuristic](/home/hscheric/Work/tcc-experiments/metaheuristic): biblioteca de grafo CSR e mains stub das metaheurísticas em C++
 - [external/hscopt](/home/hscheric/Work/tcc-experiments/external/hscopt): dependência local de metaheurísticas
 - [cmake](/home/hscheric/Work/tcc-experiments/cmake): módulos auxiliares do build CMake
 - [docs](/home/hscheric/Work/tcc-experiments/docs): documentação do projeto

@@ -5,10 +5,10 @@
 Os executáveis atuais são stubs.
 
 Arquivos:
-- [aco_ts_main.cpp](/home/hscheric/Work/tcc-experiments/metaheuristics/aco_ts_main.cpp)
-- [hho_rvns_main.cpp](/home/hscheric/Work/tcc-experiments/metaheuristics/hho_rvns_main.cpp)
-- [brkga_main.cpp](/home/hscheric/Work/tcc-experiments/metaheuristics/brkga_main.cpp)
-- [app_stub_common.hpp](/home/hscheric/Work/tcc-experiments/metaheuristics/app_stub_common.hpp)
+- [aco_ts_main.cpp](/home/hscheric/Work/tcc-experiments/metaheuristic/aco_ts_main.cpp)
+- [hho_rvns_main.cpp](/home/hscheric/Work/tcc-experiments/metaheuristic/hho_rvns_main.cpp)
+- [brkga_main.cpp](/home/hscheric/Work/tcc-experiments/metaheuristic/brkga_main.cpp)
+- [app_stub_common.hpp](/home/hscheric/Work/tcc-experiments/metaheuristic/app_stub_common.hpp)
 
 ## O que cada um faz hoje
 

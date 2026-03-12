@@ -12,8 +12,7 @@ A pasta [pli_model](/home/hscheric/Work/tcc-experiments/pli_model) concentra a m
 
 O código C/C++ organiza:
 - a dependência [external/hscopt](/home/hscheric/Work/tcc-experiments/external/hscopt)
-- a biblioteca de grafo em [metaheuristic](/home/hscheric/Work/tcc-experiments/metaheuristic)
-- os executáveis stub em [metaheuristics](/home/hscheric/Work/tcc-experiments/metaheuristics)
+- a biblioteca de grafo e os executáveis stub em [metaheuristic](/home/hscheric/Work/tcc-experiments/metaheuristic)
 
 ## Biblioteca `tcc_graph`
 

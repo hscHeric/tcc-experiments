@@ -34,7 +34,7 @@ tcc_setup_target(tcc_graph)
 
 if (TCC_BUILD_METAHEURISTICS)
   add_executable(aco_ts
-    metaheuristics/aco_ts_main.cpp
+    metaheuristic/aco_ts_main.cpp
   )
 
   target_link_libraries(aco_ts
@@ -46,7 +46,7 @@ if (TCC_BUILD_METAHEURISTICS)
   tcc_setup_target(aco_ts)
 
   add_executable(hho_rvns
-    metaheuristics/hho_rvns_main.cpp
+    metaheuristic/hho_rvns_main.cpp
   )
 
   target_link_libraries(hho_rvns
@@ -58,7 +58,7 @@ if (TCC_BUILD_METAHEURISTICS)
   tcc_setup_target(hho_rvns)
 
   add_executable(brkga
-    metaheuristics/brkga_main.cpp
+    metaheuristic/brkga_main.cpp
   )
 
   target_link_libraries(brkga
