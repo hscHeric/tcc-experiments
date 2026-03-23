@@ -39,10 +39,18 @@ Exemplo:
 
 ```bash
 mise install
-mise run cmake-configure
-mise run cmake-build-metaheuristics
+mise run cmake-compile-commands-release
+mise run cmake-build-all
 build/release/aco_ts data/instances/DIMACS/myciel3.col
 ```
+
+Builds úteis via `mise`:
+- `mise run cmake-compile-commands-release`
+- `mise run cmake-compile-commands-debug`
+- `mise run cmake-build-all`
+- `mise run cmake-build-aco-ts`
+- `mise run cmake-build-hho-rvns`
+- `mise run cmake-build-brkga`
 
 ## Dependências
 

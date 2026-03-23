@@ -70,11 +70,28 @@ Após a configuração, o módulo [TccLinkCompileCommands.cmake](/home/hscheric/
 compile_commands.json -> build/<perfil>/compile_commands.json
 ```
 
+Tasks dedicadas no `mise`:
+
+```bash
+mise run cmake-compile-commands-release
+mise run cmake-compile-commands-debug
+```
+
+Se quiser apenas atualizar o link:
+
+```bash
+mise run cmake-link-compile-commands-release
+mise run cmake-link-compile-commands-debug
+```
+
 ## Tasks disponíveis
 
 ### Release
 
 - `mise run cmake-configure`
+- `mise run cmake-compile-commands-release`
+- `mise run cmake-link-compile-commands-release`
+- `mise run cmake-build-all`
 - `mise run cmake-build-metaheuristics`
 - `mise run cmake-build-aco-ts`
 - `mise run cmake-build-hho-rvns`
@@ -83,10 +100,43 @@ compile_commands.json -> build/<perfil>/compile_commands.json
 ### Debug
 
 - `mise run cmake-configure-debug`
+- `mise run cmake-compile-commands-debug`
+- `mise run cmake-link-compile-commands-debug`
+- `mise run cmake-build-all-debug`
 - `mise run cmake-build-metaheuristics-debug`
 - `mise run cmake-build-aco-ts-debug`
 - `mise run cmake-build-hho-rvns-debug`
 - `mise run cmake-build-brkga-debug`
+
+## Build dos binários
+
+Para compilar tudo em release:
+
+```bash
+mise run cmake-build-all
+```
+
+Para compilar individualmente em release:
+
+```bash
+mise run cmake-build-aco-ts
+mise run cmake-build-hho-rvns
+mise run cmake-build-brkga
+```
+
+Para compilar tudo em debug:
+
+```bash
+mise run cmake-build-all-debug
+```
+
+Para compilar individualmente em debug:
+
+```bash
+mise run cmake-build-aco-ts-debug
+mise run cmake-build-hho-rvns-debug
+mise run cmake-build-brkga-debug
+```
 
 ## Saída dos binários
 

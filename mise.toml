@@ -38,7 +38,7 @@ python pli_model/run.py \
 """
 
 [tasks.cmake-configure]
-description = "Configura o projeto CMake em Release e gera compile_commands.json na raiz"
+description = "Configura o projeto CMake em Release e gera compile_commands.json em build/release"
 run = """
 cmake -S . -B build/release \
   -G "Ninja" \
@@ -51,8 +51,22 @@ cmake -S . -B build/release \
   -DHSCOPT_ENABLE_OPENMP=ON \
 """
 
+[tasks.cmake-link-compile-commands-release]
+description = "Cria ou atualiza o link compile_commands.json para o build Release"
+depends = ["cmake-configure"]
+run = """
+ln -sfn build/release/compile_commands.json compile_commands.json
+"""
+
+[tasks.cmake-compile-commands-release]
+description = "Gera compile_commands.json e cria o link da raiz para Release"
+depends = ["cmake-link-compile-commands-release"]
+run = """
+test -L compile_commands.json -o -f compile_commands.json
+"""
+
 [tasks.cmake-configure-debug]
-description = "Configura o projeto CMake em Debug e gera compile_commands.json na raiz"
+description = "Configura o projeto CMake em Debug e gera compile_commands.json em build/debug"
 run = """
 cmake -S . -B build/debug \
   -G "Ninja" \
@@ -63,6 +77,27 @@ cmake -S . -B build/debug \
   -DHSCOPT_ENABLE_LTO=OFF \
   -DHSCOPT_ENABLE_NATIVE=OFF \
   -DHSCOPT_ENABLE_OPENMP=ON \
+"""
+
+[tasks.cmake-link-compile-commands-debug]
+description = "Cria ou atualiza o link compile_commands.json para o build Debug"
+depends = ["cmake-configure-debug"]
+run = """
+ln -sfn build/debug/compile_commands.json compile_commands.json
+"""
+
+[tasks.cmake-compile-commands-debug]
+description = "Gera compile_commands.json e cria o link da raiz para Debug"
+depends = ["cmake-link-compile-commands-debug"]
+run = """
+test -L compile_commands.json -o -f compile_commands.json
+"""
+
+[tasks.cmake-build-all]
+description = "Compila todos os binários de metaheurística em Release"
+depends = ["cmake-configure"]
+run = """
+cmake --build build/release --target aco_ts hho_rvns brkga
 """
 
 [tasks.cmake-build-metaheuristics]
@@ -91,6 +126,13 @@ description = "Compila o main stub brkga"
 depends = ["cmake-configure"]
 run = """
 cmake --build build/release --target brkga
+"""
+
+[tasks.cmake-build-all-debug]
+description = "Compila todos os binários de metaheurística em Debug"
+depends = ["cmake-configure-debug"]
+run = """
+cmake --build build/debug --target aco_ts hho_rvns brkga
 """
 
 [tasks.cmake-build-metaheuristics-debug]
