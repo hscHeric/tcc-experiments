@@ -39,7 +39,7 @@ Reservado para uma pipeline:
 Reservado para BRKGA.
 
 Observação:
-- a API pública atual da `hscopt` ainda não expõe BRKGA
+- a API pública atual da `hscopt` vendorizada não expõe BRKGA
 - por isso, o stub existe apenas como ponto de entrada e alvo de build
 
 ## Como executar
@@ -51,16 +51,3 @@ build/release/aco_ts data/instances/DIMACS/myciel3.col
 build/release/hho_rvns data/instances/DIMACS/myciel3.col
 build/release/brkga data/instances/DIMACS/myciel3.col
 ```
-
-Em debug:
-
-```bash
-build/debug/aco_ts data/instances/DIMACS/myciel3.col
-```
-
-## Convenção adotada
-
-Mesmo sendo stubs, os três executáveis já foram separados para evitar:
-- um `main` monolítico
-- ifs por algoritmo
-- acoplamento desnecessário entre pipelines futuras

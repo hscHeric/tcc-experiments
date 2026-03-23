@@ -11,8 +11,26 @@ A pasta [pli_model](/home/hscheric/Work/tcc-experiments/pli_model) concentra a m
 ### C/C++
 
 O código C/C++ organiza:
-- a dependência [external/hscopt](/home/hscheric/Work/tcc-experiments/external/hscopt)
+- a dependência vendorizada [external/hscopt](/home/hscheric/Work/tcc-experiments/external/hscopt)
 - a biblioteca de grafo e os executáveis stub em [metaheuristic](/home/hscheric/Work/tcc-experiments/metaheuristic)
+
+## Integração com `hscopt`
+
+O projeto adiciona a dependência como subdiretório versionado:
+
+```cmake
+set(HSCOPT_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+add_subdirectory(external/hscopt)
+```
+
+Isso significa:
+- sem `git submodule`
+- sem clone adicional após baixar `tcc-experiments`
+- a revisão da biblioteca fica explícita no histórico do projeto
+
+Snapshot atual:
+- repositório de origem: `git@github.com:hscHeric/hscopt.git`
+- commit importado: `ffce4ed`
 
 ## Biblioteca `tcc_graph`
 
@@ -25,19 +43,6 @@ Headers expostos:
 Dependências:
 - inclui headers de `hscopt`
 - linka contra a biblioteca estática `hscopt`
-
-## Integração com `hscopt`
-
-O projeto adiciona a dependência como subdiretório:
-
-```cmake
-add_subdirectory(external/hscopt)
-```
-
-O build força:
-- `HSCOPT_BUILD_EXAMPLES=OFF`
-
-Isso evita compilar exemplos da dependência quando o foco é o projeto principal.
 
 ## Executáveis stub
 
@@ -60,5 +65,3 @@ A pasta [cmake](/home/hscheric/Work/tcc-experiments/cmake) contém:
 - [OpenMP.cmake](/home/hscheric/Work/tcc-experiments/cmake/OpenMP.cmake)
 - [TccProjectSetup.cmake](/home/hscheric/Work/tcc-experiments/cmake/TccProjectSetup.cmake)
 - [TccLinkCompileCommands.cmake](/home/hscheric/Work/tcc-experiments/cmake/TccLinkCompileCommands.cmake)
-
-Esses módulos seguem a mesma ideia do build da `hscopt`, mas com namespace próprio `tcc_*`.

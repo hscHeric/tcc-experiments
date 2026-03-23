@@ -1,0 +1,44 @@
+{
+  "version": 4,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 16,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "release",
+      "displayName": "Release (GCC/Linux)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "HSCOPT_ENABLE_LTO": "ON",
+        "HSCOPT_ENABLE_NATIVE": "ON",
+        "HSCOPT_ENABLE_OPENMP": "ON"
+      }
+    },
+    {
+      "name": "debug",
+      "displayName": "Debug (GCC/Linux)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "HSCOPT_ENABLE_LTO": "OFF",
+        "HSCOPT_ENABLE_NATIVE": "OFF",
+        "HSCOPT_ENABLE_OPENMP": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "release",
+      "configurePreset": "release"
+    },
+    {
+      "name": "debug",
+      "configurePreset": "debug"
+    }
+  ]
+}

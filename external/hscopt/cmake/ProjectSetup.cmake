@@ -1,0 +1,10 @@
+include(${CMAKE_CURRENT_LIST_DIR}/Options.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/CompilerWarnings.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/Optimize.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/OpenMP.cmake)
+
+function(hscopt_setup_target target)
+  hscopt_setup_warnings(${target})
+  hscopt_setup_optimization(${target})
+  hscopt_setup_openmp(${target})
+endfunction()

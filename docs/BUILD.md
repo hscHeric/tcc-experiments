@@ -27,7 +27,18 @@ Instalação:
 mise install
 ```
 
-Sem `mise install`, o `cmake` pode falhar ao tentar usar o `ninja` exposto pelos shims do `mise`.
+## Dependência vendorizada
+
+A biblioteca `hscopt` é mantida dentro do próprio repositório em [external/hscopt](/home/hscheric/Work/tcc-experiments/external/hscopt).
+
+Origem da snapshot atual:
+- repositório: `git@github.com:hscHeric/hscopt.git`
+- commit importado: `ffce4ed`
+
+O projeto principal força:
+- `HSCOPT_BUILD_EXAMPLES=OFF`
+
+Isso evita compilar os exemplos do `hscopt` quando o foco é o build do TCC.
 
 ## Configuração CMake
 
@@ -58,8 +69,6 @@ Após a configuração, o módulo [TccLinkCompileCommands.cmake](/home/hscheric/
 ```text
 compile_commands.json -> build/<perfil>/compile_commands.json
 ```
-
-Isso permite que o `clangd` use a configuração de compilação diretamente na raiz do projeto.
 
 ## Tasks disponíveis
 
@@ -100,5 +109,3 @@ O projeto define opções próprias `TCC_*` e também repassa opções `HSCOPT_*
 - `HSCOPT_ENABLE_LTO`
 - `HSCOPT_ENABLE_NATIVE`
 - `HSCOPT_ENABLE_OPENMP`
-
-Essas opções são aplicadas pelas tasks do `mise`.

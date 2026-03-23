@@ -1,0 +1,12 @@
+function(hscopt_setup_openmp target)
+  if (HSCOPT_ENABLE_OPENMP)
+    find_package(OpenMP)
+    if (OpenMP_C_FOUND)
+      target_link_libraries(${target} PUBLIC OpenMP::OpenMP_C)
+      target_compile_definitions(${target} PUBLIC HSCOPT_HAVE_OPENMP=1)
+      return()
+    endif()
+  endif()
+
+  target_compile_definitions(${target} PUBLIC HSCOPT_HAVE_OPENMP=0)
+endfunction()

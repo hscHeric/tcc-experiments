@@ -8,12 +8,41 @@ Projeto de experimentos para TCC com duas frentes principais:
 
 - [data](/home/hscheric/Work/tcc-experiments/data): instâncias e resultados
 - [pli_model](/home/hscheric/Work/tcc-experiments/pli_model): pipeline Python para PLI
-- [metaheuristic](/home/hscheric/Work/tcc-experiments/metaheuristic): biblioteca de grafo CSR e mains stub das metaheurísticas em C++
-- [external/hscopt](/home/hscheric/Work/tcc-experiments/external/hscopt): dependência local de metaheurísticas
+- [metaheuristic](/home/hscheric/Work/tcc-experiments/metaheuristic): grafo CSR e stubs das metaheurísticas em C++
+- [external/hscopt](/home/hscheric/Work/tcc-experiments/external/hscopt): snapshot vendorizada da biblioteca `hscopt`
 - [cmake](/home/hscheric/Work/tcc-experiments/cmake): módulos auxiliares do build CMake
 - [docs](/home/hscheric/Work/tcc-experiments/docs): documentação do projeto
 
+## Integração da biblioteca
+
+`hscopt` foi adicionada como subdiretório versionado em `external/hscopt`, não como submodule.
+
+Snapshot importada:
+- repositório: `git@github.com:hscHeric/hscopt.git`
+- revisão: `ffce4ed`
+
+O build principal usa:
+
+```cmake
+set(HSCOPT_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+add_subdirectory(external/hscopt)
+```
+
 ## Fluxo recomendado
+
+1. Rode `mise install`
+2. Rode `mise run cmake-configure` ou `mise run cmake-configure-debug`
+3. Compile os alvos desejados
+4. Execute os stubs de metaheurística com uma instância `.col`
+
+Exemplo:
+
+```bash
+mise install
+mise run cmake-configure
+mise run cmake-build-metaheuristics
+build/release/aco_ts data/instances/DIMACS/myciel3.col
+```
 
 ## Dependências
 
@@ -23,38 +52,10 @@ Antes de usar o build C/C++, tenha no sistema:
 - `make`
 - `mise`
 
-As ferramentas abaixo já estão declaradas em [mise.toml](/home/hscheric/Work/tcc-experiments/mise.toml) e são instaladas com:
-
-```bash
-mise install
-```
-
-Ferramentas provisionadas pelo `mise`:
+As ferramentas abaixo já estão declaradas em [mise.toml](/home/hscheric/Work/tcc-experiments/mise.toml):
 - `cmake`
 - `ninja`
 - `python`
-
-## Build
-
-1. Rode `mise install`
-2. Rode `mise run cmake-configure` ou `mise run cmake-configure-debug`
-3. Compile os alvos desejados via `mise`
-
-Exemplos:
-
-```bash
-mise install
-mise run cmake-configure
-mise run cmake-build-metaheuristics
-```
-
-Para debug:
-
-```bash
-mise install
-mise run cmake-configure-debug
-mise run cmake-build-aco-ts-debug
-```
 
 ## Documentação
 

@@ -23,7 +23,7 @@ Após o carregamento:
 - a adjacência de cada vértice fica ordenada
 - não há laços
 - não há arestas duplicadas
-- `edge_exists(u, v)` pode usar busca binária
+- `edge_exists(u, v)` usa busca binária na adjacência ordenada
 
 ## Formatos suportados
 
@@ -39,18 +39,6 @@ Regras:
 - arestas `e u v`
 - laços são ignorados
 
-API específica:
-
-```cpp
-Graph g = Graph::read_dimacs_col("instancia.col");
-```
-
-O construtor geral também detecta `.col` automaticamente:
-
-```cpp
-Graph g("instancia.col");
-```
-
 ### Formato legado
 
 Formato:
@@ -65,8 +53,6 @@ Nesse caso os rótulos originais são relabelados deterministicamente para `0..k
 
 ## API principal
 
-### Consultas
-
 - `get_order()`
 - `get_size()`
 - `get_density()`
@@ -80,26 +66,10 @@ Nesse caso os rótulos originais são relabelados deterministicamente para `0..k
 - `get_isolated_vertices()`
 - `choose_random_vertex()`
 
-### Operações mutáveis
+## Operações mutáveis
 
 - `add_vertex(v)`
 - `add_edge(u, v)`
 - `delete_vertex(v)`
 
-Essas operações existem, mas reconstroem o CSR. Portanto, são corretas, porém não são o caminho otimizado do módulo.
-
-## Observações de uso
-
-- `choose_random_vertex()` é determinístico
-- `get_neighbors()` retorna uma visão leve (`NeighborView`) sem alocação
-- o módulo é apropriado para decoders e heurísticas que consultam muito o grafo
-
-## Testes realizados
-
-Antes da limpeza dos testes temporários, o grafo foi validado em todas as instâncias da pasta `data/instances`, incluindo:
-- faixa `0..n-1`
-- vértices faltantes
-- contagem de arestas
-- graus mínimo e máximo
-- densidade
-- consistência da adjacência
+Essas operações reconstroem o CSR. O módulo existe para leitura e consultas, não para atualização frequente.
