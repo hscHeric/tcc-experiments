@@ -1,8 +1,0 @@
-option(TCC_ENABLE_OPENMP "Enable OpenMP when available" ON)
-option(TCC_ENABLE_LTO "Enable IPO/LTO when supported" ON)
-option(TCC_ENABLE_NATIVE "Enable -march=native/-mtune=native" ON)
-option(TCC_ENABLE_FAST_MATH "Enable fast-math" OFF)
-option(TCC_ENABLE_WARNINGS "Enable compiler warnings" ON)
-option(TCC_ENABLE_STRICT_ALIASING "Enable -fstrict-aliasing" ON)
-option(TCC_ENABLE_VISIBILITY_HIDDEN "Enable -fvisibility=hidden" ON)
-option(TCC_BUILD_METAHEURISTICS "Build metaheuristic stub executables" ON)
