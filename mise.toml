@@ -7,59 +7,23 @@ python = "3.13.11"
 _.python.venv = { path = ".venv", create = true }
 PROJECT_ROOT = "{{cwd}}"
 
-[tasks.setup]
-description = "Configura o ambiente (cria venv e instala dependências)"
-run = """
-python -m venv .venv
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-echo "Ambiente configurado com sucesso!"
-"""
-
 [tasks.pli]
-description = "Executa o PLI em todas as instâncias (Gurobi, 900s)"
+description = "Executa o PLI em todas as instâncias (Necessário licença do gurobi)"
 run = """
-python pli_model/run.py \
+python python/pli/run.py \
   --input data/instances \
-  --output data/results/pli \
+  --output results/pli \
   --time-limit 900 \
-  --solver gurobi \
+  --solver gurobi
 """
 
 [tasks.pli-debug]
-description = "Executa o PLI com log do solver visível"
+description = "Executa o PLI com log detalhado (Necessário licença do gurobi)"
 run = """
-python pli_model/run.py \
+python python/pli/run.py \
   --input data/instances \
-  --output data/results/pli \
+  --output results/pli \
   --time-limit 900 \
   --solver gurobi \
-  --tee \
-"""
-
-[tasks.cmake-configure]
-description = "Configura o projeto C++ com CMake e Ninja"
-run = """
-cmake -S . -B build -G Ninja
-"""
-
-[tasks.cmake-compile-commands]
-description = "Gera compile_commands.json e o link simbólico na raiz"
-depends = ["cmake-configure"]
-run = """
-test -L compile_commands.json -o -f build/compile_commands.json
-"""
-
-[tasks.cmake-build-main]
-description = "Compila o executável main do diretório metaheuristics"
-depends = ["cmake-configure"]
-run = """
-CCACHE_DISABLE=1 cmake --build build --target main
-"""
-
-[tasks.cmake-run-main]
-description = "Executa o binário main compilado"
-depends = ["cmake-build-main"]
-run = """
-./build/main
+  --tee
 """

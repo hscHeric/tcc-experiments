@@ -1,7 +1,8 @@
 #ifndef HSC_DECODER_HPP
 #define HSC_DECODER_HPP
 
-#include "graph.hpp"
+#include "../graph/graph.hpp"
+#include <algorithm>
 #include <cstddef>
 #include <cstdint>
 #include <numeric>
