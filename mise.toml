@@ -27,3 +27,29 @@ python python/pli/run.py \
   --solver gurobi \
   --tee
 """
+
+[tasks.build-debug]
+description = "Configura e compila o projeto em Debug"
+run = """
+conan install . --output-folder=. --build=missing -s build_type=Debug
+cmake --preset conan-debug
+cmake --build --preset conan-debug
+"""
+
+[tasks.build-release]
+description = "Configura e compila o projeto em Release"
+run = """
+conan install . --output-folder=. --build=missing -s build_type=Release
+cmake -S . -B build/build/Release \
+  -DCMAKE_TOOLCHAIN_FILE=build/build/Release/generators/conan_toolchain.cmake \
+  -DCMAKE_BUILD_TYPE=Release
+cmake --build build/build/Release
+"""
+
+[tasks.compile-commands]
+description = "Gera compile_commands.json e cria link na raiz do projeto"
+run = """
+conan install . --output-folder=build --build=missing -s build_type=Debug
+cmake --preset conan-debug
+ln -sfn build/build/Debug/compile_commands.json compile_commands.json
+"""
