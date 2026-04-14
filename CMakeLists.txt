@@ -57,7 +57,7 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
 
   #flags para release
 elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
-  add_compile_options(-O3 -march=native -flto -DNDEBUG)
+  add_compile_options(-O3 -march=native -flto=auto -DNDEBUG)
   add_link_options(-flto)
 endif()
 
@@ -93,12 +93,6 @@ target_link_libraries(brkga_runner PRIVATE
     core
     BRKGA::brkga
     CLI11::CLI11
-)
-
-set_target_properties(brkga_runner PROPERTIES
-    CXX_STANDARD 14
-    CXX_STANDARD_REQUIRED ON
-    CXX_EXTENSIONS OFF
 )
 
 message(STATUS "Projeto configurado com sucesso")
