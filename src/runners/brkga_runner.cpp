@@ -1,4 +1,8 @@
-#include "CLI/CLI.hpp"
+#include "decoder/decoder.hpp"
+#include <BRKGA.h>
+#include <CLI/CLI.hpp>
+#include <MTRand.h>
+#include <chrono>
 #include <filesystem>
 #include <format>
 #include <spdlog/sinks/stdout_color_sinks.h>
@@ -19,6 +23,8 @@ struct brkga_params {
   unsigned max_generations = 1000;
   unsigned max_time_seconds = 0;
   unsigned max_stagnation = 0;
+  unsigned exchange_m = 2;
+  unsigned exchange_interval = 100;
 };
 
 // validação dos parâmetros do BRKGA
@@ -85,13 +91,16 @@ int main(int argc, char *argv[]) {
 
   app.add_option("-g,--gens", params.max_generations)->capture_default_str();
 
-  app.add_option("--time", params.max_time_seconds,
-                 "Tempo máximo (0 = ilimitado)")
+  app.add_option("--time", params.max_time_seconds, "Tempo máximo")
       ->check(CLI::NonNegativeNumber);
 
-  app.add_option("--stagnation", params.max_stagnation,
-                 "Estagnação máxima (0 = ilimitado)")
+  app.add_option("--stagnation", params.max_stagnation, "Estagnação máxima")
       ->check(CLI::NonNegativeNumber);
+  app.add_option("--x-m", params.exchange_m, "M: individuos elite migrantes")
+
+      ->default_val(2);
+  app.add_option("--x-int", params.exchange_interval, "Intervalo de migracao")
+      ->default_val(100);
 
   try {
     app.parse(argc, argv);
@@ -104,6 +113,10 @@ int main(int argc, char *argv[]) {
   } catch (const CLI::ParseError &e) {
     return app.exit(e);
   }
+
+  const auto start_time = std::chrono::steady_clock::now();
+  auto seed = static_cast<unsigned long>(start_time.time_since_epoch().count());
+  MTRand rng(seed);
 
   return 0;
 }
