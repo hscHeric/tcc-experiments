@@ -1,9 +1,4 @@
 CompileFlags:
-  CompilationDatabase: build/build/Debug
-
----
-If:
-  PathMatch: external/hsc-brkga-api/include/.*\.(h|hpp)$
-CompileFlags:
   Add:
-    - -fopenmp
+    - -isystem
+    - /usr/lib/gcc/x86_64-redhat-linux/15/include
