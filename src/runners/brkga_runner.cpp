@@ -1,7 +1,7 @@
-#include <BRKGA.h>
-#include <MTRand.h>
 #include "../core/decoder/decoder.hpp"
 #include "../core/graph/graph.hpp"
+#include <BRKGA.h>
+#include <MTRand.h>
 #include <iostream>
 
 int main(int argc, char *argv[]) {
@@ -16,14 +16,8 @@ int main(int argc, char *argv[]) {
   D1 decoder(graph);
   MTRand rng(12345UL);
 
-  BRKGA<D1, MTRand> algorithm(
-      static_cast<unsigned>(graph.get_order()),
-      20,
-      0.20,
-      0.10,
-      0.70,
-      decoder,
-      rng);
+  BRKGA<D1, MTRand> algorithm(static_cast<unsigned>(graph.get_order()), 20,
+                              0.20, 0.10, 0.70, decoder, rng);
 
   algorithm.evolve(2);
 
