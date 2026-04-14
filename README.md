@@ -1,78 +1,63 @@
 # tcc-experiments
 
-Experimentos para o TCC com foco em heuristicas e metaheuristicas para problemas em grafos.
+Projeto de experimentos do TCC com implementacoes em C++ e scripts auxiliares em Python.
 
-Hoje o repositorio contem:
+## Clone
 
-- uma biblioteca `core` em C++ com estruturas e decoders do projeto;
-- um executavel `brkga_runner` para integrar o decoder ao `hsc-brkga-api`;
-- scripts Python para PLI, analise de resultados e manipulacao de instancias;
-- conjuntos de instancias em `data/instances`;
-- submodulos em `external/` para algoritmos reutilizaveis.
+```bash
+git clone --recurse-submodules git@github.com:hscHeric/tcc-experiments.git
+cd tcc-experiments
+```
 
-## Dependencias
-
-O build C++ usa:
-
-- CMake 3.20+
-- Conan 2
-- compilador com suporte a C++23 no projeto principal
-- suporte a OpenMP para o submodulo `hsc-brkga-api`
-
-Pacotes resolvidos via Conan:
-
-- `CLI11`
-- `spdlog`
-- `nlohmann_json`
-
-## Submodulos
-
-Os submodulos versionados no projeto sao:
-
-- `external/hsc-brkga-api` na tag `v1.0.0`
-- `external/hscopt` na tag `v1.0.0`
-
-No estado atual, apenas `hsc-brkga-api` esta ligado ao `brkga_runner`. O `hscopt` ja entra no grafo do CMake, mas nao e usado por nenhum alvo da raiz por enquanto.
-
-## Build
-
-Inicialize os submodulos:
+Se voce ja clonou sem os submodulos:
 
 ```bash
 git submodule update --init --recursive
 ```
 
-Instale as dependencias C++ com Conan:
+## Requirements
+
+Para compilar a parte em C++ voce precisa de:
+
+- `git`
+- `cmake` 3.20+
+- `conan` 2.x
+- compilador com suporte a `C++23`
+- suporte a OpenMP
+
+Para os scripts Python:
+
+- `python` 3.x
+- dependencias do arquivo `requirements.txt`
+
+Instalacao das dependencias Python:
 
 ```bash
-conan install . --output-folder=. --build=missing -s build_type=Debug
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
-Configure o projeto com o toolchain gerado:
+## Build
+
+Exemplo de build `Debug`:
 
 ```bash
-cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=build/conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Debug
+conan install . --output-folder=build/Debug --build=missing -s build_type=Debug
+cmake -S . -B build/Debug \
+  -DCMAKE_TOOLCHAIN_FILE=build/Debug/generators/conan_toolchain.cmake \
+  -DCMAKE_BUILD_TYPE=Debug
+cmake --build build/Debug
 ```
 
-Compile:
+Exemplo de build `Release`:
 
 ```bash
-cmake --build build
+conan install . --output-folder=build/Release --build=missing -s build_type=Release
+cmake -S . -B build/Release \
+  -DCMAKE_TOOLCHAIN_FILE=build/Release/generators/conan_toolchain.cmake \
+  -DCMAKE_BUILD_TYPE=Release
+cmake --build build/Release
 ```
 
-## Estrutura
-
-```text
-src/core/           Biblioteca principal em C++
-src/runners/        Executaveis de experimento
-python/             Scripts e modelos auxiliares em Python
-data/instances/     Instancias de benchmark
-results/            Resultados gerados por execucoes
-external/           Dependencias versionadas como submodulos
-```
-
-## Estado atual
-
-- `brkga_runner` executa um exemplo minimo da integracao com BRKGA sobre um grafo pequeno em memoria.
-- `core` concentra a estrutura de grafo e os decoders experimentais.
-- os scripts Python continuam separados do fluxo de build C++.
+O executavel gerado e o `brkga_runner`.
