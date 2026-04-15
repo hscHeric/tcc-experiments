@@ -1,4 +1,5 @@
 #include "graph.hpp"
+#include <fstream>
 #include <limits>
 #include <random>
 #include <stdexcept>
@@ -134,6 +135,86 @@ std::ostream &operator<<(std::ostream &os, const Graph &graph) {
     os << '\n';
   }
   return os;
+}
+
+Graph load_graph(const std::filesystem::path &path) {
+  std::ifstream file(path);
+  if (!file.is_open()) {
+    throw std::runtime_error("Não foi possível abrir o arquivo: " +
+                             path.string());
+  }
+
+  Graph g;
+  std::string line;
+  size_t n_header = 0;
+  bool is_dimacs = false;
+  bool header_found = false;
+
+  struct Edge {
+    size_t u, v;
+  };
+  std::vector<Edge> temp_edges;
+  size_t min_label = std::numeric_limits<size_t>::max();
+
+  while (std::getline(file, line)) {
+    if (line.empty())
+      continue;
+
+    line.erase(0, line.find_first_not_of(" \t"));
+    if (line.empty() || line[0] == 'c')
+      continue;
+
+    std::stringstream ss(line);
+    char tag;
+
+    if (line[0] == 'p') {
+      std::string p, type;
+      size_t m_header;
+      ss >> p >> type >> n_header >> m_header;
+      if (type == "edge" || type == "col") {
+        is_dimacs = true;
+        header_found = true;
+      }
+      continue;
+    }
+
+    if (is_dimacs && line[0] == 'e') {
+      size_t u, v;
+      ss >> tag >> u >> v;
+      temp_edges.push_back({u, v});
+      min_label = std::min({min_label, u, v});
+    } else if (!is_dimacs) {
+      if (!header_found) {
+        size_t m_unused;
+        ss >> n_header >> m_unused;
+        header_found = true;
+      } else {
+        size_t u, v;
+        if (ss >> u >> v) {
+          temp_edges.push_back({u, v});
+          min_label = std::min({min_label, u, v});
+        }
+      }
+    }
+  }
+
+  if (!header_found) {
+    throw std::runtime_error("Header do grafo não encontrado.");
+  }
+
+  bool should_offset = (min_label == 1);
+
+  for (size_t i = 0; i < n_header; ++i) {
+    g.add_vertex(i);
+  }
+
+  for (const auto &edge : temp_edges) {
+    size_t u = should_offset ? edge.u - 1 : edge.u;
+    size_t v = should_offset ? edge.v - 1 : edge.v;
+    g.add_edge(u, v);
+  }
+
+  return g;
 }
 
 } // namespace hsc

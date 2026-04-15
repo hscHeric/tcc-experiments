@@ -1,6 +1,7 @@
 #ifndef HSC_GRAPH_HPP
 #define HSC_GRAPH_HPP
 
+#include <filesystem>
 #include <iostream>
 #include <unordered_map>
 #include <unordered_set>
@@ -133,6 +134,8 @@ private:
   std::unordered_map<size_t, std::vector<size_t>>
       adj_list; ///< Estrutura de dados principal (Hash Map de Listas).
 };
+
+Graph load_graph(const std::filesystem::path &path);
 
 } // namespace hsc
 
