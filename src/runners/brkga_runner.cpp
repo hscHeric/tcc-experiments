@@ -1,10 +1,14 @@
 #include "decoder/decoder.hpp"
+#include "graph/graph.hpp"
 #include <BRKGA.h>
 #include <CLI/CLI.hpp>
 #include <MTRand.h>
 #include <chrono>
+#include <cstdio>
 #include <filesystem>
 #include <format>
+#include <iostream>
+#include <limits>
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/spdlog.h>
 
@@ -13,7 +17,6 @@ namespace fs = std::filesystem;
 struct brkga_params {
   fs::path input_file{};
   fs::path output_file{};
-  unsigned n_genes = 100;
   unsigned p_population = 1000;
   double pe_elite_fraction = 0.20;
   double pm_mutant_fraction = 0.10;
@@ -44,12 +47,19 @@ static inline void validate_brkga_params(const brkga_params &p) {
   if (p.rhoe_inheritance_prob <= 0.0 || p.rhoe_inheritance_prob >= 1.0) {
     throw CLI::ValidationError("Rho deve estar no intervalo (0, 1)");
   }
+
+  unsigned p_e = static_cast<unsigned>(p.pe_elite_fraction * p.p_population);
+  if (p.k_populations > 1 && p.exchange_m >= p_e) {
+    throw CLI::ValidationError(std::format(
+        "Erro: exchange_m ({}) deve ser menor que o tamanho da elite ({})",
+        p.exchange_m, p_e));
+  }
 }
 
 int main(int argc, char *argv[]) {
   std::ios_base::sync_with_stdio(false);
 
-  // logger moderno
+  // logger
   auto logger = spdlog::stdout_color_mt("console");
   spdlog::set_default_logger(logger);
   spdlog::set_level(spdlog::level::info);
@@ -66,9 +76,6 @@ int main(int argc, char *argv[]) {
 
   app.add_option("-o,--output", params.output_file, "Arquivo de saída")
       ->required();
-
-  app.add_option("-n,--genes", params.n_genes, "Genes por cromossomo")
-      ->check(CLI::PositiveNumber);
 
   app.add_option("-p,--pop", params.p_population, "Tamanho da população")
       ->check(CLI::Range(10, 1'000'000));
@@ -104,6 +111,12 @@ int main(int argc, char *argv[]) {
 
   try {
     app.parse(argc, argv);
+    if (params.max_stagnation == 0) {
+      params.max_stagnation = params.max_generations;
+    }
+    if (params.max_time_seconds == 0) {
+      params.max_time_seconds = std::numeric_limits<unsigned>::max();
+    }
     validate_brkga_params(params);
 
     spdlog::info("Config carregada com sucesso");
@@ -114,9 +127,57 @@ int main(int argc, char *argv[]) {
     return app.exit(e);
   }
 
-  const auto start_time = std::chrono::steady_clock::now();
-  auto seed = static_cast<unsigned long>(start_time.time_since_epoch().count());
+  // inicialização do rng
+  auto seed = static_cast<unsigned long>(
+      std::chrono::steady_clock::now().time_since_epoch().count());
   MTRand rng(seed);
 
+  // leitura do grafo e inicialização do algoritmo
+  auto g = hsc::load_graph(params.input_file);
+  D2 decoder(g);
+  BRKGA<D2, MTRand> brkga(g.get_order(), params.p_population,
+                          params.pe_elite_fraction, params.pm_mutant_fraction,
+                          params.rhoe_inheritance_prob, decoder, rng,
+                          params.k_populations, params.max_threads);
+
+  // loop principal da evolução
+  auto start_time = std::chrono::high_resolution_clock::now();
+  unsigned generation = 1;
+  unsigned stagnation_counter = 0;
+  double best_fitness = std::numeric_limits<double>::infinity();
+  while (generation < params.max_generations) {
+    brkga.evolve();
+
+    if (params.k_populations > 1 &&
+        (generation % params.exchange_interval == 0)) [[unlikely]] {
+      brkga.exchangeElite(params.exchange_m);
+    }
+
+    double current_best = brkga.getBestFitness();
+    if (current_best < best_fitness) {
+      best_fitness = current_best;
+      stagnation_counter = 0;
+      printf("Melhorou: %f", brkga.getBestFitness());
+    } else {
+      stagnation_counter++;
+    }
+
+    // verificação dos criterios de parada
+    auto now = std::chrono::high_resolution_clock::now();
+    auto elapsed =
+        std::chrono::duration_cast<std::chrono::seconds>(now - start_time)
+            .count();
+    if (stagnation_counter >= params.max_stagnation) {
+      break;
+    }
+    if (elapsed >= params.max_time_seconds) {
+      break;
+    }
+
+    generation++;
+  }
+
+  std::cout << generation << std::endl;
+  printf("%.0f\n", brkga.getBestFitness());
   return 0;
 }
