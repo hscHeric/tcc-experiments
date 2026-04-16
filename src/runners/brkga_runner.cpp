@@ -9,8 +9,11 @@
 #include <format>
 #include <iostream>
 #include <limits>
-#include <spdlog/sinks/stdout_color_sinks.h>
-#include <spdlog/spdlog.h>
+#include <quill/Backend.h>
+#include <quill/Frontend.h>
+#include <quill/LogMacros.h>
+#include <quill/Logger.h>
+#include <quill/sinks/ConsoleSink.h>
 
 namespace fs = std::filesystem;
 
@@ -29,6 +32,14 @@ struct brkga_params {
   unsigned exchange_m = 2;
   unsigned exchange_interval = 100;
 };
+
+// inicializacão do logger
+quill::Logger *setup_logger() {
+  quill::Backend::start();
+  auto console_sink =
+      quill::Frontend::create_or_get_sink<quill::ConsoleSink>("sink_id_1");
+  return quill::Frontend::create_or_get_logger("root", std::move(console_sink));
+}
 
 // validação dos parâmetros do BRKGA
 static inline void validate_brkga_params(const brkga_params &p) {
@@ -57,13 +68,7 @@ static inline void validate_brkga_params(const brkga_params &p) {
 }
 
 int main(int argc, char *argv[]) {
-  std::ios_base::sync_with_stdio(false);
-
-  // logger
-  auto logger = spdlog::stdout_color_mt("console");
-  spdlog::set_default_logger(logger);
-  spdlog::set_level(spdlog::level::info);
-
+  auto *logger = setup_logger();
   brkga_params params;
 
   CLI::App app{"BRKGA para o Problema da Dominação 3-Romana em Grafos"};
@@ -118,21 +123,16 @@ int main(int argc, char *argv[]) {
       params.max_time_seconds = std::numeric_limits<unsigned>::max();
     }
     validate_brkga_params(params);
-
-    spdlog::info("Config carregada com sucesso");
   } catch (const CLI::ValidationError &e) {
-    spdlog::error("{}: {}", e.get_name(), e.what());
     return 1;
   } catch (const CLI::ParseError &e) {
     return app.exit(e);
   }
 
-  // inicialização do rng
-  auto seed = static_cast<unsigned long>(
-      std::chrono::steady_clock::now().time_since_epoch().count());
-  MTRand rng(seed);
-
+  LOG_INFO(logger, "Iniciando algoritmo para: {}", params.input_file.string());
   // leitura do grafo e inicialização do algoritmo
+  MTRand rng(static_cast<unsigned long>(
+      std::chrono::steady_clock::now().time_since_epoch().count()));
   auto g = hsc::load_graph(params.input_file);
   D2 decoder(g);
   BRKGA<D2, MTRand> brkga(g.get_order(), params.p_population,
@@ -151,13 +151,15 @@ int main(int argc, char *argv[]) {
     if (params.k_populations > 1 &&
         (generation % params.exchange_interval == 0)) [[unlikely]] {
       brkga.exchangeElite(params.exchange_m);
+      LOG_DEBUG(logger, "Elite migrada na geração {}", generation);
     }
 
     double current_best = brkga.getBestFitness();
     if (current_best < best_fitness) {
       best_fitness = current_best;
       stagnation_counter = 0;
-      printf("Melhorou: %f", brkga.getBestFitness());
+      LOG_INFO(logger, "Geração {:>4}: Novo melhor fitness = {:.2f}",
+               generation, best_fitness);
     } else {
       stagnation_counter++;
     }
@@ -176,8 +178,10 @@ int main(int argc, char *argv[]) {
 
     generation++;
   }
-
-  std::cout << generation << std::endl;
+  LOG_INFO(logger,
+           "Evolução concluída. Geração final: {} | Melhor Fitness: {:.0f}",
+           generation - 1, best_fitness);
+  std::cout << (generation - 1) << "\n" << best_fitness << std::endl;
   printf("%.0f\n", brkga.getBestFitness());
   return 0;
 }

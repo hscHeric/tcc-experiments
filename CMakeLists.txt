@@ -62,8 +62,8 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
 endif()
 
 find_package(CLI11 REQUIRED)
-find_package(spdlog REQUIRED)
 find_package(nlohmann_json REQUIRED)
+find_package(quill REQUIRED)
 
 add_subdirectory(external/hsc-brkga-api)
 
@@ -81,7 +81,7 @@ target_include_directories(core PUBLIC
 )
 
 target_link_libraries(core PUBLIC
-    spdlog::spdlog
+    quill::quill
     nlohmann_json::nlohmann_json
 )
 
