@@ -4,10 +4,8 @@
 #include <CLI/CLI.hpp>
 #include <MTRand.h>
 #include <chrono>
-#include <cstdio>
 #include <filesystem>
 #include <format>
-#include <iostream>
 #include <limits>
 #include <quill/Backend.h>
 #include <quill/Frontend.h>
@@ -20,15 +18,15 @@ namespace fs = std::filesystem;
 struct brkga_params {
   fs::path input_file{};
   fs::path output_file{};
-  unsigned p_population = 1000;
-  double pe_elite_fraction = 0.20;
-  double pm_mutant_fraction = 0.10;
+  unsigned p_population = 2000;
+  double pe_elite_fraction = 0.15;
+  double pm_mutant_fraction = 0.20;
   double rhoe_inheritance_prob = 0.70;
-  unsigned k_populations = 1;
-  unsigned max_threads = 1;
-  unsigned max_generations = 1000;
-  unsigned max_time_seconds = 0;
-  unsigned max_stagnation = 0;
+  unsigned k_populations = 4;
+  unsigned max_threads = 8;
+  unsigned max_generations = 2000;
+  unsigned max_time_seconds = 900;
+  unsigned max_stagnation = 500;
   unsigned exchange_m = 2;
   unsigned exchange_interval = 100;
 };
@@ -134,8 +132,8 @@ int main(int argc, char *argv[]) {
   MTRand rng(static_cast<unsigned long>(
       std::chrono::steady_clock::now().time_since_epoch().count()));
   auto g = hsc::load_graph(params.input_file);
-  D2 decoder(g);
-  BRKGA<D2, MTRand> brkga(g.get_order(), params.p_population,
+  D3 decoder(g);
+  BRKGA<D3, MTRand> brkga(g.get_order(), params.p_population,
                           params.pe_elite_fraction, params.pm_mutant_fraction,
                           params.rhoe_inheritance_prob, decoder, rng,
                           params.k_populations, params.max_threads);
@@ -181,7 +179,5 @@ int main(int argc, char *argv[]) {
   LOG_INFO(logger,
            "Evolução concluída. Geração final: {} | Melhor Fitness: {:.0f}",
            generation - 1, best_fitness);
-  std::cout << (generation - 1) << "\n" << best_fitness << std::endl;
-  printf("%.0f\n", brkga.getBestFitness());
   return 0;
 }
