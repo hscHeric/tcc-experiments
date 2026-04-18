@@ -2,6 +2,8 @@
 #define HSC_DECODER_HPP
 
 #include "../graph/graph.hpp"
+#include <atomic>
+#include <memory>
 #include <vector>
 
 /**
@@ -33,10 +35,13 @@ public:
 class D3 {
 private:
   const hsc::Graph &graph;
+  std::shared_ptr<std::atomic<std::uint64_t>> evaluation_counter;
 
 public:
   explicit D3(const hsc::Graph &graph);
   double decode(const std::vector<double> &chromosome) const;
+  void reset_evaluation_count() const;
+  [[nodiscard]] std::uint64_t get_evaluation_count() const;
 };
 
 #endif // HSC_DECODER_HPP

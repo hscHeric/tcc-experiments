@@ -1,6 +1,7 @@
 #include "decoder.hpp"
 #include "graph/graph.hpp"
 #include <cstdint>
+#include <memory>
 #include <numeric>
 #include <vector>
 
@@ -148,9 +149,12 @@ void refine_3roman_solution(const hsc::Graph &g, std::vector<uint8_t> &label) {
   }
 }
 
-D3::D3(const hsc::Graph &graph) : graph(graph) {}
+D3::D3(const hsc::Graph &graph)
+    : graph(graph),
+      evaluation_counter(std::make_shared<std::atomic<std::uint64_t>>(0)) {}
 
 double D3::decode(const std::vector<double> &chromosome) const {
+  evaluation_counter->fetch_add(1, std::memory_order_relaxed);
   const size_t n = graph.get_order();
 
   std::vector<size_t> order(n);
@@ -179,4 +183,12 @@ double D3::decode(const std::vector<double> &chromosome) const {
     total_cost += val;
 
   return total_cost;
+}
+
+void D3::reset_evaluation_count() const {
+  evaluation_counter->store(0, std::memory_order_relaxed);
+}
+
+std::uint64_t D3::get_evaluation_count() const {
+  return evaluation_counter->load(std::memory_order_relaxed);
 }
