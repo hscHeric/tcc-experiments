@@ -6,6 +6,11 @@
 #include <memory>
 #include <vector>
 
+#define HSCOPT_MAKE_DECODER_ADAPTER(name, type)                                \
+  extern "C" double name(const double *keys, size_t n, void *ctx) {            \
+    return ((type *)ctx)->decode(keys, n);                                     \
+  }
+
 /**
  * @brief Decoder D1: Mapeia cromossomos [0,1) para rótulos {0,1,2,3}
  * com reparo trivial l[v]=2 em caso de violação.
