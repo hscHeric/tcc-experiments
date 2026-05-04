@@ -3,12 +3,21 @@
 
 #include "../graph/graph.hpp"
 #include <atomic>
+#include <cstddef>
+#include <hscopt/decoder.h>
+#include <limits>
 #include <memory>
 #include <vector>
 
 #define HSCOPT_MAKE_DECODER_ADAPTER(name, type)                                \
-  extern "C" double name(const double *keys, size_t n, void *ctx) {            \
-    return ((type *)ctx)->decode(keys, n);                                     \
+  extern "C" double name(const double *keys, std::size_t n,                    \
+                         hscopt_decode_ctx *ctx) {                             \
+    const auto *decoder =                                                      \
+        static_cast<const type *>(ctx != nullptr ? ctx->user : nullptr);        \
+    if (decoder == nullptr || keys == nullptr) {                                \
+      return std::numeric_limits<double>::infinity();                           \
+    }                                                                          \
+    return decoder->decode(std::vector<double>(keys, keys + n));                \
   }
 
 /**
