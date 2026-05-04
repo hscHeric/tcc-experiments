@@ -31,15 +31,15 @@ struct hho_rvns_params {
   fs::path input_file{};
   fs::path output_file{};
   unsigned attempts = 1;
-  size_t agents = 80;
+  size_t agents = 120;
   unsigned max_threads = 8;
-  unsigned max_iterations = 2000;
+  unsigned max_iterations = 5000;
   unsigned max_time_seconds = 900;
-  unsigned max_stagnation = 500;
-  unsigned local_search_start = 25;
-  unsigned local_search_interval = 25;
-  unsigned rvns_iterations = 50;
-  size_t rvns_k_max = 8;
+  unsigned max_stagnation = 1500;
+  unsigned local_search_start = 100;
+  unsigned local_search_interval = 50;
+  unsigned rvns_iterations = 100;
+  size_t rvns_k_max = 12;
 };
 
 static std::string

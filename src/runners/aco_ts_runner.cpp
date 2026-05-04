@@ -31,19 +31,19 @@ struct aco_ts_params {
   fs::path input_file{};
   fs::path output_file{};
   unsigned attempts = 1;
-  size_t archive_size = 50;
-  size_t ants = 60;
+  size_t archive_size = 100;
+  size_t ants = 120;
   double q = 0.08;
   double xi = 0.90;
   unsigned max_threads = 8;
-  unsigned max_iterations = 2000;
+  unsigned max_iterations = 5000;
   unsigned max_time_seconds = 900;
-  unsigned max_stagnation = 500;
-  unsigned local_search_start = 25;
-  unsigned local_search_interval = 25;
-  unsigned ts_iterations = 50;
-  size_t ts_neighborhood_size = 64;
-  unsigned ts_tabu_tenure = 7;
+  unsigned max_stagnation = 1500;
+  unsigned local_search_start = 100;
+  unsigned local_search_interval = 50;
+  unsigned ts_iterations = 100;
+  size_t ts_neighborhood_size = 128;
+  unsigned ts_tabu_tenure = 10;
 };
 
 static std::string

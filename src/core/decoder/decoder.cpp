@@ -23,8 +23,8 @@ double D1::decode(const std::vector<double> &chromosome) const {
     if (l[v] <= 1) {
       std::vector<size_t> neighbors = graph.get_neighbors(v);
       size_t sum = l[v] + std::accumulate(
-        neighbors.begin(), neighbors.end(), 0UL,
-        [&](size_t acc, size_t u) { return acc + l[u]; });
+                              neighbors.begin(), neighbors.end(), 0UL,
+                              [&](size_t acc, size_t u) { return acc + l[u]; });
 
       if (sum < 3) {
         l[v] = 2; // Reparo trivial
@@ -54,9 +54,9 @@ double D2::decode(const std::vector<double> &chromosome) const {
 
     std::vector<size_t> neighbors = graph.get_neighbors(v);
     size_t neighbor_sum =
-      l[v] +
-      std::accumulate(neighbors.begin(), neighbors.end(), 0UL,
-                      [&](size_t acc, size_t u) { return acc + l[u]; });
+        l[v] +
+        std::accumulate(neighbors.begin(), neighbors.end(), 0UL,
+                        [&](size_t acc, size_t u) { return acc + l[u]; });
 
     if (neighbor_sum >= 3)
       continue;
@@ -190,10 +190,8 @@ void refine_optimized(const hsc::Graph &g, std::vector<uint8_t> &label) {
 }
 
 D3::D3(const hsc::Graph &graph)
-  : graph(graph),
-  evaluation_counter(std::make_shared<std::atomic<std::uint64_t>>(0)) {}
-
-
+    : graph(graph),
+      evaluation_counter(std::make_shared<std::atomic<std::uint64_t>>(0)) {}
 
 void D3::reset_evaluation_count() const {
   evaluation_counter->store(0, std::memory_order_relaxed);
@@ -204,38 +202,41 @@ std::uint64_t D3::get_evaluation_count() const {
 }
 
 double D3::decode(const std::vector<double> &chromosome) const {
-    evaluation_counter->fetch_add(1, std::memory_order_relaxed);
-    const size_t n = graph.get_order();
+  evaluation_counter->fetch_add(1, std::memory_order_relaxed);
+  const size_t n = graph.get_order();
 
-    // Uso de thread_local para evitar alocações repetitivas no heap
-    static thread_local std::vector<size_t> order;
-    static thread_local std::vector<uint8_t> f;
-    
-    if (order.size() != n) order.resize(n);
-    if (f.size() != n) f.resize(n);
+  // Uso de thread_local para evitar alocações repetitivas no heap
+  static thread_local std::vector<size_t> order;
+  static thread_local std::vector<uint8_t> f;
 
-    std::iota(order.begin(), order.end(), 0);
-    
-    // Tente substituir isso por uma abordagem que não exija sort total se possível
-    std::sort(order.begin(), order.end(),
-              [&](size_t a, size_t b) { return chromosome[a] > chromosome[b]; });
+  if (order.size() != n)
+    order.resize(n);
+  if (f.size() != n)
+    f.resize(n);
 
-    std::fill(f.begin(), f.end(), 0);
+  std::iota(order.begin(), order.end(), 0);
 
-    for (size_t u : order) {
-        size_t current_sum = f[u];
-        for (size_t v : graph.get_neighbors(u)) {
-            current_sum += f[v];
-        }
+  // Tente substituir isso por uma abordagem que não exija sort total se
+  // possível
+  std::sort(order.begin(), order.end(),
+            [&](size_t a, size_t b) { return chromosome[a] > chromosome[b]; });
 
-        if (current_sum < 3) {
-            f[u] = 3 - (current_sum - f[u]); // Define o necessário para chegar a 3
-        }
+  std::fill(f.begin(), f.end(), 0);
+
+  for (size_t u : order) {
+    size_t current_sum = f[u];
+    for (size_t v : graph.get_neighbors(u)) {
+      current_sum += f[v];
     }
 
-    // Refine in-place sem criar vetores temporários
-    refine_optimized(graph, f);
+    if (current_sum < 3) {
+      f[u] = 3 - (current_sum - f[u]); // Define o necessário para chegar a 3
+    }
+  }
 
-    // Use std::accumulate ou um loop simples
-    return std::accumulate(f.begin(), f.end(), 0.0);
+  // Refine in-place sem criar vetores temporários
+  refine_optimized(graph, f);
+
+  // Use std::accumulate ou um loop simples
+  return std::accumulate(f.begin(), f.end(), 0.0);
 }

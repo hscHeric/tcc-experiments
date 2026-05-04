@@ -3,9 +3,7 @@
 
 #include "../graph/graph.hpp"
 #include <atomic>
-#include <cstddef>
 #include <hscopt/decoder.h>
-#include <limits>
 #include <memory>
 #include <vector>
 
@@ -13,11 +11,11 @@
   extern "C" double name(const double *keys, std::size_t n,                    \
                          hscopt_decode_ctx *ctx) {                             \
     const auto *decoder =                                                      \
-        static_cast<const type *>(ctx != nullptr ? ctx->user : nullptr);        \
-    if (decoder == nullptr || keys == nullptr) {                                \
-      return std::numeric_limits<double>::infinity();                           \
+        static_cast<const type *>(ctx != nullptr ? ctx->user : nullptr);       \
+    if (decoder == nullptr || keys == nullptr) {                               \
+      return std::numeric_limits<double>::infinity();                          \
     }                                                                          \
-    return decoder->decode(std::vector<double>(keys, keys + n));                \
+    return decoder->decode(std::vector<double>(keys, keys + n));               \
   }
 
 /**
