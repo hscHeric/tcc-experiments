@@ -72,6 +72,7 @@ find_package(nlohmann_json REQUIRED)
 find_package(quill REQUIRED)
 
 add_subdirectory(external/hsc-brkga-api)
+add_subdirectory(external/hsc-brkga-mp-ipr_api)
 
 set(HSCOPT_BUILD_EXAMPLES OFF CACHE BOOL "Disable hscopt examples in parent builds" FORCE)
 add_subdirectory(external/hscopt EXCLUDE_FROM_ALL)
@@ -96,6 +97,15 @@ add_executable(brkga_runner
     src/runners/brkga_runner.cpp
 )
 
+add_executable(brkga_mp_ipr_runner
+    src/runners/brkga_mp_ipr_runner.cpp
+)
+set_target_properties(brkga_mp_ipr_runner PROPERTIES
+    CXX_STANDARD 20
+    CXX_STANDARD_REQUIRED ON
+    CXX_EXTENSIONS OFF
+)
+
 add_executable(aco_ts_runner
     src/runners/aco_ts_runner.cpp
 )
@@ -108,6 +118,10 @@ target_link_libraries(brkga_runner PRIVATE
     core
     BRKGA::brkga
     CLI11::CLI11
+)
+
+target_link_libraries(brkga_mp_ipr_runner PRIVATE
+    BRKGA::brkga_mp_ipr
 )
 
 target_link_libraries(aco_ts_runner PRIVATE
@@ -124,6 +138,7 @@ target_link_libraries(hho_rvns_runner PRIVATE
 
 set(RUNNER_TARGETS
     brkga_runner
+    brkga_mp_ipr_runner
     aco_ts_runner
     hho_rvns_runner
 )
