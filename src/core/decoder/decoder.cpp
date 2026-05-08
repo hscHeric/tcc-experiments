@@ -1,242 +1,300 @@
 #include "decoder.hpp"
 #include "graph/graph.hpp"
+#include <cstddef>
 #include <cstdint>
 #include <memory>
 #include <numeric>
+#include <unistd.h>
 #include <vector>
 
-D1::D1(const hsc::Graph &graph) : graph(graph) {}
+Roman3DominationDecoder::Roman3DominationDecoder(const hsc::Graph &graph)
+    : graph(graph),
+      evaluation_counter(std::make_shared<std::atomic<std::uint64_t>>(0)) {}
 
-double D1::decode(const std::vector<double> &chromosome) const {
-  std::vector<uint8_t> l;
-  l.reserve(chromosome.size());
-
-  for (double x : chromosome) {
-    l.push_back(static_cast<uint8_t>(x * 4));
-  }
-
-  auto vertices_set = graph.get_vertices();
-  std::vector<size_t> vertices(vertices_set.begin(), vertices_set.end());
-  std::sort(vertices.begin(), vertices.end());
-
-  for (size_t v : vertices) {
-    if (l[v] <= 1) {
-      std::vector<size_t> neighbors = graph.get_neighbors(v);
-      size_t sum = l[v] + std::accumulate(
-                              neighbors.begin(), neighbors.end(), 0UL,
-                              [&](size_t acc, size_t u) { return acc + l[u]; });
-
-      if (sum < 3) {
-        l[v] = 2; // Reparo trivial
-      }
-    }
-  }
-  return std::accumulate(l.begin(), l.end(), 0UL);
+void Roman3DominationDecoder::reset_evaluation_count() const {
+  evaluation_counter->store(0, std::memory_order_relaxed);
 }
 
-D2::D2(const hsc::Graph &graph) : graph(graph) {}
+std::uint64_t Roman3DominationDecoder::get_evaluation_count() const {
+  return evaluation_counter->load(std::memory_order_relaxed);
+}
 
-double D2::decode(const std::vector<double> &chromosome) const {
-  std::vector<uint8_t> l;
-  l.reserve(chromosome.size());
+static void reduce_weight_heuristic(const hsc::Graph &graph,
+                                    std::vector<uint8_t> &f,
+                                    std::vector<int> &neighborhood_weight) {
+  const size_t vertex_count = graph.get_order();
 
-  for (double x : chromosome) {
-    l.push_back(static_cast<uint8_t>(x * 4));
-  }
-
-  auto vertices_set = graph.get_vertices();
-  std::vector<size_t> vertices(vertices_set.begin(), vertices_set.end());
-  std::sort(vertices.begin(), vertices.end());
-
-  for (size_t v : vertices) {
-    if (l[v] > 1)
-      continue;
-
-    std::vector<size_t> neighbors = graph.get_neighbors(v);
-    size_t neighbor_sum =
-        l[v] +
-        std::accumulate(neighbors.begin(), neighbors.end(), 0UL,
-                        [&](size_t acc, size_t u) { return acc + l[u]; });
-
-    if (neighbor_sum >= 3)
-      continue;
-
-    size_t deficit = 3 - neighbor_sum;
-
-    if (l[v] == 0 && neighbor_sum == 1) {
-      l[v] = 2;
-      continue;
+  auto is_feasible = [&](size_t u) {
+    if (f[u] == 0) {
+      return neighborhood_weight[u] >= 3;
     }
 
-    if (deficit == 3) {
-      l[v] = (neighbors.empty()) ? 2 : 3;
-      continue;
+    if (f[u] == 1) {
+      return neighborhood_weight[u] >= 2;
     }
 
-    if (deficit == 2) {
-      if (neighbors.empty()) {
-        l[v] = 2;
+    return true;
+  };
+
+  // Atualiza o peso da vizinhança dos vizinhos de u
+  auto apply_delta = [&](size_t u, int delta) {
+    for (size_t v : graph.get_neighbors(u)) {
+      neighborhood_weight[v] += delta;
+    }
+  };
+
+  bool improved = true;
+  while (improved) {
+    improved = false;
+
+    // Percorre todos os vértices
+    for (size_t u = 0; u < vertex_count; ++u) {
+      // Não é possível reduzir vértices rotulados com 0
+      if (f[u] == 0) {
         continue;
       }
 
-      size_t first = SIZE_MAX, second = SIZE_MAX;
-      for (size_t u : neighbors) {
-        if (l[u] == 1) {
-          if (first == SIZE_MAX)
-            first = u;
-          else {
-            second = u;
-            break;
-          }
-        }
+      const int old_label = f[u];
+      const int new_label = old_label - 1;
+      const int delta = new_label - old_label;
+
+      f[u] = new_label;
+      apply_delta(u, delta);
+      bool valid = true;
+
+      // Verifica a viabilidade de u e seus vizinhos
+      if (!is_feasible(u)) {
+        valid = false;
       }
+      for (size_t v : graph.get_neighbors(u)) {
 
-      if (second != SIZE_MAX) {
-        l[first] = 2;
-        l[second] = 2;
-      } else {
-        bool fix_found = false;
-        for (size_t u : neighbors) {
-          if (l[u] == 0) {
-            l[u] = 2;
-            fix_found = true;
-            break;
-          }
-        }
-        if (!fix_found)
-          l[v] = 2;
-      }
-      continue;
-    }
-
-    if (deficit == 1) {
-      l[v] += 1;
-    }
-  }
-  return std::accumulate(l.begin(), l.end(), 0UL);
-}
-
-void refine_3roman_solution(const hsc::Graph &g, std::vector<uint8_t> &label) {
-  const auto n = g.get_order();
-  for (size_t u = 0; u < n; u++) {
-    if (label[u] > 0) {
-      uint8_t original_label = label[u];
-      label[u]--;
-
-      bool feasible = true;
-      std::vector<size_t> check_nodes = g.get_neighbors(u);
-      check_nodes.push_back(u);
-
-      for (size_t v : check_nodes) {
-        if (label[v] <= 1) {
-          size_t sum_v = label[v];
-          for (size_t neighbor_v : g.get_neighbors(v)) {
-            sum_v += label[neighbor_v];
-          }
-          if (sum_v < 3) {
-            feasible = false;
-            break;
-          }
-        }
-      }
-
-      if (!feasible) {
-        label[u] = original_label;
-      } else {
-        u--;
-      }
-    }
-  }
-}
-
-void refine_optimized(const hsc::Graph &g, std::vector<uint8_t> &label) {
-  const auto n = g.get_order();
-  for (size_t u = 0; u < n; u++) {
-    while (label[u] > 0) {
-      const uint8_t original_label = label[u];
-      label[u]--;
-
-      bool feasible = true;
-      for (size_t v : g.get_neighbors(u)) {
-        if (label[v] > 1) {
-          continue;
-        }
-
-        size_t sum_v = label[v];
-        for (size_t neighbor_v : g.get_neighbors(v)) {
-          sum_v += label[neighbor_v];
-        }
-
-        if (sum_v < 3) {
-          feasible = false;
+        if (!is_feasible(v)) {
+          valid = false;
           break;
         }
       }
 
-      if (feasible && label[u] <= 1) {
-        size_t sum_u = label[u];
-        for (size_t neighbor_u : g.get_neighbors(u)) {
-          sum_u += label[neighbor_u];
-        }
-        feasible = sum_u >= 3;
+      if (!valid) {
+        f[u] = old_label;
+        apply_delta(u, -delta);
+      } else {
+        improved = true;
       }
+    }
+  }
+}
 
-      if (!feasible) {
-        label[u] = original_label;
+double
+Roman3DominationDecoder::decode(const std::vector<double> &chromosome) const {
+  evaluation_counter->fetch_add(1, std::memory_order_relaxed);
+
+  const size_t vertex_count = graph.get_order();
+
+  // Define a ordem de prioridade dos vértices com base nos valores do
+  // cromossomo
+  // Vértices com chaves maiores são posicionados primeiro (ordem decrescente)
+  thread_local std::vector<size_t> priority_order(vertex_count);
+  priority_order.reserve(vertex_count);
+
+  std::iota(priority_order.begin(), priority_order.end(), 0);
+  std::sort(priority_order.begin(), priority_order.end(),
+            [&](size_t u, size_t v) { return chromosome[u] > chromosome[v]; });
+
+  // f representa a atribuição da função de dominação {3}-romana de cada vértice
+  thread_local std::vector<uint8_t> f;
+  f.assign(vertex_count, 0); // Após a inicialização para o thread_local
+
+  // closed_weight armazena a soma dos pesos na vizinhança fechada de cada
+  // vértice N[v]
+  thread_local std::vector<int> neighborhood_weight;
+  neighborhood_weight.assign(vertex_count, 0);
+
+  // Atualiza o rótulo do vértice e propaga a contribuição da vizinhança fechada
+  auto assign_label = [&](size_t u, int new_label) {
+    const int delta = new_label - f[u];
+
+    f[u] = new_label;
+
+    for (size_t v : graph.get_neighbors(u)) {
+      neighborhood_weight[v] += delta;
+    }
+  };
+
+  // Verifica se o vértice safisfaz a restrição do problema
+  auto is_feasible = [&](size_t u) {
+    if (f[u] == 0) {
+      return neighborhood_weight[u] >= 3;
+    }
+
+    if (f[u] == 1) {
+      return neighborhood_weight[u] >= 2;
+    }
+
+    return true;
+  };
+
+  // Construção gulosa
+  for (size_t i = 0; i < vertex_count; ++i) {
+    const size_t u = priority_order[i];
+
+    if (is_feasible(u)) {
+      continue;
+    }
+
+    // Seleciona o label do vértice de forma gulosa
+    // Escolhendo o menor label que mantenha a solução viavel
+    assign_label(u, 1);
+    if (!is_feasible(u)) {
+      assign_label(u, 2);
+    }
+    if (!is_feasible(u)) {
+
+      assign_label(u, 3);
+    }
+  }
+
+  // Percorre todos os vértices incrementando o restante até que a solução seja
+  // viavel
+  // Observe que é impossive deixar a solução inviavel pois estou sempre
+  // incrementando
+  for (size_t u = 0; u < vertex_count; ++u) {
+    while (!is_feasible(u)) {
+      if (f[u] < 3) {
+        assign_label(u, f[u] + 1);
+      } else {
         break;
       }
     }
   }
+
+  // Tenta reduzir o peso sem perder a viabilidade
+  reduce_weight_heuristic(graph, f, neighborhood_weight);
+  if (!is_solution_feasible(f)) {
+    std::cerr << "Infeasible solution detected!" << std::endl;
+    std::abort();
+  }
+
+  const double objective_value = std::accumulate(f.begin(), f.end(), 0);
+
+  return objective_value;
 }
 
-D3::D3(const hsc::Graph &graph)
-    : graph(graph),
-      evaluation_counter(std::make_shared<std::atomic<std::uint64_t>>(0)) {}
+bool Roman3DominationDecoder::is_solution_feasible(
+    const std::vector<uint8_t> &labels) const {
 
-void D3::reset_evaluation_count() const {
-  evaluation_counter->store(0, std::memory_order_relaxed);
-}
+  const size_t vertex_count = graph.get_order();
 
-std::uint64_t D3::get_evaluation_count() const {
-  return evaluation_counter->load(std::memory_order_relaxed);
-}
+  if (labels.size() != vertex_count) {
+    return false;
+  }
 
-double D3::decode(const std::vector<double> &chromosome) const {
-  evaluation_counter->fetch_add(1, std::memory_order_relaxed);
-  const size_t n = graph.get_order();
-
-  // Uso de thread_local para evitar alocações repetitivas no heap
-  static thread_local std::vector<size_t> order;
-  static thread_local std::vector<uint8_t> f;
-
-  if (order.size() != n)
-    order.resize(n);
-  if (f.size() != n)
-    f.resize(n);
-
-  std::iota(order.begin(), order.end(), 0);
-
-  // Tente substituir isso por uma abordagem que não exija sort total se
-  // possível
-  std::sort(order.begin(), order.end(),
-            [&](size_t a, size_t b) { return chromosome[a] > chromosome[b]; });
-
-  std::fill(f.begin(), f.end(), 0);
-
-  for (size_t u : order) {
-    size_t current_sum = f[u];
-    for (size_t v : graph.get_neighbors(u)) {
-      current_sum += f[v];
+  for (size_t u = 0; u < vertex_count; ++u) {
+    if (labels[u] > 3) {
+      return false;
     }
 
-    if (current_sum < 3) {
-      f[u] = 3 - (current_sum - f[u]); // Define o necessário para chegar a 3
+    int neighbor_sum = 0;
+
+    for (size_t v : graph.get_neighbors(u)) {
+      neighbor_sum += labels[v];
+    }
+
+    if (labels[u] == 0 && neighbor_sum < 3) {
+      return false;
+    }
+
+    if (labels[u] == 1 && neighbor_sum < 2) {
+      return false;
     }
   }
 
-  // Refine in-place sem criar vetores temporários
-  refine_optimized(graph, f);
+  return true;
+}
 
-  // Use std::accumulate ou um loop simples
-  return std::accumulate(f.begin(), f.end(), 0.0);
+std::vector<uint8_t> Roman3DominationDecoder::construct_solution(
+    const std::vector<double> &chromosome) const {
+
+  const size_t vertex_count = graph.get_order();
+
+  // Define a ordem de prioridade dos vértices com base nos valores do
+  // cromossomo
+  // Vértices com chaves maiores são posicionados primeiro (ordem decrescente)
+  thread_local std::vector<size_t> priority_order(vertex_count);
+  priority_order.reserve(vertex_count);
+
+  std::iota(priority_order.begin(), priority_order.end(), 0);
+  std::sort(priority_order.begin(), priority_order.end(),
+            [&](size_t u, size_t v) { return chromosome[u] > chromosome[v]; });
+
+  // f representa a atribuição da função de dominação {3}-romana de cada vértice
+  thread_local std::vector<uint8_t> f;
+  f.assign(vertex_count, 0); // Após a inicialização para o thread_local
+
+  // closed_weight armazena a soma dos pesos na vizinhança fechada de cada
+  // vértice N[v]
+  thread_local std::vector<int> neighborhood_weight;
+  neighborhood_weight.assign(vertex_count, 0);
+
+  // Atualiza o rótulo do vértice e propaga a contribuição da vizinhança fechada
+  auto assign_label = [&](size_t u, int new_label) {
+    const int delta = new_label - f[u];
+
+    f[u] = new_label;
+
+    for (size_t v : graph.get_neighbors(u)) {
+      neighborhood_weight[v] += delta;
+    }
+  };
+
+  // Verifica se o vértice safisfaz a restrição do problema
+  auto is_feasible = [&](size_t u) {
+    if (f[u] == 0) {
+      return neighborhood_weight[u] >= 3;
+    }
+
+    if (f[u] == 1) {
+      return neighborhood_weight[u] >= 2;
+    }
+
+    return true;
+  };
+
+  // Construção gulosa
+  for (size_t i = 0; i < vertex_count; ++i) {
+    const size_t u = priority_order[i];
+
+    if (is_feasible(u)) {
+      continue;
+    }
+
+    // Seleciona o label do vértice de forma gulosa
+    // Escolhendo o menor label que mantenha a solução viavel
+    assign_label(u, 1);
+    if (!is_feasible(u)) {
+      assign_label(u, 2);
+    }
+    if (!is_feasible(u)) {
+
+      assign_label(u, 3);
+    }
+  }
+
+  // Percorre todos os vértices incrementando o restante até que a solução seja
+  // viavel
+  // Observe que é impossive deixar a solução inviavel pois estou sempre
+  // incrementando
+  for (size_t u = 0; u < vertex_count; ++u) {
+    while (!is_feasible(u)) {
+      if (f[u] < 3) {
+        assign_label(u, f[u] + 1);
+      } else {
+        break;
+      }
+    }
+  }
+
+  // Tenta reduzir o peso sem perder a viabilidade
+  reduce_weight_heuristic(graph, f, neighborhood_weight);
+
+  return f;
 }
