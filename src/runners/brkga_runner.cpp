@@ -162,7 +162,7 @@ int main(int argc, char *argv[]) {
 
   LOG_INFO(logger, "Iniciando algoritmo para: {}", params.input_file.string());
   auto g = hsc::load_graph(params.input_file);
-  D3 decoder(g);
+  Roman3DominationDecoder decoder(g);
   const auto seed_base = static_cast<unsigned long>(
       std::chrono::steady_clock::now().time_since_epoch().count());
 
@@ -191,10 +191,10 @@ int main(int argc, char *argv[]) {
     const auto attempt_seed = seed_base + (attempt - 1);
     MTRand rng(attempt_seed);
     decoder.reset_evaluation_count();
-    BRKGA<D3, MTRand> brkga(g.get_order(), params.p_population,
-                            params.pe_elite_fraction, params.pm_mutant_fraction,
-                            params.rhoe_inheritance_prob, decoder, rng,
-                            params.k_populations, params.max_threads);
+    BRKGA<Roman3DominationDecoder, MTRand> brkga(
+        g.get_order(), params.p_population, params.pe_elite_fraction,
+        params.pm_mutant_fraction, params.rhoe_inheritance_prob, decoder, rng,
+        params.k_populations, params.max_threads);
 
     LOG_INFO(logger, "Tentativa {}/{} | seed={}", attempt, params.attempts,
              attempt_seed);

@@ -23,7 +23,8 @@
 namespace fs = std::filesystem;
 using json = nlohmann::json;
 
-HSCOPT_MAKE_DECODER_ADAPTER(d3_hscopt_decoder, D3)
+HSCOPT_MAKE_DECODER_ADAPTER(roman3_domination_hscopt_decoder,
+                            Roman3DominationDecoder)
 
 enum class stop_reason { max_iterations, stagnation, time_limit };
 
@@ -151,7 +152,7 @@ int main(int argc, char *argv[]) {
 
   LOG_INFO(logger, "Iniciando HHO+RVNS para: {}", params.input_file.string());
   auto g = hsc::load_graph(params.input_file);
-  D3 decoder(g);
+  Roman3DominationDecoder decoder(g);
   hscopt_decode_ctx dctx{};
   dctx.user = &decoder;
 
@@ -185,7 +186,8 @@ int main(int argc, char *argv[]) {
 
     hscopt_hho_ctx *hho =
         hscopt_hho_create(g.get_order(), params.agents, params.max_iterations,
-                          params.max_threads, d3_hscopt_decoder, &dctx, &rng);
+                          params.max_threads,
+                          roman3_domination_hscopt_decoder, &dctx, &rng);
     if (hho == nullptr) {
       LOG_ERROR(logger, "Falha ao criar contexto HHO");
       return 1;
@@ -212,8 +214,9 @@ int main(int argc, char *argv[]) {
                   params.local_search_interval ==
               0) {
         try {
-          run_rvns_from_hho(hho, g.get_order(), params, d3_hscopt_decoder,
-                            &dctx, attempt_seed + iteration);
+          run_rvns_from_hho(hho, g.get_order(), params,
+                            roman3_domination_hscopt_decoder, &dctx,
+                            attempt_seed + iteration);
         } catch (const std::runtime_error &e) {
           hscopt_hho_destroy(hho);
           LOG_ERROR(logger, "{}", e.what());
