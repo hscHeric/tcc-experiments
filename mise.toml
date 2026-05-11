@@ -8,9 +8,11 @@ python = "3.13.11"
 [env]
 _.python.venv = { path = ".venv", create = true }
 PROJECT_ROOT = "{{cwd}}"
+CC = "/usr/bin/gcc"
+CXX = "/usr/bin/g++"
 
 [tasks.pli]
-description = "Executa o PLI em todas as instâncias (Necessário licença do gurobi)"
+description = "Executa o PLI em todas as instâncias (necessário licença do Gurobi)"
 run = """
 python python/pli/run.py \
   --input data/instances \
@@ -20,7 +22,7 @@ python python/pli/run.py \
 """
 
 [tasks.pli-debug]
-description = "Executa o PLI com log detalhado (Necessário licença do gurobi)"
+description = "Executa o PLI com log detalhado (necessário licença do Gurobi)"
 run = """
 python python/pli/run.py \
   --input data/instances \
@@ -30,149 +32,59 @@ python python/pli/run.py \
   --tee
 """
 
-[tasks.build-debug]
-description = "Configura e compila o projeto em Debug"
+[tasks.configure-debug]
+description = "Configura o projeto em Debug com GCC, logs habilitados e sanitizers"
 run = """
 conan install . --output-folder=. --build=missing -s build_type=Debug
-CC=/usr/bin/gcc CXX=/usr/bin/g++ cmake --fresh --preset conan-debug
+cmake --fresh --preset conan-debug \
+  -DENABLE_DEBUG_SANITIZERS=ON \
+  -DENABLE_RELEASE_LTO=OFF
+"""
+
+[tasks.configure-release]
+description = "Configura o projeto em Release otimizado para a CPU local"
+run = """
+conan install . --output-folder=. --build=missing -s build_type=Release
+cmake --fresh --preset conan-release \
+  -DENABLE_DEBUG_SANITIZERS=OFF \
+  -DENABLE_RELEASE_LTO=ON \
+  -DENABLE_NATIVE_OPTIMIZATIONS=ON
+"""
+
+[tasks.configure-perf]
+description = "Configura o projeto em RelWithDebInfo para perfilamento"
+run = """
+conan install . --output-folder=. --build=missing -s build_type=RelWithDebInfo
+cmake --fresh --preset conan-relwithdebinfo \
+  -DENABLE_DEBUG_SANITIZERS=OFF \
+  -DENABLE_RELEASE_LTO=OFF \
+  -DENABLE_NATIVE_OPTIMIZATIONS=ON
+"""
+
+[tasks.build-debug]
+description = "Compila todos os runners em Debug"
+run = """
+mise run configure-debug
 cmake --build --preset conan-debug
 """
 
 [tasks.build-release]
-description = "Configura e compila o projeto em Release"
+description = "Compila todos os runners em Release com a maior otimização segura"
 run = """
-conan install . --output-folder=. --build=missing -s build_type=Release
-CC=/usr/bin/gcc CXX=/usr/bin/g++ cmake -S . -B build/Release \
-  -DCMAKE_TOOLCHAIN_FILE=build/Release/generators/conan_toolchain.cmake \
-  -DCMAKE_C_COMPILER=/usr/bin/gcc \
-  -DCMAKE_CXX_COMPILER=/usr/bin/g++ \
-  -DCMAKE_BUILD_TYPE=Release
-cmake --build build/Release
-"""
-[tasks.compile-commands]
-description = "Gera compile_commands.json e cria link na raiz do projeto"
-run = """
-conan install . --output-folder=. --build=missing -s build_type=Debug
-CC=/usr/bin/gcc CXX=/usr/bin/g++ cmake --fresh --preset conan-debug
-ln -sfn build/Debug/compile_commands.json compile_commands.json
+mise run configure-release
+cmake --build --preset conan-release
 """
 
 [tasks.build-perf]
-description = "Build otimizado com símbolos para perf"
+description = "Compila todos os runners em RelWithDebInfo para perf"
 run = """
-conan install . --output-folder=. --build=missing -s build_type=RelWithDebInfo
-cmake --preset conan-relwithdebinfo
+mise run configure-perf
 cmake --build --preset conan-relwithdebinfo
 """
 
-[tasks.build-brkga-debug]
-description = "Configura e compila somente o BRKGA em Debug"
+[tasks.compile-commands]
+description = "Gera compile_commands.json e cria link na raiz do projeto"
 run = """
-conan install . --output-folder=. --build=missing -s build_type=Debug
-CC=/usr/bin/gcc CXX=/usr/bin/g++ cmake --fresh --preset conan-debug
-cmake --build --preset conan-debug --target brkga_runner
-"""
-
-[tasks.build-brkga-release]
-description = "Configura e compila somente o BRKGA em Release"
-run = """
-conan install . --output-folder=. --build=missing -s build_type=Release
-CC=/usr/bin/gcc CXX=/usr/bin/g++ cmake -S . -B build/Release \
-  -DCMAKE_TOOLCHAIN_FILE=build/Release/generators/conan_toolchain.cmake \
-  -DCMAKE_C_COMPILER=/usr/bin/gcc \
-  -DCMAKE_CXX_COMPILER=/usr/bin/g++ \
-  -DCMAKE_BUILD_TYPE=Release
-cmake --build build/Release --target brkga_runner
-"""
-
-[tasks.build-brkga-perf]
-description = "Compila somente o BRKGA em RelWithDebInfo para perf"
-run = """
-conan install . --output-folder=. --build=missing -s build_type=RelWithDebInfo
-cmake --preset conan-relwithdebinfo
-cmake --build --preset conan-relwithdebinfo --target brkga_runner
-"""
-
-[tasks.build-brkga-mp-ipr-debug]
-description = "Configura e compila somente o BRKGA-MP-IPR em Debug"
-run = """
-conan install . --output-folder=. --build=missing -s build_type=Debug
-CC=/usr/bin/gcc CXX=/usr/bin/g++ cmake --fresh --preset conan-debug
-cmake --build --preset conan-debug --target brkga_mp_ipr_runner
-"""
-
-[tasks.build-brkga-mp-ipr-release]
-description = "Configura e compila somente o BRKGA-MP-IPR em Release"
-run = """
-conan install . --output-folder=. --build=missing -s build_type=Release
-CC=/usr/bin/gcc CXX=/usr/bin/g++ cmake -S . -B build/Release \
-  -DCMAKE_TOOLCHAIN_FILE=build/Release/generators/conan_toolchain.cmake \
-  -DCMAKE_C_COMPILER=/usr/bin/gcc \
-  -DCMAKE_CXX_COMPILER=/usr/bin/g++ \
-  -DCMAKE_BUILD_TYPE=Release
-cmake --build build/Release --target brkga_mp_ipr_runner
-"""
-
-[tasks.build-brkga-mp-ipr-perf]
-description = "Compila somente o BRKGA-MP-IPR em RelWithDebInfo para perf"
-run = """
-conan install . --output-folder=. --build=missing -s build_type=RelWithDebInfo
-cmake --preset conan-relwithdebinfo
-cmake --build --preset conan-relwithdebinfo --target brkga_mp_ipr_runner
-"""
-
-[tasks.build-acots-debug]
-description = "Configura e compila somente o ACO+TS em Debug"
-run = """
-conan install . --output-folder=. --build=missing -s build_type=Debug
-CC=/usr/bin/gcc CXX=/usr/bin/g++ cmake --fresh --preset conan-debug
-cmake --build --preset conan-debug --target aco_ts_runner
-"""
-
-[tasks.build-acots-release]
-description = "Configura e compila somente o ACO+TS em Release"
-run = """
-conan install . --output-folder=. --build=missing -s build_type=Release
-CC=/usr/bin/gcc CXX=/usr/bin/g++ cmake -S . -B build/Release \
-  -DCMAKE_TOOLCHAIN_FILE=build/Release/generators/conan_toolchain.cmake \
-  -DCMAKE_C_COMPILER=/usr/bin/gcc \
-  -DCMAKE_CXX_COMPILER=/usr/bin/g++ \
-  -DCMAKE_BUILD_TYPE=Release
-cmake --build build/Release --target aco_ts_runner
-"""
-
-[tasks.build-acots-perf]
-description = "Compila somente o ACO+TS em RelWithDebInfo para perf"
-run = """
-conan install . --output-folder=. --build=missing -s build_type=RelWithDebInfo
-cmake --preset conan-relwithdebinfo
-cmake --build --preset conan-relwithdebinfo --target aco_ts_runner
-"""
-
-[tasks.build-hhorvns-debug]
-description = "Configura e compila somente o HHO+RVNS em Debug"
-run = """
-conan install . --output-folder=. --build=missing -s build_type=Debug
-CC=/usr/bin/gcc CXX=/usr/bin/g++ cmake --fresh --preset conan-debug
-cmake --build --preset conan-debug --target hho_rvns_runner
-"""
-
-[tasks.build-hhorvns-release]
-description = "Configura e compila somente o HHO+RVNS em Release"
-run = """
-conan install . --output-folder=. --build=missing -s build_type=Release
-CC=/usr/bin/gcc CXX=/usr/bin/g++ cmake -S . -B build/Release \
-  -DCMAKE_TOOLCHAIN_FILE=build/Release/generators/conan_toolchain.cmake \
-  -DCMAKE_C_COMPILER=/usr/bin/gcc \
-  -DCMAKE_CXX_COMPILER=/usr/bin/g++ \
-  -DCMAKE_BUILD_TYPE=Release
-cmake --build build/Release --target hho_rvns_runner
-"""
-
-[tasks.build-hhorvns-perf]
-description = "Compila somente o HHO+RVNS em RelWithDebInfo para perf"
-run = """
-conan install . --output-folder=. --build=missing -s build_type=RelWithDebInfo
-cmake --preset conan-relwithdebinfo
-cmake --build --preset conan-relwithdebinfo --target hho_rvns_runner
+mise run configure-debug
+ln -sfn build/Debug/compile_commands.json compile_commands.json
 """
