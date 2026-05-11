@@ -332,7 +332,7 @@ int main(int argc, char* argv[]) {
   }
 
 #ifdef NDEBUG
-  std::cout << "Melhor fitness encontrado: " << global_best_fitness << '\n';
+  std::cout << global_best_fitness << '\n';
 #endif
 
   return 0;
