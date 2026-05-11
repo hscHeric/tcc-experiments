@@ -90,7 +90,7 @@ public:
    @return const std::vector<size_t>& Referência constante para o vetor
    de adjacência.
    */
-  [[nodiscard]] const std::vector<size_t> &get_neighbors(size_t vertex) const;
+  [[nodiscard]] const std::vector<size_t>& get_neighbors(size_t vertex) const;
 
   /** @brief Identifica vértices que não possuem arestas.
    @return std::unordered_set<size_t> Conjunto de IDs de vértices
@@ -128,14 +128,14 @@ public:
    @param graph Instância do grafo a ser impressa.
    @return std::ostream& Referência ao fluxo de saída.
    */
-  friend std::ostream &operator<<(std::ostream &os, const Graph &graph);
+  friend std::ostream& operator<<(std::ostream& os, const Graph& graph);
 
 private:
   std::unordered_map<size_t, std::vector<size_t>>
       adj_list; ///< Estrutura de dados principal (Hash Map de Listas).
 };
 
-Graph load_graph(const std::filesystem::path &path);
+Graph load_graph(const std::filesystem::path& path);
 
 } // namespace hsc
 

@@ -1,4 +1,6 @@
 #include "graph.hpp"
+
+#include <algorithm>
 #include <fstream>
 #include <limits>
 #include <random>
@@ -6,7 +8,9 @@
 
 namespace hsc {
 
-void Graph::add_vertex(size_t vertex) { adj_list.try_emplace(vertex); }
+void Graph::add_vertex(size_t vertex) {
+  adj_list.try_emplace(vertex);
+}
 
 void Graph::add_edge(size_t source, size_t destination) {
   if (source == destination)
@@ -22,11 +26,13 @@ void Graph::add_edge(size_t source, size_t destination) {
   adj_list[destination].push_back(source);
 }
 
-std::size_t Graph::get_order() const noexcept { return adj_list.size(); }
+std::size_t Graph::get_order() const noexcept {
+  return adj_list.size();
+}
 
 std::size_t Graph::get_size() const noexcept {
   std::size_t count = 0;
-  for (const auto &[vertex, neighbors] : adj_list) {
+  for (const auto& [vertex, neighbors] : adj_list) {
     count += neighbors.size();
   }
   return count / 2;
@@ -45,7 +51,7 @@ std::size_t Graph::get_min_degree() const {
     throw std::runtime_error("Empty graph context");
 
   std::size_t min_deg = std::numeric_limits<std::size_t>::max();
-  for (const auto &[_, neighbors] : adj_list) {
+  for (const auto& [_, neighbors] : adj_list) {
     min_deg = std::min(min_deg, neighbors.size());
   }
   return min_deg;
@@ -56,13 +62,13 @@ std::size_t Graph::get_max_degree() const {
     throw std::runtime_error("Empty graph context");
 
   std::size_t max_deg = 0;
-  for (const auto &[_, neighbors] : adj_list) {
+  for (const auto& [_, neighbors] : adj_list) {
     max_deg = std::max(max_deg, neighbors.size());
   }
   return max_deg;
 }
 
-const std::vector<size_t> &Graph::get_neighbors(size_t vertex) const {
+const std::vector<size_t>& Graph::get_neighbors(size_t vertex) const {
   return adj_list.at(vertex);
 }
 
@@ -83,7 +89,7 @@ void Graph::delete_vertex(size_t vertex) {
   if (it == adj_list.end())
     return;
 
-  for (const auto &neighbor : it->second) {
+  for (const auto& neighbor : it->second) {
     std::erase(adj_list[neighbor], vertex);
   }
   adj_list.erase(it);
@@ -98,7 +104,7 @@ float Graph::get_density() const noexcept {
 
 std::unordered_set<size_t> Graph::get_isolated_vertices() const {
   std::unordered_set<size_t> isolated;
-  for (const auto &[vertex, neighbors] : adj_list) {
+  for (const auto& [vertex, neighbors] : adj_list) {
     if (neighbors.empty())
       isolated.insert(vertex);
   }
@@ -108,7 +114,7 @@ std::unordered_set<size_t> Graph::get_isolated_vertices() const {
 std::unordered_set<size_t> Graph::get_vertices() const {
   std::unordered_set<size_t> vertices;
   vertices.reserve(adj_list.size());
-  for (const auto &[vertex, _] : adj_list) {
+  for (const auto& [vertex, _] : adj_list) {
     vertices.insert(vertex);
   }
   return vertices;
@@ -126,10 +132,10 @@ size_t Graph::choose_random_vertex() const {
   return it->first;
 }
 
-std::ostream &operator<<(std::ostream &os, const Graph &graph) {
-  for (const auto &[vertex, neighbors] : graph.adj_list) {
+std::ostream& operator<<(std::ostream& os, const Graph& graph) {
+  for (const auto& [vertex, neighbors] : graph.adj_list) {
     os << vertex << " ----> ";
-    for (const auto &neighbor : neighbors) {
+    for (const auto& neighbor : neighbors) {
       os << neighbor << " ";
     }
     os << '\n';
@@ -137,11 +143,10 @@ std::ostream &operator<<(std::ostream &os, const Graph &graph) {
   return os;
 }
 
-Graph load_graph(const std::filesystem::path &path) {
+Graph load_graph(const std::filesystem::path& path) {
   std::ifstream file(path);
   if (!file.is_open()) {
-    throw std::runtime_error("Não foi possível abrir o arquivo: " +
-                             path.string());
+    throw std::runtime_error("Não foi possível abrir o arquivo: " + path.string());
   }
 
   Graph g;
@@ -208,7 +213,7 @@ Graph load_graph(const std::filesystem::path &path) {
     g.add_vertex(i);
   }
 
-  for (const auto &edge : temp_edges) {
+  for (const auto& edge : temp_edges) {
     size_t u = should_offset ? edge.u - 1 : edge.u;
     size_t v = should_offset ? edge.v - 1 : edge.v;
     g.add_edge(u, v);
