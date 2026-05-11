@@ -1,7 +1,7 @@
 #ifndef HSC_DECODER_HPP
 #define HSC_DECODER_HPP
 
-#include "greedy_construction.hpp"
+#include "incremental_greedy.hpp"
 
 #include <hscopt/decoder.h>
 
@@ -37,7 +37,7 @@ namespace hsc {
  * a escolha é feita em tempo de compilação, sem virtual dispatch e sem branch a
  * cada avaliação.
  */
-using decoder = greedy_construction;
+using decoder = incremental_greedy;
 
 inline constexpr const char* decoder_name = "greedy_construction";
 

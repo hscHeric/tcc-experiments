@@ -11,13 +11,13 @@
 
 namespace hsc {
 
-class greedy_construction {
+class incremental_greedy {
 private:
   const Graph& graph;
   std::shared_ptr<std::atomic<std::uint64_t>> evaluation_counter;
 
 public:
-  explicit greedy_construction(const Graph& graph);
+  explicit incremental_greedy(const Graph& graph);
 
   double decode(std::span<const double> chromosome) const;
   double decode(const std::vector<double>& chromosome) const;
