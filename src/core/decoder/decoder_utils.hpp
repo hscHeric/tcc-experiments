@@ -9,6 +9,8 @@
 
 namespace hsc {
 
+inline constexpr uint8_t unlabeled_vertex = 255;
+
 /**
  * @brief Calcula o peso da vizinhança aberta de cada vértice.
  *
@@ -183,6 +185,36 @@ inline void reduce_weight_heuristic(
         improved = true;
       }
     }
+  }
+}
+
+/**
+ * @brief Atribui um rótulo apenas se o vértice ainda não foi rotulado.
+ *
+ * Essa função é útil em construções gulosas onde o valor 255 representa
+ * um vértice ainda não processado. Caso o vértice já possua um rótulo
+ * válido, nenhuma modificação é realizada.
+ *
+ * Quando o rótulo é aplicado, o delta correspondente é propagado para os
+ * pesos de vizinhança aberta dos vizinhos de u.
+ */
+inline void assign_unlabeled(
+    const Graph& graph,
+    std::span<uint8_t> labels,
+    std::span<int> neighborhood_weight,
+    const size_t u,
+    const uint8_t new_label
+) {
+
+  // O vértice já possui rótulo
+  if (labels[u] != unlabeled_vertex) {
+    return;
+  }
+
+  labels[u] = new_label;
+
+  for (const size_t v : graph.get_neighbors(u)) {
+    neighborhood_weight[v] += new_label;
   }
 }
 
