@@ -1,5 +1,7 @@
 #include "decoder/decoder.hpp"
 #include "graph/graph.hpp"
+#include "runtime/runtime.hpp"
+
 #include <BRKGA.h>
 #include <CLI/CLI.hpp>
 #include <MTRand.h>
@@ -7,14 +9,12 @@
 #include <filesystem>
 #include <format>
 #include <fstream>
+#include <iostream>
 #include <limits>
 #include <nlohmann/json.hpp>
 #include <nlohmann/json_fwd.hpp>
-#include <quill/Backend.h>
-#include <quill/Frontend.h>
 #include <quill/LogMacros.h>
 #include <quill/Logger.h>
-#include <quill/sinks/ConsoleSink.h>
 #include <string>
 
 namespace fs = std::filesystem;
@@ -39,13 +39,6 @@ struct brkga_params {
   unsigned exchange_interval = 100;
 };
 
-static std::string
-to_iso8601_utc(const std::chrono::system_clock::time_point &time_point) {
-  const auto seconds_tp =
-      std::chrono::time_point_cast<std::chrono::seconds>(time_point);
-  return std::format("{:%FT%TZ}", seconds_tp);
-}
-
 static std::string stop_reason_to_string(stop_reason reason) {
   switch (reason) {
   case stop_reason::max_generations:
@@ -59,16 +52,8 @@ static std::string stop_reason_to_string(stop_reason reason) {
   return "unknown";
 }
 
-// inicializacão do logger
-quill::Logger *setup_logger() {
-  quill::Backend::start();
-  auto console_sink =
-      quill::Frontend::create_or_get_sink<quill::ConsoleSink>("sink_id_1");
-  return quill::Frontend::create_or_get_logger("root", std::move(console_sink));
-}
-
 // validação dos parâmetros do BRKGA
-static inline void validate_brkga_params(const brkga_params &p) {
+static inline void validate_brkga_params(const brkga_params& p) {
   const double pe = p.pe_elite_fraction;
   const double pm = p.pm_mutant_fraction;
 
@@ -77,8 +62,9 @@ static inline void validate_brkga_params(const brkga_params &p) {
   }
 
   if (pe + pm >= 1.0) {
-    throw CLI::ValidationError(std::format(
-        "Inválido: pe + pm deve ser < 1.0 (atual = {:.3f})", pe + pm));
+    throw CLI::ValidationError(
+        std::format("Inválido: pe + pm deve ser < 1.0 (atual = {:.3f})", pe + pm)
+    );
   }
 
   if (p.rhoe_inheritance_prob <= 0.0 || p.rhoe_inheritance_prob >= 1.0) {
@@ -87,14 +73,18 @@ static inline void validate_brkga_params(const brkga_params &p) {
 
   unsigned p_e = static_cast<unsigned>(p.pe_elite_fraction * p.p_population);
   if (p.k_populations > 1 && p.exchange_m >= p_e) {
-    throw CLI::ValidationError(std::format(
-        "Erro: exchange_m ({}) deve ser menor que o tamanho da elite ({})",
-        p.exchange_m, p_e));
+    throw CLI::ValidationError(
+        std::format(
+            "Erro: exchange_m ({}) deve ser menor que o tamanho da elite ({})",
+            p.exchange_m,
+            p_e
+        )
+    );
   }
 }
 
-int main(int argc, char *argv[]) {
-  [[maybe_unused]] auto *logger = setup_logger();
+int main(int argc, char* argv[]) {
+  [[maybe_unused]] auto* logger = hsc::runtime::setup_console_logger();
   brkga_params params;
 
   CLI::App app{"BRKGA para o Problema da Dominação 3-Romana em Grafos"};
@@ -105,11 +95,13 @@ int main(int argc, char *argv[]) {
       ->required()
       ->check(CLI::ExistingFile);
 
-  app.add_option("-o,--output", params.output_file, "Arquivo de saída")
-      ->required();
+  app.add_option("-o,--output", params.output_file, "Arquivo de saída")->required();
 
-  app.add_option("-a,--attempts", params.attempts,
-                 "Numero de tentativas independentes por instancia")
+  app.add_option(
+         "-a,--attempts",
+         params.attempts,
+         "Numero de tentativas independentes por instancia"
+  )
       ->check(CLI::Range(1, 1'000'000))
       ->capture_default_str();
 
@@ -122,12 +114,12 @@ int main(int argc, char *argv[]) {
   app.add_option("-m,--mutants", params.pm_mutant_fraction, "Fração mutantes")
       ->check(CLI::Range(0.10, 0.30));
 
-  app.add_option("-r,--rho", params.rhoe_inheritance_prob,
-                 "Probabilidade de herança elite")
+  app.add_option(
+         "-r,--rho", params.rhoe_inheritance_prob, "Probabilidade de herança elite"
+  )
       ->check(CLI::Range(0.51, 0.99));
 
-  app.add_option("-K,--populations", params.k_populations,
-                 "Populações independentes")
+  app.add_option("-K,--populations", params.k_populations, "Populações independentes")
       ->capture_default_str();
 
   app.add_option("-t,--threads", params.max_threads)->capture_default_str();
@@ -154,24 +146,26 @@ int main(int argc, char *argv[]) {
       params.max_time_seconds = std::numeric_limits<unsigned>::max();
     }
     validate_brkga_params(params);
-  } catch (const CLI::ValidationError &e) {
+  } catch (const CLI::ValidationError& e) {
     return 1;
-  } catch (const CLI::ParseError &e) {
+  } catch (const CLI::ParseError& e) {
     return app.exit(e);
   }
 
   LOG_INFO(logger, "Iniciando algoritmo para: {}", params.input_file.string());
   auto g = hsc::load_graph(params.input_file);
-  Roman3DominationDecoder decoder(g);
+  hsc::decoder decoder(g);
   const auto seed_base = static_cast<unsigned long>(
-      std::chrono::steady_clock::now().time_since_epoch().count());
+      std::chrono::steady_clock::now().time_since_epoch().count()
+  );
 
   double global_best_fitness = std::numeric_limits<double>::infinity();
   json output_json = {
       {"algorithm", "BRKGA"},
+      {"decoder", hsc::decoder_name},
       {"graph", params.input_file.filename().string()},
       {"input_file", params.input_file.string()},
-      {"executed_at", to_iso8601_utc(std::chrono::system_clock::now())},
+      {"executed_at", hsc::runtime::to_iso8601_utc(std::chrono::system_clock::now())},
       {"parameters",
        {{"attempts", params.attempts},
         {"population", params.p_population},
@@ -185,19 +179,28 @@ int main(int argc, char *argv[]) {
         {"max_stagnation", params.max_stagnation},
         {"exchange_m", params.exchange_m},
         {"exchange_interval", params.exchange_interval}}},
-      {"attempts", json::array()}};
+      {"attempts", json::array()}
+  };
 
   for (unsigned attempt = 1; attempt <= params.attempts; ++attempt) {
     const auto attempt_seed = seed_base + (attempt - 1);
     MTRand rng(attempt_seed);
     decoder.reset_evaluation_count();
-    BRKGA<Roman3DominationDecoder, MTRand> brkga(
-        g.get_order(), params.p_population, params.pe_elite_fraction,
-        params.pm_mutant_fraction, params.rhoe_inheritance_prob, decoder, rng,
-        params.k_populations, params.max_threads);
+    BRKGA<hsc::decoder, MTRand> brkga(
+        g.get_order(),
+        params.p_population,
+        params.pe_elite_fraction,
+        params.pm_mutant_fraction,
+        params.rhoe_inheritance_prob,
+        decoder,
+        rng,
+        params.k_populations,
+        params.max_threads
+    );
 
-    LOG_INFO(logger, "Tentativa {}/{} | seed={}", attempt, params.attempts,
-             attempt_seed);
+    LOG_INFO(
+        logger, "Tentativa {}/{} | seed={}", attempt, params.attempts, attempt_seed
+    );
 
     auto start_time = std::chrono::high_resolution_clock::now();
     auto wall_clock_start = std::chrono::system_clock::now();
@@ -210,11 +213,12 @@ int main(int argc, char *argv[]) {
     while (generation < params.max_generations) {
       brkga.evolve();
 
-      if (params.k_populations > 1 &&
-          (generation % params.exchange_interval == 0)) [[unlikely]] {
+      if (params.k_populations > 1 && (generation % params.exchange_interval == 0))
+          [[unlikely]] {
         brkga.exchangeElite(params.exchange_m);
-        LOG_DEBUG(logger, "Tentativa {}: elite migrada na geração {}", attempt,
-                  generation);
+        LOG_DEBUG(
+            logger, "Tentativa {}: elite migrada na geração {}", attempt, generation
+        );
       }
 
       double current_best = brkga.getBestFitness();
@@ -223,26 +227,29 @@ int main(int argc, char *argv[]) {
         stagnation_counter = 0;
         const auto now = std::chrono::high_resolution_clock::now();
         const auto elapsed_ms =
-            std::chrono::duration_cast<std::chrono::milliseconds>(now -
-                                                                  start_time)
+            std::chrono::duration_cast<std::chrono::milliseconds>(now - start_time)
                 .count();
         convergence.push_back(
             {{"generation", generation},
              {"elapsed_ms", elapsed_ms},
              {"elapsed_seconds", static_cast<double>(elapsed_ms) / 1000.0},
              {"best_fitness", best_fitness},
-             {"evaluations", decoder.get_evaluation_count()}});
-        LOG_INFO(logger,
-                 "Tentativa {} | Geração {:>4}: Novo melhor fitness = {:.2f}",
-                 attempt, generation, best_fitness);
+             {"evaluations", decoder.get_evaluation_count()}}
+        );
+        LOG_INFO(
+            logger,
+            "Tentativa {} | Geração {:>4}: Novo melhor fitness = {:.2f}",
+            attempt,
+            generation,
+            best_fitness
+        );
       } else {
         stagnation_counter++;
       }
 
       auto now = std::chrono::high_resolution_clock::now();
       auto elapsed =
-          std::chrono::duration_cast<std::chrono::seconds>(now - start_time)
-              .count();
+          std::chrono::duration_cast<std::chrono::seconds>(now - start_time).count();
       if (stagnation_counter >= params.max_stagnation) {
         reason = stop_reason::stagnation;
         break;
@@ -257,54 +264,62 @@ int main(int argc, char *argv[]) {
 
     const auto end_time = std::chrono::high_resolution_clock::now();
     const auto elapsed_ms =
-        std::chrono::duration_cast<std::chrono::milliseconds>(end_time -
-                                                              start_time)
+        std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time)
             .count();
     const auto iterations =
-        best_fitness == std::numeric_limits<double>::infinity()
-            ? 0U
-            : generation - 1;
+        best_fitness == std::numeric_limits<double>::infinity() ? 0U : generation - 1;
     const auto evaluations = decoder.get_evaluation_count();
 
     global_best_fitness = std::min(global_best_fitness, best_fitness);
     LOG_INFO(
         logger,
         "Tentativa {} concluída. Geração final: {} | Melhor Fitness: {:.0f}",
-        attempt, iterations, best_fitness);
+        attempt,
+        iterations,
+        best_fitness
+    );
 
     output_json["attempts"].push_back(
         {{"attempt", attempt},
          {"seed", attempt_seed},
-         {"executed_at", to_iso8601_utc(wall_clock_start)},
+         {"executed_at", hsc::runtime::to_iso8601_utc(wall_clock_start)},
          {"final_solution_value", best_fitness},
          {"evaluations", evaluations},
          {"total_runtime_ms", elapsed_ms},
          {"total_runtime_seconds", static_cast<double>(elapsed_ms) / 1000.0},
          {"iterations", iterations},
          {"stop_reason", stop_reason_to_string(reason)},
-         {"convergence", convergence}});
+         {"convergence", convergence}}
+    );
   }
 
-  LOG_INFO(logger,
-           "Execução concluída. Tentativas: {} | Melhor fitness global: {:.0f}",
-           params.attempts, global_best_fitness);
+  LOG_INFO(
+      logger,
+      "Execução concluída. Tentativas: {} | Melhor fitness global: {:.0f}",
+      params.attempts,
+      global_best_fitness
+  );
   output_json["best_fitness_global"] = global_best_fitness;
 
   std::error_code ec;
-  if (const fs::path parent = params.output_file.parent_path();
-      !parent.empty()) {
+  if (const fs::path parent = params.output_file.parent_path(); !parent.empty()) {
     fs::create_directories(parent, ec);
     if (ec) {
-      LOG_ERROR(logger, "Falha ao criar diretório de saída '{}': {}",
-                parent.string(), ec.message());
+      LOG_ERROR(
+          logger,
+          "Falha ao criar diretório de saída '{}': {}",
+          parent.string(),
+          ec.message()
+      );
       return 1;
     }
   }
 
   std::ofstream output_stream(params.output_file);
   if (!output_stream) {
-    LOG_ERROR(logger, "Falha ao abrir arquivo de saída: {}",
-              params.output_file.string());
+    LOG_ERROR(
+        logger, "Falha ao abrir arquivo de saída: {}", params.output_file.string()
+    );
     return 1;
   }
 
@@ -312,10 +327,13 @@ int main(int argc, char *argv[]) {
   output_stream.close();
 
   if (!output_stream) {
-    LOG_ERROR(logger, "Falha ao gravar arquivo JSON: {}",
-              params.output_file.string());
+    LOG_ERROR(logger, "Falha ao gravar arquivo JSON: {}", params.output_file.string());
     return 1;
   }
+
+#ifdef NDEBUG
+  std::cout << "Melhor fitness encontrado: " << global_best_fitness << '\n';
+#endif
 
   return 0;
 }

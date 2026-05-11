@@ -1,39 +1,46 @@
 #ifndef HSC_DECODER_HPP
 #define HSC_DECODER_HPP
 
-#include "../graph/graph.hpp"
-#include <atomic>
-#include <hscopt/decoder.h>
-#include <memory>
-#include <vector>
+#include "greedy_construction.hpp"
 
-#define HSCOPT_MAKE_DECODER_ADAPTER(name, type)                                \
-  extern "C" double name(const double *keys, std::size_t n,                    \
-                         hscopt_decode_ctx *ctx) {                             \
-    const auto *decoder =                                                      \
-        static_cast<const type *>(ctx != nullptr ? ctx->user : nullptr);       \
-    if (decoder == nullptr || keys == nullptr) {                               \
-      return std::numeric_limits<double>::infinity();                          \
-    }                                                                          \
-    return decoder->decode(std::vector<double>(keys, keys + n));               \
+#include <hscopt/decoder.h>
+
+/**
+ * @brief Gera um adapter com ABI C para classes de decoder em C++.
+ *
+ * A biblioteca hscopt recebe um ponteiro de função com assinatura
+ * hscopt_decoder_fn. Os decoders do projeto são objetos C++, então esta macro
+ * cria a ponte entre (keys, tamanho, contexto) e decoder.decode(span).
+ *
+ * O uso de std::span é intencional: ele evita copiar o cromossomo dentro do
+ * loop quente de avaliação.
+ *
+ * A instância ativa do decoder deve ser armazenada em ctx->user.
+ */
+#define HSCOPT_MAKE_DECODER_ADAPTER(name, type)                                        \
+  extern "C" double name(const double* keys, std::size_t n, hscopt_decode_ctx* ctx) {  \
+    const auto* decoder =                                                              \
+        static_cast<const type*>(ctx != nullptr ? ctx->user : nullptr);                \
+    if (decoder == nullptr || keys == nullptr) {                                       \
+      return std::numeric_limits<double>::infinity();                                  \
+    }                                                                                  \
+    return decoder->decode(std::span<const double>(keys, n));                          \
   }
 
-class Roman3DominationDecoder {
-private:
-  const hsc::Graph &graph;
-  std::shared_ptr<std::atomic<std::uint64_t>> evaluation_counter;
+namespace hsc {
 
-public:
-  explicit Roman3DominationDecoder(const hsc::Graph &graph);
-  double decode(const std::vector<double> &chromosome) const;
-  void reset_evaluation_count() const;
-  [[nodiscard]] std::uint64_t get_evaluation_count() const;
+/**
+ * @brief Implementação ativa de decoder usada por todos os runners.
+ *
+ * Para testar outra implementação, inclua o header dela acima e altere este
+ * alias junto com decoder_name. Os runners dependem apenas de hsc::decoder, logo
+ * a escolha é feita em tempo de compilação, sem virtual dispatch e sem branch a
+ * cada avaliação.
+ */
+using decoder = greedy_construction;
 
-  [[nodiscard]] std::vector<uint8_t>
-  construct_solution(const std::vector<double> &chromosome) const;
+inline constexpr const char* decoder_name = "greedy_construction";
 
-  [[nodiscard]] bool
-  is_solution_feasible(const std::vector<uint8_t> &labels) const;
-};
+} // namespace hsc
 
 #endif // HSC_DECODER_HPP

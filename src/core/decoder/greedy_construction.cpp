@@ -1,27 +1,30 @@
-#include "decoder.hpp"
-#include "graph/graph.hpp"
-#include <cstddef>
-#include <cstdint>
+#include "greedy_construction.hpp"
+
+#include <algorithm>
+#include <cstdlib>
+#include <iostream>
 #include <memory>
 #include <numeric>
-#include <unistd.h>
+#include <span>
 #include <vector>
 
-Roman3DominationDecoder::Roman3DominationDecoder(const hsc::Graph &graph)
+namespace hsc {
+
+greedy_construction::greedy_construction(const Graph& graph)
     : graph(graph),
       evaluation_counter(std::make_shared<std::atomic<std::uint64_t>>(0)) {}
 
-void Roman3DominationDecoder::reset_evaluation_count() const {
+void greedy_construction::reset_evaluation_count() const {
   evaluation_counter->store(0, std::memory_order_relaxed);
 }
 
-std::uint64_t Roman3DominationDecoder::get_evaluation_count() const {
+std::uint64_t greedy_construction::get_evaluation_count() const {
   return evaluation_counter->load(std::memory_order_relaxed);
 }
 
-static void reduce_weight_heuristic(const hsc::Graph &graph,
-                                    std::vector<uint8_t> &f,
-                                    std::vector<int> &neighborhood_weight) {
+static void reduce_weight_heuristic(
+    const Graph& graph, std::vector<uint8_t>& f, std::vector<int>& neighborhood_weight
+) {
   const size_t vertex_count = graph.get_order();
 
   auto is_feasible = [&](size_t u) {
@@ -84,8 +87,7 @@ static void reduce_weight_heuristic(const hsc::Graph &graph,
   }
 }
 
-double
-Roman3DominationDecoder::decode(const std::vector<double> &chromosome) const {
+double greedy_construction::decode(std::span<const double> chromosome) const {
   evaluation_counter->fetch_add(1, std::memory_order_relaxed);
 
   const size_t vertex_count = graph.get_order();
@@ -93,12 +95,13 @@ Roman3DominationDecoder::decode(const std::vector<double> &chromosome) const {
   // Define a ordem de prioridade dos vértices com base nos valores do
   // cromossomo
   // Vértices com chaves maiores são posicionados primeiro (ordem decrescente)
-  thread_local std::vector<size_t> priority_order(vertex_count);
-  priority_order.reserve(vertex_count);
+  thread_local std::vector<size_t> priority_order;
+  priority_order.resize(vertex_count);
 
   std::iota(priority_order.begin(), priority_order.end(), 0);
-  std::sort(priority_order.begin(), priority_order.end(),
-            [&](size_t u, size_t v) { return chromosome[u] > chromosome[v]; });
+  std::sort(priority_order.begin(), priority_order.end(), [&](size_t u, size_t v) {
+    return chromosome[u] > chromosome[v];
+  });
 
   // f representa a atribuição da função de dominação {3}-romana de cada vértice
   thread_local std::vector<uint8_t> f;
@@ -179,8 +182,13 @@ Roman3DominationDecoder::decode(const std::vector<double> &chromosome) const {
   return objective_value;
 }
 
-bool Roman3DominationDecoder::is_solution_feasible(
-    const std::vector<uint8_t> &labels) const {
+double greedy_construction::decode(const std::vector<double>& chromosome) const {
+  return decode(std::span<const double>(chromosome));
+}
+
+bool greedy_construction::is_solution_feasible(
+    const std::vector<uint8_t>& labels
+) const {
 
   const size_t vertex_count = graph.get_order();
 
@@ -211,20 +219,21 @@ bool Roman3DominationDecoder::is_solution_feasible(
   return true;
 }
 
-std::vector<uint8_t> Roman3DominationDecoder::construct_solution(
-    const std::vector<double> &chromosome) const {
+std::vector<uint8_t>
+greedy_construction::construct_solution(std::span<const double> chromosome) const {
 
   const size_t vertex_count = graph.get_order();
 
   // Define a ordem de prioridade dos vértices com base nos valores do
   // cromossomo
   // Vértices com chaves maiores são posicionados primeiro (ordem decrescente)
-  thread_local std::vector<size_t> priority_order(vertex_count);
-  priority_order.reserve(vertex_count);
+  thread_local std::vector<size_t> priority_order;
+  priority_order.resize(vertex_count);
 
   std::iota(priority_order.begin(), priority_order.end(), 0);
-  std::sort(priority_order.begin(), priority_order.end(),
-            [&](size_t u, size_t v) { return chromosome[u] > chromosome[v]; });
+  std::sort(priority_order.begin(), priority_order.end(), [&](size_t u, size_t v) {
+    return chromosome[u] > chromosome[v];
+  });
 
   // f representa a atribuição da função de dominação {3}-romana de cada vértice
   thread_local std::vector<uint8_t> f;
@@ -298,3 +307,9 @@ std::vector<uint8_t> Roman3DominationDecoder::construct_solution(
 
   return f;
 }
+
+std::vector<uint8_t>
+greedy_construction::construct_solution(const std::vector<double>& chromosome) const {
+  return construct_solution(std::span<const double>(chromosome));
+}
+} // namespace hsc
