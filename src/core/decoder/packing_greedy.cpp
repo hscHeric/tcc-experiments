@@ -4,6 +4,7 @@
 
 #include <algorithm>
 #include <numeric>
+#include <vector>
 
 namespace hsc {
 
@@ -46,47 +47,31 @@ double packing_greedy::decode(std::span<const double> chromosome) const {
   thread_local std::vector<int> neighborhood_weight;
   neighborhood_weight.assign(vertex_count, 0);
 
-  // Representa os vértice já rotulados que fora "removidos" do grafo
-  thread_local std::vector<bool> removed;
-  removed.assign(vertex_count, false);
+  Graph residual_graph = graph;
 
   for (size_t i = 0; i < vertex_count; ++i) {
     const size_t u = priority_order[i];
 
     // Se o vértice u já tiver sido rotulado apenas ignore
-    if (removed[u]) {
+    if (!residual_graph.vertex_exists(u)) {
       continue;
     }
 
     // Rotula o vértice u com 3, seus vizinhos com 0 e os remove do grafo
     assign_unlabeled(graph, f, neighborhood_weight, u, 3);
-    removed[u] = true;
+    residual_graph.delete_vertex(u);
+
     for (const size_t v : graph.get_neighbors(u)) {
-      if (removed[v]) {
+      if (!residual_graph.vertex_exists(v)) {
         continue;
       }
       assign_unlabeled(graph, f, neighborhood_weight, v, 0);
-      removed[v] = true;
+      residual_graph.delete_vertex(v);
     }
 
-    // Rotula os vértice isolados
-    for (size_t isolated = 0; isolated < vertex_count; ++isolated) {
-
-      // Ignora se o vértice já foi rotulado
+    // Rotula os vértices isolados no grafo residual.
+    for (const size_t isolated : residual_graph.get_isolated_vertices()) {
       if (f[isolated] != unlabeled_vertex) {
-        continue;
-      }
-
-      // Verifica se todos os vizinhos foram removidos do grafo
-      bool all_neighbors_removed = true;
-      for (const size_t v : graph.get_neighbors(isolated)) {
-        if (!removed[v]) {
-          all_neighbors_removed = false;
-          break;
-        }
-      }
-
-      if (!all_neighbors_removed) {
         continue;
       }
 
@@ -101,7 +86,7 @@ double packing_greedy::decode(std::span<const double> chromosome) const {
       }
 
       assign_label(graph, f, neighborhood_weight, isolated, label);
-      removed[isolated] = true;
+      residual_graph.delete_vertex(isolated);
     }
   }
 
