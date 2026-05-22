@@ -22,6 +22,8 @@ option(ENABLE_DEBUG_SANITIZERS "Ativa sanitizers no build Debug" ON)
 option(ENABLE_RELEASE_LTO "Ativa LTO nos builds Release" ON)
 option(ENABLE_NATIVE_OPTIMIZATIONS "Otimiza Release para a CPU local" ON)
 
+add_compile_definitions($<$<CONFIG:Debug>:NDEBUG>)
+
 if(CMAKE_EXPORT_COMPILE_COMMANDS
    AND NOT CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR)
   set(PROJECT_COMPILE_COMMANDS_LINK "${CMAKE_SOURCE_DIR}/compile_commands.json")
