@@ -78,27 +78,13 @@ double incremental_greedy::decode(std::span<const double> chromosome) const {
     }
   }
 
-  // Percorre todos os vértices incrementando o restante até que a solução seja
-  // viavel
-  // Observe que é impossive deixar a solução inviavel pois estou sempre
-  // incrementando
-  for (size_t u = 0; u < vertex_count; ++u) {
-    while (!is_vertex_feasible(f, neighborhood_weight, u)) {
-      if (f[u] < 3) {
-        assign_label(graph, f, neighborhood_weight, u, f[u] + 1);
-      } else {
-        break;
-      }
-    }
-  }
-
   // Tenta reduzir o peso sem perder a viabilidade
   reduce_weight_heuristic(graph, f, neighborhood_weight);
 
 #ifdef DEBUG
   if (!hsc::is_solution_feasible(graph, f)) {
     std::cerr << "Infeasible solution detected!" << std::endl;
-    std::abort();
+    exit(1);
   }
 #endif
 
@@ -160,20 +146,6 @@ incremental_greedy::construct_solution(std::span<const double> chromosome) const
     assign_label(graph, f, neighborhood_weight, u, 1);
     if (!is_vertex_feasible(f, neighborhood_weight, u)) {
       assign_label(graph, f, neighborhood_weight, u, 2);
-    }
-  }
-
-  // Percorre todos os vértices incrementando o restante até que a solução seja
-  // viavel
-  // Observe que é impossive deixar a solução inviavel pois estou sempre
-  // incrementando
-  for (size_t u = 0; u < vertex_count; ++u) {
-    while (!is_vertex_feasible(f, neighborhood_weight, u)) {
-      if (f[u] < 3) {
-        assign_label(graph, f, neighborhood_weight, u, f[u] + 1);
-      } else {
-        break;
-      }
     }
   }
 
