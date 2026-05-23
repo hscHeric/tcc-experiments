@@ -4,6 +4,7 @@
 #include "../graph/graph.hpp"
 
 #include <atomic>
+#include <cstddef>
 #include <cstdint>
 #include <memory>
 #include <span>
@@ -15,6 +16,7 @@ class incremental_greedy {
 private:
   const Graph& graph;
   std::shared_ptr<std::atomic<std::uint64_t>> evaluation_counter;
+  size_t high_degree_threshold;
 
 public:
   explicit incremental_greedy(const Graph& graph);

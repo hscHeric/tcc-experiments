@@ -14,7 +14,15 @@ namespace hsc {
 
 incremental_greedy::incremental_greedy(const Graph& graph)
     : graph(graph),
-      evaluation_counter(std::make_shared<std::atomic<std::uint64_t>>(0)) {}
+      evaluation_counter(std::make_shared<std::atomic<std::uint64_t>>(0)) {
+  const size_t vertex_count = graph.get_order();
+  const size_t edge_count = graph.get_size();
+
+  const double avg_degree =
+      (vertex_count > 0) ? ((double)edge_count * 2) / vertex_count : 0.0;
+
+  high_degree_threshold = std::max<size_t>(4, static_cast<size_t>(1.5 * avg_degree));
+}
 
 void incremental_greedy::reset_evaluation_count() const {
   evaluation_counter->store(0, std::memory_order_relaxed);
@@ -141,15 +149,16 @@ incremental_greedy::construct_solution(std::span<const double> chromosome) const
       continue;
     }
 
+    if (graph.get_vertex_degree(u) >= high_degree_threshold) {
+      assign_label(graph, f, neighborhood_weight, u, 3);
+      continue;
+    }
+
     // Seleciona o label do vértice de forma gulosa
     // Escolhendo o menor label que mantenha a solução viavel
     assign_label(graph, f, neighborhood_weight, u, 1);
     if (!is_vertex_feasible(f, neighborhood_weight, u)) {
       assign_label(graph, f, neighborhood_weight, u, 2);
-    }
-    if (!is_vertex_feasible(f, neighborhood_weight, u)) {
-
-      assign_label(graph, f, neighborhood_weight, u, 3);
     }
   }
 
