@@ -1,9 +1,11 @@
 #ifndef HSC_GRAPH_HPP
 #define HSC_GRAPH_HPP
 
+#include <cstdint>
 #include <filesystem>
 #include <iostream>
-#include <unordered_map>
+#include <stdexcept>
+#include <string>
 #include <unordered_set>
 #include <vector>
 
@@ -53,12 +55,16 @@ public:
   /** @brief Obtém o número total de vértices no grafo.
    @return std::size_t A ordem do grafo.
    */
-  [[nodiscard]] std::size_t get_order() const noexcept;
+  [[nodiscard]] inline std::size_t get_order() const noexcept {
+    return vertex_count;
+  }
 
   /** @brief Obtém o número total de arestas únicas no grafo.
    @return std::size_t O tamanho do grafo.
    */
-  [[nodiscard]] std::size_t get_size() const noexcept;
+  [[nodiscard]] inline std::size_t get_size() const noexcept {
+    return edge_count;
+  }
 
   /** @brief Calcula a densidade do grafo.
    @return float Valor entre 0.0 e 1.0 representando a densidade.
@@ -90,7 +96,12 @@ public:
    @return const std::vector<size_t>& Referência constante para o vetor
    de adjacência.
    */
-  [[nodiscard]] const std::vector<size_t>& get_neighbors(size_t vertex) const;
+  [[nodiscard]] inline const std::vector<size_t>& get_neighbors(size_t vertex) const {
+    if (!vertex_exists(vertex)) {
+      throw std::out_of_range("Vertex " + std::to_string(vertex) + " not found");
+    }
+    return adj_list[vertex];
+  }
 
   /** @brief Identifica vértices que não possuem arestas.
    @return std::unordered_set<size_t> Conjunto de IDs de vértices
@@ -115,7 +126,9 @@ public:
    @param vertex Identificador do vértice.
    @return bool True se o vértice existir.
    */
-  [[nodiscard]] bool vertex_exists(size_t vertex) const noexcept;
+  [[nodiscard]] inline bool vertex_exists(size_t vertex) const noexcept {
+    return is_valid_vertex_index(vertex) && active_vertices[vertex] != 0;
+  }
 
   /** @brief Escolhe um vértice aleatório dentre os existentes.
    @return size_t O ID do vértice selecionado.
@@ -131,8 +144,15 @@ public:
   friend std::ostream& operator<<(std::ostream& os, const Graph& graph);
 
 private:
-  std::unordered_map<size_t, std::vector<size_t>>
-      adj_list; ///< Estrutura de dados principal (Hash Map de Listas).
+  [[nodiscard]] inline bool is_valid_vertex_index(size_t vertex) const noexcept {
+    return vertex < active_vertices.size();
+  }
+
+  std::vector<std::vector<size_t>>
+      adj_list; ///< Lista de adjacência indexada diretamente pelo ID do vértice.
+  std::vector<uint8_t> active_vertices; ///< Marca vértices existentes em adj_list.
+  std::size_t vertex_count = 0;
+  std::size_t edge_count = 0;
 };
 
 Graph load_graph(const std::filesystem::path& path);

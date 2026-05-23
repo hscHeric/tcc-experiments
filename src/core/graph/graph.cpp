@@ -5,11 +5,20 @@
 #include <limits>
 #include <random>
 #include <stdexcept>
+#include <sstream>
 
 namespace hsc {
 
 void Graph::add_vertex(size_t vertex) {
-  adj_list.try_emplace(vertex);
+  if (vertex >= adj_list.size()) {
+    adj_list.resize(vertex + 1);
+    active_vertices.resize(vertex + 1, 0);
+  }
+
+  if (!active_vertices[vertex]) {
+    active_vertices[vertex] = 1;
+    ++vertex_count;
+  }
 }
 
 void Graph::add_edge(size_t source, size_t destination) {
@@ -24,75 +33,61 @@ void Graph::add_edge(size_t source, size_t destination) {
 
   adj_list[source].push_back(destination);
   adj_list[destination].push_back(source);
-}
-
-std::size_t Graph::get_order() const noexcept {
-  return adj_list.size();
-}
-
-std::size_t Graph::get_size() const noexcept {
-  std::size_t count = 0;
-  for (const auto& [vertex, neighbors] : adj_list) {
-    count += neighbors.size();
-  }
-  return count / 2;
+  ++edge_count;
 }
 
 std::size_t Graph::get_vertex_degree(size_t vertex) const {
-  auto it = adj_list.find(vertex);
-  if (it == adj_list.end()) {
+  if (!vertex_exists(vertex)) {
     throw std::out_of_range("Vertex " + std::to_string(vertex) + " not found");
   }
-  return it->second.size();
+  return adj_list[vertex].size();
 }
 
 std::size_t Graph::get_min_degree() const {
-  if (adj_list.empty())
+  if (vertex_count == 0)
     throw std::runtime_error("Empty graph context");
 
   std::size_t min_deg = std::numeric_limits<std::size_t>::max();
-  for (const auto& [_, neighbors] : adj_list) {
-    min_deg = std::min(min_deg, neighbors.size());
+  for (size_t vertex = 0; vertex < adj_list.size(); ++vertex) {
+    if (active_vertices[vertex]) {
+      min_deg = std::min(min_deg, adj_list[vertex].size());
+    }
   }
   return min_deg;
 }
 
 std::size_t Graph::get_max_degree() const {
-  if (adj_list.empty())
+  if (vertex_count == 0)
     throw std::runtime_error("Empty graph context");
 
   std::size_t max_deg = 0;
-  for (const auto& [_, neighbors] : adj_list) {
-    max_deg = std::max(max_deg, neighbors.size());
+  for (size_t vertex = 0; vertex < adj_list.size(); ++vertex) {
+    if (active_vertices[vertex]) {
+      max_deg = std::max(max_deg, adj_list[vertex].size());
+    }
   }
   return max_deg;
 }
 
-const std::vector<size_t>& Graph::get_neighbors(size_t vertex) const {
-  return adj_list.at(vertex);
-}
-
-bool Graph::vertex_exists(size_t vertex) const noexcept {
-  return adj_list.contains(vertex);
-}
-
 bool Graph::edge_exists(size_t u, size_t v) const {
-  auto it = adj_list.find(u);
-  if (it == adj_list.end())
+  if (!vertex_exists(u) || !vertex_exists(v))
     return false;
 
-  return std::find(it->second.begin(), it->second.end(), v) != it->second.end();
+  const auto& neighbors = adj_list[u];
+  return std::find(neighbors.begin(), neighbors.end(), v) != neighbors.end();
 }
 
 void Graph::delete_vertex(size_t vertex) {
-  auto it = adj_list.find(vertex);
-  if (it == adj_list.end())
+  if (!vertex_exists(vertex))
     return;
 
-  for (const auto& neighbor : it->second) {
+  for (const auto& neighbor : adj_list[vertex]) {
     std::erase(adj_list[neighbor], vertex);
   }
-  adj_list.erase(it);
+  edge_count -= adj_list[vertex].size();
+  adj_list[vertex].clear();
+  active_vertices[vertex] = 0;
+  --vertex_count;
 }
 
 float Graph::get_density() const noexcept {
@@ -104,37 +99,52 @@ float Graph::get_density() const noexcept {
 
 std::unordered_set<size_t> Graph::get_isolated_vertices() const {
   std::unordered_set<size_t> isolated;
-  for (const auto& [vertex, neighbors] : adj_list) {
-    if (neighbors.empty())
+  for (size_t vertex = 0; vertex < adj_list.size(); ++vertex) {
+    if (active_vertices[vertex] && adj_list[vertex].empty()) {
       isolated.insert(vertex);
+    }
   }
   return isolated;
 }
 
 std::unordered_set<size_t> Graph::get_vertices() const {
   std::unordered_set<size_t> vertices;
-  vertices.reserve(adj_list.size());
-  for (const auto& [vertex, _] : adj_list) {
-    vertices.insert(vertex);
+  vertices.reserve(vertex_count);
+  for (size_t vertex = 0; vertex < active_vertices.size(); ++vertex) {
+    if (active_vertices[vertex]) {
+      vertices.insert(vertex);
+    }
   }
   return vertices;
 }
 
 size_t Graph::choose_random_vertex() const {
-  if (adj_list.empty())
+  if (vertex_count == 0)
     throw std::runtime_error("Cannot pick from empty graph");
 
   static std::random_device rd;
   static std::mt19937 gen(rd());
 
-  std::uniform_int_distribution<std::size_t> dist(0, adj_list.size() - 1);
-  auto it = std::next(adj_list.begin(), dist(gen));
-  return it->first;
+  std::uniform_int_distribution<std::size_t> dist(0, vertex_count - 1);
+  std::size_t selected = dist(gen);
+
+  for (size_t vertex = 0; vertex < active_vertices.size(); ++vertex) {
+    if (active_vertices[vertex] && selected-- == 0) {
+      return vertex;
+    }
+  }
+
+  throw std::runtime_error("Failed to pick a random vertex");
 }
 
 std::ostream& operator<<(std::ostream& os, const Graph& graph) {
-  for (const auto& [vertex, neighbors] : graph.adj_list) {
+  for (size_t vertex = 0; vertex < graph.adj_list.size(); ++vertex) {
+    if (!graph.active_vertices[vertex]) {
+      continue;
+    }
+
     os << vertex << " ----> ";
+    const auto& neighbors = graph.adj_list[vertex];
     for (const auto& neighbor : neighbors) {
       os << neighbor << " ";
     }
