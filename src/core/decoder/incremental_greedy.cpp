@@ -65,15 +65,16 @@ double incremental_greedy::decode(std::span<const double> chromosome) const {
       continue;
     }
 
+    if (graph.get_vertex_degree(u) >= high_degree_threshold) {
+      assign_label(graph, f, neighborhood_weight, u, 3);
+      continue;
+    }
+
     // Seleciona o label do vértice de forma gulosa
     // Escolhendo o menor label que mantenha a solução viavel
     assign_label(graph, f, neighborhood_weight, u, 1);
     if (!is_vertex_feasible(f, neighborhood_weight, u)) {
       assign_label(graph, f, neighborhood_weight, u, 2);
-    }
-    if (!is_vertex_feasible(f, neighborhood_weight, u)) {
-
-      assign_label(graph, f, neighborhood_weight, u, 3);
     }
   }
 
@@ -94,7 +95,7 @@ double incremental_greedy::decode(std::span<const double> chromosome) const {
   // Tenta reduzir o peso sem perder a viabilidade
   reduce_weight_heuristic(graph, f, neighborhood_weight);
 
-#ifndef NDEBUG
+#ifdef DEBUG
   if (!hsc::is_solution_feasible(graph, f)) {
     std::cerr << "Infeasible solution detected!" << std::endl;
     std::abort();
