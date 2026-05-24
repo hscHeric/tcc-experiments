@@ -218,5 +218,27 @@ inline void assign_unlabeled(
   }
 }
 
+inline std::uint64_t compute_chromosome_seed(std::span<const double> chromosome) {
+
+  auto splitmix64 = [](std::uint64_t x) {
+    x += 0x9e3779b97f4a7c15ULL;
+
+    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9ULL;
+    x = (x ^ (x >> 27)) * 0x94d049bb133111ebULL;
+
+    return x ^ (x >> 31);
+  };
+
+  std::uint64_t seed = 0;
+
+  for (size_t i = 0; i < chromosome.size(); ++i) {
+
+    const std::uint64_t q = static_cast<std::uint64_t>(chromosome[i] * 1'000'000.0);
+
+    seed ^= splitmix64(q + i * 0x9e3779b97f4a7c15ULL);
+  }
+
+  return splitmix64(seed);
+}
 } // namespace hsc
 #endif // !HSC_DECODER_UTILS_HPP
