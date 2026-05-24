@@ -39,7 +39,7 @@ namespace hsc {
  */
 using decoder = incremental_greedy;
 
-inline constexpr const char* decoder_name = "greedy_construction";
+inline constexpr const char* decoder_name = "incremental_greedy";
 
 } // namespace hsc
 
