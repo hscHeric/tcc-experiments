@@ -140,50 +140,44 @@ void reduce_weight_heuristic(
 inline void reduce_weight_heuristic(
     const Graph& graph, std::span<uint8_t> labels, std::span<int> neighborhood_weight
 ) {
-
   const size_t vertex_count = graph.get_order();
 
-  bool improved = true;
+  for (size_t u = 0; u < vertex_count; ++u) {
+    // Impossivel reduzir o rotulo
+    if (labels[u] == 0) {
+      continue;
+    }
 
-  while (improved) {
+    const uint8_t old_label = labels[u];
+    bool decrease_successful = false;
 
-    improved = false;
-
-    for (size_t u = 0; u < vertex_count; ++u) {
-
-      // Vértices rotulados com 0 não podem ser reduzidos
-      if (labels[u] == 0) {
-        continue;
-      }
-
-      const uint8_t old_label = labels[u];
-
-      const uint8_t new_label = old_label - 1;
-
-      // Aplica o novo rotulo ao vértice
+    for (uint8_t new_label = 0; new_label < old_label; ++new_label) {
       assign_label(graph, labels, neighborhood_weight, u, new_label);
 
+      // verifica se o novo rôtulo deixa o vértice viavel
       bool feasible = true;
-
-      // Verifica se o vértice ficou válidos
       if (!is_vertex_feasible(labels, neighborhood_weight, u)) {
         feasible = false;
       }
 
-      // Verifica se os vizinhos ficaram válidos
-      for (const size_t v : graph.get_neighbors(u)) {
-        if (!is_vertex_feasible(labels, neighborhood_weight, v)) {
-          feasible = false;
-          break;
+      // Verifica vizinhos
+      if (feasible) {
+        for (const size_t w : graph.get_neighbors(u)) {
+          if (!is_vertex_feasible(labels, neighborhood_weight, w)) {
+            feasible = false;
+            break;
+          }
         }
       }
 
-      // Reverte o movimento se a solução não segue as restrições do problema
-      if (!feasible) {
-        assign_label(graph, labels, neighborhood_weight, u, old_label);
-      } else {
-        improved = true;
+      if (feasible) {
+        decrease_successful = true;
+        break;
       }
+    }
+
+    if (!decrease_successful) {
+      assign_label(graph, labels, neighborhood_weight, u, old_label);
     }
   }
 }
