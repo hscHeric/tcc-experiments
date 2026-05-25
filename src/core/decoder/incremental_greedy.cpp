@@ -4,12 +4,15 @@
 
 #include <algorithm>
 #include <cstdlib>
-#include <iostream>
 #include <memory>
 #include <numeric>
 #include <random>
 #include <span>
 #include <vector>
+
+#ifdef DEBUG
+#include <iostream>
+#endif // DEBUG
 
 namespace hsc {
 

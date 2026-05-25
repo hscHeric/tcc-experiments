@@ -2,6 +2,7 @@
 #define HSC_DECODER_HPP
 
 #include "incremental_greedy.hpp"
+#include "mapping_fix_decoder.hpp"
 
 #include <hscopt/decoder.h>
 
@@ -37,9 +38,9 @@ namespace hsc {
  * a escolha é feita em tempo de compilação, sem virtual dispatch e sem branch a
  * cada avaliação.
  */
-using decoder = incremental_greedy;
+using decoder = mapping_fix_decoder;
 
-inline constexpr const char* decoder_name = "incremental_greedy";
+inline constexpr const char* decoder_name = "mapping_fix_decoder";
 
 } // namespace hsc
 
