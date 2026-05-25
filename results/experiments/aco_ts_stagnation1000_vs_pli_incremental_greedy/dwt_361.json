@@ -1,0 +1,151 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 185.0,
+          "elapsed_ms": 10,
+          "elapsed_seconds": 0.01,
+          "evaluations": 220,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 184.0,
+          "elapsed_ms": 140,
+          "elapsed_seconds": 0.14,
+          "evaluations": 1900,
+          "iteration": 15
+        },
+        {
+          "best_fitness": 182.0,
+          "elapsed_ms": 218,
+          "elapsed_seconds": 0.218,
+          "evaluations": 2860,
+          "iteration": 23
+        },
+        {
+          "best_fitness": 181.0,
+          "elapsed_ms": 226,
+          "elapsed_seconds": 0.226,
+          "evaluations": 2980,
+          "iteration": 24
+        },
+        {
+          "best_fitness": 180.0,
+          "elapsed_ms": 299,
+          "elapsed_seconds": 0.299,
+          "evaluations": 3820,
+          "iteration": 31
+        },
+        {
+          "best_fitness": 179.0,
+          "elapsed_ms": 455,
+          "elapsed_seconds": 0.455,
+          "evaluations": 5740,
+          "iteration": 47
+        },
+        {
+          "best_fitness": 176.0,
+          "elapsed_ms": 562,
+          "elapsed_seconds": 0.562,
+          "evaluations": 7060,
+          "iteration": 58
+        },
+        {
+          "best_fitness": 172.0,
+          "elapsed_ms": 829,
+          "elapsed_seconds": 0.829,
+          "evaluations": 10540,
+          "iteration": 87
+        },
+        {
+          "best_fitness": 157.0,
+          "elapsed_ms": 1422,
+          "elapsed_seconds": 1.422,
+          "evaluations": 24902,
+          "iteration": 100
+        },
+        {
+          "best_fitness": 155.0,
+          "elapsed_ms": 2310,
+          "elapsed_seconds": 2.31,
+          "evaluations": 43704,
+          "iteration": 150
+        },
+        {
+          "best_fitness": 154.0,
+          "elapsed_ms": 3264,
+          "elapsed_seconds": 3.264,
+          "evaluations": 62506,
+          "iteration": 200
+        },
+        {
+          "best_fitness": 153.0,
+          "elapsed_ms": 9304,
+          "elapsed_seconds": 9.304,
+          "evaluations": 194120,
+          "iteration": 550
+        },
+        {
+          "best_fitness": 152.0,
+          "elapsed_ms": 22161,
+          "elapsed_seconds": 22.161,
+          "evaluations": 476150,
+          "iteration": 1300
+        },
+        {
+          "best_fitness": 151.0,
+          "elapsed_ms": 23897,
+          "elapsed_seconds": 23.897,
+          "evaluations": 513754,
+          "iteration": 1400
+        },
+        {
+          "best_fitness": 150.0,
+          "elapsed_ms": 29106,
+          "elapsed_seconds": 29.106,
+          "evaluations": 626566,
+          "iteration": 1700
+        },
+        {
+          "best_fitness": 149.0,
+          "elapsed_ms": 42926,
+          "elapsed_seconds": 42.926,
+          "evaluations": 927398,
+          "iteration": 2500
+        }
+      ],
+      "evaluations": 1303438,
+      "executed_at": "2026-05-25T08:45:21Z",
+      "final_solution_value": 149.0,
+      "iterations": 3500,
+      "seed": 65537746894799,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 60289,
+      "total_runtime_seconds": 60.289
+    }
+  ],
+  "best_fitness_global": 149.0,
+  "decoder": "incremental_greedy",
+  "executed_at": "2026-05-25T08:45:21Z",
+  "graph": "dwt_361.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/HB/dwt_361.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

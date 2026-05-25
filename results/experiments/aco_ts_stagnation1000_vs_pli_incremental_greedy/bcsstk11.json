@@ -1,0 +1,172 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 370.0,
+          "elapsed_ms": 113,
+          "elapsed_seconds": 0.113,
+          "evaluations": 340,
+          "iteration": 2
+        },
+        {
+          "best_fitness": 369.0,
+          "elapsed_ms": 233,
+          "elapsed_seconds": 0.233,
+          "evaluations": 580,
+          "iteration": 4
+        },
+        {
+          "best_fitness": 368.0,
+          "elapsed_ms": 366,
+          "elapsed_seconds": 0.366,
+          "evaluations": 820,
+          "iteration": 6
+        },
+        {
+          "best_fitness": 367.0,
+          "elapsed_ms": 659,
+          "elapsed_seconds": 0.659,
+          "evaluations": 1420,
+          "iteration": 11
+        },
+        {
+          "best_fitness": 361.0,
+          "elapsed_ms": 821,
+          "elapsed_seconds": 0.821,
+          "evaluations": 1780,
+          "iteration": 14
+        },
+        {
+          "best_fitness": 357.0,
+          "elapsed_ms": 1386,
+          "elapsed_seconds": 1.386,
+          "evaluations": 3100,
+          "iteration": 25
+        },
+        {
+          "best_fitness": 353.0,
+          "elapsed_ms": 1990,
+          "elapsed_seconds": 1.99,
+          "evaluations": 4420,
+          "iteration": 36
+        },
+        {
+          "best_fitness": 350.0,
+          "elapsed_ms": 3063,
+          "elapsed_seconds": 3.063,
+          "evaluations": 6700,
+          "iteration": 55
+        },
+        {
+          "best_fitness": 347.0,
+          "elapsed_ms": 5071,
+          "elapsed_seconds": 5.071,
+          "evaluations": 11380,
+          "iteration": 94
+        },
+        {
+          "best_fitness": 276.0,
+          "elapsed_ms": 9540,
+          "elapsed_seconds": 9.54,
+          "evaluations": 24902,
+          "iteration": 100
+        },
+        {
+          "best_fitness": 269.0,
+          "elapsed_ms": 16284,
+          "elapsed_seconds": 16.284,
+          "evaluations": 43704,
+          "iteration": 150
+        },
+        {
+          "best_fitness": 266.0,
+          "elapsed_ms": 22998,
+          "elapsed_seconds": 22.998,
+          "evaluations": 62506,
+          "iteration": 200
+        },
+        {
+          "best_fitness": 264.0,
+          "elapsed_ms": 29569,
+          "elapsed_seconds": 29.569,
+          "evaluations": 81308,
+          "iteration": 250
+        },
+        {
+          "best_fitness": 262.0,
+          "elapsed_ms": 36162,
+          "elapsed_seconds": 36.162,
+          "evaluations": 100110,
+          "iteration": 300
+        },
+        {
+          "best_fitness": 261.0,
+          "elapsed_ms": 75015,
+          "elapsed_seconds": 75.015,
+          "evaluations": 212922,
+          "iteration": 600
+        },
+        {
+          "best_fitness": 260.0,
+          "elapsed_ms": 107614,
+          "elapsed_seconds": 107.614,
+          "evaluations": 306932,
+          "iteration": 850
+        },
+        {
+          "best_fitness": 259.0,
+          "elapsed_ms": 185723,
+          "elapsed_seconds": 185.723,
+          "evaluations": 532556,
+          "iteration": 1450
+        },
+        {
+          "best_fitness": 258.0,
+          "elapsed_ms": 211397,
+          "elapsed_seconds": 211.397,
+          "evaluations": 607764,
+          "iteration": 1650
+        },
+        {
+          "best_fitness": 257.0,
+          "elapsed_ms": 218033,
+          "elapsed_seconds": 218.033,
+          "evaluations": 626566,
+          "iteration": 1700
+        }
+      ],
+      "evaluations": 1002606,
+      "executed_at": "2026-05-25T06:51:14Z",
+      "final_solution_value": 257.0,
+      "iterations": 2700,
+      "seed": 58690838040031,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 348589,
+      "total_runtime_seconds": 348.589
+    }
+  ],
+  "best_fitness_global": 257.0,
+  "decoder": "incremental_greedy",
+  "executed_at": "2026-05-25T06:51:14Z",
+  "graph": "bcsstk11.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/HB/bcsstk11.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

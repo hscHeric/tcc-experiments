@@ -1,0 +1,95 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 71.0,
+          "elapsed_ms": 8,
+          "elapsed_seconds": 0.008,
+          "evaluations": 220,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 69.0,
+          "elapsed_ms": 12,
+          "elapsed_seconds": 0.012,
+          "evaluations": 340,
+          "iteration": 2
+        },
+        {
+          "best_fitness": 67.0,
+          "elapsed_ms": 26,
+          "elapsed_seconds": 0.026,
+          "evaluations": 700,
+          "iteration": 5
+        },
+        {
+          "best_fitness": 66.0,
+          "elapsed_ms": 56,
+          "elapsed_seconds": 0.056,
+          "evaluations": 1540,
+          "iteration": 12
+        },
+        {
+          "best_fitness": 65.0,
+          "elapsed_ms": 101,
+          "elapsed_seconds": 0.101,
+          "evaluations": 2740,
+          "iteration": 22
+        },
+        {
+          "best_fitness": 64.0,
+          "elapsed_ms": 179,
+          "elapsed_seconds": 0.179,
+          "evaluations": 5020,
+          "iteration": 41
+        },
+        {
+          "best_fitness": 63.0,
+          "elapsed_ms": 276,
+          "elapsed_seconds": 0.276,
+          "evaluations": 7780,
+          "iteration": 64
+        },
+        {
+          "best_fitness": 62.0,
+          "elapsed_ms": 377,
+          "elapsed_seconds": 0.377,
+          "evaluations": 10660,
+          "iteration": 88
+        }
+      ],
+      "evaluations": 386700,
+      "executed_at": "2026-05-25T06:47:28Z",
+      "final_solution_value": 62.0,
+      "iterations": 1088,
+      "seed": 58464726400940,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 8543,
+      "total_runtime_seconds": 8.543
+    }
+  ],
+  "best_fitness_global": 62.0,
+  "decoder": "incremental_greedy",
+  "executed_at": "2026-05-25T06:47:28Z",
+  "graph": "bcsstk03.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/HB/bcsstk03.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

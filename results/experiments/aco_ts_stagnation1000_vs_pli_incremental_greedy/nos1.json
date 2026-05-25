@@ -1,0 +1,74 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 248.0,
+          "elapsed_ms": 13,
+          "elapsed_seconds": 0.013,
+          "evaluations": 340,
+          "iteration": 2
+        },
+        {
+          "best_fitness": 247.0,
+          "elapsed_ms": 124,
+          "elapsed_seconds": 0.124,
+          "evaluations": 3340,
+          "iteration": 27
+        },
+        {
+          "best_fitness": 246.0,
+          "elapsed_ms": 749,
+          "elapsed_seconds": 0.749,
+          "evaluations": 30422,
+          "iteration": 146
+        },
+        {
+          "best_fitness": 245.0,
+          "elapsed_ms": 2433,
+          "elapsed_seconds": 2.433,
+          "evaluations": 121552,
+          "iteration": 372
+        },
+        {
+          "best_fitness": 242.0,
+          "elapsed_ms": 3054,
+          "elapsed_seconds": 3.054,
+          "evaluations": 156516,
+          "iteration": 450
+        }
+      ],
+      "evaluations": 532556,
+      "executed_at": "2026-05-25T10:48:04Z",
+      "final_solution_value": 242.0,
+      "iterations": 1450,
+      "seed": 66736891324743,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 10169,
+      "total_runtime_seconds": 10.169
+    }
+  ],
+  "best_fitness_global": 242.0,
+  "decoder": "incremental_greedy",
+  "executed_at": "2026-05-25T10:48:04Z",
+  "graph": "nos1.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/HB/nos1.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

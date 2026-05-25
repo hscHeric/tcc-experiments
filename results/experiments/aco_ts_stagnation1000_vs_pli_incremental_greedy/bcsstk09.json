@@ -1,0 +1,165 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 398.0,
+          "elapsed_ms": 32,
+          "elapsed_seconds": 0.032,
+          "evaluations": 220,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 397.0,
+          "elapsed_ms": 61,
+          "elapsed_seconds": 0.061,
+          "evaluations": 340,
+          "iteration": 2
+        },
+        {
+          "best_fitness": 394.0,
+          "elapsed_ms": 88,
+          "elapsed_seconds": 0.088,
+          "evaluations": 460,
+          "iteration": 3
+        },
+        {
+          "best_fitness": 392.0,
+          "elapsed_ms": 259,
+          "elapsed_seconds": 0.259,
+          "evaluations": 1180,
+          "iteration": 9
+        },
+        {
+          "best_fitness": 388.0,
+          "elapsed_ms": 290,
+          "elapsed_seconds": 0.29,
+          "evaluations": 1300,
+          "iteration": 10
+        },
+        {
+          "best_fitness": 387.0,
+          "elapsed_ms": 728,
+          "elapsed_seconds": 0.728,
+          "evaluations": 2980,
+          "iteration": 24
+        },
+        {
+          "best_fitness": 386.0,
+          "elapsed_ms": 787,
+          "elapsed_seconds": 0.787,
+          "evaluations": 3220,
+          "iteration": 26
+        },
+        {
+          "best_fitness": 385.0,
+          "elapsed_ms": 1533,
+          "elapsed_seconds": 1.533,
+          "evaluations": 6580,
+          "iteration": 54
+        },
+        {
+          "best_fitness": 379.0,
+          "elapsed_ms": 1611,
+          "elapsed_seconds": 1.611,
+          "evaluations": 6940,
+          "iteration": 57
+        },
+        {
+          "best_fitness": 320.0,
+          "elapsed_ms": 4583,
+          "elapsed_seconds": 4.583,
+          "evaluations": 24902,
+          "iteration": 100
+        },
+        {
+          "best_fitness": 316.0,
+          "elapsed_ms": 7597,
+          "elapsed_seconds": 7.597,
+          "evaluations": 43704,
+          "iteration": 150
+        },
+        {
+          "best_fitness": 314.0,
+          "elapsed_ms": 10559,
+          "elapsed_seconds": 10.559,
+          "evaluations": 62506,
+          "iteration": 200
+        },
+        {
+          "best_fitness": 313.0,
+          "elapsed_ms": 13509,
+          "elapsed_seconds": 13.509,
+          "evaluations": 81308,
+          "iteration": 250
+        },
+        {
+          "best_fitness": 311.0,
+          "elapsed_ms": 16387,
+          "elapsed_seconds": 16.387,
+          "evaluations": 100110,
+          "iteration": 300
+        },
+        {
+          "best_fitness": 309.0,
+          "elapsed_ms": 25115,
+          "elapsed_seconds": 25.115,
+          "evaluations": 156516,
+          "iteration": 450
+        },
+        {
+          "best_fitness": 308.0,
+          "elapsed_ms": 33976,
+          "elapsed_seconds": 33.976,
+          "evaluations": 212922,
+          "iteration": 600
+        },
+        {
+          "best_fitness": 307.0,
+          "elapsed_ms": 42812,
+          "elapsed_seconds": 42.812,
+          "evaluations": 269328,
+          "iteration": 750
+        },
+        {
+          "best_fitness": 306.0,
+          "elapsed_ms": 89433,
+          "elapsed_seconds": 89.433,
+          "evaluations": 570160,
+          "iteration": 1550
+        }
+      ],
+      "evaluations": 946200,
+      "executed_at": "2026-05-25T06:48:45Z",
+      "final_solution_value": 306.0,
+      "iterations": 2550,
+      "seed": 58542013820406,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 148685,
+      "total_runtime_seconds": 148.685
+    }
+  ],
+  "best_fitness_global": 306.0,
+  "decoder": "incremental_greedy",
+  "executed_at": "2026-05-25T06:48:45Z",
+  "graph": "bcsstk09.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/HB/bcsstk09.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

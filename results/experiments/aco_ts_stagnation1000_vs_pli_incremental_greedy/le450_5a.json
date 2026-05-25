@@ -1,0 +1,109 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 119.0,
+          "elapsed_ms": 133,
+          "elapsed_seconds": 0.133,
+          "evaluations": 940,
+          "iteration": 7
+        },
+        {
+          "best_fitness": 116.0,
+          "elapsed_ms": 153,
+          "elapsed_seconds": 0.153,
+          "evaluations": 1060,
+          "iteration": 8
+        },
+        {
+          "best_fitness": 111.0,
+          "elapsed_ms": 574,
+          "elapsed_seconds": 0.574,
+          "evaluations": 3700,
+          "iteration": 30
+        },
+        {
+          "best_fitness": 102.0,
+          "elapsed_ms": 3277,
+          "elapsed_seconds": 3.277,
+          "evaluations": 24902,
+          "iteration": 100
+        },
+        {
+          "best_fitness": 101.0,
+          "elapsed_ms": 7672,
+          "elapsed_seconds": 7.672,
+          "evaluations": 62506,
+          "iteration": 200
+        },
+        {
+          "best_fitness": 100.0,
+          "elapsed_ms": 9868,
+          "elapsed_seconds": 9.868,
+          "evaluations": 81308,
+          "iteration": 250
+        },
+        {
+          "best_fitness": 97.0,
+          "elapsed_ms": 18565,
+          "elapsed_seconds": 18.565,
+          "evaluations": 156516,
+          "iteration": 450
+        },
+        {
+          "best_fitness": 96.0,
+          "elapsed_ms": 33801,
+          "elapsed_seconds": 33.801,
+          "evaluations": 288130,
+          "iteration": 800
+        },
+        {
+          "best_fitness": 95.0,
+          "elapsed_ms": 68489,
+          "elapsed_seconds": 68.489,
+          "evaluations": 588962,
+          "iteration": 1600
+        },
+        {
+          "best_fitness": 94.0,
+          "elapsed_ms": 103276,
+          "elapsed_seconds": 103.276,
+          "evaluations": 889794,
+          "iteration": 2400
+        }
+      ],
+      "evaluations": 1265834,
+      "executed_at": "2026-05-25T04:32:03Z",
+      "final_solution_value": 94.0,
+      "iterations": 3400,
+      "seed": 50339194479345,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 146625,
+      "total_runtime_seconds": 146.625
+    }
+  ],
+  "best_fitness_global": 94.0,
+  "decoder": "incremental_greedy",
+  "executed_at": "2026-05-25T04:32:03Z",
+  "graph": "le450_5a.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/DIMACS/le450_5a.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

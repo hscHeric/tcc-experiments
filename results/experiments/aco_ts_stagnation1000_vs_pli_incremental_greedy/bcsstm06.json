@@ -1,0 +1,38 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [],
+      "evaluations": 363338,
+      "executed_at": "2026-05-25T08:18:25Z",
+      "final_solution_value": 840.0,
+      "iterations": 1000,
+      "seed": 63921472257037,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 15402,
+      "total_runtime_seconds": 15.402
+    }
+  ],
+  "best_fitness_global": 840.0,
+  "decoder": "incremental_greedy",
+  "executed_at": "2026-05-25T08:18:25Z",
+  "graph": "bcsstm06.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/HB/bcsstm06.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

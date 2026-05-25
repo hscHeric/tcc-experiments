@@ -1,0 +1,179 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 124.0,
+          "elapsed_ms": 7,
+          "elapsed_seconds": 0.007,
+          "evaluations": 220,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 123.0,
+          "elapsed_ms": 29,
+          "elapsed_seconds": 0.029,
+          "evaluations": 700,
+          "iteration": 5
+        },
+        {
+          "best_fitness": 120.0,
+          "elapsed_ms": 35,
+          "elapsed_seconds": 0.035,
+          "evaluations": 820,
+          "iteration": 6
+        },
+        {
+          "best_fitness": 117.0,
+          "elapsed_ms": 47,
+          "elapsed_seconds": 0.047,
+          "evaluations": 1060,
+          "iteration": 8
+        },
+        {
+          "best_fitness": 115.0,
+          "elapsed_ms": 78,
+          "elapsed_seconds": 0.078,
+          "evaluations": 1660,
+          "iteration": 13
+        },
+        {
+          "best_fitness": 113.0,
+          "elapsed_ms": 119,
+          "elapsed_seconds": 0.119,
+          "evaluations": 2500,
+          "iteration": 20
+        },
+        {
+          "best_fitness": 112.0,
+          "elapsed_ms": 174,
+          "elapsed_seconds": 0.174,
+          "evaluations": 3580,
+          "iteration": 29
+        },
+        {
+          "best_fitness": 111.0,
+          "elapsed_ms": 180,
+          "elapsed_seconds": 0.18,
+          "evaluations": 3700,
+          "iteration": 30
+        },
+        {
+          "best_fitness": 110.0,
+          "elapsed_ms": 205,
+          "elapsed_seconds": 0.205,
+          "evaluations": 4180,
+          "iteration": 34
+        },
+        {
+          "best_fitness": 109.0,
+          "elapsed_ms": 223,
+          "elapsed_seconds": 0.223,
+          "evaluations": 4540,
+          "iteration": 37
+        },
+        {
+          "best_fitness": 108.0,
+          "elapsed_ms": 264,
+          "elapsed_seconds": 0.264,
+          "evaluations": 5380,
+          "iteration": 44
+        },
+        {
+          "best_fitness": 106.0,
+          "elapsed_ms": 333,
+          "elapsed_seconds": 0.333,
+          "evaluations": 6700,
+          "iteration": 55
+        },
+        {
+          "best_fitness": 105.0,
+          "elapsed_ms": 394,
+          "elapsed_seconds": 0.394,
+          "evaluations": 7900,
+          "iteration": 65
+        },
+        {
+          "best_fitness": 104.0,
+          "elapsed_ms": 506,
+          "elapsed_seconds": 0.506,
+          "evaluations": 10060,
+          "iteration": 83
+        },
+        {
+          "best_fitness": 103.0,
+          "elapsed_ms": 525,
+          "elapsed_seconds": 0.525,
+          "evaluations": 10420,
+          "iteration": 86
+        },
+        {
+          "best_fitness": 101.0,
+          "elapsed_ms": 530,
+          "elapsed_seconds": 0.53,
+          "evaluations": 10540,
+          "iteration": 87
+        },
+        {
+          "best_fitness": 96.0,
+          "elapsed_ms": 928,
+          "elapsed_seconds": 0.928,
+          "evaluations": 24902,
+          "iteration": 100
+        },
+        {
+          "best_fitness": 94.0,
+          "elapsed_ms": 1539,
+          "elapsed_seconds": 1.539,
+          "evaluations": 43704,
+          "iteration": 150
+        },
+        {
+          "best_fitness": 93.0,
+          "elapsed_ms": 3421,
+          "elapsed_seconds": 3.421,
+          "evaluations": 100110,
+          "iteration": 300
+        },
+        {
+          "best_fitness": 92.0,
+          "elapsed_ms": 5091,
+          "elapsed_seconds": 5.091,
+          "evaluations": 156516,
+          "iteration": 450
+        }
+      ],
+      "evaluations": 532556,
+      "executed_at": "2026-05-25T08:43:37Z",
+      "final_solution_value": 92.0,
+      "iterations": 1450,
+      "seed": 65433710984223,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 16538,
+      "total_runtime_seconds": 16.538
+    }
+  ],
+  "best_fitness_global": 92.0,
+  "decoder": "incremental_greedy",
+  "executed_at": "2026-05-25T08:43:37Z",
+  "graph": "dwt_198.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/HB/dwt_198.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

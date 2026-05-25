@@ -1,0 +1,81 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 48.0,
+          "elapsed_ms": 5,
+          "elapsed_seconds": 0.005,
+          "evaluations": 220,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 47.0,
+          "elapsed_ms": 27,
+          "elapsed_seconds": 0.027,
+          "evaluations": 940,
+          "iteration": 7
+        },
+        {
+          "best_fitness": 46.0,
+          "elapsed_ms": 90,
+          "elapsed_seconds": 0.09,
+          "evaluations": 3340,
+          "iteration": 27
+        },
+        {
+          "best_fitness": 45.0,
+          "elapsed_ms": 130,
+          "elapsed_seconds": 0.13,
+          "evaluations": 4660,
+          "iteration": 38
+        },
+        {
+          "best_fitness": 44.0,
+          "elapsed_ms": 177,
+          "elapsed_seconds": 0.177,
+          "evaluations": 6700,
+          "iteration": 55
+        },
+        {
+          "best_fitness": 43.0,
+          "elapsed_ms": 4884,
+          "elapsed_seconds": 4.884,
+          "evaluations": 269328,
+          "iteration": 750
+        }
+      ],
+      "evaluations": 645368,
+      "executed_at": "2026-05-25T08:48:48Z",
+      "final_solution_value": 43.0,
+      "iterations": 1750,
+      "seed": 65745078658024,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 11309,
+      "total_runtime_seconds": 11.309
+    }
+  ],
+  "best_fitness_global": 43.0,
+  "decoder": "incremental_greedy",
+  "executed_at": "2026-05-25T08:48:48Z",
+  "graph": "dwt_59.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/HB/dwt_59.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

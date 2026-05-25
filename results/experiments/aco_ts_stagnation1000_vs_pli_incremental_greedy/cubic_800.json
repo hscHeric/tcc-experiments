@@ -1,0 +1,158 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 732.0,
+          "elapsed_ms": 67,
+          "elapsed_seconds": 0.067,
+          "evaluations": 580,
+          "iteration": 4
+        },
+        {
+          "best_fitness": 730.0,
+          "elapsed_ms": 83,
+          "elapsed_seconds": 0.083,
+          "evaluations": 700,
+          "iteration": 5
+        },
+        {
+          "best_fitness": 728.0,
+          "elapsed_ms": 253,
+          "elapsed_seconds": 0.253,
+          "evaluations": 1780,
+          "iteration": 14
+        },
+        {
+          "best_fitness": 727.0,
+          "elapsed_ms": 461,
+          "elapsed_seconds": 0.461,
+          "evaluations": 3100,
+          "iteration": 25
+        },
+        {
+          "best_fitness": 726.0,
+          "elapsed_ms": 742,
+          "elapsed_seconds": 0.742,
+          "evaluations": 4780,
+          "iteration": 39
+        },
+        {
+          "best_fitness": 723.0,
+          "elapsed_ms": 865,
+          "elapsed_seconds": 0.865,
+          "evaluations": 5620,
+          "iteration": 46
+        },
+        {
+          "best_fitness": 660.0,
+          "elapsed_ms": 2334,
+          "elapsed_seconds": 2.334,
+          "evaluations": 24902,
+          "iteration": 100
+        },
+        {
+          "best_fitness": 656.0,
+          "elapsed_ms": 3810,
+          "elapsed_seconds": 3.81,
+          "evaluations": 43704,
+          "iteration": 150
+        },
+        {
+          "best_fitness": 655.0,
+          "elapsed_ms": 5139,
+          "elapsed_seconds": 5.139,
+          "evaluations": 62506,
+          "iteration": 200
+        },
+        {
+          "best_fitness": 654.0,
+          "elapsed_ms": 6503,
+          "elapsed_seconds": 6.503,
+          "evaluations": 81308,
+          "iteration": 250
+        },
+        {
+          "best_fitness": 651.0,
+          "elapsed_ms": 7861,
+          "elapsed_seconds": 7.861,
+          "evaluations": 100110,
+          "iteration": 300
+        },
+        {
+          "best_fitness": 650.0,
+          "elapsed_ms": 11925,
+          "elapsed_seconds": 11.925,
+          "evaluations": 156516,
+          "iteration": 450
+        },
+        {
+          "best_fitness": 647.0,
+          "elapsed_ms": 17224,
+          "elapsed_seconds": 17.224,
+          "evaluations": 231724,
+          "iteration": 650
+        },
+        {
+          "best_fitness": 645.0,
+          "elapsed_ms": 25545,
+          "elapsed_seconds": 25.545,
+          "evaluations": 344536,
+          "iteration": 950
+        },
+        {
+          "best_fitness": 644.0,
+          "elapsed_ms": 26938,
+          "elapsed_seconds": 26.938,
+          "evaluations": 363338,
+          "iteration": 1000
+        },
+        {
+          "best_fitness": 643.0,
+          "elapsed_ms": 30926,
+          "elapsed_seconds": 30.926,
+          "evaluations": 419744,
+          "iteration": 1150
+        },
+        {
+          "best_fitness": 642.0,
+          "elapsed_ms": 36339,
+          "elapsed_seconds": 36.339,
+          "evaluations": 494952,
+          "iteration": 1350
+        }
+      ],
+      "evaluations": 870992,
+      "executed_at": "2026-05-24T22:34:51Z",
+      "final_solution_value": 642.0,
+      "iterations": 2350,
+      "seed": 28907761387475,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 63147,
+      "total_runtime_seconds": 63.147
+    }
+  ],
+  "best_fitness_global": 642.0,
+  "decoder": "incremental_greedy",
+  "executed_at": "2026-05-24T22:34:51Z",
+  "graph": "cubic_800.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/CUBIC/cubic_800.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

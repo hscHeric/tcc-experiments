@@ -1,0 +1,74 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 22.0,
+          "elapsed_ms": 634,
+          "elapsed_seconds": 0.634,
+          "evaluations": 220,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 21.0,
+          "elapsed_ms": 2972,
+          "elapsed_seconds": 2.972,
+          "evaluations": 700,
+          "iteration": 5
+        },
+        {
+          "best_fitness": 20.0,
+          "elapsed_ms": 4130,
+          "elapsed_seconds": 4.13,
+          "evaluations": 940,
+          "iteration": 7
+        },
+        {
+          "best_fitness": 19.0,
+          "elapsed_ms": 29203,
+          "elapsed_seconds": 29.203,
+          "evaluations": 6100,
+          "iteration": 50
+        },
+        {
+          "best_fitness": 17.0,
+          "elapsed_ms": 121607,
+          "elapsed_seconds": 121.607,
+          "evaluations": 24902,
+          "iteration": 100
+        }
+      ],
+      "evaluations": 194120,
+      "executed_at": "2026-05-25T05:55:27Z",
+      "final_solution_value": 17.0,
+      "iterations": 550,
+      "seed": 55343476214842,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 944163,
+      "total_runtime_seconds": 944.163
+    }
+  ],
+  "best_fitness_global": 17.0,
+  "decoder": "incremental_greedy",
+  "executed_at": "2026-05-25T05:55:27Z",
+  "graph": "san400_0.5_1.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/DIMACS/san400_0.5_1.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

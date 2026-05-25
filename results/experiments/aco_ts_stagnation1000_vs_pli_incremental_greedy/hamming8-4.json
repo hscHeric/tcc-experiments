@@ -1,0 +1,67 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 12.0,
+          "elapsed_ms": 269,
+          "elapsed_seconds": 0.269,
+          "evaluations": 340,
+          "iteration": 2
+        },
+        {
+          "best_fitness": 11.0,
+          "elapsed_ms": 1179,
+          "elapsed_seconds": 1.179,
+          "evaluations": 1180,
+          "iteration": 9
+        },
+        {
+          "best_fitness": 10.0,
+          "elapsed_ms": 1306,
+          "elapsed_seconds": 1.306,
+          "evaluations": 1300,
+          "iteration": 10
+        },
+        {
+          "best_fitness": 9.0,
+          "elapsed_ms": 7205,
+          "elapsed_seconds": 7.205,
+          "evaluations": 6820,
+          "iteration": 56
+        }
+      ],
+      "evaluations": 382860,
+      "executed_at": "2026-05-25T02:36:36Z",
+      "final_solution_value": 9.0,
+      "iterations": 1056,
+      "seed": 43412740347775,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 392805,
+      "total_runtime_seconds": 392.805
+    }
+  ],
+  "best_fitness_global": 9.0,
+  "decoder": "incremental_greedy",
+  "executed_at": "2026-05-25T02:36:36Z",
+  "graph": "hamming8-4.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/DIMACS/hamming8-4.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

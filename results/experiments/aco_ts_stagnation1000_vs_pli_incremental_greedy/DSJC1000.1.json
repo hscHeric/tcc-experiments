@@ -1,0 +1,74 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 90.0,
+          "elapsed_ms": 488,
+          "elapsed_seconds": 0.488,
+          "evaluations": 220,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 87.0,
+          "elapsed_ms": 2086,
+          "elapsed_seconds": 2.086,
+          "evaluations": 580,
+          "iteration": 4
+        },
+        {
+          "best_fitness": 85.0,
+          "elapsed_ms": 12387,
+          "elapsed_seconds": 12.387,
+          "evaluations": 3100,
+          "iteration": 25
+        },
+        {
+          "best_fitness": 79.0,
+          "elapsed_ms": 97815,
+          "elapsed_seconds": 97.815,
+          "evaluations": 24902,
+          "iteration": 100
+        },
+        {
+          "best_fitness": 78.0,
+          "elapsed_ms": 316185,
+          "elapsed_seconds": 316.185,
+          "evaluations": 81308,
+          "iteration": 250
+        }
+      ],
+      "evaluations": 231724,
+      "executed_at": "2026-05-24T22:37:29Z",
+      "final_solution_value": 78.0,
+      "iterations": 650,
+      "seed": 29063500418309,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 900875,
+      "total_runtime_seconds": 900.875
+    }
+  ],
+  "best_fitness_global": 78.0,
+  "decoder": "incremental_greedy",
+  "executed_at": "2026-05-24T22:37:27Z",
+  "graph": "DSJC1000.1.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/DIMACS/DSJC1000.1.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 14.0,
+          "elapsed_ms": 108,
+          "elapsed_seconds": 0.108,
+          "evaluations": 220,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 13.0,
+          "elapsed_ms": 2942,
+          "elapsed_seconds": 2.942,
+          "evaluations": 2740,
+          "iteration": 22
+        },
+        {
+          "best_fitness": 12.0,
+          "elapsed_ms": 25369,
+          "elapsed_seconds": 25.369,
+          "evaluations": 24902,
+          "iteration": 100
+        }
+      ],
+      "evaluations": 400942,
+      "executed_at": "2026-05-25T01:40:46Z",
+      "final_solution_value": 12.0,
+      "iterations": 1100,
+      "seed": 40062465210299,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 403398,
+      "total_runtime_seconds": 403.398
+    }
+  ],
+  "best_fitness_global": 12.0,
+  "decoder": "incremental_greedy",
+  "executed_at": "2026-05-25T01:40:46Z",
+  "graph": "flat300_28_0.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/DIMACS/flat300_28_0.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

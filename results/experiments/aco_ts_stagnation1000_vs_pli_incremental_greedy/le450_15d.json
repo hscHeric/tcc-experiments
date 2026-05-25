@@ -1,0 +1,95 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 54.0,
+          "elapsed_ms": 129,
+          "elapsed_seconds": 0.129,
+          "evaluations": 220,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 52.0,
+          "elapsed_ms": 832,
+          "elapsed_seconds": 0.832,
+          "evaluations": 940,
+          "iteration": 7
+        },
+        {
+          "best_fitness": 51.0,
+          "elapsed_ms": 2658,
+          "elapsed_seconds": 2.658,
+          "evaluations": 2620,
+          "iteration": 21
+        },
+        {
+          "best_fitness": 50.0,
+          "elapsed_ms": 7837,
+          "elapsed_seconds": 7.837,
+          "evaluations": 7660,
+          "iteration": 63
+        },
+        {
+          "best_fitness": 49.0,
+          "elapsed_ms": 12099,
+          "elapsed_seconds": 12.099,
+          "evaluations": 11740,
+          "iteration": 97
+        },
+        {
+          "best_fitness": 43.0,
+          "elapsed_ms": 25138,
+          "elapsed_seconds": 25.138,
+          "evaluations": 24902,
+          "iteration": 100
+        },
+        {
+          "best_fitness": 42.0,
+          "elapsed_ms": 44249,
+          "elapsed_seconds": 44.249,
+          "evaluations": 43704,
+          "iteration": 150
+        },
+        {
+          "best_fitness": 41.0,
+          "elapsed_ms": 63334,
+          "elapsed_seconds": 63.334,
+          "evaluations": 62506,
+          "iteration": 200
+        }
+      ],
+      "evaluations": 438546,
+      "executed_at": "2026-05-25T04:12:41Z",
+      "final_solution_value": 41.0,
+      "iterations": 1200,
+      "seed": 49177165322245,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 441420,
+      "total_runtime_seconds": 441.42
+    }
+  ],
+  "best_fitness_global": 41.0,
+  "decoder": "incremental_greedy",
+  "executed_at": "2026-05-25T04:12:41Z",
+  "graph": "le450_15d.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/DIMACS/le450_15d.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

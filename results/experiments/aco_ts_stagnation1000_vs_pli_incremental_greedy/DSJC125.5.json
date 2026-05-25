@@ -1,0 +1,60 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 12.0,
+          "elapsed_ms": 15,
+          "elapsed_seconds": 0.015,
+          "evaluations": 220,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 11.0,
+          "elapsed_ms": 71,
+          "elapsed_seconds": 0.071,
+          "evaluations": 700,
+          "iteration": 5
+        },
+        {
+          "best_fitness": 10.0,
+          "elapsed_ms": 3000,
+          "elapsed_seconds": 3.0,
+          "evaluations": 24902,
+          "iteration": 100
+        }
+      ],
+      "evaluations": 400942,
+      "executed_at": "2026-05-24T23:25:52Z",
+      "final_solution_value": 10.0,
+      "iterations": 1100,
+      "seed": 31968432713991,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 43918,
+      "total_runtime_seconds": 43.918
+    }
+  ],
+  "best_fitness_global": 10.0,
+  "decoder": "incremental_greedy",
+  "executed_at": "2026-05-24T23:25:52Z",
+  "graph": "DSJC125.5.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/DIMACS/DSJC125.5.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

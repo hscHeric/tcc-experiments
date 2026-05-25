@@ -1,0 +1,53 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 29.0,
+          "elapsed_ms": 66,
+          "elapsed_seconds": 0.066,
+          "evaluations": 460,
+          "iteration": 3
+        },
+        {
+          "best_fitness": 28.0,
+          "elapsed_ms": 878,
+          "elapsed_seconds": 0.878,
+          "evaluations": 3460,
+          "iteration": 28
+        }
+      ],
+      "evaluations": 366698,
+      "executed_at": "2026-05-25T05:46:14Z",
+      "final_solution_value": 28.0,
+      "iterations": 1028,
+      "seed": 54790653503620,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 79495,
+      "total_runtime_seconds": 79.495
+    }
+  ],
+  "best_fitness_global": 28.0,
+  "decoder": "incremental_greedy",
+  "executed_at": "2026-05-25T05:46:14Z",
+  "graph": "queen16_16.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/DIMACS/queen16_16.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

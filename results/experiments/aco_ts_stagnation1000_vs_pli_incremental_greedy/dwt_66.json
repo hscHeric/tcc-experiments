@@ -1,0 +1,74 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 47.0,
+          "elapsed_ms": 10,
+          "elapsed_seconds": 0.01,
+          "evaluations": 580,
+          "iteration": 4
+        },
+        {
+          "best_fitness": 46.0,
+          "elapsed_ms": 33,
+          "elapsed_seconds": 0.033,
+          "evaluations": 1420,
+          "iteration": 11
+        },
+        {
+          "best_fitness": 45.0,
+          "elapsed_ms": 75,
+          "elapsed_seconds": 0.075,
+          "evaluations": 2860,
+          "iteration": 23
+        },
+        {
+          "best_fitness": 44.0,
+          "elapsed_ms": 115,
+          "elapsed_seconds": 0.115,
+          "evaluations": 4180,
+          "iteration": 34
+        },
+        {
+          "best_fitness": 42.0,
+          "elapsed_ms": 558,
+          "elapsed_seconds": 0.558,
+          "evaluations": 24902,
+          "iteration": 100
+        }
+      ],
+      "evaluations": 400942,
+      "executed_at": "2026-05-25T08:49:41Z",
+      "final_solution_value": 42.0,
+      "iterations": 1100,
+      "seed": 65797931083371,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 7302,
+      "total_runtime_seconds": 7.302
+    }
+  ],
+  "best_fitness_global": 42.0,
+  "decoder": "incremental_greedy",
+  "executed_at": "2026-05-25T08:49:41Z",
+  "graph": "dwt_66.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/HB/dwt_66.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

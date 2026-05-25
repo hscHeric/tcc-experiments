@@ -1,0 +1,53 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 8.0,
+          "elapsed_ms": 435,
+          "elapsed_seconds": 0.435,
+          "evaluations": 460,
+          "iteration": 3
+        },
+        {
+          "best_fitness": 7.0,
+          "elapsed_ms": 71846,
+          "elapsed_seconds": 71.846,
+          "evaluations": 66226,
+          "iteration": 231
+        }
+      ],
+      "evaluations": 442266,
+      "executed_at": "2026-05-25T06:27:36Z",
+      "final_solution_value": 7.0,
+      "iterations": 1231,
+      "seed": 57272243957735,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 475819,
+      "total_runtime_seconds": 475.819
+    }
+  ],
+  "best_fitness_global": 7.0,
+  "decoder": "incremental_greedy",
+  "executed_at": "2026-05-25T06:27:36Z",
+  "graph": "sanr200_0.7.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/DIMACS/sanr200_0.7.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

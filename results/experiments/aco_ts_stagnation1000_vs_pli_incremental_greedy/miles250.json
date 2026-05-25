@@ -1,0 +1,102 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 85.0,
+          "elapsed_ms": 40,
+          "elapsed_seconds": 0.04,
+          "evaluations": 1060,
+          "iteration": 8
+        },
+        {
+          "best_fitness": 84.0,
+          "elapsed_ms": 49,
+          "elapsed_seconds": 0.049,
+          "evaluations": 1300,
+          "iteration": 10
+        },
+        {
+          "best_fitness": 83.0,
+          "elapsed_ms": 78,
+          "elapsed_seconds": 0.078,
+          "evaluations": 2020,
+          "iteration": 16
+        },
+        {
+          "best_fitness": 82.0,
+          "elapsed_ms": 97,
+          "elapsed_seconds": 0.097,
+          "evaluations": 2500,
+          "iteration": 20
+        },
+        {
+          "best_fitness": 81.0,
+          "elapsed_ms": 102,
+          "elapsed_seconds": 0.102,
+          "evaluations": 2620,
+          "iteration": 21
+        },
+        {
+          "best_fitness": 80.0,
+          "elapsed_ms": 131,
+          "elapsed_seconds": 0.131,
+          "evaluations": 3340,
+          "iteration": 27
+        },
+        {
+          "best_fitness": 79.0,
+          "elapsed_ms": 168,
+          "elapsed_seconds": 0.168,
+          "evaluations": 4300,
+          "iteration": 35
+        },
+        {
+          "best_fitness": 78.0,
+          "elapsed_ms": 238,
+          "elapsed_seconds": 0.238,
+          "evaluations": 5980,
+          "iteration": 49
+        },
+        {
+          "best_fitness": 77.0,
+          "elapsed_ms": 314,
+          "elapsed_seconds": 0.314,
+          "evaluations": 7900,
+          "iteration": 65
+        }
+      ],
+      "evaluations": 383940,
+      "executed_at": "2026-05-25T04:36:34Z",
+      "final_solution_value": 77.0,
+      "iterations": 1065,
+      "seed": 50610806182204,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 10443,
+      "total_runtime_seconds": 10.443
+    }
+  ],
+  "best_fitness_global": 77.0,
+  "decoder": "incremental_greedy",
+  "executed_at": "2026-05-25T04:36:34Z",
+  "graph": "miles250.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/DIMACS/miles250.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

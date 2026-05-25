@@ -1,0 +1,60 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 27.0,
+          "elapsed_ms": 5,
+          "elapsed_seconds": 0.005,
+          "evaluations": 220,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 20.0,
+          "elapsed_ms": 16,
+          "elapsed_seconds": 0.016,
+          "evaluations": 460,
+          "iteration": 3
+        },
+        {
+          "best_fitness": 18.0,
+          "elapsed_ms": 21,
+          "elapsed_seconds": 0.021,
+          "evaluations": 580,
+          "iteration": 4
+        }
+      ],
+      "evaluations": 363818,
+      "executed_at": "2026-05-25T04:38:17Z",
+      "final_solution_value": 18.0,
+      "iterations": 1004,
+      "seed": 50713365258287,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 10807,
+      "total_runtime_seconds": 10.807
+    }
+  ],
+  "best_fitness_global": 18.0,
+  "decoder": "incremental_greedy",
+  "executed_at": "2026-05-25T04:38:17Z",
+  "graph": "myciel6.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/DIMACS/myciel6.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

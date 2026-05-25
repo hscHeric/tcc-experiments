@@ -1,0 +1,53 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 8.0,
+          "elapsed_ms": 531,
+          "elapsed_seconds": 0.531,
+          "evaluations": 220,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 7.0,
+          "elapsed_ms": 39753,
+          "elapsed_seconds": 39.753,
+          "evaluations": 9460,
+          "iteration": 78
+        }
+      ],
+      "evaluations": 231724,
+      "executed_at": "2026-05-25T05:14:59Z",
+      "final_solution_value": 7.0,
+      "iterations": 650,
+      "seed": 52913100816495,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 942550,
+      "total_runtime_seconds": 942.55
+    }
+  ],
+  "best_fitness_global": 7.0,
+  "decoder": "incremental_greedy",
+  "executed_at": "2026-05-25T05:14:56Z",
+  "graph": "p_hat300-3.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/DIMACS/p_hat300-3.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}
