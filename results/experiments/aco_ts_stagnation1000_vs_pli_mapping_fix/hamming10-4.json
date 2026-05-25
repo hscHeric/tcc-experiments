@@ -1,0 +1,88 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 16.0,
+          "elapsed_ms": 218,
+          "elapsed_seconds": 0.218,
+          "evaluations": 220,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 15.0,
+          "elapsed_ms": 885,
+          "elapsed_seconds": 0.885,
+          "evaluations": 580,
+          "iteration": 4
+        },
+        {
+          "best_fitness": 14.0,
+          "elapsed_ms": 2409,
+          "elapsed_seconds": 2.409,
+          "evaluations": 1420,
+          "iteration": 11
+        },
+        {
+          "best_fitness": 13.0,
+          "elapsed_ms": 3498,
+          "elapsed_seconds": 3.498,
+          "evaluations": 2020,
+          "iteration": 16
+        },
+        {
+          "best_fitness": 12.0,
+          "elapsed_ms": 4575,
+          "elapsed_seconds": 4.575,
+          "evaluations": 2620,
+          "iteration": 21
+        },
+        {
+          "best_fitness": 11.0,
+          "elapsed_ms": 19133,
+          "elapsed_seconds": 19.133,
+          "evaluations": 10780,
+          "iteration": 89
+        },
+        {
+          "best_fitness": 10.0,
+          "elapsed_ms": 303677,
+          "elapsed_seconds": 303.677,
+          "evaluations": 177838,
+          "iteration": 521
+        }
+      ],
+      "evaluations": 532556,
+      "executed_at": "2026-05-25T16:18:20Z",
+      "final_solution_value": 10.0,
+      "iterations": 1450,
+      "seed": 78987715571721,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 908892,
+      "total_runtime_seconds": 908.892
+    }
+  ],
+  "best_fitness_global": 10.0,
+  "decoder": "random_packing",
+  "executed_at": "2026-05-25T16:18:19Z",
+  "graph": "hamming10-4.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/DIMACS/hamming10-4.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

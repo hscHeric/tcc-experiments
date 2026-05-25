@@ -1,0 +1,95 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 343.0,
+          "elapsed_ms": 21,
+          "elapsed_seconds": 0.021,
+          "evaluations": 340,
+          "iteration": 2
+        },
+        {
+          "best_fitness": 339.0,
+          "elapsed_ms": 29,
+          "elapsed_seconds": 0.029,
+          "evaluations": 460,
+          "iteration": 3
+        },
+        {
+          "best_fitness": 337.0,
+          "elapsed_ms": 164,
+          "elapsed_seconds": 0.164,
+          "evaluations": 1780,
+          "iteration": 14
+        },
+        {
+          "best_fitness": 335.0,
+          "elapsed_ms": 470,
+          "elapsed_seconds": 0.47,
+          "evaluations": 5020,
+          "iteration": 41
+        },
+        {
+          "best_fitness": 316.0,
+          "elapsed_ms": 1509,
+          "elapsed_seconds": 1.509,
+          "evaluations": 24902,
+          "iteration": 100
+        },
+        {
+          "best_fitness": 315.0,
+          "elapsed_ms": 3068,
+          "elapsed_seconds": 3.068,
+          "evaluations": 62506,
+          "iteration": 200
+        },
+        {
+          "best_fitness": 314.0,
+          "elapsed_ms": 4710,
+          "elapsed_seconds": 4.71,
+          "evaluations": 118912,
+          "iteration": 350
+        },
+        {
+          "best_fitness": 313.0,
+          "elapsed_ms": 10846,
+          "elapsed_seconds": 10.846,
+          "evaluations": 306932,
+          "iteration": 850
+        }
+      ],
+      "evaluations": 682972,
+      "executed_at": "2026-05-25T13:48:42Z",
+      "final_solution_value": 313.0,
+      "iterations": 1850,
+      "seed": 76235576625198,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 21333,
+      "total_runtime_seconds": 21.333
+    }
+  ],
+  "best_fitness_global": 313.0,
+  "decoder": "random_packing",
+  "executed_at": "2026-05-25T13:48:42Z",
+  "graph": "cubic_400.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/CUBIC/cubic_400.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

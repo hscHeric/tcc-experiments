@@ -1,0 +1,95 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 79.0,
+          "elapsed_ms": 3,
+          "elapsed_seconds": 0.003,
+          "evaluations": 220,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 77.0,
+          "elapsed_ms": 6,
+          "elapsed_seconds": 0.006,
+          "evaluations": 340,
+          "iteration": 2
+        },
+        {
+          "best_fitness": 76.0,
+          "elapsed_ms": 13,
+          "elapsed_seconds": 0.013,
+          "evaluations": 580,
+          "iteration": 4
+        },
+        {
+          "best_fitness": 74.0,
+          "elapsed_ms": 25,
+          "elapsed_seconds": 0.025,
+          "evaluations": 940,
+          "iteration": 7
+        },
+        {
+          "best_fitness": 73.0,
+          "elapsed_ms": 35,
+          "elapsed_seconds": 0.035,
+          "evaluations": 1300,
+          "iteration": 10
+        },
+        {
+          "best_fitness": 72.0,
+          "elapsed_ms": 57,
+          "elapsed_seconds": 0.057,
+          "evaluations": 2020,
+          "iteration": 16
+        },
+        {
+          "best_fitness": 71.0,
+          "elapsed_ms": 83,
+          "elapsed_seconds": 0.083,
+          "evaluations": 2980,
+          "iteration": 24
+        },
+        {
+          "best_fitness": 70.0,
+          "elapsed_ms": 103,
+          "elapsed_seconds": 0.103,
+          "evaluations": 3700,
+          "iteration": 30
+        }
+      ],
+      "evaluations": 366938,
+      "executed_at": "2026-05-25T16:57:10Z",
+      "final_solution_value": 70.0,
+      "iterations": 1030,
+      "seed": 81318166664391,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 6767,
+      "total_runtime_seconds": 6.767
+    }
+  ],
+  "best_fitness_global": 70.0,
+  "decoder": "random_packing",
+  "executed_at": "2026-05-25T16:57:10Z",
+  "graph": "miles250.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/DIMACS/miles250.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

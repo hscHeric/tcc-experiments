@@ -1,0 +1,144 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 112.0,
+          "elapsed_ms": 12,
+          "elapsed_seconds": 0.012,
+          "evaluations": 220,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 111.0,
+          "elapsed_ms": 24,
+          "elapsed_seconds": 0.024,
+          "evaluations": 340,
+          "iteration": 2
+        },
+        {
+          "best_fitness": 110.0,
+          "elapsed_ms": 70,
+          "elapsed_seconds": 0.07,
+          "evaluations": 820,
+          "iteration": 6
+        },
+        {
+          "best_fitness": 107.0,
+          "elapsed_ms": 81,
+          "elapsed_seconds": 0.081,
+          "evaluations": 940,
+          "iteration": 7
+        },
+        {
+          "best_fitness": 105.0,
+          "elapsed_ms": 190,
+          "elapsed_seconds": 0.19,
+          "evaluations": 2140,
+          "iteration": 17
+        },
+        {
+          "best_fitness": 104.0,
+          "elapsed_ms": 223,
+          "elapsed_seconds": 0.223,
+          "evaluations": 2500,
+          "iteration": 20
+        },
+        {
+          "best_fitness": 102.0,
+          "elapsed_ms": 397,
+          "elapsed_seconds": 0.397,
+          "evaluations": 4300,
+          "iteration": 35
+        },
+        {
+          "best_fitness": 101.0,
+          "elapsed_ms": 493,
+          "elapsed_seconds": 0.493,
+          "evaluations": 5260,
+          "iteration": 43
+        },
+        {
+          "best_fitness": 99.0,
+          "elapsed_ms": 584,
+          "elapsed_seconds": 0.584,
+          "evaluations": 6220,
+          "iteration": 51
+        },
+        {
+          "best_fitness": 98.0,
+          "elapsed_ms": 916,
+          "elapsed_seconds": 0.916,
+          "evaluations": 9700,
+          "iteration": 80
+        },
+        {
+          "best_fitness": 97.0,
+          "elapsed_ms": 1074,
+          "elapsed_seconds": 1.074,
+          "evaluations": 11620,
+          "iteration": 96
+        },
+        {
+          "best_fitness": 94.0,
+          "elapsed_ms": 1736,
+          "elapsed_seconds": 1.736,
+          "evaluations": 24902,
+          "iteration": 100
+        },
+        {
+          "best_fitness": 93.0,
+          "elapsed_ms": 3010,
+          "elapsed_seconds": 3.01,
+          "evaluations": 43704,
+          "iteration": 150
+        },
+        {
+          "best_fitness": 92.0,
+          "elapsed_ms": 5226,
+          "elapsed_seconds": 5.226,
+          "evaluations": 81308,
+          "iteration": 250
+        },
+        {
+          "best_fitness": 91.0,
+          "elapsed_ms": 20959,
+          "elapsed_seconds": 20.959,
+          "evaluations": 346336,
+          "iteration": 965
+        }
+      ],
+      "evaluations": 722376,
+      "executed_at": "2026-05-25T16:54:49Z",
+      "final_solution_value": 91.0,
+      "iterations": 1965,
+      "seed": 81177322472783,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 44010,
+      "total_runtime_seconds": 44.01
+    }
+  ],
+  "best_fitness_global": 91.0,
+  "decoder": "random_packing",
+  "executed_at": "2026-05-25T16:54:49Z",
+  "graph": "le450_25b.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/DIMACS/le450_25b.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 73.0,
+          "elapsed_ms": 66,
+          "elapsed_seconds": 0.066,
+          "evaluations": 340,
+          "iteration": 2
+        },
+        {
+          "best_fitness": 71.0,
+          "elapsed_ms": 165,
+          "elapsed_seconds": 0.165,
+          "evaluations": 700,
+          "iteration": 5
+        },
+        {
+          "best_fitness": 69.0,
+          "elapsed_ms": 2181,
+          "elapsed_seconds": 2.181,
+          "evaluations": 9100,
+          "iteration": 75
+        },
+        {
+          "best_fitness": 68.0,
+          "elapsed_ms": 5352,
+          "elapsed_seconds": 5.352,
+          "evaluations": 24902,
+          "iteration": 100
+        },
+        {
+          "best_fitness": 67.0,
+          "elapsed_ms": 10460,
+          "elapsed_seconds": 10.46,
+          "evaluations": 48864,
+          "iteration": 193
+        },
+        {
+          "best_fitness": 65.0,
+          "elapsed_ms": 14240,
+          "elapsed_seconds": 14.24,
+          "evaluations": 62506,
+          "iteration": 200
+        },
+        {
+          "best_fitness": 64.0,
+          "elapsed_ms": 104525,
+          "elapsed_seconds": 104.525,
+          "evaluations": 274488,
+          "iteration": 793
+        },
+        {
+          "best_fitness": 63.0,
+          "elapsed_ms": 131630,
+          "elapsed_seconds": 131.63,
+          "evaluations": 347896,
+          "iteration": 978
+        }
+      ],
+      "evaluations": 723936,
+      "executed_at": "2026-05-25T15:34:45Z",
+      "final_solution_value": 63.0,
+      "iterations": 1978,
+      "seed": 76373779194362,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 232938,
+      "total_runtime_seconds": 232.938
+    }
+  ],
+  "best_fitness_global": 63.0,
+  "decoder": "random_packing",
+  "executed_at": "2026-05-25T15:34:45Z",
+  "graph": "DSJC1000.1.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/DIMACS/DSJC1000.1.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

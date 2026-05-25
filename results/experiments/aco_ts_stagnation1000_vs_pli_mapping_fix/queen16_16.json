@@ -1,0 +1,102 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 39.0,
+          "elapsed_ms": 11,
+          "elapsed_seconds": 0.011,
+          "evaluations": 220,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 38.0,
+          "elapsed_ms": 247,
+          "elapsed_seconds": 0.247,
+          "evaluations": 2980,
+          "iteration": 24
+        },
+        {
+          "best_fitness": 37.0,
+          "elapsed_ms": 451,
+          "elapsed_seconds": 0.451,
+          "evaluations": 5380,
+          "iteration": 44
+        },
+        {
+          "best_fitness": 36.0,
+          "elapsed_ms": 1952,
+          "elapsed_seconds": 1.952,
+          "evaluations": 26222,
+          "iteration": 111
+        },
+        {
+          "best_fitness": 35.0,
+          "elapsed_ms": 7383,
+          "elapsed_seconds": 7.383,
+          "evaluations": 83108,
+          "iteration": 265
+        },
+        {
+          "best_fitness": 34.0,
+          "elapsed_ms": 19541,
+          "elapsed_seconds": 19.541,
+          "evaluations": 271128,
+          "iteration": 765
+        },
+        {
+          "best_fitness": 33.0,
+          "elapsed_ms": 32490,
+          "elapsed_seconds": 32.49,
+          "evaluations": 497112,
+          "iteration": 1368
+        },
+        {
+          "best_fitness": 32.0,
+          "elapsed_ms": 40426,
+          "elapsed_seconds": 40.426,
+          "evaluations": 588962,
+          "iteration": 1600
+        },
+        {
+          "best_fitness": 31.0,
+          "elapsed_ms": 52079,
+          "elapsed_seconds": 52.079,
+          "evaluations": 796984,
+          "iteration": 2160
+        }
+      ],
+      "evaluations": 1173024,
+      "executed_at": "2026-05-25T17:23:14Z",
+      "final_solution_value": 31.0,
+      "iterations": 3160,
+      "seed": 82882129421743,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 72687,
+      "total_runtime_seconds": 72.687
+    }
+  ],
+  "best_fitness_global": 31.0,
+  "decoder": "random_packing",
+  "executed_at": "2026-05-25T17:23:14Z",
+  "graph": "queen16_16.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/DIMACS/queen16_16.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 48.0,
+          "elapsed_ms": 15,
+          "elapsed_seconds": 0.015,
+          "evaluations": 220,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 47.0,
+          "elapsed_ms": 45,
+          "elapsed_seconds": 0.045,
+          "evaluations": 460,
+          "iteration": 3
+        },
+        {
+          "best_fitness": 44.0,
+          "elapsed_ms": 91,
+          "elapsed_seconds": 0.091,
+          "evaluations": 820,
+          "iteration": 6
+        },
+        {
+          "best_fitness": 43.0,
+          "elapsed_ms": 164,
+          "elapsed_seconds": 0.164,
+          "evaluations": 1420,
+          "iteration": 11
+        },
+        {
+          "best_fitness": 42.0,
+          "elapsed_ms": 239,
+          "elapsed_seconds": 0.239,
+          "evaluations": 2020,
+          "iteration": 16
+        },
+        {
+          "best_fitness": 41.0,
+          "elapsed_ms": 2641,
+          "elapsed_seconds": 2.641,
+          "evaluations": 24902,
+          "iteration": 100
+        }
+      ],
+      "evaluations": 400942,
+      "executed_at": "2026-05-25T16:55:33Z",
+      "final_solution_value": 41.0,
+      "iterations": 1100,
+      "seed": 81221378128385,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 39334,
+      "total_runtime_seconds": 39.334
+    }
+  ],
+  "best_fitness_global": 41.0,
+  "decoder": "random_packing",
+  "executed_at": "2026-05-25T16:55:33Z",
+  "graph": "le450_25c.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/DIMACS/le450_25c.col",
+  "parameters": {
+    "ants": 120,
+    "archive_size": 100,
+    "attempts": 1,
+    "local_search_interval": 50,
+    "local_search_start": 100,
+    "max_iterations": 99999,
+    "max_stagnation": 1000,
+    "max_time_seconds": 900,
+    "q": 0.08,
+    "threads": 8,
+    "ts_iterations": 100,
+    "ts_neighborhood_size": 128,
+    "ts_tabu_tenure": 10,
+    "xi": 0.9
+  }
+}
