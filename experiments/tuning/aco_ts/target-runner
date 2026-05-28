@@ -23,9 +23,9 @@ JSON_OUTPUT="${OUT_DIR}/${JSON_NAME}"
 
 EXE_PARAMS="--input ${INSTANCE} --seed ${SEED} --output ${JSON_OUTPUT} ${CONFIG_PARAMS}"
 
-if [ ! -x "$(command -v ${EXE})" ]; then
-  error "${EXE}: not found or not executable (pwd: $(pwd))"
-fi
+# if [ ! -x "$(command -v ${EXE})" ]; then
+#   error "${EXE}: not found or not executable (pwd: $(pwd))"
+# fi
 
 STDOUT=c${CONFIG_ID}-${INSTANCE_ID}-${SEED}.stdout
 STDERR=c${CONFIG_ID}-${INSTANCE_ID}-${SEED}.stderr

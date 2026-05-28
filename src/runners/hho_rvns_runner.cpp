@@ -39,6 +39,7 @@ struct hho_rvns_params {
   unsigned local_search_interval = 50;
   unsigned rvns_iterations = 100;
   size_t rvns_k_max = 12;
+  uint64_t seed = 0;
 };
 
 static std::string stop_reason_to_string(stop_reason reason) {
@@ -134,6 +135,7 @@ int main(int argc, char* argv[]) {
   );
   app.add_option("--rvns-iters", params.rvns_iterations, "Iterações do RVNS");
   app.add_option("--rvns-k", params.rvns_k_max, "Maior vizinhança RVNS");
+  auto* seed_option = app.add_option("--seed", params.seed, "Seed base para o RNG");
 
   try {
     app.parse(argc, argv);
@@ -154,9 +156,12 @@ int main(int argc, char* argv[]) {
   hscopt_decode_ctx dctx{};
   dctx.user = &decoder;
 
-  const auto seed_base = static_cast<uint64_t>(
-      std::chrono::steady_clock::now().time_since_epoch().count()
-  );
+  const auto seed_base =
+      seed_option->count() > 0
+          ? params.seed
+          : static_cast<uint64_t>(
+                std::chrono::steady_clock::now().time_since_epoch().count()
+            );
   double global_best_fitness = std::numeric_limits<double>::infinity();
 
   json output_json = {
@@ -175,7 +180,8 @@ int main(int argc, char* argv[]) {
         {"local_search_start", params.local_search_start},
         {"local_search_interval", params.local_search_interval},
         {"rvns_iterations", params.rvns_iterations},
-        {"rvns_k_max", params.rvns_k_max}}},
+        {"rvns_k_max", params.rvns_k_max},
+        {"seed", seed_base}}},
       {"attempts", json::array()}
   };
 
@@ -184,6 +190,10 @@ int main(int argc, char* argv[]) {
     hscopt_rng rng;
     hscopt_rng_seed(&rng, attempt_seed);
     decoder.reset_evaluation_count();
+
+    LOG_INFO(
+        logger, "Tentativa {}/{} | seed={}", attempt, params.attempts, attempt_seed
+    );
 
     hscopt_hho_ctx* hho = hscopt_hho_create(
         g.get_order(),

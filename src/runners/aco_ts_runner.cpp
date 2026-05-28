@@ -43,6 +43,7 @@ struct aco_ts_params {
   unsigned ts_iterations = 100;
   size_t ts_neighborhood_size = 128;
   unsigned ts_tabu_tenure = 10;
+  uint64_t seed = 0;
 };
 
 static std::string stop_reason_to_string(stop_reason reason) {
@@ -144,6 +145,7 @@ int main(int argc, char* argv[]) {
   app.add_option("--ts-iters", params.ts_iterations, "Iterações do TS");
   app.add_option("--ts-neigh", params.ts_neighborhood_size, "Tamanho da vizinhança TS");
   app.add_option("--ts-tenure", params.ts_tabu_tenure, "Tenure tabu");
+  auto* seed_option = app.add_option("--seed", params.seed, "Seed base para o RNG");
 
   try {
     app.parse(argc, argv);
@@ -164,9 +166,12 @@ int main(int argc, char* argv[]) {
   hscopt_decode_ctx dctx{};
   dctx.user = &decoder;
 
-  const auto seed_base = static_cast<uint64_t>(
-      std::chrono::steady_clock::now().time_since_epoch().count()
-  );
+  const auto seed_base =
+      seed_option->count() > 0
+          ? params.seed
+          : static_cast<uint64_t>(
+                std::chrono::steady_clock::now().time_since_epoch().count()
+            );
   double global_best_fitness = std::numeric_limits<double>::infinity();
 
   json output_json = {
@@ -189,7 +194,8 @@ int main(int argc, char* argv[]) {
         {"local_search_interval", params.local_search_interval},
         {"ts_iterations", params.ts_iterations},
         {"ts_neighborhood_size", params.ts_neighborhood_size},
-        {"ts_tabu_tenure", params.ts_tabu_tenure}}},
+        {"ts_tabu_tenure", params.ts_tabu_tenure},
+        {"seed", seed_base}}},
       {"attempts", json::array()}
   };
 
@@ -198,6 +204,10 @@ int main(int argc, char* argv[]) {
     hscopt_rng rng;
     hscopt_rng_seed(&rng, attempt_seed);
     decoder.reset_evaluation_count();
+
+    LOG_INFO(
+        logger, "Tentativa {}/{} | seed={}", attempt, params.attempts, attempt_seed
+    );
 
     hscopt_aco_ctx* aco = hscopt_aco_create(
         g.get_order(),

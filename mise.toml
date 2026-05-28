@@ -15,21 +15,21 @@ CXX = "/usr/bin/g++"
 description = "Executa o PLI em todas as instâncias (necessário licença do Gurobi)"
 run = """
 python python/pli/run.py \
-  --input data/instances \
-  --output results/pli \
-  --time-limit 900 \
-  --solver gurobi
+--input data/instances \
+--output results/pli \
+--time-limit 900 \
+--solver gurobi
 """
 
 [tasks.pli-debug]
 description = "Executa o PLI com log detalhado (necessário licença do Gurobi)"
 run = """
 python python/pli/run.py \
-  --input data/instances \
-  --output results/pli \
-  --time-limit 900 \
-  --solver gurobi \
-  --tee
+--input data/instances \
+--output results/pli \
+--time-limit 900 \
+--solver gurobi \
+--tee
 """
 
 [tasks.configure-debug]
@@ -37,8 +37,8 @@ description = "Configura o projeto em Debug com GCC, logs habilitados e sanitize
 run = """
 conan install . --output-folder=. --build=missing -s build_type=Debug
 cmake --fresh --preset conan-debug \
-  -DENABLE_DEBUG_SANITIZERS=ON \
-  -DENABLE_RELEASE_LTO=OFF
+-DENABLE_DEBUG_SANITIZERS=ON \
+-DENABLE_RELEASE_LTO=OFF
 """
 
 [tasks.configure-release]
@@ -46,9 +46,9 @@ description = "Configura o projeto em Release otimizado para a CPU local"
 run = """
 conan install . --output-folder=. --build=missing -s build_type=Release
 cmake --fresh --preset conan-release \
-  -DENABLE_DEBUG_SANITIZERS=OFF \
-  -DENABLE_RELEASE_LTO=ON \
-  -DENABLE_NATIVE_OPTIMIZATIONS=ON
+-DENABLE_DEBUG_SANITIZERS=OFF \
+-DENABLE_RELEASE_LTO=ON \
+-DENABLE_NATIVE_OPTIMIZATIONS=ON
 """
 
 [tasks.configure-perf]
@@ -56,9 +56,9 @@ description = "Configura o projeto em RelWithDebInfo para perfilamento"
 run = """
 conan install . --output-folder=. --build=missing -s build_type=RelWithDebInfo
 cmake --fresh --preset conan-relwithdebinfo \
-  -DENABLE_DEBUG_SANITIZERS=OFF \
-  -DENABLE_RELEASE_LTO=OFF \
-  -DENABLE_NATIVE_OPTIMIZATIONS=ON
+-DENABLE_DEBUG_SANITIZERS=OFF \
+-DENABLE_RELEASE_LTO=OFF \
+-DENABLE_NATIVE_OPTIMIZATIONS=ON
 """
 
 [tasks.build-debug]
@@ -88,3 +88,15 @@ run = """
 mise run configure-debug
 ln -sfn build/Debug/compile_commands.json compile_commands.json
 """
+
+[tasks."tune-aco-ts"]
+description = "Executa o tuning do irace para o algoritmo ACO+TS com 8 threads"
+run = "cd experiments/tuning/aco_ts && irace --scenario scenario.txt --parallel 8 >> output.tuning.txt"
+
+[tasks."tune-hho-rvns"]
+description = "Executa o tuning do irace para o algoritmo ACO+TS com 8 threads"
+run = "cd experiments/tuning/hho-rvns && irace --scenario scenario.txt --parallel 8 >> output.tuning.txt"
+
+[tasks."tune-brkga"]
+description = "Executa o tuning do irace para o algoritmo ACO+TS com 8 threads"
+run = "cd experiments/tuning/brkga && irace --scenario scenario.txt --parallel 8 >> output.tuning.txt"
