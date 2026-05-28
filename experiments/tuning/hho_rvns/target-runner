@@ -12,9 +12,9 @@ INSTANCE=$4
 shift 4 || error "Not enough parameters"
 CONFIG_PARAMS=$*
 
-EXE=../../../build/Release/brkga_runner
+EXE=../../../build/Release/hho_rvns_runner
 
-OUT_DIR="../../../results/tuning/brkga"
+OUT_DIR="../../../results/tuning/hho_rvns"
 mkdir -p "${OUT_DIR}"
 
 INSTANCE_BASE=$(basename "${INSTANCE}")

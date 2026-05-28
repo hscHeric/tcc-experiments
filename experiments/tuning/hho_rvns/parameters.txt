@@ -1,0 +1,13 @@
+agents          "--agents "                 i    (20, 300)
+iters           "--iters "                  i    (1000, 5000)
+stagnation      "--stagnation "             i    (300, 1000)
+ls_start        "--ls-start "               i    (1, 1000)
+ls_int          "--ls-int "                 i    (5, 200)
+rvns_iters      "--rvns-iters "             i    (20, 1000)
+rvns_k          "--rvns-k "                 i    (2, 64)
+
+[forbidden]
+ls_start == 0 & rvns_iters > 0
+
+[global]
+digits = 4
