@@ -16,21 +16,21 @@
 #------------------------------------------------------------------------------
 # installed at: /home/hscheric/R/x86_64-redhat-linux-gnu-library/4.6/irace
 # called with: --scenario scenario.txt --parallel 8
-# 2026-05-28 14:51:55 -03: Reading parameter file '/home/hscheric/Projects/tcc-experiments/experiments/tuning/aco_ts/parameters.txt'.
-# 2026-05-28 14:51:55 -03: Initialization
+# 2026-05-28 15:07:29 -03: Reading parameter file '/home/hscheric/Projects/tcc-experiments/experiments/tuning/aco_ts/parameters.txt'.
+# 2026-05-28 15:07:29 -03: Initialization
 # Elitist race
 # Elitist new instances: 1
 # Elitist limit: 2
 # nbIterations: 5
 # minNbSurvival: 5
 # nbParameters: 11
-# seed: 362373349
+# seed: 734841202
 # confidence level: 0.95
 # budget: 500
 # mu: 5
 # deterministic: FALSE
 
-# 2026-05-28 14:51:55 -03: Iteration 1 of 5
+# 2026-05-28 15:07:29 -03: Iteration 1 of 5
 # experimentsUsed: 0
 # remainingBudget: 500
 # currentBudget: 100
@@ -47,3 +47,701 @@
 +-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
 | |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
 +-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+#------------------------------------------------------------------------------
+# irace: An implementation in R of (Elitist) Iterated Racing
+# Version: 4.4.3.dd8d85f
+# Copyright (C) 2010-2025
+# Manuel Lopez-Ibanez     <manuel.lopez-ibanez@manchester.ac.uk>
+# Jeremie Dubois-Lacoste
+# Leslie Perez Caceres    <leslie.perez.caceres@ulb.ac.be>
+#
+# This is free software, and you are welcome to redistribute it under certain
+# conditions.  See the GNU General Public License for details. There is NO
+# WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# irace builds upon previous code from the race package:
+#     race: Racing methods for the selection of the best
+#     Copyright (C) 2003 Mauro Birattari
+#------------------------------------------------------------------------------
+# installed at: /home/hscheric/R/x86_64-redhat-linux-gnu-library/4.6/irace
+# called with: --scenario scenario.txt --parallel 8
+# 2026-05-28 15:10:09 -03: Reading parameter file '/home/hscheric/Projects/tcc-experiments/experiments/tuning/aco_ts/parameters.txt'.
+# 2026-05-28 15:10:09 -03: Initialization
+# Elitist race
+# Elitist new instances: 1
+# Elitist limit: 2
+# nbIterations: 5
+# minNbSurvival: 5
+# nbParameters: 11
+# seed: 370212954
+# confidence level: 0.95
+# budget: 500
+# mu: 5
+# deterministic: FALSE
+
+# 2026-05-28 15:10:09 -03: Iteration 1 of 5
+# experimentsUsed: 0
+# remainingBudget: 500
+# currentBudget: 100
+# nbConfigurations: 16
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+#------------------------------------------------------------------------------
+# irace: An implementation in R of (Elitist) Iterated Racing
+# Version: 4.4.3.dd8d85f
+# Copyright (C) 2010-2025
+# Manuel Lopez-Ibanez     <manuel.lopez-ibanez@manchester.ac.uk>
+# Jeremie Dubois-Lacoste
+# Leslie Perez Caceres    <leslie.perez.caceres@ulb.ac.be>
+#
+# This is free software, and you are welcome to redistribute it under certain
+# conditions.  See the GNU General Public License for details. There is NO
+# WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# irace builds upon previous code from the race package:
+#     race: Racing methods for the selection of the best
+#     Copyright (C) 2003 Mauro Birattari
+#------------------------------------------------------------------------------
+# installed at: /home/hscheric/R/x86_64-redhat-linux-gnu-library/4.6/irace
+# called with: --scenario scenario.txt --parallel 8
+# 2026-05-28 15:11:58 -03: Reading parameter file '/home/hscheric/Projects/tcc-experiments/experiments/tuning/aco_ts/parameters.txt'.
+# 2026-05-28 15:11:58 -03: Initialization
+# Elitist race
+# Elitist new instances: 1
+# Elitist limit: 2
+# nbIterations: 5
+# minNbSurvival: 5
+# nbParameters: 11
+# seed: 1132104584
+# confidence level: 0.95
+# budget: 500
+# mu: 5
+# deterministic: FALSE
+
+# 2026-05-28 15:11:58 -03: Iteration 1 of 5
+# experimentsUsed: 0
+# remainingBudget: 500
+# currentBudget: 100
+# nbConfigurations: 16
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+#------------------------------------------------------------------------------
+# irace: An implementation in R of (Elitist) Iterated Racing
+# Version: 4.4.3.dd8d85f
+# Copyright (C) 2010-2025
+# Manuel Lopez-Ibanez     <manuel.lopez-ibanez@manchester.ac.uk>
+# Jeremie Dubois-Lacoste
+# Leslie Perez Caceres    <leslie.perez.caceres@ulb.ac.be>
+#
+# This is free software, and you are welcome to redistribute it under certain
+# conditions.  See the GNU General Public License for details. There is NO
+# WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# irace builds upon previous code from the race package:
+#     race: Racing methods for the selection of the best
+#     Copyright (C) 2003 Mauro Birattari
+#------------------------------------------------------------------------------
+# installed at: /home/hscheric/R/x86_64-redhat-linux-gnu-library/4.6/irace
+# called with: --scenario scenario.txt --parallel 8
+# 2026-05-28 15:17:47 -03: Reading parameter file '/home/hscheric/Projects/tcc-experiments/experiments/tuning/aco_ts/parameters.txt'.
+# 2026-05-28 15:17:47 -03: Initialization
+# Elitist race
+# Elitist new instances: 1
+# Elitist limit: 2
+# nbIterations: 5
+# minNbSurvival: 5
+# nbParameters: 11
+# seed: 1952134942
+# confidence level: 0.95
+# budget: 500
+# mu: 5
+# deterministic: FALSE
+
+# 2026-05-28 15:17:47 -03: Iteration 1 of 5
+# experimentsUsed: 0
+# remainingBudget: 500
+# currentBudget: 100
+# nbConfigurations: 16
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+#------------------------------------------------------------------------------
+# irace: An implementation in R of (Elitist) Iterated Racing
+# Version: 4.4.3.dd8d85f
+# Copyright (C) 2010-2025
+# Manuel Lopez-Ibanez     <manuel.lopez-ibanez@manchester.ac.uk>
+# Jeremie Dubois-Lacoste
+# Leslie Perez Caceres    <leslie.perez.caceres@ulb.ac.be>
+#
+# This is free software, and you are welcome to redistribute it under certain
+# conditions.  See the GNU General Public License for details. There is NO
+# WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# irace builds upon previous code from the race package:
+#     race: Racing methods for the selection of the best
+#     Copyright (C) 2003 Mauro Birattari
+#------------------------------------------------------------------------------
+# installed at: /home/hscheric/R/x86_64-redhat-linux-gnu-library/4.6/irace
+# called with: --scenario scenario.txt --parallel 8
+# 2026-05-28 15:19:21 -03: Reading parameter file '/home/hscheric/Projects/tcc-experiments/experiments/tuning/aco_ts/parameters.txt'.
+# 2026-05-28 15:19:22 -03: Initialization
+# Elitist race
+# Elitist new instances: 1
+# Elitist limit: 2
+# nbIterations: 5
+# minNbSurvival: 5
+# nbParameters: 11
+# seed: 132394418
+# confidence level: 0.95
+# budget: 500
+# mu: 5
+# deterministic: FALSE
+
+# 2026-05-28 15:19:22 -03: Iteration 1 of 5
+# experimentsUsed: 0
+# remainingBudget: 500
+# currentBudget: 100
+# nbConfigurations: 16
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+#------------------------------------------------------------------------------
+# irace: An implementation in R of (Elitist) Iterated Racing
+# Version: 4.4.3.dd8d85f
+# Copyright (C) 2010-2025
+# Manuel Lopez-Ibanez     <manuel.lopez-ibanez@manchester.ac.uk>
+# Jeremie Dubois-Lacoste
+# Leslie Perez Caceres    <leslie.perez.caceres@ulb.ac.be>
+#
+# This is free software, and you are welcome to redistribute it under certain
+# conditions.  See the GNU General Public License for details. There is NO
+# WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# irace builds upon previous code from the race package:
+#     race: Racing methods for the selection of the best
+#     Copyright (C) 2003 Mauro Birattari
+#------------------------------------------------------------------------------
+# installed at: /home/hscheric/R/x86_64-redhat-linux-gnu-library/4.6/irace
+# called with: --scenario scenario.txt --parallel 8
+# 2026-05-28 15:24:37 -03: Reading parameter file '/home/hscheric/Projects/tcc-experiments/experiments/tuning/aco_ts/parameters.txt'.
+# 2026-05-28 15:24:37 -03: Initialization
+# Elitist race
+# Elitist new instances: 1
+# Elitist limit: 2
+# nbIterations: 5
+# minNbSurvival: 5
+# nbParameters: 11
+# seed: 1945277077
+# confidence level: 0.95
+# budget: 500
+# mu: 5
+# deterministic: FALSE
+
+# 2026-05-28 15:24:37 -03: Iteration 1 of 5
+# experimentsUsed: 0
+# remainingBudget: 500
+# currentBudget: 100
+# nbConfigurations: 16
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+#------------------------------------------------------------------------------
+# irace: An implementation in R of (Elitist) Iterated Racing
+# Version: 4.4.3.dd8d85f
+# Copyright (C) 2010-2025
+# Manuel Lopez-Ibanez     <manuel.lopez-ibanez@manchester.ac.uk>
+# Jeremie Dubois-Lacoste
+# Leslie Perez Caceres    <leslie.perez.caceres@ulb.ac.be>
+#
+# This is free software, and you are welcome to redistribute it under certain
+# conditions.  See the GNU General Public License for details. There is NO
+# WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# irace builds upon previous code from the race package:
+#     race: Racing methods for the selection of the best
+#     Copyright (C) 2003 Mauro Birattari
+#------------------------------------------------------------------------------
+# installed at: /home/hscheric/R/x86_64-redhat-linux-gnu-library/4.6/irace
+# called with: --scenario scenario.txt
+# 2026-05-28 15:25:46 -03: Reading parameter file '/home/hscheric/Projects/tcc-experiments/experiments/tuning/aco_ts/parameters.txt'.
+# 2026-05-28 15:25:46 -03: Initialization
+# Elitist race
+# Elitist new instances: 1
+# Elitist limit: 2
+# nbIterations: 5
+# minNbSurvival: 5
+# nbParameters: 11
+# seed: 1425581475
+# confidence level: 0.95
+# budget: 500
+# mu: 5
+# deterministic: FALSE
+
+# 2026-05-28 15:25:46 -03: Iteration 1 of 5
+# experimentsUsed: 0
+# remainingBudget: 500
+# currentBudget: 100
+# nbConfigurations: 16
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+#------------------------------------------------------------------------------
+# irace: An implementation in R of (Elitist) Iterated Racing
+# Version: 4.4.3.dd8d85f
+# Copyright (C) 2010-2025
+# Manuel Lopez-Ibanez     <manuel.lopez-ibanez@manchester.ac.uk>
+# Jeremie Dubois-Lacoste
+# Leslie Perez Caceres    <leslie.perez.caceres@ulb.ac.be>
+#
+# This is free software, and you are welcome to redistribute it under certain
+# conditions.  See the GNU General Public License for details. There is NO
+# WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# irace builds upon previous code from the race package:
+#     race: Racing methods for the selection of the best
+#     Copyright (C) 2003 Mauro Birattari
+#------------------------------------------------------------------------------
+# installed at: /home/hscheric/R/x86_64-redhat-linux-gnu-library/4.6/irace
+# called with: --scenario scenario.txt
+# 2026-05-28 16:20:26 -03: Reading parameter file '/home/hscheric/Projects/tcc-experiments/experiments/tuning/aco_ts/parameters.txt'.
+# 2026-05-28 16:20:26 -03: Initialization
+# Elitist race
+# Elitist new instances: 1
+# Elitist limit: 2
+# nbIterations: 5
+# minNbSurvival: 5
+# nbParameters: 11
+# seed: 104725286
+# confidence level: 0.95
+# budget: 500
+# mu: 5
+# deterministic: FALSE
+
+# 2026-05-28 16:20:26 -03: Iteration 1 of 5
+# experimentsUsed: 0
+# remainingBudget: 500
+# currentBudget: 100
+# nbConfigurations: 16
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|x|          1|         16|          3|     394.0000000|         16|00:13:41|   NA|  NA|    NA|
+#------------------------------------------------------------------------------
+# irace: An implementation in R of (Elitist) Iterated Racing
+# Version: 4.4.3.dd8d85f
+# Copyright (C) 2010-2025
+# Manuel Lopez-Ibanez     <manuel.lopez-ibanez@manchester.ac.uk>
+# Jeremie Dubois-Lacoste
+# Leslie Perez Caceres    <leslie.perez.caceres@ulb.ac.be>
+#
+# This is free software, and you are welcome to redistribute it under certain
+# conditions.  See the GNU General Public License for details. There is NO
+# WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# irace builds upon previous code from the race package:
+#     race: Racing methods for the selection of the best
+#     Copyright (C) 2003 Mauro Birattari
+#------------------------------------------------------------------------------
+# installed at: /home/hscheric/R/x86_64-redhat-linux-gnu-library/4.6/irace
+# called with: --scenario scenario.txt
+# 2026-05-28 16:43:35 -03: Reading parameter file '/home/hscheric/Projects/tcc-experiments/experiments/tuning/aco_ts/parameters.txt'.
+# 2026-05-28 16:43:35 -03: Initialization
+# Elitist race
+# Elitist new instances: 1
+# Elitist limit: 2
+# nbIterations: 5
+# minNbSurvival: 5
+# nbParameters: 11
+# seed: 1385931666
+# confidence level: 0.95
+# budget: 500
+# mu: 5
+# deterministic: FALSE
+
+# 2026-05-28 16:43:35 -03: Iteration 1 of 5
+# experimentsUsed: 0
+# remainingBudget: 500
+# currentBudget: 100
+# nbConfigurations: 16
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|x|          1|         16|          1|     5.000000000|         16|02:09:16|   NA|  NA|    NA|
+|x|          2|         16|          3|     94.00000000|         32|00:01:44|+0.29|0.65|0.6014|
+|x|          3|         16|          3|     67.33333333|         48|01:36:33|+0.15|0.43|0.5130|
+|x|          4|         16|          3|     66.00000000|         64|01:10:53|+0.26|0.45|0.5013|
+|-|          5|          8|          3|     425.4000000|         80|00:44:04|+0.05|0.24|0.5150|
+|=|          6|          8|          3|     367.3333333|         88|00:00:20|-0.00|0.16|0.5575|
+|=|          7|          8|          3|     316.5714286|         96|00:16:38|-0.00|0.14|0.4815|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+Best-so-far configuration:           3    mean value:      316.5714286
+Description of the best-so-far configuration:
+  .ID. archive ants      q     xi iters stagnation ls_start ls_int ts_iters ts_neigh ts_tenure .PARENT.
+3    3     152   74 0.4114 0.5151  2348        859      846    131      994      146        85       NA
+
+# 2026-05-28 22:43:07 -03: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   archive ants      q     xi iters stagnation ls_start ls_int ts_iters ts_neigh ts_tenure
+3      152   74 0.4114 0.5151  2348        859      846    131      994      146        85
+4       76  164 0.9064 1.4651  4348        509      345     33      504      395        35
+5       95  141 0.2876 0.7526  3848        596      220    155      626      208        72
+16     161  153 0.9682 0.8713  4598        991       33    192      688      488        78
+13     199  107 0.2257 1.3463  3598        815      783    143      933      364        53
+# 2026-05-28 22:43:07 -03: Iteration 2 of 5
+# experimentsUsed: 96
+# remainingBudget: 404
+# currentBudget: 101
+# nbConfigurations: 17
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|x|          8|         17|         22|     2166.000000|         17|01:10:42|   NA|  NA|    NA|
+|x|          6|         17|         21|     1122.500000|         29|00:00:22|+0.64|0.82|0.3122|
+|x|          2|         17|         21|     809.3333333|         41|00:01:04|+0.46|0.64|0.4929|
+|x|          5|         17|         21|     1069.250000|         53|00:37:18|+0.49|0.61|0.4898|
+|-|          4|          9|         21|     867.8000000|         65|00:57:20|+0.06|0.25|0.8488|
+|=|          1|          9|         21|     724.0000000|         69|01:01:04|+0.05|0.20|0.7140|
+|=|          7|          9|         21|     622.2857143|         73|00:11:08|+0.02|0.16|0.7491|
+|=|          3|          9|         21|     546.2500000|         77|00:45:24|+0.02|0.14|0.6570|
+|=|          9|          9|         21|     538.2222222|         86|00:52:06|+0.07|0.17|0.6768|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          21    mean value:      538.2222222
+Description of the best-so-far configuration:
+   .ID. archive ants      q     xi iters stagnation ls_start ls_int ts_iters ts_neigh ts_tenure .PARENT.
+21   21     149  103 0.8367 0.5171  3694        698      572     42      846      118        19        3
+
+# 2026-05-29 04:19:41 -03: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   archive ants      q     xi iters stagnation ls_start ls_int ts_iters ts_neigh ts_tenure
+21     149  103 0.8367 0.5171  3694        698      572     42      846      118        19
+24     154   66 0.2026 1.4154  3053        925      717     49      852      252        69
+25     122  197 0.9305 0.3279  4933        715       99    134      892      424        85
+3      152   74 0.4114 0.5151  2348        859      846    131      994      146        85
+17     200  174 0.1582 0.6625  1520        784      607     65      822      196        72
+# 2026-05-29 04:19:41 -03: Iteration 3 of 5
+# experimentsUsed: 182
+# remainingBudget: 318
+# currentBudget: 106
+# nbConfigurations: 15
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|x|         10|         15|         21|     13.00000000|         15|01:44:49|   NA|  NA|    NA|
+|x|          1|         15|         21|     9.000000000|         25|01:22:44|+1.00|1.00|0.0000|
+|x|          7|         15|         17|     9.666666667|         35|00:22:06|+0.00|0.33|0.3111|
+|x|          3|         15|         17|     10.75000000|         45|00:57:51|-0.03|0.23|0.4830|
+|=|          9|         15|         31|     103.2000000|         55|01:06:51|-0.01|0.19|0.5454|
+|=|          2|         15|         31|     116.5000000|         65|00:01:28|+0.11|0.26|0.5497|
+|-|          4|          6|         31|     108.5714286|         75|01:02:44|+0.22|0.33|0.4009|
+|!|          8|          6|         31|     365.3750000|         76|00:10:10|+0.25|0.34|0.4145|
+|!|          6|          6|         31|     333.2222222|         77|00:00:07|+0.21|0.30|0.4644|
+|-|          5|          2|         31|     484.6000000|         78|00:08:48|+0.44|0.50|0.1389|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          31    mean value:      484.6000000
+Description of the best-so-far configuration:
+   .ID. archive ants      q     xi iters stagnation ls_start ls_int ts_iters ts_neigh ts_tenure .PARENT.
+31   31     192  105 0.5254 0.5915  3605        981      731     52      986      231        39       21
+
+# 2026-05-29 11:17:25 -03: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   archive ants      q     xi iters stagnation ls_start ls_int ts_iters ts_neigh ts_tenure
+31     192  105 0.5254 0.5915  3605        981      731     52      986      231        39
+21     149  103 0.8367 0.5171  3694        698      572     42      846      118        19
+# 2026-05-29 11:17:25 -03: Iteration 4 of 5
+# experimentsUsed: 260
+# remainingBudget: 240
+# currentBudget: 120
+# nbConfigurations: 12
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|x|         11|         12|         21|     2081.000000|         12|01:30:22|   NA|  NA|    NA|
+|x|          8|         12|         47|     2125.500000|         22|06:21:13|+0.65|0.82|0.1135|
+|x|          3|         12|         47|     1421.666667|         32|01:16:32|+0.32|0.55|0.3434|
+|x|          1|         12|         47|     1067.500000|         42|01:48:31|+0.22|0.41|0.3245|
+|=|          6|         12|         45|     869.0000000|         52|00:00:38|+0.14|0.31|0.4523|
+|-|          7|         10|         31|     726.3333333|         62|00:33:17|+0.06|0.21|0.5316|
+|-|          5|          6|         31|     886.4285714|         70|00:38:57|-0.11|0.05|0.6593|
+|=|          9|          6|         31|     834.7500000|         74|00:31:50|-0.06|0.07|0.6557|
+|=|         10|          6|         31|     743.4444444|         78|00:41:44|-0.05|0.06|0.5794|
+|=|          2|          6|         31|     687.4000000|         82|00:00:55|-0.01|0.09|0.5844|
+|=|          4|          6|         31|     630.4545455|         86|00:38:42|+0.02|0.11|0.5835|
+|=|         12|          6|         31|     901.7500000|         92|01:24:27|+0.05|0.13|0.5902|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          31    mean value:      901.7500000
+Description of the best-so-far configuration:
+   .ID. archive ants      q     xi iters stagnation ls_start ls_int ts_iters ts_neigh ts_tenure .PARENT.
+31   31     192  105 0.5254 0.5915  3605        981      731     52      986      231        39       21
+
+# 2026-05-30 02:44:38 -03: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   archive ants      q     xi iters stagnation ls_start ls_int ts_iters ts_neigh ts_tenure
+31     192  105 0.5254 0.5915  3605        981      731     52      986      231        39
+21     149  103 0.8367 0.5171  3694        698      572     42      846      118        19
+45     195   80 0.4372 0.2275  2492        972      739     10      957      207        35
+44     144   60 0.9394 0.5796  4298        785      404     60      729      169        25
+47     124   51 0.2562 1.2771  3970        927      667     17      606       91        68
+# 2026-05-30 02:44:38 -03: Iteration 5 of 5
+# experimentsUsed: 352
+# remainingBudget: 148
+# currentBudget: 148
+# nbConfigurations: 16
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|x|         13|         16|         55|     636.0000000|         16|03:36:06|   NA|  NA|    NA|
+|x|          6|         16|         50|     359.0000000|         27|00:00:38|+0.09|0.55|0.8412|
+|x|          8|         16|         57|     960.3333333|         38|00:58:08|+0.10|0.40|0.9327|
+|x|         10|         16|         57|     723.5000000|         49|01:12:43|+0.07|0.30|0.7007|
+|-|         12|         11|         57|     1354.400000|         60|01:52:47|+0.12|0.30|0.6388|
+|=|         11|         11|         57|     1476.500000|         66|00:23:50|+0.00|0.17|0.7422|
+|=|          4|         11|         57|     1274.428571|         72|00:40:51|+0.03|0.17|0.7312|
+|=|          5|         11|         57|     1346.000000|         78|00:22:58|+0.09|0.21|0.6973|
+|=|          3|         11|         57|     1198.000000|         84|00:43:27|+0.08|0.18|0.6307|
+|-|          9|          9|         57|     1125.100000|         90|00:34:01|+0.11|0.20|0.6345|
+|-|          1|          8|         57|     1023.272727|         94|01:01:59|+0.10|0.18|0.5701|
+|!|          2|          8|         57|     953.4166667|         97|00:00:33|+0.10|0.18|0.5868|
+|=|          7|          8|         57|     881.0000000|        100|00:17:34|+0.06|0.13|0.6301|
+|=|         14|          8|         57|     893.5000000|        108|00:39:31|+0.03|0.10|0.6637|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          57    mean value:      893.5000000
+Description of the best-so-far configuration:
+   .ID. archive ants      q     xi iters stagnation ls_start ls_int ts_iters ts_neigh ts_tenure .PARENT.
+57   57     111  118 0.7251 0.7002  3129        685      455     26      967       40        26       21
+
+# 2026-05-30 15:09:50 -03: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   archive ants      q     xi iters stagnation ls_start ls_int ts_iters ts_neigh ts_tenure
+57     111  118 0.7251 0.7002  3129        685      455     26      967       40        26
+31     192  105 0.5254 0.5915  3605        981      731     52      986      231        39
+54     191   22 0.6180 0.4160  1602        814      471      8      727      149        31
+50     190  113 0.8783 0.6303  3915        842      675     35      954      158        59
+21     149  103 0.8367 0.5171  3694        698      572     42      846      118        19
+# 2026-05-30 15:09:50 -03: Iteration 6 of 6
+# experimentsUsed: 460
+# remainingBudget: 40
+# currentBudget: 40
+# nbConfigurations: 7
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|x|         15|          7|         31|     9.000000000|          7|01:17:34|   NA|  NA|    NA|
+|x|          5|          7|         50|     927.5000000|          9|00:12:50|+0.08|0.54|0.8571|
+|x|          2|          7|         31|     679.6666667|         11|00:00:38|+0.11|0.40|0.7303|
+|x|          7|          7|         31|     512.5000000|         13|00:09:47|+0.21|0.41|0.6314|
+|=|         11|          7|         54|     827.8000000|         15|00:12:55|+0.12|0.29|0.6896|
+|=|         12|          7|         31|     1337.500000|         17|05:51:26|+0.09|0.24|0.7014|
+|=|          6|          7|         31|     1157.285714|         19|00:00:05|+0.03|0.17|0.8082|
+|=|          1|          7|         31|     1013.250000|         21|00:31:51|+0.03|0.15|0.7133|
+|=|         13|          7|         50|     971.8888889|         23|00:26:49|+0.03|0.14|0.7208|
+|=|          4|          7|         31|     881.6000000|         25|00:18:25|+0.02|0.12|0.7379|
+|=|          8|          7|         31|     998.0909091|         27|00:16:58|+0.02|0.11|0.7532|
+|=|          3|          7|         31|     916.0833333|         29|00:24:24|+0.02|0.10|0.6926|
+|=|          9|          7|         31|     882.0000000|         31|00:08:48|+0.05|0.12|0.6765|
+|=|         10|          7|         31|     819.9285714|         33|00:25:59|+0.04|0.11|0.6317|
+|=|         14|          7|         57|     834.6000000|         35|00:15:24|+0.04|0.10|0.6569|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          57    mean value:      834.6000000
+Description of the best-so-far configuration:
+   .ID. archive ants      q     xi iters stagnation ls_start ls_int ts_iters ts_neigh ts_tenure .PARENT.
+57   57     111  118 0.7251 0.7002  3129        685      455     26      967       40        26       21
+
+# 2026-05-31 01:43:51 -03: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   archive ants      q     xi iters stagnation ls_start ls_int ts_iters ts_neigh ts_tenure
+57     111  118 0.7251 0.7002  3129        685      455     26      967       40        26
+31     192  105 0.5254 0.5915  3605        981      731     52      986      231        39
+54     191   22 0.6180 0.4160  1602        814      471      8      727      149        31
+50     190  113 0.8783 0.6303  3915        842      675     35      954      158        59
+21     149  103 0.8367 0.5171  3694        698      572     42      846      118        19
+# 2026-05-31 01:43:51 -03: Stopped because there is not enough budget left to race more than the minimum (5).
+# You may either increase the budget or set 'minNbSurvival' to a lower value.
+# Iteration: 7
+# nbIterations: 7
+# experimentsUsed: 495
+# timeUsed: 0
+# remainingBudget: 5
+# currentBudget: 5
+# number of elites: 5
+# nbConfigurations: 5
+# Total CPU user time: 1093480, CPU sys time: 9023.193, Wall-clock time: 205215.9
+# 2026-05-31 01:43:51 -03: Starting post-selection:
+# Configurations selected: 57, 31, 54, 50, 21.
+# Pending instances: 0, 0, 0, 0, 0.
+# 2026-05-31 01:43:51 -03: seed: 1385931666
+# Configurations: 5
+# Available experiments: 5
+# minSurvival: 1
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|.|          7|          5|         31|     11.00000000|          0|00:00:00|   NA|  NA|    NA|
+|.|          9|          5|         31|     242.0000000|          0|00:00:00|+0.45|0.73|0.5743|
+|.|          4|          5|         31|     181.6666667|          0|00:00:00|+0.20|0.46|0.7220|
+|.|          2|          5|         31|     182.0000000|          0|00:00:00|+0.25|0.44|0.6426|
+|.|         12|          5|         31|     922.8000000|          0|00:00:00|+0.06|0.25|0.7799|
+|.|         15|          5|         31|     770.5000000|          0|00:00:00|+0.01|0.18|0.8080|
+|.|          8|          5|         31|     969.4285714|          0|00:00:00|+0.08|0.21|0.7824|
+|.|          3|          5|         31|     850.0000000|          0|00:00:00|+0.07|0.18|0.6868|
+|.|         10|          5|         31|     757.0000000|          0|00:00:00|+0.06|0.16|0.6119|
+|.|          1|          5|         31|     681.8000000|          0|00:00:00|+0.05|0.15|0.5518|
+|.|          6|          5|         31|     626.7272727|          0|00:00:00|+0.01|0.10|0.5944|
+|.|         13|          5|         31|     628.5833333|          0|00:00:00|-0.04|0.05|0.6322|
+|.|         11|          5|         31|     740.9230769|          0|00:00:00|-0.05|0.03|0.6531|
+|.|          5|          5|         31|     819.9285714|          0|00:00:00|-0.05|0.02|0.6678|
+|.|         14|          5|         31|     835.7333333|          0|00:00:00|-0.02|0.05|0.6641|
+|=|         16|          5|         57|     893.6250000|          5|00:33:46|-0.02|0.05|0.6682|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          57    mean value:      893.6250000
+Description of the best-so-far configuration:
+   .ID. archive ants      q     xi iters stagnation ls_start ls_int ts_iters ts_neigh ts_tenure .PARENT.
+57   57     111  118 0.7251 0.7002  3129        685      455     26      967       40        26       21
+
+# 2026-05-31 02:17:37 -03: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   archive ants      q     xi iters stagnation ls_start ls_int ts_iters ts_neigh ts_tenure
+57     111  118 0.7251 0.7002  3129        685      455     26      967       40        26
+31     192  105 0.5254 0.5915  3605        981      731     52      986      231        39
+54     191   22 0.6180 0.4160  1602        814      471      8      727      149        31
+50     190  113 0.8783 0.6303  3915        842      675     35      954      158        59
+21     149  103 0.8367 0.5171  3694        698      572     42      846      118        19
+# Total CPU user time: 1106125, CPU sys time: 9104.465, Wall-clock time: 207241.9
+# Best configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   archive ants      q     xi iters stagnation ls_start ls_int ts_iters ts_neigh ts_tenure
+57     111  118 0.7251 0.7002  3129        685      455     26      967       40        26
+31     192  105 0.5254 0.5915  3605        981      731     52      986      231        39
+54     191   22 0.6180 0.4160  1602        814      471      8      727      149        31
+50     190  113 0.8783 0.6303  3915        842      675     35      954      158        59
+21     149  103 0.8367 0.5171  3694        698      572     42      846      118        19
+# Best configurations as commandlines (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+57 --archive 111 --ants 118 --q 0.7251 --xi 0.7002 --iters 3129 --stagnation 685 --ls-start 455 --ls-int 26 --ts-iters 967 --ts-neigh 40 --ts-tenure 26
+31 --archive 192 --ants 105 --q 0.5254 --xi 0.5915 --iters 3605 --stagnation 981 --ls-start 731 --ls-int 52 --ts-iters 986 --ts-neigh 231 --ts-tenure 39
+54 --archive 191 --ants 22 --q 0.618 --xi 0.416 --iters 1602 --stagnation 814 --ls-start 471 --ls-int 8 --ts-iters 727 --ts-neigh 149 --ts-tenure 31
+50 --archive 190 --ants 113 --q 0.8783 --xi 0.6303 --iters 3915 --stagnation 842 --ls-start 675 --ls-int 35 --ts-iters 954 --ts-neigh 158 --ts-tenure 59
+21 --archive 149 --ants 103 --q 0.8367 --xi 0.5171 --iters 3694 --stagnation 698 --ls-start 572 --ls-int 42 --ts-iters 846 --ts-neigh 118 --ts-tenure 19
+
+
+# Testing of elite configurations: 1 
+# Testing iteration configurations: FALSE 
+# 2026-05-31 02:17:37 -03: No test instances, skip testing
