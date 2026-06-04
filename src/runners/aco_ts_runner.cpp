@@ -349,7 +349,6 @@ int main(int argc, char* argv[]) {
     return 1;
   }
 
-  std::cout << global_best_fitness << '\n';
-
+  // std::cout << global_best_fitness << '\n';
   return 0;
 }

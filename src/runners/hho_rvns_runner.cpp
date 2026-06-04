@@ -332,9 +332,9 @@ int main(int argc, char* argv[]) {
     return 1;
   }
 
-#ifdef NDEBUG
-  std::cout << global_best_fitness << '\n';
-#endif
-
+  // #ifdef NDEBUG
+  //   std::cout << global_best_fitness << '\n';
+  // #endif
+  //
   return 0;
 }

@@ -1,0 +1,33 @@
+{
+  "output_dir": "results/experiments/hho_rvns",
+  "difficulty_files": [
+    "results/pli/CUBIC/cubic_results.csv",
+    "results/pli/DIMACS/dimacs_resultados.csv",
+    "results/pli/HB/harwell_boieng_results.csv"
+  ],
+  "graphs": {
+    "files": [],
+    "globs": [
+      "data/instances/CUBIC/*.col",
+      "data/instances/DIMACS/*.col",
+      "data/instances/HB/*.col"
+    ]
+  },
+  "algorithms": {
+    "hho_rvns": {
+      "enabled": true,
+      "params": {
+        "attempts": 10,
+        "agents": 145,
+        "threads": 8,
+        "max_iterations": 2671,
+        "max_time_seconds": 900,
+        "max_stagnation": 939,
+        "local_search_start": 712,
+        "local_search_interval": 9,
+        "rvns_iterations": 968,
+        "rvns_k_max": 48
+      }
+    }
+  }
+}

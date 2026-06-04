@@ -1,0 +1,37 @@
+{
+  "output_dir": "results/experiments/aco_ts",
+  "difficulty_files": [
+    "results/pli/CUBIC/cubic_results.csv",
+    "results/pli/DIMACS/dimacs_resultados.csv",
+    "results/pli/HB/harwell_boieng_results.csv"
+  ],
+  "graphs": {
+    "files": [],
+    "globs": [
+      "data/instances/CUBIC/*.col",
+      "data/instances/DIMACS/*.col",
+      "data/instances/HB/*.col"
+    ]
+  },
+  "algorithms": {
+    "aco_ts": {
+      "enabled": true,
+      "params": {
+        "attempts": 10,
+        "archive_size": 111,
+        "ants": 118,
+        "q": 0.7251,
+        "xi": 0.7002,
+        "threads": 8,
+        "max_iterations": 3129,
+        "max_time_seconds": 900,
+        "max_stagnation": 685,
+        "local_search_start": 455,
+        "local_search_interval": 26,
+        "ts_iterations": 967,
+        "ts_neighborhood_size": 40,
+        "ts_tabu_tenure": 26
+      }
+    }
+  }
+}

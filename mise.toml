@@ -100,3 +100,11 @@ run = "cd experiments/tuning/hho_rvns && irace --scenario scenario.txt >> output
 [tasks."tune-brkga"]
 description = "Executa o tuning do irace para o algoritmo ACO+TS com 8 threads"
 run = "cd experiments/tuning/brkga && irace --scenario scenario.txt >> output.tuning.txt"
+
+[tasks."aco-ts-experiments"]
+description = "Executa os experimentos do ACO+TS, retomando resultados ja computados"
+run = "python python/scripts/run_experiments.py experiments/configs/aco_ts.json"
+
+[tasks."hho-rvns-experiments"]
+description = "Executa os experimentos do HHO+RVNS, retomando resultados ja computados"
+run = "python python/scripts/run_experiments.py experiments/configs/hho_rvns.json"
