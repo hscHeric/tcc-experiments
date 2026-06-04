@@ -1,0 +1,303 @@
+#------------------------------------------------------------------------------
+# irace: An implementation in R of (Elitist) Iterated Racing
+# Version: 4.4.3.dd8d85f
+# Copyright (C) 2010-2025
+# Manuel Lopez-Ibanez     <manuel.lopez-ibanez@manchester.ac.uk>
+# Jeremie Dubois-Lacoste
+# Leslie Perez Caceres    <leslie.perez.caceres@ulb.ac.be>
+#
+# This is free software, and you are welcome to redistribute it under certain
+# conditions.  See the GNU General Public License for details. There is NO
+# WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# irace builds upon previous code from the race package:
+#     race: Racing methods for the selection of the best
+#     Copyright (C) 2003 Mauro Birattari
+#------------------------------------------------------------------------------
+# installed at: /home/hscheric/R/x86_64-redhat-linux-gnu-library/4.6/irace
+# called with: --scenario scenario.txt
+# 2026-05-31 09:49:49 -03: Reading parameter file '/home/hscheric/Projects/tcc-experiments/experiments/tuning/hho_rvns/parameters.txt'.
+# 2026-05-31 09:49:49 -03: 1 expression(s) specifying forbidden configurations read.
+# 2026-05-31 09:49:49 -03: Initialization
+# Elitist race
+# Elitist new instances: 1
+# Elitist limit: 2
+# nbIterations: 4
+# minNbSurvival: 4
+# nbParameters: 7
+# seed: 1354089280
+# confidence level: 0.95
+# budget: 500
+# mu: 5
+# deterministic: FALSE
+
+# 2026-05-31 09:49:49 -03: Iteration 1 of 4
+# experimentsUsed: 0
+# remainingBudget: 500
+# currentBudget: 125
+# nbConfigurations: 20
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|x|          1|         20|         14|     76.00000000|         20|00:01:01|   NA|  NA|    NA|
+|x|          2|         20|         20|     44.00000000|         40|01:47:45|+0.47|0.74|0.4964|
+|x|          3|         20|         20|     113.0000000|         60|01:50:30|+0.56|0.71|0.4241|
+|x|          4|         20|         20|     1081.500000|         80|02:38:21|+0.40|0.55|0.5781|
+|-|          5|          6|         20|     1323.600000|        100|01:00:35|-0.15|0.08|0.8847|
+|=|          6|          6|         20|     1104.000000|        106|02:03:14|-0.12|0.06|0.7287|
+|=|          7|          6|         20|     987.7142857|        112|01:10:23|-0.10|0.06|0.7398|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          20    mean value:      987.7142857
+Description of the best-so-far configuration:
+   .ID. agents iters stagnation ls_start ls_int rvns_iters rvns_k .PARENT.
+20   20    298  1212        875      528     15        912     38       NA
+
+# 2026-05-31 20:21:43 -03: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   agents iters stagnation ls_start ls_int rvns_iters rvns_k
+20    298  1212        875      528     15        912     38
+5      79  4088        634      247     46        882     36
+14    237  4338        853       59     83        453     48
+1     114  3588        897      872     71        759     59
+# 2026-05-31 20:21:43 -03: Iteration 2 of 4
+# experimentsUsed: 112
+# remainingBudget: 388
+# currentBudget: 129
+# nbConfigurations: 19
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|x|          8|         19|          5|     931.0000000|         19|03:24:51|   NA|  NA|    NA|
+|x|          3|         19|          5|     588.0000000|         34|02:39:15|+0.18|0.59|0.6229|
+|x|          5|         19|         22|     1156.666667|         49|01:08:04|+0.07|0.38|0.8748|
+|x|          2|         19|         22|     870.7500000|         64|02:29:04|+0.02|0.27|0.9393|
+|=|          4|         19|         22|     1493.800000|         79|04:24:52|+0.10|0.28|0.8842|
+|=|          1|         19|         22|     1257.500000|         94|00:02:29|+0.08|0.24|0.8911|
+|=|          6|         19|         22|     1078.714286|        109|04:45:44|+0.07|0.20|0.7718|
+|=|          7|         19|         22|     978.6250000|        124|02:59:15|+0.06|0.17|0.7985|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          22    mean value:      978.6250000
+Description of the best-so-far configuration:
+   .ID. agents iters stagnation ls_start ls_int rvns_iters rvns_k .PARENT.
+22   22    157  1651        978      557     28        889     38       20
+
+# 2026-06-01 18:15:21 -03: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   agents iters stagnation ls_start ls_int rvns_iters rvns_k
+22    157  1651        978      557     28        889     38
+5      79  4088        634      247     46        882     36
+20    298  1212        875      528     15        912     38
+29     69  1950        623      244     40        875     53
+# 2026-06-01 18:15:21 -03: Iteration 3 of 4
+# experimentsUsed: 236
+# remainingBudget: 264
+# currentBudget: 132
+# nbConfigurations: 18
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|x|          9|         18|         22|     2041.000000|         18|01:23:11|   NA|  NA|    NA|
+|x|          1|         18|         22|     1058.500000|         32|00:03:20|+0.28|0.64|0.6690|
+|x|          4|         18|         22|     2034.333333|         46|03:11:47|+0.20|0.47|0.7807|
+|x|          3|         18|         22|     1588.500000|         60|02:44:05|+0.09|0.32|0.9049|
+|=|          6|         18|         22|     1272.000000|         74|07:41:43|+0.09|0.27|0.9085|
+|=|          7|         18|         22|     1106.333333|         88|03:29:15|+0.08|0.24|0.9026|
+|=|          2|         18|         22|     950.1428571|        102|02:43:44|+0.08|0.21|0.8962|
+|-|          5|          9|         22|     1116.000000|        116|03:10:27|-0.04|0.09|0.8255|
+|=|          8|          9|         22|     1096.666667|        121|01:04:43|-0.05|0.07|0.8452|
+|=|         10|          9|         22|     988.3000000|        130|02:04:21|-0.06|0.04|0.8633|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          22    mean value:      988.3000000
+Description of the best-so-far configuration:
+   .ID. agents iters stagnation ls_start ls_int rvns_iters rvns_k .PARENT.
+22   22    157  1651        978      557     28        889     38       20
+
+# 2026-06-02 21:52:02 -03: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   agents iters stagnation ls_start ls_int rvns_iters rvns_k
+22    157  1651        978      557     28        889     38
+5      79  4088        634      247     46        882     36
+43     52  3816        573      335      5        971     44
+20    298  1212        875      528     15        912     38
+# 2026-06-02 21:52:02 -03: Iteration 4 of 4
+# experimentsUsed: 366
+# remainingBudget: 134
+# currentBudget: 134
+# nbConfigurations: 15
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|x|         11|         15|         43|     31.00000000|         15|01:52:21|   NA|  NA|    NA|
+|x|          5|         15|         43|     1153.500000|         26|01:20:44|+0.29|0.65|0.4022|
+|x|          8|         15|         52|     1079.666667|         37|01:52:54|+0.11|0.40|0.8199|
+|x|          1|         15|         43|     830.7500000|         48|00:02:28|+0.12|0.34|0.7504|
+|-|          9|         10|         43|     1073.400000|         59|01:24:16|-0.00|0.20|0.8862|
+|=|          6|         10|         43|     895.5000000|         65|04:08:01|-0.02|0.15|0.9240|
+|=|          3|         10|         43|     803.8571429|         71|01:33:22|-0.04|0.11|0.9463|
+|=|          2|         10|         43|     705.0000000|         77|03:23:36|-0.06|0.08|0.9573|
+|=|          4|         10|         56|     1068.222222|         83|01:31:12|-0.08|0.04|0.9695|
+|=|          7|         10|         22|     990.2000000|         89|01:31:41|-0.06|0.05|0.9519|
+|=|         10|         10|         22|     901.3636364|         95|01:25:14|-0.05|0.04|0.9539|
+|=|         12|         10|          5|     827.4166667|        105|02:50:28|-0.04|0.04|0.9436|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+Best-so-far configuration:           5    mean value:      827.4166667
+Description of the best-so-far configuration:
+  .ID. agents iters stagnation ls_start ls_int rvns_iters rvns_k .PARENT.
+5    5     79  4088        634      247     46        882     36       NA
+
+# 2026-06-03 20:48:22 -03: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   agents iters stagnation ls_start ls_int rvns_iters rvns_k
+5      79  4088        634      247     46        882     36
+22    157  1651        978      557     28        889     38
+52    145  2671        939      712      9        968     42
+56    127  1715        930      624      6        725     35
+# 2026-06-03 20:48:22 -03: Iteration 5 of 5
+# experimentsUsed: 471
+# remainingBudget: 29
+# currentBudget: 29
+# nbConfigurations: 5
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|x|         13|          5|         52|     183.0000000|          5|00:04:09|   NA|  NA|    NA|
+|x|         12|          5|         52|     94.00000000|          6|00:16:09|+0.30|0.65|0.5381|
+|x|          9|          5|         52|     743.3333333|          7|00:04:34|-0.23|0.18|0.8899|
+|x|          5|          5|         52|     1126.750000|          8|00:05:06|+0.05|0.29|0.7793|
+|=|          3|          5|         52|     952.4000000|          9|00:14:52|-0.18|0.05|0.9286|
+|=|          1|          5|         22|     805.8333333|         10|00:00:17|-0.09|0.09|0.8779|
+|=|         10|          5|         22|     692.5714286|         11|00:15:18|-0.13|0.03|0.9143|
+|=|          6|          5|         22|     606.7500000|         12|00:15:06|-0.11|0.03|0.7857|
+|=|          8|          5|         52|     643.1111111|         13|00:12:23|-0.09|0.03|0.7725|
+|=|          4|          5|         52|     977.1000000|         14|00:11:46|-0.07|0.03|0.7656|
+|=|         11|          5|         52|     891.1818182|         15|00:06:59|-0.05|0.04|0.7431|
+|=|          7|          5|         52|     840.0833333|         16|00:15:03|-0.02|0.07|0.7280|
+|=|          2|          5|         52|     776.5384615|         17|00:16:51|-0.02|0.06|0.7295|
+|=|         14|          5|         52|     855.6428571|         22|00:37:45|+0.01|0.08|0.7052|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          52    mean value:      855.6428571
+Description of the best-so-far configuration:
+   .ID. agents iters stagnation ls_start ls_int rvns_iters rvns_k .PARENT.
+52   52    145  2671        939      712      9        968     42       22
+
+# 2026-06-03 23:44:48 -03: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   agents iters stagnation ls_start ls_int rvns_iters rvns_k
+52    145  2671        939      712      9        968     42
+22    157  1651        978      557     28        889     38
+5      79  4088        634      247     46        882     36
+56    127  1715        930      624      6        725     35
+# 2026-06-03 23:44:48 -03: Stopped because there is not enough budget left to race more than the minimum (4).
+# You may either increase the budget or set 'minNbSurvival' to a lower value.
+# Iteration: 6
+# nbIterations: 6
+# experimentsUsed: 493
+# timeUsed: 0
+# remainingBudget: 7
+# currentBudget: 7
+# number of elites: 4
+# nbConfigurations: 4
+# Total CPU user time: 1697629, CPU sys time: 16103.25, Wall-clock time: 309298.5
+# 2026-06-03 23:44:48 -03: Starting post-selection:
+# Configurations selected: 52, 22, 5, 56, 43.
+# Pending instances: 1, 1, 1, 1, 3.
+# 2026-06-03 23:44:48 -03: seed: 1354089280
+# Configurations: 5
+# Available experiments: 7
+# minSurvival: 1
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|.|          1|          5|         22|     76.00000000|          0|00:00:00|   NA|  NA|    NA|
+|.|         12|          5|         22|     41.00000000|          0|00:00:00|-0.76|0.12|1.4110|
+|.|         11|          5|         22|     38.00000000|          0|00:00:00|-0.23|0.18|0.9700|
+|.|          5|          5|         22|     597.7500000|          0|00:00:00|+0.09|0.32|0.8138|
+|.|          9|          5|         22|     886.4000000|          0|00:00:00|-0.02|0.18|0.8197|
+|.|          7|          5|         22|     785.0000000|          0|00:00:00|-0.01|0.15|0.8360|
+|.|         10|          5|         22|     674.7142857|          0|00:00:00|-0.06|0.09|0.8774|
+|.|          8|          5|         22|     708.1250000|          0|00:00:00|-0.06|0.07|0.8693|
+|.|          6|          5|         22|     630.1111111|          0|00:00:00|-0.06|0.06|0.7650|
+|x|         14|          5|         52|     754.4000000|          1|00:15:13|-0.03|0.07|0.7592|
+|.|          2|          5|         52|     687.0909091|          1|00:00:00|-0.06|0.04|0.7853|
+|.|          4|          5|         52|     961.7500000|          1|00:00:00|-0.06|0.03|0.7801|
+|x|         13|          5|         52|     901.8461538|          2|00:13:24|-0.02|0.06|0.7680|
+|.|          3|          5|         52|     855.6428571|          2|00:00:00|-0.05|0.02|0.7794|
+|=|         15|          5|         52|     799.1333333|          7|01:48:24|-0.05|0.02|0.7905|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          52    mean value:      799.1333333
+Description of the best-so-far configuration:
+   .ID. agents iters stagnation ls_start ls_int rvns_iters rvns_k .PARENT.
+52   52    145  2671        939      712      9        968     42       22
+
+# 2026-06-04 02:01:51 -03: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   agents iters stagnation ls_start ls_int rvns_iters rvns_k
+52    145  2671        939      712      9        968     42
+22    157  1651        978      557     28        889     38
+43     52  3816        573      335      5        971     44
+56    127  1715        930      624      6        725     35
+# Total CPU user time: 1737409, CPU sys time: 16808.22, Wall-clock time: 317522
+# Best configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+   agents iters stagnation ls_start ls_int rvns_iters rvns_k
+52    145  2671        939      712      9        968     42
+22    157  1651        978      557     28        889     38
+43     52  3816        573      335      5        971     44
+56    127  1715        930      624      6        725     35
+# Best configurations as commandlines (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+52 --agents 145 --iters 2671 --stagnation 939 --ls-start 712 --ls-int 9 --rvns-iters 968 --rvns-k 42
+22 --agents 157 --iters 1651 --stagnation 978 --ls-start 557 --ls-int 28 --rvns-iters 889 --rvns-k 38
+43 --agents 52 --iters 3816 --stagnation 573 --ls-start 335 --ls-int 5 --rvns-iters 971 --rvns-k 44
+56 --agents 127 --iters 1715 --stagnation 930 --ls-start 624 --ls-int 6 --rvns-iters 725 --rvns-k 35
+
+
+# Testing of elite configurations: 1 
+# Testing iteration configurations: FALSE 
+# 2026-06-04 02:01:51 -03: No test instances, skip testing
