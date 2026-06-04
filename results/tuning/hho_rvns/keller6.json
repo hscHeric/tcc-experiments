@@ -1,0 +1,50 @@
+{
+  "algorithm": "HHO+RVNS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 7.0,
+          "elapsed_ms": 6111,
+          "elapsed_seconds": 6.111,
+          "evaluations": 443,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 6.0,
+          "elapsed_ms": 94099,
+          "elapsed_seconds": 94.099,
+          "evaluations": 7503,
+          "iteration": 26
+        }
+      ],
+      "evaluations": 74345,
+      "executed_at": "2026-06-04T00:48:56Z",
+      "final_solution_value": 6.0,
+      "iterations": 258,
+      "seed": 1527410124,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 901163,
+      "total_runtime_seconds": 901.163
+    }
+  ],
+  "best_fitness_global": 6.0,
+  "decoder": "mapping_fix_decoder",
+  "executed_at": "2026-06-04T00:48:54Z",
+  "graph": "keller6.col",
+  "input_file": "../../../data/instances/DIMACS/keller6.col",
+  "parameters": {
+    "agents": 175,
+    "attempts": 1,
+    "local_search_interval": 55,
+    "local_search_start": 554,
+    "max_iterations": 2270,
+    "max_stagnation": 998,
+    "max_time_seconds": 900,
+    "rvns_iterations": 898,
+    "rvns_k_max": 40,
+    "seed": 1527410124,
+    "threads": 8
+  }
+}

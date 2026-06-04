@@ -21,7 +21,7 @@ INSTANCE_BASE=$(basename "${INSTANCE}")
 JSON_NAME="${INSTANCE_BASE%.col}.json"
 JSON_OUTPUT="${OUT_DIR}/${JSON_NAME}"
 
-EXE_PARAMS="--input ${INSTANCE} --seed ${SEED} --output ${JSON_OUTPUT} ${CONFIG_PARAMS}"
+EXE_PARAMS="${INSTANCE} --seed ${SEED} --output ${JSON_OUTPUT} ${CONFIG_PARAMS}"
 
 if [ ! -x "$(command -v ${EXE})" ]; then
   error "${EXE}: not found or not executable (pwd: $(pwd))"

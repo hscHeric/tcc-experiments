@@ -1,0 +1,78 @@
+{
+  "algorithm": "HHO+RVNS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 83.0,
+          "elapsed_ms": 5,
+          "elapsed_seconds": 0.005,
+          "evaluations": 1040,
+          "iteration": 3
+        },
+        {
+          "best_fitness": 82.0,
+          "elapsed_ms": 9,
+          "elapsed_seconds": 0.009,
+          "evaluations": 1833,
+          "iteration": 6
+        },
+        {
+          "best_fitness": 81.0,
+          "elapsed_ms": 681,
+          "elapsed_seconds": 0.681,
+          "evaluations": 144865,
+          "iteration": 482
+        },
+        {
+          "best_fitness": 79.0,
+          "elapsed_ms": 1194,
+          "elapsed_seconds": 1.194,
+          "evaluations": 455429,
+          "iteration": 554
+        },
+        {
+          "best_fitness": 78.0,
+          "elapsed_ms": 10038,
+          "elapsed_seconds": 10.038,
+          "evaluations": 5693807,
+          "iteration": 1489
+        },
+        {
+          "best_fitness": 77.0,
+          "elapsed_ms": 12081,
+          "elapsed_seconds": 12.081,
+          "evaluations": 6937685,
+          "iteration": 1709
+        }
+      ],
+      "evaluations": 10056215,
+      "executed_at": "2026-06-04T00:33:15Z",
+      "final_solution_value": 77.0,
+      "iterations": 2270,
+      "seed": 924346866,
+      "stop_reason": "max_iterations",
+      "total_runtime_ms": 17360,
+      "total_runtime_seconds": 17.36
+    }
+  ],
+  "best_fitness_global": 77.0,
+  "decoder": "mapping_fix_decoder",
+  "executed_at": "2026-06-04T00:33:15Z",
+  "graph": "cubic_100.col",
+  "input_file": "../../../data/instances/CUBIC/cubic_100.col",
+  "parameters": {
+    "agents": 175,
+    "attempts": 1,
+    "local_search_interval": 55,
+    "local_search_start": 554,
+    "max_iterations": 2270,
+    "max_stagnation": 998,
+    "max_time_seconds": 900,
+    "rvns_iterations": 898,
+    "rvns_k_max": 40,
+    "seed": 924346866,
+    "threads": 8
+  }
+}

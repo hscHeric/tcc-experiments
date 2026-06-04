@@ -1,0 +1,117 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 76.0,
+          "elapsed_ms": 34,
+          "elapsed_seconds": 0.034,
+          "evaluations": 351,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 74.0,
+          "elapsed_ms": 95,
+          "elapsed_seconds": 0.095,
+          "evaluations": 653,
+          "iteration": 3
+        },
+        {
+          "best_fitness": 73.0,
+          "elapsed_ms": 243,
+          "elapsed_seconds": 0.243,
+          "evaluations": 1257,
+          "iteration": 7
+        },
+        {
+          "best_fitness": 70.0,
+          "elapsed_ms": 392,
+          "elapsed_seconds": 0.392,
+          "evaluations": 1710,
+          "iteration": 10
+        },
+        {
+          "best_fitness": 69.0,
+          "elapsed_ms": 669,
+          "elapsed_seconds": 0.669,
+          "evaluations": 2616,
+          "iteration": 16
+        },
+        {
+          "best_fitness": 68.0,
+          "elapsed_ms": 1144,
+          "elapsed_seconds": 1.144,
+          "evaluations": 4126,
+          "iteration": 26
+        },
+        {
+          "best_fitness": 67.0,
+          "elapsed_ms": 1557,
+          "elapsed_seconds": 1.557,
+          "evaluations": 5485,
+          "iteration": 35
+        },
+        {
+          "best_fitness": 66.0,
+          "elapsed_ms": 1871,
+          "elapsed_seconds": 1.871,
+          "evaluations": 6542,
+          "iteration": 42
+        },
+        {
+          "best_fitness": 65.0,
+          "elapsed_ms": 5345,
+          "elapsed_seconds": 5.345,
+          "evaluations": 18018,
+          "iteration": 118
+        },
+        {
+          "best_fitness": 64.0,
+          "elapsed_ms": 7894,
+          "elapsed_seconds": 7.894,
+          "evaluations": 26625,
+          "iteration": 175
+        },
+        {
+          "best_fitness": 63.0,
+          "elapsed_ms": 176620,
+          "elapsed_seconds": 176.62,
+          "evaluations": 1056934,
+          "iteration": 420
+        }
+      ],
+      "evaluations": 4594103,
+      "executed_at": "2026-05-31T02:59:43Z",
+      "final_solution_value": 63.0,
+      "iterations": 1291,
+      "seed": 1589254130,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 751516,
+      "total_runtime_seconds": 751.516
+    }
+  ],
+  "best_fitness_global": 63.0,
+  "decoder": "mapping_fix_decoder",
+  "executed_at": "2026-05-31T02:59:43Z",
+  "graph": "DSJC1000.1.col",
+  "input_file": "../../../data/instances/DIMACS/DSJC1000.1.col",
+  "parameters": {
+    "ants": 151,
+    "archive_size": 200,
+    "attempts": 1,
+    "local_search_interval": 35,
+    "local_search_start": 210,
+    "max_iterations": 3748,
+    "max_stagnation": 871,
+    "max_time_seconds": 900,
+    "q": 0.8167,
+    "seed": 1589254130,
+    "threads": 8,
+    "ts_iterations": 825,
+    "ts_neighborhood_size": 172,
+    "ts_tabu_tenure": 60,
+    "xi": 0.4386
+  }
+}

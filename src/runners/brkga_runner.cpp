@@ -37,6 +37,7 @@ struct brkga_params {
   unsigned max_stagnation = 500;
   unsigned exchange_m = 2;
   unsigned exchange_interval = 100;
+  unsigned long seed = 0;
 };
 
 static std::string stop_reason_to_string(stop_reason reason) {
@@ -91,7 +92,7 @@ int main(int argc, char* argv[]) {
 
   argv = app.ensure_utf8(argv);
 
-  app.add_option("-i,--input", params.input_file, "Arquivo de entrada")
+  app.add_option("input", params.input_file, "Arquivo de entrada")
       ->required()
       ->check(CLI::ExistingFile);
 
@@ -136,6 +137,7 @@ int main(int argc, char* argv[]) {
       ->default_val(2);
   app.add_option("--x-int", params.exchange_interval, "Intervalo de migracao")
       ->default_val(100);
+  auto* seed_option = app.add_option("--seed", params.seed, "Seed base para o RNG");
 
   try {
     app.parse(argc, argv);
@@ -155,9 +157,12 @@ int main(int argc, char* argv[]) {
   LOG_INFO(logger, "Iniciando algoritmo para: {}", params.input_file.string());
   auto g = hsc::load_graph(params.input_file);
   hsc::decoder decoder(g);
-  const auto seed_base = static_cast<unsigned long>(
-      std::chrono::steady_clock::now().time_since_epoch().count()
-  );
+  const auto seed_base =
+      seed_option->count() > 0
+          ? params.seed
+          : static_cast<unsigned long>(
+                std::chrono::steady_clock::now().time_since_epoch().count()
+            );
 
   double global_best_fitness = std::numeric_limits<double>::infinity();
   json output_json = {
@@ -178,7 +183,8 @@ int main(int argc, char* argv[]) {
         {"max_time_seconds", params.max_time_seconds},
         {"max_stagnation", params.max_stagnation},
         {"exchange_m", params.exchange_m},
-        {"exchange_interval", params.exchange_interval}}},
+        {"exchange_interval", params.exchange_interval},
+        {"seed", seed_base}}},
       {"attempts", json::array()}
   };
 

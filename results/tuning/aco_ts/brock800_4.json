@@ -1,0 +1,39 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [],
+      "evaluations": 1351308,
+      "executed_at": "2026-05-30T19:11:03Z",
+      "final_solution_value": 10.0,
+      "iterations": 490,
+      "seed": 1752596271,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 981048,
+      "total_runtime_seconds": 981.048
+    }
+  ],
+  "best_fitness_global": 10.0,
+  "decoder": "mapping_fix_decoder",
+  "executed_at": "2026-05-30T19:11:03Z",
+  "graph": "brock800_4.col",
+  "input_file": "../../../data/instances/DIMACS/brock800_4.col",
+  "parameters": {
+    "ants": 151,
+    "archive_size": 200,
+    "attempts": 1,
+    "local_search_interval": 35,
+    "local_search_start": 210,
+    "max_iterations": 3748,
+    "max_stagnation": 871,
+    "max_time_seconds": 900,
+    "q": 0.8167,
+    "seed": 1752596271,
+    "threads": 8,
+    "ts_iterations": 825,
+    "ts_neighborhood_size": 172,
+    "ts_tabu_tenure": 60,
+    "xi": 0.4386
+  }
+}

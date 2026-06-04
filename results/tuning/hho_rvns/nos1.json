@@ -1,0 +1,99 @@
+{
+  "algorithm": "HHO+RVNS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 195.0,
+          "elapsed_ms": 4,
+          "elapsed_seconds": 0.004,
+          "evaluations": 123,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 193.0,
+          "elapsed_ms": 12,
+          "elapsed_seconds": 0.012,
+          "evaluations": 308,
+          "iteration": 3
+        },
+        {
+          "best_fitness": 192.0,
+          "elapsed_ms": 36,
+          "elapsed_seconds": 0.036,
+          "evaluations": 967,
+          "iteration": 11
+        },
+        {
+          "best_fitness": 191.0,
+          "elapsed_ms": 39,
+          "elapsed_seconds": 0.039,
+          "evaluations": 1045,
+          "iteration": 12
+        },
+        {
+          "best_fitness": 190.0,
+          "elapsed_ms": 247,
+          "elapsed_seconds": 0.247,
+          "evaluations": 8581,
+          "iteration": 102
+        },
+        {
+          "best_fitness": 187.0,
+          "elapsed_ms": 13301,
+          "elapsed_seconds": 13.301,
+          "evaluations": 370505,
+          "iteration": 335
+        },
+        {
+          "best_fitness": 186.0,
+          "elapsed_ms": 25534,
+          "elapsed_seconds": 25.534,
+          "evaluations": 712978,
+          "iteration": 340
+        },
+        {
+          "best_fitness": 185.0,
+          "elapsed_ms": 36693,
+          "elapsed_seconds": 36.693,
+          "evaluations": 1055392,
+          "iteration": 345
+        },
+        {
+          "best_fitness": 184.0,
+          "elapsed_ms": 175453,
+          "elapsed_seconds": 175.453,
+          "evaluations": 5162260,
+          "iteration": 405
+        }
+      ],
+      "evaluations": 44178915,
+      "executed_at": "2026-06-04T03:00:02Z",
+      "final_solution_value": 184.0,
+      "iterations": 978,
+      "seed": 1567691015,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 804584,
+      "total_runtime_seconds": 804.584
+    }
+  ],
+  "best_fitness_global": 184.0,
+  "decoder": "mapping_fix_decoder",
+  "executed_at": "2026-06-04T03:00:02Z",
+  "graph": "nos1.col",
+  "input_file": "../../../data/instances/HB/nos1.col",
+  "parameters": {
+    "agents": 52,
+    "attempts": 1,
+    "local_search_interval": 5,
+    "local_search_start": 335,
+    "max_iterations": 3816,
+    "max_stagnation": 573,
+    "max_time_seconds": 900,
+    "rvns_iterations": 971,
+    "rvns_k_max": 44,
+    "seed": 1567691015,
+    "threads": 8
+  }
+}

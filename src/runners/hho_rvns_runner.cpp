@@ -110,7 +110,7 @@ int main(int argc, char* argv[]) {
   CLI::App app{"HHO com RVNS para Dominação 3-Romana em Grafos"};
   argv = app.ensure_utf8(argv);
 
-  app.add_option("-i,--input", params.input_file, "Arquivo de entrada")
+  app.add_option("input", params.input_file, "Arquivo de entrada")
       ->required()
       ->check(CLI::ExistingFile);
   app.add_option("-o,--output", params.output_file, "Arquivo de saída")->required();

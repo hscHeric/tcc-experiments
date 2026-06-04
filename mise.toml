@@ -91,12 +91,12 @@ ln -sfn build/Debug/compile_commands.json compile_commands.json
 
 [tasks."tune-aco-ts"]
 description = "Executa o tuning do irace para o algoritmo ACO+TS com 8 threads"
-run = "cd experiments/tuning/aco_ts && irace --scenario scenario.txt --parallel 8 >> output.tuning.txt"
+run = "cd experiments/tuning/aco_ts && irace --scenario scenario.txt >> output.tuning.txt"
 
 [tasks."tune-hho-rvns"]
 description = "Executa o tuning do irace para o algoritmo ACO+TS com 8 threads"
-run = "cd experiments/tuning/hho-rvns && irace --scenario scenario.txt --parallel 8 >> output.tuning.txt"
+run = "cd experiments/tuning/hho_rvns && irace --scenario scenario.txt >> output.tuning.txt"
 
 [tasks."tune-brkga"]
 description = "Executa o tuning do irace para o algoritmo ACO+TS com 8 threads"
-run = "cd experiments/tuning/brkga && irace --scenario scenario.txt --parallel 8 >> output.tuning.txt"
+run = "cd experiments/tuning/brkga && irace --scenario scenario.txt >> output.tuning.txt"

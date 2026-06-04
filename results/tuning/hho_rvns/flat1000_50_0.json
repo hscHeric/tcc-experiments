@@ -1,0 +1,43 @@
+{
+  "algorithm": "HHO+RVNS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 14.0,
+          "elapsed_ms": 424,
+          "elapsed_seconds": 0.424,
+          "evaluations": 468,
+          "iteration": 1
+        }
+      ],
+      "evaluations": 1680703,
+      "executed_at": "2026-06-04T01:50:11Z",
+      "final_solution_value": 14.0,
+      "iterations": 774,
+      "seed": 643096167,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 1011492,
+      "total_runtime_seconds": 1011.492
+    }
+  ],
+  "best_fitness_global": 14.0,
+  "decoder": "mapping_fix_decoder",
+  "executed_at": "2026-06-04T01:50:11Z",
+  "graph": "flat1000_50_0.col",
+  "input_file": "../../../data/instances/DIMACS/flat1000_50_0.col",
+  "parameters": {
+    "agents": 175,
+    "attempts": 1,
+    "local_search_interval": 55,
+    "local_search_start": 554,
+    "max_iterations": 2270,
+    "max_stagnation": 998,
+    "max_time_seconds": 900,
+    "rvns_iterations": 898,
+    "rvns_k_max": 40,
+    "seed": 643096167,
+    "threads": 8
+  }
+}

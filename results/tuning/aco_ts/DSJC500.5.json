@@ -1,0 +1,47 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 12.0,
+          "elapsed_ms": 174,
+          "elapsed_seconds": 0.174,
+          "evaluations": 804,
+          "iteration": 4
+        }
+      ],
+      "evaluations": 2970365,
+      "executed_at": "2026-05-30T19:42:44Z",
+      "final_solution_value": 12.0,
+      "iterations": 875,
+      "seed": 345124329,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 476442,
+      "total_runtime_seconds": 476.442
+    }
+  ],
+  "best_fitness_global": 12.0,
+  "decoder": "mapping_fix_decoder",
+  "executed_at": "2026-05-30T19:42:44Z",
+  "graph": "DSJC500.5.col",
+  "input_file": "../../../data/instances/DIMACS/DSJC500.5.col",
+  "parameters": {
+    "ants": 151,
+    "archive_size": 200,
+    "attempts": 1,
+    "local_search_interval": 35,
+    "local_search_start": 210,
+    "max_iterations": 3748,
+    "max_stagnation": 871,
+    "max_time_seconds": 900,
+    "q": 0.8167,
+    "seed": 345124329,
+    "threads": 8,
+    "ts_iterations": 825,
+    "ts_neighborhood_size": 172,
+    "ts_tabu_tenure": 60,
+    "xi": 0.4386
+  }
+}
