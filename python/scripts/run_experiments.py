@@ -67,6 +67,7 @@ class Job:
     graph: Path
     output: Path
     params: dict[str, Any]
+    difficulty: float | None
 
 
 @dataclass(frozen=True)
@@ -201,9 +202,38 @@ def build_jobs(config: dict[str, Any]) -> list[Job]:
                     graph=graph.path,
                     output=output_file,
                     params=params,
+                    difficulty=graph.difficulty,
                 )
             )
     return jobs
+
+
+def pair_jobs_by_graph(jobs: list[Job]) -> list[Job]:
+    graph_order: dict[Path, int] = {}
+    graph_difficulty: dict[Path, float | None] = {}
+    jobs_by_graph: dict[Path, list[Job]] = {}
+
+    for index, job in enumerate(jobs):
+        graph = job.graph
+        graph_order.setdefault(graph, index)
+        jobs_by_graph.setdefault(graph, []).append(job)
+
+        current_difficulty = graph_difficulty.get(graph)
+        if current_difficulty is None:
+            graph_difficulty[graph] = job.difficulty
+        elif job.difficulty is not None:
+            graph_difficulty[graph] = max(current_difficulty, job.difficulty)
+
+    ordered_graphs = sorted(
+        jobs_by_graph,
+        key=lambda graph: (
+            graph_difficulty.get(graph) is None,
+            -(graph_difficulty.get(graph) or 0.0),
+            graph_order[graph],
+            graph.as_posix(),
+        ),
+    )
+    return [job for graph in ordered_graphs for job in jobs_by_graph[graph]]
 
 
 def runner_path(build_type: str, algorithm: str) -> Path:
@@ -353,6 +383,8 @@ def main() -> int:
     args = parse_args()
     configs = [load_config(project_path(config_file)) for config_file in args.config]
     jobs = [job for config in configs for job in build_jobs(config)]
+    if len(configs) > 1:
+        jobs = pair_jobs_by_graph(jobs)
 
     try:
         rows = run_jobs(jobs, args.build_type, args.dry_run, args.skip_existing)
