@@ -118,3 +118,69 @@ Os executaveis sao gerados dentro da pasta do tipo de build:
 
 O build `Debug` usa `-O0 -g3` e, quando disponivel, ativa sanitizers de
 address/undefined. O build `Release` usa `-O3 -march=native -DNDEBUG`.
+
+## Experimentos ACO+TS e HHO+RVNS
+
+Os lotes de experimentos podem ser configurados em JSON. Cada algoritmo tem o
+seu proprio arquivo de configuracao:
+
+- `experiments/configs/aco_ts.json`
+- `experiments/configs/hho_rvns.json`
+
+Cada arquivo contem:
+
+- `output_dir`: pasta onde os resultados JSON e o resumo CSV serao salvos.
+- `difficulty_files`: CSVs do PLI usados para ordenar os grafos do mais dificil
+  para o mais facil pela coluna `Tempo (s)`.
+- `graphs.files`: lista explicita de grafos.
+- `graphs.globs`: padroes para selecionar varios grafos, por exemplo
+  `data/instances/DIMACS/*.col`.
+- `algorithms.<algoritmo>.params`: parametros especificos do runner.
+
+Os parametros dos algoritmos ficam separados porque ACO+TS e HHO+RVNS nao usam
+as mesmas opcoes. Por exemplo, ACO+TS usa `archive_size`, `ants`, `q`, `xi`,
+`ts_iterations`, `ts_neighborhood_size` e `ts_tabu_tenure`; HHO+RVNS usa
+`agents`, `rvns_iterations` e `rvns_k_max`.
+
+Por padrao, o script sempre retoma de onde parou: se o JSON de um grafo ja
+existe e esta completo, ele pula esse grafo e mantem o resultado computado. Se
+um JSON estiver incompleto ou corrompido, o grafo e executado novamente. Para
+forcar reexecucao de tudo, use `--no-skip-existing`.
+
+Os arquivos de configuracao nao passam `seed` por padrao. Assim, os runners
+usam a seed aleatoria interna. Para uma execucao reprodutivel, adicione
+`"seed": 123` no bloco `params` do algoritmo desejado.
+
+Para conferir os comandos sem executar:
+
+```bash
+python python/scripts/run_experiments.py experiments/configs/aco_ts.json --dry-run
+python python/scripts/run_experiments.py experiments/configs/hho_rvns.json --dry-run
+```
+
+Para executar usando as tasks do `mise`:
+
+```bash
+mise run experiments
+mise run paired-experiments
+mise run aco-ts-experiments
+mise run hho-rvns-experiments
+```
+
+A task padrao `experiments` executa os dois algoritmos por grafo antes de
+passar para o proximo grafo. `paired-experiments` e um alias explicito para o
+mesmo fluxo. A ordem fica, por exemplo:
+`keller6` com ACO+TS, `keller6` com HHO+RVNS, depois o proximo grafo mais
+dificil. A retomada continua ativa por padrao e pula cada resultado JSON que ja
+estiver completo.
+
+Ou diretamente pelo script:
+
+```bash
+python python/scripts/run_experiments.py experiments/configs/aco_ts.json experiments/configs/hho_rvns.json --summary results/experiments/paired_summary.csv
+python python/scripts/run_experiments.py experiments/configs/aco_ts.json
+python python/scripts/run_experiments.py experiments/configs/hho_rvns.json
+```
+
+Ao final, cada par algoritmo/grafo gera um JSON proprio e um `summary.csv` na
+pasta definida em `output_dir`.
