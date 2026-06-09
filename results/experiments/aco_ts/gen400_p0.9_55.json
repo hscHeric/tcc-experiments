@@ -1,0 +1,155 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T05:35:53Z",
+      "final_solution_value": 5.0,
+      "iterations": 685,
+      "seed": 57997858784300,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 74791,
+      "total_runtime_seconds": 74.791
+    },
+    {
+      "attempt": 2,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T05:37:08Z",
+      "final_solution_value": 5.0,
+      "iterations": 685,
+      "seed": 57997858784301,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 74650,
+      "total_runtime_seconds": 74.65
+    },
+    {
+      "attempt": 3,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T05:38:23Z",
+      "final_solution_value": 5.0,
+      "iterations": 685,
+      "seed": 57997858784302,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 71315,
+      "total_runtime_seconds": 71.315
+    },
+    {
+      "attempt": 4,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T05:39:35Z",
+      "final_solution_value": 5.0,
+      "iterations": 685,
+      "seed": 57997858784303,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 71926,
+      "total_runtime_seconds": 71.926
+    },
+    {
+      "attempt": 5,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T05:40:47Z",
+      "final_solution_value": 5.0,
+      "iterations": 685,
+      "seed": 57997858784304,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 72530,
+      "total_runtime_seconds": 72.53
+    },
+    {
+      "attempt": 6,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T05:41:59Z",
+      "final_solution_value": 5.0,
+      "iterations": 685,
+      "seed": 57997858784305,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 71776,
+      "total_runtime_seconds": 71.776
+    },
+    {
+      "attempt": 7,
+      "convergence": [
+        {
+          "best_fitness": 5.0,
+          "elapsed_ms": 25,
+          "elapsed_seconds": 0.025,
+          "evaluations": 229,
+          "iteration": 1
+        }
+      ],
+      "evaluations": 429197,
+      "executed_at": "2026-06-09T05:43:11Z",
+      "final_solution_value": 5.0,
+      "iterations": 686,
+      "seed": 57997858784306,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 71868,
+      "total_runtime_seconds": 71.868
+    },
+    {
+      "attempt": 8,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T05:44:23Z",
+      "final_solution_value": 5.0,
+      "iterations": 685,
+      "seed": 57997858784307,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 70280,
+      "total_runtime_seconds": 70.28
+    },
+    {
+      "attempt": 9,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T05:45:33Z",
+      "final_solution_value": 5.0,
+      "iterations": 685,
+      "seed": 57997858784308,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 71756,
+      "total_runtime_seconds": 71.756
+    },
+    {
+      "attempt": 10,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T05:46:45Z",
+      "final_solution_value": 5.0,
+      "iterations": 685,
+      "seed": 57997858784309,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 71997,
+      "total_runtime_seconds": 71.997
+    }
+  ],
+  "best_fitness_global": 5.0,
+  "decoder": "mapping_fix_decoder",
+  "executed_at": "2026-06-09T05:35:53Z",
+  "graph": "gen400_p0.9_55.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/DIMACS/gen400_p0.9_55.col",
+  "parameters": {
+    "ants": 118,
+    "archive_size": 111,
+    "attempts": 10,
+    "local_search_interval": 26,
+    "local_search_start": 455,
+    "max_iterations": 3129,
+    "max_stagnation": 685,
+    "max_time_seconds": 900,
+    "q": 0.7251,
+    "seed": 57997858784300,
+    "threads": 8,
+    "ts_iterations": 967,
+    "ts_neighborhood_size": 40,
+    "ts_tabu_tenure": 26,
+    "xi": 0.7002
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T06:14:05Z",
+      "final_solution_value": 7.0,
+      "iterations": 685,
+      "seed": 60289881427148,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 11009,
+      "total_runtime_seconds": 11.009
+    },
+    {
+      "attempt": 2,
+      "convergence": [
+        {
+          "best_fitness": 7.0,
+          "elapsed_ms": 4,
+          "elapsed_seconds": 0.004,
+          "evaluations": 229,
+          "iteration": 1
+        }
+      ],
+      "evaluations": 429197,
+      "executed_at": "2026-06-09T06:14:16Z",
+      "final_solution_value": 7.0,
+      "iterations": 686,
+      "seed": 60289881427149,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 10433,
+      "total_runtime_seconds": 10.433
+    },
+    {
+      "attempt": 3,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T06:14:27Z",
+      "final_solution_value": 7.0,
+      "iterations": 685,
+      "seed": 60289881427150,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 10458,
+      "total_runtime_seconds": 10.458
+    },
+    {
+      "attempt": 4,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T06:14:37Z",
+      "final_solution_value": 7.0,
+      "iterations": 685,
+      "seed": 60289881427151,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 10536,
+      "total_runtime_seconds": 10.536
+    },
+    {
+      "attempt": 5,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T06:14:48Z",
+      "final_solution_value": 7.0,
+      "iterations": 685,
+      "seed": 60289881427152,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 10438,
+      "total_runtime_seconds": 10.438
+    },
+    {
+      "attempt": 6,
+      "convergence": [
+        {
+          "best_fitness": 7.0,
+          "elapsed_ms": 4,
+          "elapsed_seconds": 0.004,
+          "evaluations": 229,
+          "iteration": 1
+        }
+      ],
+      "evaluations": 429197,
+      "executed_at": "2026-06-09T06:14:58Z",
+      "final_solution_value": 7.0,
+      "iterations": 686,
+      "seed": 60289881427153,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 10709,
+      "total_runtime_seconds": 10.709
+    },
+    {
+      "attempt": 7,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T06:15:09Z",
+      "final_solution_value": 7.0,
+      "iterations": 685,
+      "seed": 60289881427154,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 10408,
+      "total_runtime_seconds": 10.408
+    },
+    {
+      "attempt": 8,
+      "convergence": [
+        {
+          "best_fitness": 7.0,
+          "elapsed_ms": 4,
+          "elapsed_seconds": 0.004,
+          "evaluations": 229,
+          "iteration": 1
+        }
+      ],
+      "evaluations": 429197,
+      "executed_at": "2026-06-09T06:15:20Z",
+      "final_solution_value": 7.0,
+      "iterations": 686,
+      "seed": 60289881427155,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 10611,
+      "total_runtime_seconds": 10.611
+    },
+    {
+      "attempt": 9,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T06:15:30Z",
+      "final_solution_value": 7.0,
+      "iterations": 685,
+      "seed": 60289881427156,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 10330,
+      "total_runtime_seconds": 10.33
+    },
+    {
+      "attempt": 10,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T06:15:41Z",
+      "final_solution_value": 7.0,
+      "iterations": 685,
+      "seed": 60289881427157,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 10247,
+      "total_runtime_seconds": 10.247
+    }
+  ],
+  "best_fitness_global": 7.0,
+  "decoder": "mapping_fix_decoder",
+  "executed_at": "2026-06-09T06:14:05Z",
+  "graph": "sanr200_0.7.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/DIMACS/sanr200_0.7.col",
+  "parameters": {
+    "ants": 118,
+    "archive_size": 111,
+    "attempts": 10,
+    "local_search_interval": 26,
+    "local_search_start": 455,
+    "max_iterations": 3129,
+    "max_stagnation": 685,
+    "max_time_seconds": 900,
+    "q": 0.7251,
+    "seed": 60289881427148,
+    "threads": 8,
+    "ts_iterations": 967,
+    "ts_neighborhood_size": 40,
+    "ts_tabu_tenure": 26,
+    "xi": 0.7002
+  }
+}

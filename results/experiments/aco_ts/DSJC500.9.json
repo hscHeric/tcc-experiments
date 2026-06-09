@@ -1,0 +1,155 @@
+{
+  "algorithm": "ACO+TS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T05:12:57Z",
+      "final_solution_value": 5.0,
+      "iterations": 685,
+      "seed": 56621723573954,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 113358,
+      "total_runtime_seconds": 113.358
+    },
+    {
+      "attempt": 2,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T05:14:51Z",
+      "final_solution_value": 5.0,
+      "iterations": 685,
+      "seed": 56621723573955,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 109628,
+      "total_runtime_seconds": 109.628
+    },
+    {
+      "attempt": 3,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T05:16:41Z",
+      "final_solution_value": 5.0,
+      "iterations": 685,
+      "seed": 56621723573956,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 111096,
+      "total_runtime_seconds": 111.096
+    },
+    {
+      "attempt": 4,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T05:18:32Z",
+      "final_solution_value": 5.0,
+      "iterations": 685,
+      "seed": 56621723573957,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 111518,
+      "total_runtime_seconds": 111.518
+    },
+    {
+      "attempt": 5,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T05:20:24Z",
+      "final_solution_value": 5.0,
+      "iterations": 685,
+      "seed": 56621723573958,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 112282,
+      "total_runtime_seconds": 112.282
+    },
+    {
+      "attempt": 6,
+      "convergence": [
+        {
+          "best_fitness": 5.0,
+          "elapsed_ms": 109,
+          "elapsed_seconds": 0.109,
+          "evaluations": 465,
+          "iteration": 3
+        }
+      ],
+      "evaluations": 429433,
+      "executed_at": "2026-06-09T05:22:16Z",
+      "final_solution_value": 5.0,
+      "iterations": 688,
+      "seed": 56621723573959,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 114158,
+      "total_runtime_seconds": 114.158
+    },
+    {
+      "attempt": 7,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T05:24:10Z",
+      "final_solution_value": 5.0,
+      "iterations": 685,
+      "seed": 56621723573960,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 109964,
+      "total_runtime_seconds": 109.964
+    },
+    {
+      "attempt": 8,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T05:26:01Z",
+      "final_solution_value": 5.0,
+      "iterations": 685,
+      "seed": 56621723573961,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 112668,
+      "total_runtime_seconds": 112.668
+    },
+    {
+      "attempt": 9,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T05:27:53Z",
+      "final_solution_value": 5.0,
+      "iterations": 685,
+      "seed": 56621723573962,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 112478,
+      "total_runtime_seconds": 112.478
+    },
+    {
+      "attempt": 10,
+      "convergence": [],
+      "evaluations": 429079,
+      "executed_at": "2026-06-09T05:29:46Z",
+      "final_solution_value": 5.0,
+      "iterations": 685,
+      "seed": 56621723573963,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 112127,
+      "total_runtime_seconds": 112.127
+    }
+  ],
+  "best_fitness_global": 5.0,
+  "decoder": "mapping_fix_decoder",
+  "executed_at": "2026-06-09T05:12:57Z",
+  "graph": "DSJC500.9.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/DIMACS/DSJC500.9.col",
+  "parameters": {
+    "ants": 118,
+    "archive_size": 111,
+    "attempts": 10,
+    "local_search_interval": 26,
+    "local_search_start": 455,
+    "max_iterations": 3129,
+    "max_stagnation": 685,
+    "max_time_seconds": 900,
+    "q": 0.7251,
+    "seed": 56621723573954,
+    "threads": 8,
+    "ts_iterations": 967,
+    "ts_neighborhood_size": 40,
+    "ts_tabu_tenure": 26,
+    "xi": 0.7002
+  }
+}
