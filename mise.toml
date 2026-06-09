@@ -110,13 +110,9 @@ description = "Executa os experimentos do HHO+RVNS, retomando resultados ja comp
 run = "python python/scripts/run_experiments.py experiments/configs/hho_rvns.json"
 
 [tasks.experiments]
-description = "Executa ACO+TS e HHO+RVNS em pares por grafo, do mais dificil ao mais facil"
-run = "python python/scripts/run_experiments.py experiments/configs/aco_ts.json experiments/configs/hho_rvns.json --summary results/experiments/paired_summary.csv"
-
-[tasks."paired-experiments"]
-description = "Executa ACO+TS e HHO+RVNS em pares por grafo, do mais dificil ao mais facil"
-run = "python python/scripts/run_experiments.py experiments/configs/aco_ts.json experiments/configs/hho_rvns.json --summary results/experiments/paired_summary.csv"
+description = "Executa todos os ACO+TS e depois todos os HHO+RVNS, retomando resultados ja computados"
+run = "python python/scripts/run_experiments.py experiments/configs/aco_ts.json experiments/configs/hho_rvns.json --summary results/experiments/summary.csv"
 
 [tasks.default]
-description = "Executa a task padrao de experimentos pareados"
+description = "Executa a task padrao de experimentos"
 depends = ["experiments"]

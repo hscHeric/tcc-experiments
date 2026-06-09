@@ -162,22 +162,19 @@ Para executar usando as tasks do `mise`:
 
 ```bash
 mise run experiments
-mise run paired-experiments
 mise run aco-ts-experiments
 mise run hho-rvns-experiments
 ```
 
-A task padrao `experiments` executa os dois algoritmos por grafo antes de
-passar para o proximo grafo. `paired-experiments` e um alias explicito para o
-mesmo fluxo. A ordem fica, por exemplo:
-`keller6` com ACO+TS, `keller6` com HHO+RVNS, depois o proximo grafo mais
-dificil. A retomada continua ativa por padrao e pula cada resultado JSON que ja
-estiver completo.
+A task padrao `experiments` executa primeiro todos os grafos do ACO+TS, do mais
+dificil para o mais facil, e depois todos os grafos do HHO+RVNS na mesma ordem.
+A retomada continua ativa por padrao e pula cada resultado JSON que ja estiver
+completo.
 
 Ou diretamente pelo script:
 
 ```bash
-python python/scripts/run_experiments.py experiments/configs/aco_ts.json experiments/configs/hho_rvns.json --summary results/experiments/paired_summary.csv
+python python/scripts/run_experiments.py experiments/configs/aco_ts.json experiments/configs/hho_rvns.json --summary results/experiments/summary.csv
 python python/scripts/run_experiments.py experiments/configs/aco_ts.json
 python python/scripts/run_experiments.py experiments/configs/hho_rvns.json
 ```
