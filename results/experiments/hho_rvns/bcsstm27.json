@@ -1,0 +1,143 @@
+{
+  "algorithm": "HHO+RVNS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [],
+      "evaluations": 9910279,
+      "executed_at": "2026-06-14T03:27:46Z",
+      "final_solution_value": 78.0,
+      "iterations": 939,
+      "seed": 171975433524089,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 573917,
+      "total_runtime_seconds": 573.917
+    },
+    {
+      "attempt": 2,
+      "convergence": [],
+      "evaluations": 9910573,
+      "executed_at": "2026-06-14T03:37:20Z",
+      "final_solution_value": 78.0,
+      "iterations": 939,
+      "seed": 171975433524090,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 572063,
+      "total_runtime_seconds": 572.063
+    },
+    {
+      "attempt": 3,
+      "convergence": [],
+      "evaluations": 9907818,
+      "executed_at": "2026-06-14T03:46:52Z",
+      "final_solution_value": 78.0,
+      "iterations": 939,
+      "seed": 171975433524091,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 568205,
+      "total_runtime_seconds": 568.205
+    },
+    {
+      "attempt": 4,
+      "convergence": [],
+      "evaluations": 9909831,
+      "executed_at": "2026-06-14T03:56:20Z",
+      "final_solution_value": 78.0,
+      "iterations": 939,
+      "seed": 171975433524092,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 576675,
+      "total_runtime_seconds": 576.675
+    },
+    {
+      "attempt": 5,
+      "convergence": [],
+      "evaluations": 9906467,
+      "executed_at": "2026-06-14T04:05:57Z",
+      "final_solution_value": 78.0,
+      "iterations": 939,
+      "seed": 171975433524093,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 568139,
+      "total_runtime_seconds": 568.139
+    },
+    {
+      "attempt": 6,
+      "convergence": [],
+      "evaluations": 9909345,
+      "executed_at": "2026-06-14T04:15:25Z",
+      "final_solution_value": 78.0,
+      "iterations": 939,
+      "seed": 171975433524094,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 566985,
+      "total_runtime_seconds": 566.985
+    },
+    {
+      "attempt": 7,
+      "convergence": [],
+      "evaluations": 9908174,
+      "executed_at": "2026-06-14T04:24:52Z",
+      "final_solution_value": 78.0,
+      "iterations": 939,
+      "seed": 171975433524095,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 572574,
+      "total_runtime_seconds": 572.574
+    },
+    {
+      "attempt": 8,
+      "convergence": [],
+      "evaluations": 9905799,
+      "executed_at": "2026-06-14T04:34:24Z",
+      "final_solution_value": 78.0,
+      "iterations": 939,
+      "seed": 171975433524096,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 578211,
+      "total_runtime_seconds": 578.211
+    },
+    {
+      "attempt": 9,
+      "convergence": [],
+      "evaluations": 9906194,
+      "executed_at": "2026-06-14T04:44:03Z",
+      "final_solution_value": 78.0,
+      "iterations": 939,
+      "seed": 171975433524097,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 565856,
+      "total_runtime_seconds": 565.856
+    },
+    {
+      "attempt": 10,
+      "convergence": [],
+      "evaluations": 9908226,
+      "executed_at": "2026-06-14T04:53:28Z",
+      "final_solution_value": 78.0,
+      "iterations": 939,
+      "seed": 171975433524098,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 574946,
+      "total_runtime_seconds": 574.946
+    }
+  ],
+  "best_fitness_global": 78.0,
+  "decoder": "mapping_fix_decoder",
+  "executed_at": "2026-06-14T03:27:46Z",
+  "graph": "bcsstm27.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/HB/bcsstm27.col",
+  "parameters": {
+    "agents": 145,
+    "attempts": 10,
+    "local_search_interval": 9,
+    "local_search_start": 712,
+    "max_iterations": 2671,
+    "max_stagnation": 939,
+    "max_time_seconds": 900,
+    "rvns_iterations": 968,
+    "rvns_k_max": 48,
+    "seed": 171975433524089,
+    "threads": 8
+  }
+}

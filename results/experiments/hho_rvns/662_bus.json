@@ -1,0 +1,1637 @@
+{
+  "algorithm": "HHO+RVNS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 631.0,
+          "elapsed_ms": 6,
+          "elapsed_seconds": 0.006,
+          "evaluations": 380,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 629.0,
+          "elapsed_ms": 11,
+          "elapsed_seconds": 0.011,
+          "evaluations": 601,
+          "iteration": 2
+        },
+        {
+          "best_fitness": 627.0,
+          "elapsed_ms": 38,
+          "elapsed_seconds": 0.038,
+          "evaluations": 1763,
+          "iteration": 7
+        },
+        {
+          "best_fitness": 626.0,
+          "elapsed_ms": 43,
+          "elapsed_seconds": 0.043,
+          "evaluations": 1996,
+          "iteration": 8
+        },
+        {
+          "best_fitness": 625.0,
+          "elapsed_ms": 48,
+          "elapsed_seconds": 0.048,
+          "evaluations": 2224,
+          "iteration": 9
+        },
+        {
+          "best_fitness": 624.0,
+          "elapsed_ms": 291,
+          "elapsed_seconds": 0.291,
+          "evaluations": 13178,
+          "iteration": 56
+        },
+        {
+          "best_fitness": 622.0,
+          "elapsed_ms": 296,
+          "elapsed_seconds": 0.296,
+          "evaluations": 13403,
+          "iteration": 57
+        },
+        {
+          "best_fitness": 621.0,
+          "elapsed_ms": 535,
+          "elapsed_seconds": 0.535,
+          "evaluations": 22727,
+          "iteration": 97
+        },
+        {
+          "best_fitness": 543.0,
+          "elapsed_ms": 7422,
+          "elapsed_seconds": 7.422,
+          "evaluations": 549986,
+          "iteration": 712
+        },
+        {
+          "best_fitness": 540.0,
+          "elapsed_ms": 10394,
+          "elapsed_seconds": 10.394,
+          "evaluations": 924210,
+          "iteration": 721
+        },
+        {
+          "best_fitness": 535.0,
+          "elapsed_ms": 13130,
+          "elapsed_seconds": 13.13,
+          "evaluations": 1299015,
+          "iteration": 730
+        },
+        {
+          "best_fitness": 532.0,
+          "elapsed_ms": 21387,
+          "elapsed_seconds": 21.387,
+          "evaluations": 2421940,
+          "iteration": 757
+        },
+        {
+          "best_fitness": 531.0,
+          "elapsed_ms": 29876,
+          "elapsed_seconds": 29.876,
+          "evaluations": 3544401,
+          "iteration": 784
+        },
+        {
+          "best_fitness": 530.0,
+          "elapsed_ms": 155160,
+          "elapsed_seconds": 155.16,
+          "evaluations": 20388630,
+          "iteration": 1189
+        },
+        {
+          "best_fitness": 529.0,
+          "elapsed_ms": 306636,
+          "elapsed_seconds": 306.636,
+          "evaluations": 40623268,
+          "iteration": 1675
+        }
+      ],
+      "evaluations": 79617035,
+      "executed_at": "2026-06-13T06:23:01Z",
+      "final_solution_value": 529.0,
+      "iterations": 2614,
+      "seed": 96090917557999,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 598236,
+      "total_runtime_seconds": 598.236
+    },
+    {
+      "attempt": 2,
+      "convergence": [
+        {
+          "best_fitness": 646.0,
+          "elapsed_ms": 7,
+          "elapsed_seconds": 0.007,
+          "evaluations": 400,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 642.0,
+          "elapsed_ms": 11,
+          "elapsed_seconds": 0.011,
+          "evaluations": 620,
+          "iteration": 2
+        },
+        {
+          "best_fitness": 639.0,
+          "elapsed_ms": 17,
+          "elapsed_seconds": 0.017,
+          "evaluations": 856,
+          "iteration": 3
+        },
+        {
+          "best_fitness": 638.0,
+          "elapsed_ms": 578,
+          "elapsed_seconds": 0.578,
+          "evaluations": 26588,
+          "iteration": 114
+        },
+        {
+          "best_fitness": 637.0,
+          "elapsed_ms": 791,
+          "elapsed_seconds": 0.791,
+          "evaluations": 36291,
+          "iteration": 155
+        },
+        {
+          "best_fitness": 636.0,
+          "elapsed_ms": 1483,
+          "elapsed_seconds": 1.483,
+          "evaluations": 65453,
+          "iteration": 277
+        },
+        {
+          "best_fitness": 635.0,
+          "elapsed_ms": 1647,
+          "elapsed_seconds": 1.647,
+          "evaluations": 72361,
+          "iteration": 305
+        },
+        {
+          "best_fitness": 634.0,
+          "elapsed_ms": 1914,
+          "elapsed_seconds": 1.914,
+          "evaluations": 83446,
+          "iteration": 350
+        },
+        {
+          "best_fitness": 633.0,
+          "elapsed_ms": 1919,
+          "elapsed_seconds": 1.919,
+          "evaluations": 83681,
+          "iteration": 351
+        },
+        {
+          "best_fitness": 632.0,
+          "elapsed_ms": 2094,
+          "elapsed_seconds": 2.094,
+          "evaluations": 90830,
+          "iteration": 380
+        },
+        {
+          "best_fitness": 631.0,
+          "elapsed_ms": 2131,
+          "elapsed_seconds": 2.131,
+          "evaluations": 92312,
+          "iteration": 386
+        },
+        {
+          "best_fitness": 630.0,
+          "elapsed_ms": 2215,
+          "elapsed_seconds": 2.215,
+          "evaluations": 95779,
+          "iteration": 400
+        },
+        {
+          "best_fitness": 629.0,
+          "elapsed_ms": 2274,
+          "elapsed_seconds": 2.274,
+          "evaluations": 98231,
+          "iteration": 410
+        },
+        {
+          "best_fitness": 628.0,
+          "elapsed_ms": 2379,
+          "elapsed_seconds": 2.379,
+          "evaluations": 102541,
+          "iteration": 427
+        },
+        {
+          "best_fitness": 627.0,
+          "elapsed_ms": 3475,
+          "elapsed_seconds": 3.475,
+          "evaluations": 147121,
+          "iteration": 604
+        },
+        {
+          "best_fitness": 550.0,
+          "elapsed_ms": 7442,
+          "elapsed_seconds": 7.442,
+          "evaluations": 549425,
+          "iteration": 712
+        },
+        {
+          "best_fitness": 545.0,
+          "elapsed_ms": 10094,
+          "elapsed_seconds": 10.094,
+          "evaluations": 924148,
+          "iteration": 721
+        },
+        {
+          "best_fitness": 544.0,
+          "elapsed_ms": 18399,
+          "elapsed_seconds": 18.399,
+          "evaluations": 2046455,
+          "iteration": 748
+        },
+        {
+          "best_fitness": 543.0,
+          "elapsed_ms": 23689,
+          "elapsed_seconds": 23.689,
+          "evaluations": 2794733,
+          "iteration": 766
+        },
+        {
+          "best_fitness": 542.0,
+          "elapsed_ms": 26350,
+          "elapsed_seconds": 26.35,
+          "evaluations": 3168851,
+          "iteration": 775
+        },
+        {
+          "best_fitness": 541.0,
+          "elapsed_ms": 34514,
+          "elapsed_seconds": 34.514,
+          "evaluations": 4291423,
+          "iteration": 802
+        },
+        {
+          "best_fitness": 540.0,
+          "elapsed_ms": 37316,
+          "elapsed_seconds": 37.316,
+          "evaluations": 4665683,
+          "iteration": 811
+        },
+        {
+          "best_fitness": 539.0,
+          "elapsed_ms": 39942,
+          "elapsed_seconds": 39.942,
+          "evaluations": 5039932,
+          "iteration": 820
+        },
+        {
+          "best_fitness": 538.0,
+          "elapsed_ms": 42638,
+          "elapsed_seconds": 42.638,
+          "evaluations": 5414202,
+          "iteration": 829
+        }
+      ],
+      "evaluations": 44372280,
+      "executed_at": "2026-06-13T06:32:59Z",
+      "final_solution_value": 538.0,
+      "iterations": 1768,
+      "seed": 96090917558000,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 328583,
+      "total_runtime_seconds": 328.583
+    },
+    {
+      "attempt": 3,
+      "convergence": [
+        {
+          "best_fitness": 640.0,
+          "elapsed_ms": 4,
+          "elapsed_seconds": 0.004,
+          "evaluations": 352,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 632.0,
+          "elapsed_ms": 9,
+          "elapsed_seconds": 0.009,
+          "evaluations": 564,
+          "iteration": 2
+        },
+        {
+          "best_fitness": 631.0,
+          "elapsed_ms": 22,
+          "elapsed_seconds": 0.022,
+          "evaluations": 1237,
+          "iteration": 5
+        },
+        {
+          "best_fitness": 629.0,
+          "elapsed_ms": 80,
+          "elapsed_seconds": 0.08,
+          "evaluations": 4016,
+          "iteration": 17
+        },
+        {
+          "best_fitness": 628.0,
+          "elapsed_ms": 84,
+          "elapsed_seconds": 0.084,
+          "evaluations": 4248,
+          "iteration": 18
+        },
+        {
+          "best_fitness": 627.0,
+          "elapsed_ms": 2026,
+          "elapsed_seconds": 2.026,
+          "evaluations": 89029,
+          "iteration": 375
+        },
+        {
+          "best_fitness": 626.0,
+          "elapsed_ms": 2037,
+          "elapsed_seconds": 2.037,
+          "evaluations": 89530,
+          "iteration": 377
+        },
+        {
+          "best_fitness": 625.0,
+          "elapsed_ms": 2043,
+          "elapsed_seconds": 2.043,
+          "evaluations": 89777,
+          "iteration": 378
+        },
+        {
+          "best_fitness": 623.0,
+          "elapsed_ms": 2049,
+          "elapsed_seconds": 2.049,
+          "evaluations": 90046,
+          "iteration": 379
+        },
+        {
+          "best_fitness": 621.0,
+          "elapsed_ms": 3106,
+          "elapsed_seconds": 3.106,
+          "evaluations": 135660,
+          "iteration": 560
+        },
+        {
+          "best_fitness": 539.0,
+          "elapsed_ms": 6831,
+          "elapsed_seconds": 6.831,
+          "evaluations": 549871,
+          "iteration": 712
+        },
+        {
+          "best_fitness": 538.0,
+          "elapsed_ms": 9515,
+          "elapsed_seconds": 9.515,
+          "evaluations": 924024,
+          "iteration": 721
+        },
+        {
+          "best_fitness": 537.0,
+          "elapsed_ms": 32939,
+          "elapsed_seconds": 32.939,
+          "evaluations": 3917403,
+          "iteration": 793
+        },
+        {
+          "best_fitness": 534.0,
+          "elapsed_ms": 38310,
+          "elapsed_seconds": 38.31,
+          "evaluations": 4665997,
+          "iteration": 811
+        },
+        {
+          "best_fitness": 533.0,
+          "elapsed_ms": 43694,
+          "elapsed_seconds": 43.694,
+          "evaluations": 5414340,
+          "iteration": 829
+        },
+        {
+          "best_fitness": 532.0,
+          "elapsed_ms": 106347,
+          "elapsed_seconds": 106.347,
+          "evaluations": 14022808,
+          "iteration": 1036
+        },
+        {
+          "best_fitness": 531.0,
+          "elapsed_ms": 287582,
+          "elapsed_seconds": 287.582,
+          "evaluations": 38749410,
+          "iteration": 1630
+        }
+      ],
+      "evaluations": 77742611,
+      "executed_at": "2026-06-13T06:38:28Z",
+      "final_solution_value": 531.0,
+      "iterations": 2569,
+      "seed": 96090917558001,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 575204,
+      "total_runtime_seconds": 575.204
+    },
+    {
+      "attempt": 4,
+      "convergence": [
+        {
+          "best_fitness": 647.0,
+          "elapsed_ms": 5,
+          "elapsed_seconds": 0.005,
+          "evaluations": 359,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 645.0,
+          "elapsed_ms": 10,
+          "elapsed_seconds": 0.01,
+          "evaluations": 583,
+          "iteration": 2
+        },
+        {
+          "best_fitness": 644.0,
+          "elapsed_ms": 85,
+          "elapsed_seconds": 0.085,
+          "evaluations": 3778,
+          "iteration": 16
+        },
+        {
+          "best_fitness": 643.0,
+          "elapsed_ms": 332,
+          "elapsed_seconds": 0.332,
+          "evaluations": 14547,
+          "iteration": 63
+        },
+        {
+          "best_fitness": 641.0,
+          "elapsed_ms": 375,
+          "elapsed_seconds": 0.375,
+          "evaluations": 16449,
+          "iteration": 71
+        },
+        {
+          "best_fitness": 640.0,
+          "elapsed_ms": 397,
+          "elapsed_seconds": 0.397,
+          "evaluations": 17386,
+          "iteration": 75
+        },
+        {
+          "best_fitness": 639.0,
+          "elapsed_ms": 435,
+          "elapsed_seconds": 0.435,
+          "evaluations": 19034,
+          "iteration": 82
+        },
+        {
+          "best_fitness": 636.0,
+          "elapsed_ms": 1183,
+          "elapsed_seconds": 1.183,
+          "evaluations": 50079,
+          "iteration": 214
+        },
+        {
+          "best_fitness": 635.0,
+          "elapsed_ms": 1520,
+          "elapsed_seconds": 1.52,
+          "evaluations": 63606,
+          "iteration": 270
+        },
+        {
+          "best_fitness": 634.0,
+          "elapsed_ms": 1532,
+          "elapsed_seconds": 1.532,
+          "evaluations": 64100,
+          "iteration": 272
+        },
+        {
+          "best_fitness": 633.0,
+          "elapsed_ms": 1752,
+          "elapsed_seconds": 1.752,
+          "evaluations": 73506,
+          "iteration": 311
+        },
+        {
+          "best_fitness": 545.0,
+          "elapsed_ms": 7085,
+          "elapsed_seconds": 7.085,
+          "evaluations": 551213,
+          "iteration": 712
+        },
+        {
+          "best_fitness": 544.0,
+          "elapsed_ms": 12520,
+          "elapsed_seconds": 12.52,
+          "evaluations": 1299597,
+          "iteration": 730
+        },
+        {
+          "best_fitness": 541.0,
+          "elapsed_ms": 15205,
+          "elapsed_seconds": 15.205,
+          "evaluations": 1673934,
+          "iteration": 739
+        },
+        {
+          "best_fitness": 537.0,
+          "elapsed_ms": 17870,
+          "elapsed_seconds": 17.87,
+          "evaluations": 2048591,
+          "iteration": 748
+        },
+        {
+          "best_fitness": 536.0,
+          "elapsed_ms": 25782,
+          "elapsed_seconds": 25.782,
+          "evaluations": 3171297,
+          "iteration": 775
+        }
+      ],
+      "evaluations": 42123776,
+      "executed_at": "2026-06-13T06:48:03Z",
+      "final_solution_value": 536.0,
+      "iterations": 1714,
+      "seed": 96090917558002,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 305813,
+      "total_runtime_seconds": 305.813
+    },
+    {
+      "attempt": 5,
+      "convergence": [
+        {
+          "best_fitness": 640.0,
+          "elapsed_ms": 5,
+          "elapsed_seconds": 0.005,
+          "evaluations": 370,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 638.0,
+          "elapsed_ms": 10,
+          "elapsed_seconds": 0.01,
+          "evaluations": 589,
+          "iteration": 2
+        },
+        {
+          "best_fitness": 637.0,
+          "elapsed_ms": 19,
+          "elapsed_seconds": 0.019,
+          "evaluations": 1015,
+          "iteration": 4
+        },
+        {
+          "best_fitness": 636.0,
+          "elapsed_ms": 32,
+          "elapsed_seconds": 0.032,
+          "evaluations": 1522,
+          "iteration": 6
+        },
+        {
+          "best_fitness": 634.0,
+          "elapsed_ms": 37,
+          "elapsed_seconds": 0.037,
+          "evaluations": 1753,
+          "iteration": 7
+        },
+        {
+          "best_fitness": 632.0,
+          "elapsed_ms": 41,
+          "elapsed_seconds": 0.041,
+          "evaluations": 1957,
+          "iteration": 8
+        },
+        {
+          "best_fitness": 631.0,
+          "elapsed_ms": 46,
+          "elapsed_seconds": 0.046,
+          "evaluations": 2187,
+          "iteration": 9
+        },
+        {
+          "best_fitness": 628.0,
+          "elapsed_ms": 3095,
+          "elapsed_seconds": 3.095,
+          "evaluations": 121237,
+          "iteration": 502
+        },
+        {
+          "best_fitness": 627.0,
+          "elapsed_ms": 3865,
+          "elapsed_seconds": 3.865,
+          "evaluations": 151699,
+          "iteration": 621
+        },
+        {
+          "best_fitness": 539.0,
+          "elapsed_ms": 7278,
+          "elapsed_seconds": 7.278,
+          "evaluations": 551568,
+          "iteration": 712
+        },
+        {
+          "best_fitness": 533.0,
+          "elapsed_ms": 9964,
+          "elapsed_seconds": 9.964,
+          "evaluations": 926130,
+          "iteration": 721
+        },
+        {
+          "best_fitness": 532.0,
+          "elapsed_ms": 104172,
+          "elapsed_seconds": 104.172,
+          "evaluations": 13649329,
+          "iteration": 1027
+        }
+      ],
+      "evaluations": 52620311,
+      "executed_at": "2026-06-13T06:53:09Z",
+      "final_solution_value": 532.0,
+      "iterations": 1966,
+      "seed": 96090917558003,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 392040,
+      "total_runtime_seconds": 392.04
+    },
+    {
+      "attempt": 6,
+      "convergence": [
+        {
+          "best_fitness": 643.0,
+          "elapsed_ms": 6,
+          "elapsed_seconds": 0.006,
+          "evaluations": 368,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 637.0,
+          "elapsed_ms": 10,
+          "elapsed_seconds": 0.01,
+          "evaluations": 583,
+          "iteration": 2
+        },
+        {
+          "best_fitness": 632.0,
+          "elapsed_ms": 15,
+          "elapsed_seconds": 0.015,
+          "evaluations": 811,
+          "iteration": 3
+        },
+        {
+          "best_fitness": 631.0,
+          "elapsed_ms": 20,
+          "elapsed_seconds": 0.02,
+          "evaluations": 1030,
+          "iteration": 4
+        },
+        {
+          "best_fitness": 630.0,
+          "elapsed_ms": 217,
+          "elapsed_seconds": 0.217,
+          "evaluations": 9762,
+          "iteration": 42
+        },
+        {
+          "best_fitness": 629.0,
+          "elapsed_ms": 222,
+          "elapsed_seconds": 0.222,
+          "evaluations": 9989,
+          "iteration": 43
+        },
+        {
+          "best_fitness": 628.0,
+          "elapsed_ms": 290,
+          "elapsed_seconds": 0.29,
+          "evaluations": 13137,
+          "iteration": 57
+        },
+        {
+          "best_fitness": 626.0,
+          "elapsed_ms": 463,
+          "elapsed_seconds": 0.463,
+          "evaluations": 20473,
+          "iteration": 88
+        },
+        {
+          "best_fitness": 625.0,
+          "elapsed_ms": 468,
+          "elapsed_seconds": 0.468,
+          "evaluations": 20690,
+          "iteration": 89
+        },
+        {
+          "best_fitness": 624.0,
+          "elapsed_ms": 831,
+          "elapsed_seconds": 0.831,
+          "evaluations": 36371,
+          "iteration": 155
+        },
+        {
+          "best_fitness": 623.0,
+          "elapsed_ms": 846,
+          "elapsed_seconds": 0.846,
+          "evaluations": 37058,
+          "iteration": 158
+        },
+        {
+          "best_fitness": 622.0,
+          "elapsed_ms": 877,
+          "elapsed_seconds": 0.877,
+          "evaluations": 38450,
+          "iteration": 164
+        },
+        {
+          "best_fitness": 621.0,
+          "elapsed_ms": 884,
+          "elapsed_seconds": 0.884,
+          "evaluations": 38705,
+          "iteration": 165
+        },
+        {
+          "best_fitness": 620.0,
+          "elapsed_ms": 947,
+          "elapsed_seconds": 0.947,
+          "evaluations": 41271,
+          "iteration": 176
+        },
+        {
+          "best_fitness": 619.0,
+          "elapsed_ms": 1706,
+          "elapsed_seconds": 1.706,
+          "evaluations": 73291,
+          "iteration": 309
+        },
+        {
+          "best_fitness": 617.0,
+          "elapsed_ms": 1713,
+          "elapsed_seconds": 1.713,
+          "evaluations": 73541,
+          "iteration": 310
+        },
+        {
+          "best_fitness": 616.0,
+          "elapsed_ms": 2354,
+          "elapsed_seconds": 2.354,
+          "evaluations": 99260,
+          "iteration": 415
+        },
+        {
+          "best_fitness": 615.0,
+          "elapsed_ms": 2359,
+          "elapsed_seconds": 2.359,
+          "evaluations": 99500,
+          "iteration": 416
+        },
+        {
+          "best_fitness": 614.0,
+          "elapsed_ms": 2676,
+          "elapsed_seconds": 2.676,
+          "evaluations": 113014,
+          "iteration": 470
+        },
+        {
+          "best_fitness": 613.0,
+          "elapsed_ms": 2681,
+          "elapsed_seconds": 2.681,
+          "evaluations": 113253,
+          "iteration": 471
+        },
+        {
+          "best_fitness": 612.0,
+          "elapsed_ms": 3096,
+          "elapsed_seconds": 3.096,
+          "evaluations": 130562,
+          "iteration": 540
+        },
+        {
+          "best_fitness": 542.0,
+          "elapsed_ms": 7110,
+          "elapsed_seconds": 7.11,
+          "evaluations": 549463,
+          "iteration": 712
+        },
+        {
+          "best_fitness": 541.0,
+          "elapsed_ms": 9888,
+          "elapsed_seconds": 9.888,
+          "evaluations": 923670,
+          "iteration": 721
+        },
+        {
+          "best_fitness": 540.0,
+          "elapsed_ms": 12583,
+          "elapsed_seconds": 12.583,
+          "evaluations": 1297750,
+          "iteration": 730
+        },
+        {
+          "best_fitness": 539.0,
+          "elapsed_ms": 15477,
+          "elapsed_seconds": 15.477,
+          "evaluations": 1672128,
+          "iteration": 739
+        },
+        {
+          "best_fitness": 537.0,
+          "elapsed_ms": 18223,
+          "elapsed_seconds": 18.223,
+          "evaluations": 2046337,
+          "iteration": 748
+        },
+        {
+          "best_fitness": 535.0,
+          "elapsed_ms": 21103,
+          "elapsed_seconds": 21.103,
+          "evaluations": 2420844,
+          "iteration": 757
+        },
+        {
+          "best_fitness": 534.0,
+          "elapsed_ms": 32393,
+          "elapsed_seconds": 32.393,
+          "evaluations": 3917360,
+          "iteration": 793
+        },
+        {
+          "best_fitness": 533.0,
+          "elapsed_ms": 62014,
+          "elapsed_seconds": 62.014,
+          "evaluations": 8033606,
+          "iteration": 892
+        },
+        {
+          "best_fitness": 532.0,
+          "elapsed_ms": 100578,
+          "elapsed_seconds": 100.578,
+          "evaluations": 13273946,
+          "iteration": 1018
+        },
+        {
+          "best_fitness": 531.0,
+          "elapsed_ms": 105956,
+          "elapsed_seconds": 105.956,
+          "evaluations": 14022711,
+          "iteration": 1036
+        },
+        {
+          "best_fitness": 530.0,
+          "elapsed_ms": 145659,
+          "elapsed_seconds": 145.659,
+          "evaluations": 19264645,
+          "iteration": 1162
+        },
+        {
+          "best_fitness": 529.0,
+          "elapsed_ms": 308329,
+          "elapsed_seconds": 308.329,
+          "evaluations": 41372391,
+          "iteration": 1693
+        }
+      ],
+      "evaluations": 80366801,
+      "executed_at": "2026-06-13T06:59:41Z",
+      "final_solution_value": 529.0,
+      "iterations": 2632,
+      "seed": 96090917558004,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 597274,
+      "total_runtime_seconds": 597.274
+    },
+    {
+      "attempt": 7,
+      "convergence": [
+        {
+          "best_fitness": 634.0,
+          "elapsed_ms": 5,
+          "elapsed_seconds": 0.005,
+          "evaluations": 364,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 633.0,
+          "elapsed_ms": 19,
+          "elapsed_seconds": 0.019,
+          "evaluations": 1012,
+          "iteration": 4
+        },
+        {
+          "best_fitness": 632.0,
+          "elapsed_ms": 59,
+          "elapsed_seconds": 0.059,
+          "evaluations": 2835,
+          "iteration": 12
+        },
+        {
+          "best_fitness": 631.0,
+          "elapsed_ms": 65,
+          "elapsed_seconds": 0.065,
+          "evaluations": 3067,
+          "iteration": 13
+        },
+        {
+          "best_fitness": 627.0,
+          "elapsed_ms": 85,
+          "elapsed_seconds": 0.085,
+          "evaluations": 3972,
+          "iteration": 17
+        },
+        {
+          "best_fitness": 626.0,
+          "elapsed_ms": 115,
+          "elapsed_seconds": 0.115,
+          "evaluations": 5351,
+          "iteration": 23
+        },
+        {
+          "best_fitness": 625.0,
+          "elapsed_ms": 347,
+          "elapsed_seconds": 0.347,
+          "evaluations": 14736,
+          "iteration": 63
+        },
+        {
+          "best_fitness": 624.0,
+          "elapsed_ms": 1220,
+          "elapsed_seconds": 1.22,
+          "evaluations": 51711,
+          "iteration": 221
+        },
+        {
+          "best_fitness": 622.0,
+          "elapsed_ms": 1397,
+          "elapsed_seconds": 1.397,
+          "evaluations": 59327,
+          "iteration": 253
+        },
+        {
+          "best_fitness": 620.0,
+          "elapsed_ms": 1402,
+          "elapsed_seconds": 1.402,
+          "evaluations": 59570,
+          "iteration": 254
+        },
+        {
+          "best_fitness": 619.0,
+          "elapsed_ms": 1710,
+          "elapsed_seconds": 1.71,
+          "evaluations": 72024,
+          "iteration": 306
+        },
+        {
+          "best_fitness": 617.0,
+          "elapsed_ms": 1715,
+          "elapsed_seconds": 1.715,
+          "evaluations": 72248,
+          "iteration": 307
+        },
+        {
+          "best_fitness": 542.0,
+          "elapsed_ms": 7179,
+          "elapsed_seconds": 7.179,
+          "evaluations": 548478,
+          "iteration": 712
+        },
+        {
+          "best_fitness": 535.0,
+          "elapsed_ms": 9934,
+          "elapsed_seconds": 9.934,
+          "evaluations": 923073,
+          "iteration": 721
+        },
+        {
+          "best_fitness": 533.0,
+          "elapsed_ms": 37973,
+          "elapsed_seconds": 37.973,
+          "evaluations": 4664546,
+          "iteration": 811
+        },
+        {
+          "best_fitness": 532.0,
+          "elapsed_ms": 134250,
+          "elapsed_seconds": 134.25,
+          "evaluations": 17764754,
+          "iteration": 1126
+        },
+        {
+          "best_fitness": 531.0,
+          "elapsed_ms": 373750,
+          "elapsed_seconds": 373.75,
+          "evaluations": 50366067,
+          "iteration": 1909
+        },
+        {
+          "best_fitness": 530.0,
+          "elapsed_ms": 484554,
+          "elapsed_seconds": 484.554,
+          "evaluations": 65365187,
+          "iteration": 2269
+        }
+      ],
+      "evaluations": 81865883,
+      "executed_at": "2026-06-13T07:09:38Z",
+      "final_solution_value": 530.0,
+      "iterations": 2671,
+      "seed": 96090917558005,
+      "stop_reason": "max_iterations",
+      "total_runtime_ms": 606406,
+      "total_runtime_seconds": 606.406
+    },
+    {
+      "attempt": 8,
+      "convergence": [
+        {
+          "best_fitness": 636.0,
+          "elapsed_ms": 5,
+          "elapsed_seconds": 0.005,
+          "evaluations": 386,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 634.0,
+          "elapsed_ms": 10,
+          "elapsed_seconds": 0.01,
+          "evaluations": 611,
+          "iteration": 2
+        },
+        {
+          "best_fitness": 631.0,
+          "elapsed_ms": 15,
+          "elapsed_seconds": 0.015,
+          "evaluations": 849,
+          "iteration": 3
+        },
+        {
+          "best_fitness": 630.0,
+          "elapsed_ms": 20,
+          "elapsed_seconds": 0.02,
+          "evaluations": 1084,
+          "iteration": 4
+        },
+        {
+          "best_fitness": 629.0,
+          "elapsed_ms": 378,
+          "elapsed_seconds": 0.378,
+          "evaluations": 16901,
+          "iteration": 73
+        },
+        {
+          "best_fitness": 628.0,
+          "elapsed_ms": 384,
+          "elapsed_seconds": 0.384,
+          "evaluations": 17134,
+          "iteration": 74
+        },
+        {
+          "best_fitness": 627.0,
+          "elapsed_ms": 2757,
+          "elapsed_seconds": 2.757,
+          "evaluations": 112818,
+          "iteration": 472
+        },
+        {
+          "best_fitness": 626.0,
+          "elapsed_ms": 2763,
+          "elapsed_seconds": 2.763,
+          "evaluations": 113061,
+          "iteration": 473
+        },
+        {
+          "best_fitness": 625.0,
+          "elapsed_ms": 2770,
+          "elapsed_seconds": 2.77,
+          "evaluations": 113307,
+          "iteration": 474
+        },
+        {
+          "best_fitness": 624.0,
+          "elapsed_ms": 2947,
+          "elapsed_seconds": 2.947,
+          "evaluations": 120558,
+          "iteration": 502
+        },
+        {
+          "best_fitness": 623.0,
+          "elapsed_ms": 3224,
+          "elapsed_seconds": 3.224,
+          "evaluations": 131878,
+          "iteration": 546
+        },
+        {
+          "best_fitness": 622.0,
+          "elapsed_ms": 3230,
+          "elapsed_seconds": 3.23,
+          "evaluations": 132133,
+          "iteration": 547
+        },
+        {
+          "best_fitness": 620.0,
+          "elapsed_ms": 3236,
+          "elapsed_seconds": 3.236,
+          "evaluations": 132370,
+          "iteration": 548
+        },
+        {
+          "best_fitness": 619.0,
+          "elapsed_ms": 3240,
+          "elapsed_seconds": 3.24,
+          "evaluations": 132603,
+          "iteration": 549
+        },
+        {
+          "best_fitness": 618.0,
+          "elapsed_ms": 3246,
+          "elapsed_seconds": 3.246,
+          "evaluations": 132859,
+          "iteration": 550
+        },
+        {
+          "best_fitness": 617.0,
+          "elapsed_ms": 3271,
+          "elapsed_seconds": 3.271,
+          "evaluations": 133883,
+          "iteration": 554
+        },
+        {
+          "best_fitness": 616.0,
+          "elapsed_ms": 3284,
+          "elapsed_seconds": 3.284,
+          "evaluations": 134409,
+          "iteration": 556
+        },
+        {
+          "best_fitness": 543.0,
+          "elapsed_ms": 7056,
+          "elapsed_seconds": 7.056,
+          "evaluations": 550912,
+          "iteration": 712
+        },
+        {
+          "best_fitness": 536.0,
+          "elapsed_ms": 9680,
+          "elapsed_seconds": 9.68,
+          "evaluations": 925421,
+          "iteration": 721
+        },
+        {
+          "best_fitness": 534.0,
+          "elapsed_ms": 12466,
+          "elapsed_seconds": 12.466,
+          "evaluations": 1299733,
+          "iteration": 730
+        },
+        {
+          "best_fitness": 532.0,
+          "elapsed_ms": 15160,
+          "elapsed_seconds": 15.16,
+          "evaluations": 1674086,
+          "iteration": 739
+        },
+        {
+          "best_fitness": 531.0,
+          "elapsed_ms": 17750,
+          "elapsed_seconds": 17.75,
+          "evaluations": 2048153,
+          "iteration": 748
+        },
+        {
+          "best_fitness": 530.0,
+          "elapsed_ms": 20459,
+          "elapsed_seconds": 20.459,
+          "evaluations": 2422392,
+          "iteration": 757
+        },
+        {
+          "best_fitness": 529.0,
+          "elapsed_ms": 47789,
+          "elapsed_seconds": 47.789,
+          "evaluations": 6164188,
+          "iteration": 847
+        }
+      ],
+      "evaluations": 45122664,
+      "executed_at": "2026-06-13T07:19:45Z",
+      "final_solution_value": 529.0,
+      "iterations": 1786,
+      "seed": 96090917558006,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 330681,
+      "total_runtime_seconds": 330.681
+    },
+    {
+      "attempt": 9,
+      "convergence": [
+        {
+          "best_fitness": 642.0,
+          "elapsed_ms": 5,
+          "elapsed_seconds": 0.005,
+          "evaluations": 371,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 639.0,
+          "elapsed_ms": 10,
+          "elapsed_seconds": 0.01,
+          "evaluations": 595,
+          "iteration": 2
+        },
+        {
+          "best_fitness": 638.0,
+          "elapsed_ms": 101,
+          "elapsed_seconds": 0.101,
+          "evaluations": 4737,
+          "iteration": 20
+        },
+        {
+          "best_fitness": 637.0,
+          "elapsed_ms": 122,
+          "elapsed_seconds": 0.122,
+          "evaluations": 5640,
+          "iteration": 24
+        },
+        {
+          "best_fitness": 636.0,
+          "elapsed_ms": 133,
+          "elapsed_seconds": 0.133,
+          "evaluations": 6116,
+          "iteration": 26
+        },
+        {
+          "best_fitness": 634.0,
+          "elapsed_ms": 140,
+          "elapsed_seconds": 0.14,
+          "evaluations": 6362,
+          "iteration": 27
+        },
+        {
+          "best_fitness": 633.0,
+          "elapsed_ms": 214,
+          "elapsed_seconds": 0.214,
+          "evaluations": 9649,
+          "iteration": 41
+        },
+        {
+          "best_fitness": 631.0,
+          "elapsed_ms": 219,
+          "elapsed_seconds": 0.219,
+          "evaluations": 9871,
+          "iteration": 42
+        },
+        {
+          "best_fitness": 629.0,
+          "elapsed_ms": 266,
+          "elapsed_seconds": 0.266,
+          "evaluations": 12078,
+          "iteration": 52
+        },
+        {
+          "best_fitness": 628.0,
+          "elapsed_ms": 364,
+          "elapsed_seconds": 0.364,
+          "evaluations": 16321,
+          "iteration": 70
+        },
+        {
+          "best_fitness": 627.0,
+          "elapsed_ms": 928,
+          "elapsed_seconds": 0.928,
+          "evaluations": 40370,
+          "iteration": 172
+        },
+        {
+          "best_fitness": 626.0,
+          "elapsed_ms": 1822,
+          "elapsed_seconds": 1.822,
+          "evaluations": 78275,
+          "iteration": 329
+        },
+        {
+          "best_fitness": 625.0,
+          "elapsed_ms": 2216,
+          "elapsed_seconds": 2.216,
+          "evaluations": 93306,
+          "iteration": 390
+        },
+        {
+          "best_fitness": 624.0,
+          "elapsed_ms": 2592,
+          "elapsed_seconds": 2.592,
+          "evaluations": 107972,
+          "iteration": 449
+        },
+        {
+          "best_fitness": 623.0,
+          "elapsed_ms": 2624,
+          "elapsed_seconds": 2.624,
+          "evaluations": 109258,
+          "iteration": 454
+        },
+        {
+          "best_fitness": 622.0,
+          "elapsed_ms": 3135,
+          "elapsed_seconds": 3.135,
+          "evaluations": 129027,
+          "iteration": 533
+        },
+        {
+          "best_fitness": 621.0,
+          "elapsed_ms": 3678,
+          "elapsed_seconds": 3.678,
+          "evaluations": 151004,
+          "iteration": 619
+        },
+        {
+          "best_fitness": 619.0,
+          "elapsed_ms": 3685,
+          "elapsed_seconds": 3.685,
+          "evaluations": 151271,
+          "iteration": 620
+        },
+        {
+          "best_fitness": 543.0,
+          "elapsed_ms": 7042,
+          "elapsed_seconds": 7.042,
+          "evaluations": 549707,
+          "iteration": 712
+        },
+        {
+          "best_fitness": 539.0,
+          "elapsed_ms": 9960,
+          "elapsed_seconds": 9.96,
+          "evaluations": 924177,
+          "iteration": 721
+        },
+        {
+          "best_fitness": 536.0,
+          "elapsed_ms": 38407,
+          "elapsed_seconds": 38.407,
+          "evaluations": 4665850,
+          "iteration": 811
+        },
+        {
+          "best_fitness": 535.0,
+          "elapsed_ms": 44082,
+          "elapsed_seconds": 44.082,
+          "evaluations": 5414214,
+          "iteration": 829
+        },
+        {
+          "best_fitness": 534.0,
+          "elapsed_ms": 46916,
+          "elapsed_seconds": 46.916,
+          "evaluations": 5788459,
+          "iteration": 838
+        },
+        {
+          "best_fitness": 533.0,
+          "elapsed_ms": 52355,
+          "elapsed_seconds": 52.355,
+          "evaluations": 6536982,
+          "iteration": 856
+        },
+        {
+          "best_fitness": 531.0,
+          "elapsed_ms": 57966,
+          "elapsed_seconds": 57.966,
+          "evaluations": 7285569,
+          "iteration": 874
+        },
+        {
+          "best_fitness": 530.0,
+          "elapsed_ms": 71659,
+          "elapsed_seconds": 71.659,
+          "evaluations": 9156871,
+          "iteration": 919
+        }
+      ],
+      "evaluations": 48120666,
+      "executed_at": "2026-06-13T07:25:16Z",
+      "final_solution_value": 530.0,
+      "iterations": 1858,
+      "seed": 96090917558007,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 363523,
+      "total_runtime_seconds": 363.523
+    },
+    {
+      "attempt": 10,
+      "convergence": [
+        {
+          "best_fitness": 640.0,
+          "elapsed_ms": 4,
+          "elapsed_seconds": 0.004,
+          "evaluations": 358,
+          "iteration": 1
+        },
+        {
+          "best_fitness": 635.0,
+          "elapsed_ms": 10,
+          "elapsed_seconds": 0.01,
+          "evaluations": 593,
+          "iteration": 2
+        },
+        {
+          "best_fitness": 634.0,
+          "elapsed_ms": 49,
+          "elapsed_seconds": 0.049,
+          "evaluations": 2389,
+          "iteration": 10
+        },
+        {
+          "best_fitness": 632.0,
+          "elapsed_ms": 54,
+          "elapsed_seconds": 0.054,
+          "evaluations": 2619,
+          "iteration": 11
+        },
+        {
+          "best_fitness": 631.0,
+          "elapsed_ms": 59,
+          "elapsed_seconds": 0.059,
+          "evaluations": 2836,
+          "iteration": 12
+        },
+        {
+          "best_fitness": 630.0,
+          "elapsed_ms": 186,
+          "elapsed_seconds": 0.186,
+          "evaluations": 8593,
+          "iteration": 37
+        },
+        {
+          "best_fitness": 629.0,
+          "elapsed_ms": 315,
+          "elapsed_seconds": 0.315,
+          "evaluations": 14412,
+          "iteration": 62
+        },
+        {
+          "best_fitness": 628.0,
+          "elapsed_ms": 320,
+          "elapsed_seconds": 0.32,
+          "evaluations": 14635,
+          "iteration": 63
+        },
+        {
+          "best_fitness": 627.0,
+          "elapsed_ms": 387,
+          "elapsed_seconds": 0.387,
+          "evaluations": 17638,
+          "iteration": 76
+        },
+        {
+          "best_fitness": 625.0,
+          "elapsed_ms": 394,
+          "elapsed_seconds": 0.394,
+          "evaluations": 17894,
+          "iteration": 77
+        },
+        {
+          "best_fitness": 624.0,
+          "elapsed_ms": 419,
+          "elapsed_seconds": 0.419,
+          "evaluations": 19057,
+          "iteration": 82
+        },
+        {
+          "best_fitness": 623.0,
+          "elapsed_ms": 452,
+          "elapsed_seconds": 0.452,
+          "evaluations": 20486,
+          "iteration": 88
+        },
+        {
+          "best_fitness": 622.0,
+          "elapsed_ms": 2077,
+          "elapsed_seconds": 2.077,
+          "evaluations": 90818,
+          "iteration": 381
+        },
+        {
+          "best_fitness": 620.0,
+          "elapsed_ms": 2082,
+          "elapsed_seconds": 2.082,
+          "evaluations": 91040,
+          "iteration": 382
+        },
+        {
+          "best_fitness": 619.0,
+          "elapsed_ms": 2159,
+          "elapsed_seconds": 2.159,
+          "evaluations": 94271,
+          "iteration": 395
+        },
+        {
+          "best_fitness": 618.0,
+          "elapsed_ms": 2756,
+          "elapsed_seconds": 2.756,
+          "evaluations": 119632,
+          "iteration": 497
+        },
+        {
+          "best_fitness": 617.0,
+          "elapsed_ms": 2820,
+          "elapsed_seconds": 2.82,
+          "evaluations": 122241,
+          "iteration": 507
+        },
+        {
+          "best_fitness": 616.0,
+          "elapsed_ms": 2826,
+          "elapsed_seconds": 2.826,
+          "evaluations": 122482,
+          "iteration": 508
+        },
+        {
+          "best_fitness": 615.0,
+          "elapsed_ms": 3026,
+          "elapsed_seconds": 3.026,
+          "evaluations": 130232,
+          "iteration": 539
+        },
+        {
+          "best_fitness": 614.0,
+          "elapsed_ms": 3050,
+          "elapsed_seconds": 3.05,
+          "evaluations": 131000,
+          "iteration": 542
+        },
+        {
+          "best_fitness": 540.0,
+          "elapsed_ms": 6941,
+          "elapsed_seconds": 6.941,
+          "evaluations": 550326,
+          "iteration": 712
+        },
+        {
+          "best_fitness": 539.0,
+          "elapsed_ms": 13345,
+          "elapsed_seconds": 13.345,
+          "evaluations": 1298547,
+          "iteration": 730
+        },
+        {
+          "best_fitness": 536.0,
+          "elapsed_ms": 24574,
+          "elapsed_seconds": 24.574,
+          "evaluations": 2795371,
+          "iteration": 766
+        },
+        {
+          "best_fitness": 535.0,
+          "elapsed_ms": 70860,
+          "elapsed_seconds": 70.86,
+          "evaluations": 9156444,
+          "iteration": 919
+        },
+        {
+          "best_fitness": 534.0,
+          "elapsed_ms": 284187,
+          "elapsed_seconds": 284.187,
+          "evaluations": 38373738,
+          "iteration": 1621
+        },
+        {
+          "best_fitness": 533.0,
+          "elapsed_ms": 345618,
+          "elapsed_seconds": 345.618,
+          "evaluations": 46619143,
+          "iteration": 1819
+        },
+        {
+          "best_fitness": 532.0,
+          "elapsed_ms": 376031,
+          "elapsed_seconds": 376.031,
+          "evaluations": 50742861,
+          "iteration": 1918
+        }
+      ],
+      "evaluations": 81868068,
+      "executed_at": "2026-06-13T07:31:19Z",
+      "final_solution_value": 532.0,
+      "iterations": 2671,
+      "seed": 96090917558008,
+      "stop_reason": "max_iterations",
+      "total_runtime_ms": 607038,
+      "total_runtime_seconds": 607.038
+    }
+  ],
+  "best_fitness_global": 529.0,
+  "decoder": "mapping_fix_decoder",
+  "executed_at": "2026-06-13T06:23:01Z",
+  "graph": "662_bus.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/HB/662_bus.col",
+  "parameters": {
+    "agents": 145,
+    "attempts": 10,
+    "local_search_interval": 9,
+    "local_search_start": 712,
+    "max_iterations": 2671,
+    "max_stagnation": 939,
+    "max_time_seconds": 900,
+    "rvns_iterations": 968,
+    "rvns_k_max": 48,
+    "seed": 96090917557999,
+    "threads": 8
+  }
+}

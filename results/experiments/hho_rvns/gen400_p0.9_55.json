@@ -1,0 +1,143 @@
+{
+  "algorithm": "HHO+RVNS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [],
+      "evaluations": 5421590,
+      "executed_at": "2026-06-15T00:09:52Z",
+      "final_solution_value": 5.0,
+      "iterations": 829,
+      "seed": 246502060100735,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 912283,
+      "total_runtime_seconds": 912.283
+    },
+    {
+      "attempt": 2,
+      "convergence": [],
+      "evaluations": 5421281,
+      "executed_at": "2026-06-15T00:25:05Z",
+      "final_solution_value": 5.0,
+      "iterations": 829,
+      "seed": 246502060100736,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 915579,
+      "total_runtime_seconds": 915.579
+    },
+    {
+      "attempt": 3,
+      "convergence": [],
+      "evaluations": 5425436,
+      "executed_at": "2026-06-15T00:40:20Z",
+      "final_solution_value": 5.0,
+      "iterations": 829,
+      "seed": 246502060100737,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 929671,
+      "total_runtime_seconds": 929.671
+    },
+    {
+      "attempt": 4,
+      "convergence": [],
+      "evaluations": 5421491,
+      "executed_at": "2026-06-15T00:55:50Z",
+      "final_solution_value": 5.0,
+      "iterations": 829,
+      "seed": 246502060100738,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 911835,
+      "total_runtime_seconds": 911.835
+    },
+    {
+      "attempt": 5,
+      "convergence": [],
+      "evaluations": 5423311,
+      "executed_at": "2026-06-15T01:11:02Z",
+      "final_solution_value": 5.0,
+      "iterations": 829,
+      "seed": 246502060100739,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 909288,
+      "total_runtime_seconds": 909.288
+    },
+    {
+      "attempt": 6,
+      "convergence": [],
+      "evaluations": 5047664,
+      "executed_at": "2026-06-15T01:26:11Z",
+      "final_solution_value": 5.0,
+      "iterations": 820,
+      "seed": 246502060100740,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 1005550,
+      "total_runtime_seconds": 1005.55
+    },
+    {
+      "attempt": 7,
+      "convergence": [],
+      "evaluations": 2429382,
+      "executed_at": "2026-06-15T01:42:57Z",
+      "final_solution_value": 5.0,
+      "iterations": 757,
+      "seed": 246502060100741,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 1004040,
+      "total_runtime_seconds": 1004.04
+    },
+    {
+      "attempt": 8,
+      "convergence": [],
+      "evaluations": 2430484,
+      "executed_at": "2026-06-15T01:59:41Z",
+      "final_solution_value": 5.0,
+      "iterations": 757,
+      "seed": 246502060100742,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 1003809,
+      "total_runtime_seconds": 1003.809
+    },
+    {
+      "attempt": 9,
+      "convergence": [],
+      "evaluations": 4672293,
+      "executed_at": "2026-06-15T02:16:25Z",
+      "final_solution_value": 5.0,
+      "iterations": 811,
+      "seed": 246502060100743,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 955010,
+      "total_runtime_seconds": 955.01
+    },
+    {
+      "attempt": 10,
+      "convergence": [],
+      "evaluations": 5421307,
+      "executed_at": "2026-06-15T02:32:20Z",
+      "final_solution_value": 5.0,
+      "iterations": 829,
+      "seed": 246502060100744,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 943672,
+      "total_runtime_seconds": 943.672
+    }
+  ],
+  "best_fitness_global": 5.0,
+  "decoder": "mapping_fix_decoder",
+  "executed_at": "2026-06-15T00:09:52Z",
+  "graph": "gen400_p0.9_55.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/DIMACS/gen400_p0.9_55.col",
+  "parameters": {
+    "agents": 145,
+    "attempts": 10,
+    "local_search_interval": 9,
+    "local_search_start": 712,
+    "max_iterations": 2671,
+    "max_stagnation": 939,
+    "max_time_seconds": 900,
+    "rvns_iterations": 968,
+    "rvns_k_max": 48,
+    "seed": 246502060100735,
+    "threads": 8
+  }
+}

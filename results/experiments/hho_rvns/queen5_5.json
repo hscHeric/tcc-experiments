@@ -1,0 +1,191 @@
+{
+  "algorithm": "HHO+RVNS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [],
+      "evaluations": 9914653,
+      "executed_at": "2026-06-14T07:48:44Z",
+      "final_solution_value": 7.0,
+      "iterations": 939,
+      "seed": 187633974155402,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 16529,
+      "total_runtime_seconds": 16.529
+    },
+    {
+      "attempt": 2,
+      "convergence": [],
+      "evaluations": 9912403,
+      "executed_at": "2026-06-14T07:49:01Z",
+      "final_solution_value": 7.0,
+      "iterations": 939,
+      "seed": 187633974155403,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 10943,
+      "total_runtime_seconds": 10.943
+    },
+    {
+      "attempt": 3,
+      "convergence": [
+        {
+          "best_fitness": 7.0,
+          "elapsed_ms": 0,
+          "elapsed_seconds": 0.0,
+          "evaluations": 388,
+          "iteration": 1
+        }
+      ],
+      "evaluations": 9917629,
+      "executed_at": "2026-06-14T07:49:12Z",
+      "final_solution_value": 7.0,
+      "iterations": 940,
+      "seed": 187633974155404,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 9263,
+      "total_runtime_seconds": 9.263
+    },
+    {
+      "attempt": 4,
+      "convergence": [],
+      "evaluations": 9911841,
+      "executed_at": "2026-06-14T07:49:21Z",
+      "final_solution_value": 7.0,
+      "iterations": 939,
+      "seed": 187633974155405,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 13548,
+      "total_runtime_seconds": 13.548
+    },
+    {
+      "attempt": 5,
+      "convergence": [
+        {
+          "best_fitness": 7.0,
+          "elapsed_ms": 0,
+          "elapsed_seconds": 0.0,
+          "evaluations": 359,
+          "iteration": 1
+        }
+      ],
+      "evaluations": 9917588,
+      "executed_at": "2026-06-14T07:49:35Z",
+      "final_solution_value": 7.0,
+      "iterations": 940,
+      "seed": 187633974155406,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 10625,
+      "total_runtime_seconds": 10.625
+    },
+    {
+      "attempt": 6,
+      "convergence": [
+        {
+          "best_fitness": 7.0,
+          "elapsed_ms": 0,
+          "elapsed_seconds": 0.0,
+          "evaluations": 365,
+          "iteration": 1
+        }
+      ],
+      "evaluations": 9915323,
+      "executed_at": "2026-06-14T07:49:45Z",
+      "final_solution_value": 7.0,
+      "iterations": 940,
+      "seed": 187633974155407,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 9172,
+      "total_runtime_seconds": 9.172
+    },
+    {
+      "attempt": 7,
+      "convergence": [
+        {
+          "best_fitness": 7.0,
+          "elapsed_ms": 0,
+          "elapsed_seconds": 0.0,
+          "evaluations": 365,
+          "iteration": 1
+        }
+      ],
+      "evaluations": 9914981,
+      "executed_at": "2026-06-14T07:49:54Z",
+      "final_solution_value": 7.0,
+      "iterations": 940,
+      "seed": 187633974155408,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 9423,
+      "total_runtime_seconds": 9.423
+    },
+    {
+      "attempt": 8,
+      "convergence": [
+        {
+          "best_fitness": 7.0,
+          "elapsed_ms": 1,
+          "elapsed_seconds": 0.001,
+          "evaluations": 883,
+          "iteration": 3
+        }
+      ],
+      "evaluations": 9915297,
+      "executed_at": "2026-06-14T07:50:04Z",
+      "final_solution_value": 7.0,
+      "iterations": 942,
+      "seed": 187633974155409,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 9567,
+      "total_runtime_seconds": 9.567
+    },
+    {
+      "attempt": 9,
+      "convergence": [],
+      "evaluations": 9913068,
+      "executed_at": "2026-06-14T07:50:13Z",
+      "final_solution_value": 7.0,
+      "iterations": 939,
+      "seed": 187633974155410,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 9799,
+      "total_runtime_seconds": 9.799
+    },
+    {
+      "attempt": 10,
+      "convergence": [
+        {
+          "best_fitness": 7.0,
+          "elapsed_ms": 0,
+          "elapsed_seconds": 0.0,
+          "evaluations": 367,
+          "iteration": 1
+        }
+      ],
+      "evaluations": 9913777,
+      "executed_at": "2026-06-14T07:50:23Z",
+      "final_solution_value": 7.0,
+      "iterations": 940,
+      "seed": 187633974155411,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 10048,
+      "total_runtime_seconds": 10.048
+    }
+  ],
+  "best_fitness_global": 7.0,
+  "decoder": "mapping_fix_decoder",
+  "executed_at": "2026-06-14T07:48:44Z",
+  "graph": "queen5_5.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/DIMACS/queen5_5.col",
+  "parameters": {
+    "agents": 145,
+    "attempts": 10,
+    "local_search_interval": 9,
+    "local_search_start": 712,
+    "max_iterations": 2671,
+    "max_stagnation": 939,
+    "max_time_seconds": 900,
+    "rvns_iterations": 968,
+    "rvns_k_max": 48,
+    "seed": 187633974155402,
+    "threads": 8
+  }
+}

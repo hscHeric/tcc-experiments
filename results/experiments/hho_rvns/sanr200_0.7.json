@@ -1,0 +1,151 @@
+{
+  "algorithm": "HHO+RVNS",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [],
+      "evaluations": 9911520,
+      "executed_at": "2026-06-15T10:41:06Z",
+      "final_solution_value": 7.0,
+      "iterations": 939,
+      "seed": 282728428891987,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 456467,
+      "total_runtime_seconds": 456.467
+    },
+    {
+      "attempt": 2,
+      "convergence": [],
+      "evaluations": 9909544,
+      "executed_at": "2026-06-15T10:48:43Z",
+      "final_solution_value": 7.0,
+      "iterations": 939,
+      "seed": 282728428891988,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 557692,
+      "total_runtime_seconds": 557.692
+    },
+    {
+      "attempt": 3,
+      "convergence": [],
+      "evaluations": 9910711,
+      "executed_at": "2026-06-15T10:58:01Z",
+      "final_solution_value": 7.0,
+      "iterations": 939,
+      "seed": 282728428891989,
+      "stop_reason": "stagnation",
+      "total_runtime_ms": 832787,
+      "total_runtime_seconds": 832.787
+    },
+    {
+      "attempt": 4,
+      "convergence": [],
+      "evaluations": 8412152,
+      "executed_at": "2026-06-15T11:11:53Z",
+      "final_solution_value": 7.0,
+      "iterations": 901,
+      "seed": 282728428891990,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 967839,
+      "total_runtime_seconds": 967.839
+    },
+    {
+      "attempt": 5,
+      "convergence": [],
+      "evaluations": 9163818,
+      "executed_at": "2026-06-15T11:28:01Z",
+      "final_solution_value": 7.0,
+      "iterations": 919,
+      "seed": 282728428891991,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 1030276,
+      "total_runtime_seconds": 1030.276
+    },
+    {
+      "attempt": 6,
+      "convergence": [],
+      "evaluations": 8788516,
+      "executed_at": "2026-06-15T11:45:12Z",
+      "final_solution_value": 7.0,
+      "iterations": 910,
+      "seed": 282728428891992,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 962050,
+      "total_runtime_seconds": 962.05
+    },
+    {
+      "attempt": 7,
+      "convergence": [],
+      "evaluations": 6914214,
+      "executed_at": "2026-06-15T12:01:14Z",
+      "final_solution_value": 7.0,
+      "iterations": 865,
+      "seed": 282728428891993,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 912759,
+      "total_runtime_seconds": 912.759
+    },
+    {
+      "attempt": 8,
+      "convergence": [],
+      "evaluations": 6537867,
+      "executed_at": "2026-06-15T12:16:26Z",
+      "final_solution_value": 7.0,
+      "iterations": 856,
+      "seed": 282728428891994,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 911326,
+      "total_runtime_seconds": 911.326
+    },
+    {
+      "attempt": 9,
+      "convergence": [
+        {
+          "best_fitness": 7.0,
+          "elapsed_ms": 149,
+          "elapsed_seconds": 0.149,
+          "evaluations": 370,
+          "iteration": 1
+        }
+      ],
+      "evaluations": 9159363,
+      "executed_at": "2026-06-15T12:31:38Z",
+      "final_solution_value": 7.0,
+      "iterations": 919,
+      "seed": 282728428891995,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 911148,
+      "total_runtime_seconds": 911.148
+    },
+    {
+      "attempt": 10,
+      "convergence": [],
+      "evaluations": 6544819,
+      "executed_at": "2026-06-15T12:46:49Z",
+      "final_solution_value": 7.0,
+      "iterations": 856,
+      "seed": 282728428891996,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 959942,
+      "total_runtime_seconds": 959.942
+    }
+  ],
+  "best_fitness_global": 7.0,
+  "decoder": "mapping_fix_decoder",
+  "executed_at": "2026-06-15T10:41:06Z",
+  "graph": "sanr200_0.7.col",
+  "input_file": "/home/hscheric/Projects/tcc-experiments/data/instances/DIMACS/sanr200_0.7.col",
+  "parameters": {
+    "agents": 145,
+    "attempts": 10,
+    "local_search_interval": 9,
+    "local_search_start": 712,
+    "max_iterations": 2671,
+    "max_stagnation": 939,
+    "max_time_seconds": 900,
+    "rvns_iterations": 968,
+    "rvns_k_max": 48,
+    "seed": 282728428891987,
+    "threads": 8
+  }
+}
