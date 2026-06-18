@@ -1,0 +1,100 @@
+Relatório de análise estatística
+================================
+
+Convenção adotada:
+- Menores valores da função objetivo são melhores.
+- O gap relativo foi calculado em relação ao valor do PLI de cada instância.
+- A comparação principal entre meta-heurísticas usa Wilcoxon signed-rank sobre gaps relativos pareados por instância.
+- Foram reportadas duas leituras para as meta-heurísticas: gap do melhor valor e gap mediano das 10 execuções.
+- A análise com Friedman inclui o PLI apenas como referência complementar, pois o PLI não é uma meta-heurística estocástica.
+
+Como interpretar os testes:
+- O teste de Friedman compara três ou mais métodos em blocos pareados; aqui cada instância é um bloco.
+- O teste de Wilcoxon signed-rank compara dois métodos pareados; ele considera os sinais e os postos das magnitudes das diferenças.
+- Portanto, contar em quantas instâncias um método foi melhor não é equivalente ao teste estatístico.
+- Muitos empates e diferenças pequenas podem enfraquecer a evidência estatística, mesmo quando um método vence em várias instâncias.
+- Diferenças fortes em sentidos opostos entre conjuntos distintos também podem se cancelar quando todos os conjuntos são agregados.
+
+Arquivos estatísticos gerados:
+- friedman_com_pli.csv: resultado do teste de Friedman para PLI, HHO-RVNS e ACO_R-TS.
+- ranks_medios_com_pli.csv: ranks médios usados para interpretar o Friedman; menor rank indica melhor desempenho relativo.
+- wilcoxon_pos_hoc_com_pli.csv: comparações par-a-par após Friedman, com correção de Holm.
+- wilcoxon_metaheuristicas_gap_relativo.csv: comparação direta entre HHO-RVNS e ACO_R-TS.
+- resumo_gaps_metaheuristicas.csv: estatísticas descritivas dos gaps por conjunto.
+- ranks_medios_com_pli.png: visualização dos ranks médios no conjunto completo.
+- ranks_medios_por_conjunto_com_pli.png: ranks médios separados por conjunto de instâncias.
+- dispersao_gap_relativo_metaheuristicas.png: compara os gaps relativos das duas meta-heurísticas instância a instância.
+
+Significado das principais colunas:
+- dataset: conjunto de instâncias analisado; TODOS agrega CUBIC, DIMACS e HB.
+- n_instancias: quantidade de pares/blocos usados no teste.
+- estatistica: valor da estatística calculada pelo teste.
+- p_valor: probabilidade, sob a hipótese nula, de observar diferenças tão extremas quanto as obtidas.
+- p_valor_holm: p-valor ajustado pela correção de Holm em comparações múltiplas.
+- HHO_RVNS_menor_gap / ACO_TS_menor_gap: número de instâncias em que cada meta-heurística teve menor gap.
+- empates: número de instâncias em que os gaps comparados foram iguais ou numericamente indistinguíveis.
+- mediana_diferenca_HHO_menos_ACO: mediana da diferença pareada entre gaps; valor positivo favorece ACO_R-TS e negativo favorece HHO-RVNS.
+
+Comparação principal entre meta-heurísticas
+-------------------------------------------
+- TODOS (gap_relativo_melhor): n=130, p=0.8031; sem evidência de diferença estatisticamente significativa (p >= 0.05).
+  Menor gap: HHO-RVNS em 35 instâncias; ACO_R-TS em 56; empates em 39.
+  Gap mediano HHO-RVNS = 1.0506%; gap mediano ACO_R-TS = 0.0000%; mediana(HHO - ACO) = 0.0000 pontos percentuais.
+- TODOS (gap_relativo_mediano_das_10_execucoes): n=130, p=0.1428; sem evidência de diferença estatisticamente significativa (p >= 0.05).
+  Menor gap: HHO-RVNS em 29 instâncias; ACO_R-TS em 64; empates em 37.
+  Gap mediano HHO-RVNS = 1.9767%; gap mediano ACO_R-TS = 1.2065%; mediana(HHO - ACO) = 0.0000 pontos percentuais.
+- CUBIC (gap_relativo_melhor): n=30, p=1.733e-06; diferença estatisticamente significativa (p < 0.05).
+  Menor gap: HHO-RVNS em 0 instâncias; ACO_R-TS em 30; empates em 0.
+  Gap mediano HHO-RVNS = 0.9161%; gap mediano ACO_R-TS = -0.6819%; mediana(HHO - ACO) = 1.7100 pontos percentuais.
+- CUBIC (gap_relativo_mediano_das_10_execucoes): n=30, p=1.863e-09; diferença estatisticamente significativa (p < 0.05).
+  Menor gap: HHO-RVNS em 0 instâncias; ACO_R-TS em 30; empates em 0.
+  Gap mediano HHO-RVNS = 1.5901%; gap mediano ACO_R-TS = -0.3463%; mediana(HHO - ACO) = 1.8690 pontos percentuais.
+- DIMACS (gap_relativo_melhor): n=50, p=3.280e-05; diferença estatisticamente significativa (p < 0.05).
+  Menor gap: HHO-RVNS em 23 instâncias; ACO_R-TS em 3; empates em 24.
+  Gap mediano HHO-RVNS = 0.0000%; gap mediano ACO_R-TS = 11.2500%; mediana(HHO - ACO) = 0.0000 pontos percentuais.
+- DIMACS (gap_relativo_mediano_das_10_execucoes): n=50, p=2.012e-04; diferença estatisticamente significativa (p < 0.05).
+  Menor gap: HHO-RVNS em 19 instâncias; ACO_R-TS em 3; empates em 28.
+  Gap mediano HHO-RVNS = 2.6584%; gap mediano ACO_R-TS = 12.5000%; mediana(HHO - ACO) = 0.0000 pontos percentuais.
+- HB (gap_relativo_melhor): n=50, p=0.0088; diferença estatisticamente significativa (p < 0.05).
+  Menor gap: HHO-RVNS em 12 instâncias; ACO_R-TS em 23; empates em 15.
+  Gap mediano HHO-RVNS = 1.5244%; gap mediano ACO_R-TS = 1.3454%; mediana(HHO - ACO) = 0.0000 pontos percentuais.
+- HB (gap_relativo_mediano_das_10_execucoes): n=50, p=0.0012; diferença estatisticamente significativa (p < 0.05).
+  Menor gap: HHO-RVNS em 10 instâncias; ACO_R-TS em 31; empates em 9.
+  Gap mediano HHO-RVNS = 2.9530%; gap mediano ACO_R-TS = 1.8252%; mediana(HHO - ACO) = 0.9273 pontos percentuais.
+
+Análise complementar incluindo PLI
+----------------------------------
+- TODOS: Friedman chi2=45.3118, p=1.448e-10; diferença estatisticamente significativa (p < 0.05).
+- CUBIC: Friedman chi2=40.1197, p=1.941e-09; diferença estatisticamente significativa (p < 0.05).
+- DIMACS: Friedman chi2=42.7818, p=5.129e-10; diferença estatisticamente significativa (p < 0.05).
+- HB: Friedman chi2=40.6483, p=1.491e-09; diferença estatisticamente significativa (p < 0.05).
+
+Ranks médios globais
+---------------------
+- PLI: rank médio = 1.6231; melhor/empatado em 101 instâncias.
+- ACO_R-TS: rank médio = 2.0538; melhor/empatado em 64 instâncias.
+- HHO-RVNS: rank médio = 2.3231; melhor/empatado em 45 instâncias.
+
+Interpretação prática dos resultados
+------------------------------------
+- No conjunto agregado, a comparação pelo melhor gap não indica diferença estatisticamente significativa entre as meta-heurísticas.
+- Isso não significa que os métodos sejam idênticos; significa que, considerando todas as instâncias juntas, as diferenças pareadas não foram consistentes o suficiente para rejeitar a hipótese nula.
+- Separando por conjunto, aparecem diferenças significativas, indicando comportamento dependente da classe de instâncias.
+- Em CUBIC, ACO_R-TS apresenta desempenho claramente superior nas comparações pareadas.
+- Em DIMACS, HHO-RVNS apresenta vantagem em qualidade de solução em relação ao ACO_R-TS.
+- Em HB, ACO_R-TS tende a apresentar menores gaps, embora a diferença seja mais moderada que em CUBIC.
+- O PLI deve ser tratado como referência de qualidade, não como método estocástico comparável em igualdade experimental às meta-heurísticas.
+- Quando uma meta-heurística supera o PLI, isso normalmente indica que o PLI não provou otimalidade dentro do limite de tempo, não que a heurística superou uma solução ótima certificada.
+
+Gráficos recomendados para comentar no texto
+--------------------------------------------
+- graficos_resumo/gap_relativo_*.png: principal evidência de qualidade por instância.
+- graficos_resumo/boxplot_gap_relativo_execucoes_*.png: estabilidade das 10 execuções.
+- graficos_resumo/tempo_melhor_execucao_*.png: custo computacional da melhor execução.
+- graficos_resumo/avaliacoes_melhor_execucao_*.png: esforço algorítmico em número de avaliações.
+- graficos_resumo/criterio_parada_melhor_execucao.png: comportamento dos critérios de parada.
+- analise_estatistica/dispersao_gap_relativo_metaheuristicas.png: comparação direta entre meta-heurísticas.
+- analise_estatistica/ranks_medios_por_conjunto_com_pli.png: visão compacta dos ranks por conjunto.
+
+Observação para o texto do TCC:
+Use o PLI como referência de qualidade, mas evite apresentá-lo como concorrente estocástico equivalente às meta-heurísticas.

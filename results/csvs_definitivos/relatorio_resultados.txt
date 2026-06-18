@@ -1,0 +1,169 @@
+Relatório geral dos resultados
+==============================
+
+Escopo dos arquivos gerados:
+- Instâncias analisadas: 130.
+- Cada meta-heurística possui 10 execuções por instância.
+- Os gaps das meta-heurísticas são calculados em relação ao valor reportado pelo PLI.
+- Violações dos bounds encontradas: 0.
+
+Arquivos principais gerados:
+- resultados_definitivos.csv: tabela combinada com todos os conjuntos.
+- *_definitivo.csv: tabelas separadas por conjunto de instâncias.
+- violacoes_bounds.csv: lista de soluções fora do intervalo [LB, UB], se houver.
+- resumo_resultados.csv: resumo descritivo por conjunto.
+- resumo_criterios_parada.csv: distribuição dos critérios de parada por método e conjunto.
+- resumo_status_pli.csv: quantidade de instâncias ótimas e melhores do PLI por base.
+- resumo_basico_metodos.csv: vitórias, empates e gaps por método.
+- resumo_igualdades_pareadas.csv: comparação par-a-par de igualdade e superioridade entre métodos.
+- relatorio_resultados.txt: este relatório textual.
+- curvas_convergencia/: curvas do melhor caso de cada meta-heurística por instância.
+- graficos_resumo/: gráficos agregados de qualidade, robustez e custo computacional.
+
+Significado das principais medidas:
+- Objetivo: valor reportado pelo modelo PLI.
+- LB e UB: limites inferior e superior derivados das propriedades estruturais do grafo.
+- HHO_RVNS e ACO_TS: melhor valor encontrado nas 10 execuções da respectiva meta-heurística.
+- *_media e *_mediana: média e mediana dos valores obtidos nas 10 execuções.
+- *_gap_prova: diferença entre o valor da meta-heurística e o valor do PLI.
+- *_gap_relativo: gap percentual em relação ao valor do PLI.
+- *_melhor_avaliacoes: número de avaliações na execução que produziu o melhor valor.
+- *_melhor_iteracoes: número de iterações da execução que produziu o melhor valor.
+- *_melhor_tempo_s: tempo da execução que produziu o melhor valor.
+- *_melhor_criterio_parada: mecanismo que encerrou a execução de melhor valor.
+- *_valores_rodadas: lista dos valores obtidos nas 10 execuções.
+
+Como interpretar os gaps:
+- Gap igual a 0 indica que a meta-heurística alcançou o mesmo valor reportado pelo PLI.
+- Gap positivo indica solução pior que o valor reportado pelo PLI.
+- Gap negativo indica solução melhor que o valor reportado pelo PLI dentro do limite de tempo.
+- Gap negativo não invalida o PLI; em instâncias com status 'Melhor', o PLI pode não ter certificado otimalidade.
+
+Resumo por conjunto
+-------------------
+- TODOS: 130 instâncias; |V| de 11 a 5300; |E| de 20 a 4619898.
+  Melhores valores ou empates: PLI=101, HHO-RVNS=45, ACO_R-TS=64.
+  Vitórias estritas: PLI=51, HHO-RVNS=3, ACO_R-TS=25.
+  Gap mediano: HHO-RVNS=1.0506%; ACO_R-TS=0.0000%.
+  Melhor que o PLI: HHO-RVNS=13; ACO_R-TS=28. Empates com PLI: HHO-RVNS=41; ACO_R-TS=39.
+  Tempo mediano da melhor execução: HHO-RVNS=875.1270s; ACO_R-TS=45.6160s.
+  Avaliações medianas da melhor execução: HHO-RVNS=39497684; ACO_R-TS=1659170.
+- CUBIC: 30 instâncias; |V| de 100 a 3000; |E| de 150 a 4500.
+  Melhores valores ou empates: PLI=5, HHO-RVNS=0, ACO_R-TS=28.
+  Vitórias estritas: PLI=2, HHO-RVNS=0, ACO_R-TS=25.
+  Gap mediano: HHO-RVNS=0.9161%; ACO_R-TS=-0.6819%.
+  Melhor que o PLI: HHO-RVNS=9; ACO_R-TS=25. Empates com PLI: HHO-RVNS=0; ACO_R-TS=3.
+  Tempo mediano da melhor execução: HHO-RVNS=900.3425s; ACO_R-TS=79.3115s.
+  Avaliações medianas da melhor execução: HHO-RVNS=45873825; ACO_R-TS=3663170.
+- DIMACS: 50 instâncias; |V| de 11 a 3361; |E| de 20 a 4619898.
+  Melhores valores ou empates: PLI=49, HHO-RVNS=30, ACO_R-TS=19.
+  Vitórias estritas: PLI=19, HHO-RVNS=1, ACO_R-TS=0.
+  Gap mediano: HHO-RVNS=0.0000%; ACO_R-TS=11.2500%.
+  Melhor que o PLI: HHO-RVNS=1; ACO_R-TS=1. Empates com PLI: HHO-RVNS=29; ACO_R-TS=19.
+  Tempo mediano da melhor execução: HHO-RVNS=732.8645s; ACO_R-TS=31.5480s.
+  Avaliações medianas da melhor execução: HHO-RVNS=9923116; ACO_R-TS=468646.
+- HB: 50 instâncias; |V| de 59 a 5300; |E| de 104 a 78174.
+  Melhores valores ou empates: PLI=47, HHO-RVNS=15, ACO_R-TS=17.
+  Vitórias estritas: PLI=30, HHO-RVNS=2, ACO_R-TS=0.
+  Gap mediano: HHO-RVNS=1.5244%; ACO_R-TS=1.3454%.
+  Melhor que o PLI: HHO-RVNS=3; ACO_R-TS=2. Empates com PLI: HHO-RVNS=12; ACO_R-TS=17.
+  Tempo mediano da melhor execução: HHO-RVNS=607.0660s; ACO_R-TS=43.9650s.
+  Avaliações medianas da melhor execução: HHO-RVNS=42309596; ACO_R-TS=2160170.
+
+Status do PLI por base
+----------------------
+- TODOS: 130 instâncias; ótimos=56; melhor=74; % ótimos=43.08%.
+- CUBIC: 30 instâncias; ótimos=0; melhor=30; % ótimos=0.00%.
+- DIMACS: 50 instâncias; ótimos=32; melhor=18; % ótimos=64.00%.
+- HB: 50 instâncias; ótimos=24; melhor=26; % ótimos=48.00%.
+
+Análise básica por método
+-------------------------
+- CUBIC:
+  PLI: melhor/empate=5; vitórias estritas=2; igual a algum método=3; gap mediano=0.0000%.
+  HHO-RVNS: melhor/empate=0; vitórias estritas=0; igual a algum método=0; gap mediano=0.9161%.
+  ACO_R-TS: melhor/empate=28; vitórias estritas=25; igual a algum método=3; gap mediano=-0.6819%.
+- DIMACS:
+  PLI: melhor/empate=49; vitórias estritas=19; igual a algum método=30; gap mediano=0.0000%.
+  HHO-RVNS: melhor/empate=30; vitórias estritas=1; igual a algum método=35; gap mediano=0.0000%.
+  ACO_R-TS: melhor/empate=19; vitórias estritas=0; igual a algum método=25; gap mediano=11.2500%.
+- HB:
+  PLI: melhor/empate=47; vitórias estritas=30; igual a algum método=18; gap mediano=0.0000%.
+  HHO-RVNS: melhor/empate=15; vitórias estritas=2; igual a algum método=16; gap mediano=1.5244%.
+  ACO_R-TS: melhor/empate=17; vitórias estritas=0; igual a algum método=21; gap mediano=1.3454%.
+- TODOS:
+  PLI: melhor/empate=101; vitórias estritas=51; igual a algum método=51; gap mediano=0.0000%.
+  HHO-RVNS: melhor/empate=45; vitórias estritas=3; igual a algum método=51; gap mediano=1.0506%.
+  ACO_R-TS: melhor/empate=64; vitórias estritas=25; igual a algum método=49; gap mediano=0.0000%.
+
+Igualdades e superioridade par-a-par
+------------------------------------
+- CUBIC:
+  PLI vs HHO-RVNS: PLI melhor=21; HHO-RVNS melhor=9; iguais=0.
+  PLI vs ACO_R-TS: PLI melhor=2; ACO_R-TS melhor=25; iguais=3.
+  HHO-RVNS vs ACO_R-TS: HHO-RVNS melhor=0; ACO_R-TS melhor=30; iguais=0.
+- DIMACS:
+  PLI vs HHO-RVNS: PLI melhor=20; HHO-RVNS melhor=1; iguais=29.
+  PLI vs ACO_R-TS: PLI melhor=30; ACO_R-TS melhor=1; iguais=19.
+  HHO-RVNS vs ACO_R-TS: HHO-RVNS melhor=23; ACO_R-TS melhor=3; iguais=24.
+- HB:
+  PLI vs HHO-RVNS: PLI melhor=35; HHO-RVNS melhor=3; iguais=12.
+  PLI vs ACO_R-TS: PLI melhor=31; ACO_R-TS melhor=2; iguais=17.
+  HHO-RVNS vs ACO_R-TS: HHO-RVNS melhor=12; ACO_R-TS melhor=23; iguais=15.
+- TODOS:
+  PLI vs HHO-RVNS: PLI melhor=76; HHO-RVNS melhor=13; iguais=41.
+  PLI vs ACO_R-TS: PLI melhor=63; ACO_R-TS melhor=28; iguais=39.
+  HHO-RVNS vs ACO_R-TS: HHO-RVNS melhor=35; ACO_R-TS melhor=56; iguais=39.
+
+Critérios de parada
+-------------------
+- CUBIC:
+  HHO-RVNS: max_iterations = 2.
+  HHO-RVNS: stagnation = 11.
+  HHO-RVNS: time_limit = 17.
+  ACO_R-TS: max_iterations = 8.
+  ACO_R-TS: stagnation = 22.
+- DIMACS:
+  HHO-RVNS: stagnation = 27.
+  HHO-RVNS: time_limit = 23.
+  ACO_R-TS: stagnation = 47.
+  ACO_R-TS: time_limit = 3.
+- HB:
+  HHO-RVNS: max_iterations = 4.
+  HHO-RVNS: stagnation = 25.
+  HHO-RVNS: time_limit = 21.
+  ACO_R-TS: max_iterations = 7.
+  ACO_R-TS: stagnation = 43.
+- TODOS:
+  HHO-RVNS: max_iterations = 6.
+  HHO-RVNS: stagnation = 63.
+  HHO-RVNS: time_limit = 61.
+  ACO_R-TS: max_iterations = 15.
+  ACO_R-TS: stagnation = 112.
+  ACO_R-TS: time_limit = 3.
+
+Gráficos mais indicados para comentar
+-------------------------------------
+- gap_relativo_*.png: qualidade final por instância e comparação direta com o PLI.
+- boxplot_gap_relativo_execucoes_*.png: robustez das 10 execuções.
+- tempo_melhor_execucao_*.png: custo computacional da melhor execução.
+- avaliacoes_melhor_execucao_*.png: esforço de busca independente do tempo de máquina.
+- criterio_parada_melhor_execucao.png: comportamento dos mecanismos de interrupção.
+- curvas_convergencia: use apenas instâncias representativas no corpo do TCC; deixe o restante em apêndice.
+- analise_estatistica/ranks_medios_por_conjunto_com_pli.png: síntese estatística incluindo o PLI como referência.
+
+Sugestão de organização da seção de resultados em LaTeX:
+- \subsection{Caracterização das Instâncias e Resultados do PLI}: use resumo_status_pli.csv e descreva quantas instâncias tiveram otimalidade certificada.
+- \subsection{Qualidade das Soluções das Meta-heurísticas}: use os gráficos de gap relativo e a análise básica por método.
+- \subsection{Robustez das Execuções}: use médias, medianas, boxplots e valores das 10 rodadas.
+- \subsection{Custo Computacional}: use tempos, número de avaliações e critérios de parada.
+- \subsection{Curvas de Convergência}: escolha poucas instâncias representativas e deixe o restante em apêndice.
+- \subsection{Análise Estatística}: apresente Friedman, Wilcoxon, ranks médios e a interpretação dos p-valores.
+- \subsection{Discussão Geral}: sintetize em quais bases cada método se destacou e explique os casos em que heurísticas superaram o PLI não ótimo.
+
+Sugestão de uso no texto:
+- Use os gráficos de gap relativo para discutir qualidade de solução.
+- Use os boxplots para discutir estabilidade dos métodos estocásticos.
+- Use tempo e avaliações para discutir custo computacional.
+- Use critérios de parada para explicar se os métodos encerraram por estagnação, limite de tempo ou limite de iterações.
+- Use poucas curvas de convergência no corpo principal, escolhendo instâncias representativas.

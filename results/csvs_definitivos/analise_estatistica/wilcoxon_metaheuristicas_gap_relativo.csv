@@ -1,0 +1,9 @@
+dataset,comparacao,variavel,n_instancias,HHO_RVNS_menor_gap,ACO_TS_menor_gap,empates,mediana_gap_HHO_RVNS,mediana_gap_ACO_TS,mediana_diferenca_HHO_menos_ACO,estatistica,p_valor,status,observacao
+TODOS,HHO_RVNS_vs_ACO_TS,gap_relativo_melhor,130,35,56,39,1.0506364106907586,0.0,0.0,2030.0,0.8030907934516396,ok,comparacao_principal_metaheuristicas
+TODOS,HHO_RVNS_vs_ACO_TS,gap_relativo_mediano_das_10_execucoes,130,29,64,37,1.9767441860465116,1.2064885733856405,0.0,1803.0,0.14276078999120353,ok,comparacao_principal_metaheuristicas
+CUBIC,HHO_RVNS_vs_ACO_TS,gap_relativo_melhor,30,0,30,0,0.9160874724529582,-0.6818885448916409,1.7099772298368876,0.0,1.7333066441991056e-06,ok,comparacao_principal_metaheuristicas
+CUBIC,HHO_RVNS_vs_ACO_TS,gap_relativo_mediano_das_10_execucoes,30,0,30,0,1.5901143830755573,-0.3463075447570333,1.8690214113173422,0.0,1.862645149230957e-09,ok,comparacao_principal_metaheuristicas
+DIMACS,HHO_RVNS_vs_ACO_TS,gap_relativo_melhor,50,23,3,24,0.0,11.25,0.0,12.0,3.280420139599678e-05,ok,comparacao_principal_metaheuristicas
+DIMACS,HHO_RVNS_vs_ACO_TS,gap_relativo_mediano_das_10_execucoes,50,19,3,28,2.6583710407239822,12.5,0.0,12.0,0.0002011547421589398,ok,comparacao_principal_metaheuristicas
+HB,HHO_RVNS_vs_ACO_TS,gap_relativo_melhor,50,12,23,15,1.5244481486529664,1.345399698340875,0.0,155.0,0.008775899766492934,ok,comparacao_principal_metaheuristicas
+HB,HHO_RVNS_vs_ACO_TS,gap_relativo_mediano_das_10_execucoes,50,10,31,9,2.9529563050874703,1.825222774338617,0.9273052286608074,180.0,0.0011701052431293748,ok,comparacao_principal_metaheuristicas
