@@ -1,0 +1,52 @@
+{
+  "algorithm": "BRKGA",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 14.0,
+          "elapsed_ms": 8160,
+          "elapsed_seconds": 8.16,
+          "evaluations": 28272,
+          "generation": 1
+        },
+        {
+          "best_fitness": 13.0,
+          "elapsed_ms": 553674,
+          "elapsed_seconds": 553.674,
+          "evaluations": 893664,
+          "generation": 67
+        }
+      ],
+      "evaluations": 1444368,
+      "executed_at": "2026-06-20T12:36:26Z",
+      "final_solution_value": 13.0,
+      "iterations": 108,
+      "seed": 473764869,
+      "stop_reason": "time_limit",
+      "total_runtime_ms": 900058,
+      "total_runtime_seconds": 900.058
+    }
+  ],
+  "best_fitness_global": 13.0,
+  "decoder": "mapping_fix_decoder",
+  "executed_at": "2026-06-20T12:36:15Z",
+  "graph": "flat1000_50_0.col",
+  "input_file": "../../../data/instances/DIMACS/flat1000_50_0.col",
+  "parameters": {
+    "attempts": 1,
+    "elite_fraction": 0.1352,
+    "exchange_interval": 196,
+    "exchange_m": 19,
+    "inheritance_probability": 0.6536,
+    "max_generations": 2354,
+    "max_stagnation": 824,
+    "max_time_seconds": 900,
+    "mutant_fraction": 0.1824,
+    "population": 3790,
+    "populations": 4,
+    "seed": 473764869,
+    "threads": 8
+  }
+}

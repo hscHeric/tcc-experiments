@@ -1,0 +1,27 @@
+\begin{table}[h!]
+    \scriptsize
+    \captionsetup{width=\linewidth}
+    \Caption{\label{tab:wilcoxon_pos_hoc_com_pli} Comparacoes pos-hoc de Wilcoxon com correcao de Holm, incluindo o PLIB como referencia complementar. Legenda: AT representa ACO\_R+TS e HR representa HHO+RVNS; $A$ e $B$ identificam os metodos comparados; $N$ e o numero de pares de instancias; $W$ e a estatistica do teste; $p$ e o valor-p original; $p_H$ e o valor-p corrigido por Holm. A interpretacao deve priorizar $p_H$: usualmente, $p_H<0{,}05$ indica diferenca estatisticamente significativa apos correcao para multiplas comparacoes.}
+    \IBGEtab{}{
+        \begin{tabular}{lllllll}
+            \toprule
+            Conj. & $A$ & $B$ & $N$ & $W$ & $p$ & $p_H$ \\
+            \midrule \midrule
+            TODOS & PLIB & HR & 130 & 822 & 1.33e-06 & 4.00e-06 \\
+            TODOS & PLIB & AT & 130 & 1606.5 & 0.0539 & 0.0539 \\
+            TODOS & HR & AT & 130 & 1003.5 & 1.55e-05 & 3.10e-05 \\
+            CUBIC & PLIB & HR & 30 & 220 & 0.7970 & 0.7970 \\
+            CUBIC & PLIB & AT & 30 & 8 & 1.35e-05 & 2.71e-05 \\
+            CUBIC & HR & AT & 30 & 0 & 1.73e-06 & 5.18e-06 \\
+            DIMACS & PLIB & HR & 50 & 21 & 0.0008 & 0.0017 \\
+            DIMACS & PLIB & AT & 50 & 31 & 1.83e-05 & 5.49e-05 \\
+            DIMACS & HR & AT & 50 & 45.5 & 0.0008 & 0.0017 \\
+            HB & PLIB & HR & 50 & 23 & 4.58e-07 & 1.38e-06 \\
+            HB & PLIB & AT & 50 & 13.5 & 1.81e-06 & 3.62e-06 \\
+            HB & HR & AT & 50 & 183 & 0.0301 & 0.0301 \\
+            \bottomrule
+        \end{tabular}
+    }{
+    \Fonte{Autor (2026).}
+}
+\end{table}

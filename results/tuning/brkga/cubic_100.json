@@ -1,0 +1,45 @@
+{
+  "algorithm": "BRKGA",
+  "attempts": [
+    {
+      "attempt": 1,
+      "convergence": [
+        {
+          "best_fitness": 84.0,
+          "elapsed_ms": 2,
+          "elapsed_seconds": 0.002,
+          "evaluations": 360,
+          "generation": 1
+        }
+      ],
+      "evaluations": 360,
+      "executed_at": "2026-06-15T16:38:22Z",
+      "final_solution_value": 84.0,
+      "iterations": 1,
+      "seed": 123,
+      "stop_reason": "max_generations",
+      "total_runtime_ms": 2,
+      "total_runtime_seconds": 0.002
+    }
+  ],
+  "best_fitness_global": 84.0,
+  "decoder": "mapping_fix_decoder",
+  "executed_at": "2026-06-15T16:38:22Z",
+  "graph": "cubic_100.col",
+  "input_file": "../../../data/instances/CUBIC/cubic_100.col",
+  "parameters": {
+    "attempts": 1,
+    "elite_fraction": 0.2,
+    "exchange_interval": 10,
+    "exchange_m": 1,
+    "inheritance_probability": 0.7,
+    "max_generations": 2,
+    "max_stagnation": 2,
+    "max_time_seconds": 900,
+    "mutant_fraction": 0.2,
+    "population": 100,
+    "populations": 2,
+    "seed": 123,
+    "threads": 8
+  }
+}

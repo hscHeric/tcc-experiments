@@ -1,0 +1,147 @@
+\begin{table}[h!]
+    \scriptsize
+    \captionsetup{width=\linewidth}
+    \Caption{\label{tab:dimacs_resultados_definitivo_parte_1} Resumo dos resultados computacionais. Legenda: $G$ representa o grafo; $n=|V|$; $m=|E|$; $z_{PLI}$ e o valor obtido pelo PLIB; $z^*$ e o melhor valor obtido; $\bar{z}$ e a media; $\tilde{z}$ e a mediana; $\sigma_z$ e o desvio padrao; $a^*$ e o numero de avaliacoes da melhor rodada; $t^*$ e o tempo da melhor rodada; $z_{PLI}^{\circ}$ indica otimalidade comprovada pelo PLIB e $z_{PLI}^{m}$ indica melhor valor reportado sem certificado de otimalidade; AT representa ACO\_R+TS e HR representa HHO+RVNS; valores em negrito indicam o menor valor entre PLIB e metaheuristicas. Parte 1 de 2.}
+    \IBGEtab{}{
+        \begin{tabular}{llllllllllllllllll}
+            \toprule
+            $G$ & $n$ & $m$ & LB & $z_{PLI}$ & UB & AT $z^*$ & AT $\bar{z}$ & AT $\tilde{z}$ & AT $\sigma_z$ & AT $a^*$ & AT $t^*$ & HR $z^*$ & HR $\bar{z}$ & HR $\tilde{z}$ & HR $\sigma_z$ & HR $a^*$ & HR $t^*$ \\
+            \midrule \midrule
+            myciel3 & 11 & 20 & 5 & \textbf{7}$^{\circ}$ & 8 & \textbf{7} & 7 & 7 & 0 & 468823 & 0.133 & \textbf{7} & 7 & 7 & 0 & 9910464 & 5.758 \\
+            queen5\_5 & 25 & 160 & 4 & \textbf{7}$^{\circ}$ & 11 & \textbf{7} & 7 & 7 & 0 & 429315 & 0.387 & \textbf{7} & 7 & 7 & 0 & 9917629 & 9.263 \\
+            queen7\_7 & 49 & 476 & 5 & \textbf{9}$^{\circ}$ & 27 & \textbf{9} & 9.5 & 9.5 & 0.527 & 885733 & 1.2 & \textbf{9} & 9 & 9 & 0 & 39520082 & 71.417 \\
+            hamming6-4 & 64 & 704 & 7 & \textbf{10}$^{\circ}$ & 44 & \textbf{10} & 10.1 & 10 & 0.316 & 1346045 & 2.96 & \textbf{10} & 10 & 10 & 0 & 39501118 & 95.16 \\
+            johnson8-4-4 & 70 & 1855 & 4 & \textbf{5}$^{\circ}$ & 19 & 6 & 6 & 6 & 0 & 468233 & 1.843 & \textbf{5} & 5 & 5 & 0 & 10658813 & 50.643 \\
+            david & 87 & 406 & 4 & \textbf{6}$^{\circ}$ & 7 & \textbf{6} & 6 & 6 & 0 & 429079 & 0.924 & \textbf{6} & 6 & 6 & 0 & 9907704 & 22.666 \\
+            myciel6 & 95 & 755 & 5 & \textbf{12}$^{\circ}$ & 50 & \textbf{12} & 13.4 & 14 & 0.843 & 1429545 & 3.165 & \textbf{12} & 12.1 & 12 & 0.316 & 39500241 & 113.768 \\
+            johnson16-2-4 & 120 & 5460 & 4 & \textbf{5}$^{\circ}$ & 31 & 8 & 8 & 8 & 0 & 429079 & 4.552 & \textbf{5} & 5 & 5 & 0 & 9910400 & 69.289 \\
+            queen11\_11 & 121 & 1980 & 7 & \textbf{14}$^{m}$ & 83 & 16 & 17.1 & 17 & 0.738 & 1763545 & 9.521 & 15 & 15 & 15 & 0 & 44389797 & 160.044 \\
+            DSJC125.5 & 125 & 3891 & 5 & \textbf{8}$^{\circ}$ & 52 & 9 & 9 & 9 & 0 & 1178573 & 9.647 & \textbf{8} & 9 & 9 & 0.471 & 44752431 & 245.593 \\
+            miles250 & 128 & 387 & 37 & \textbf{68}$^{\circ}$ & 107 & \textbf{68} & 69 & 69 & 0.471 & 2264545 & 5.165 & 69 & 69.4 & 69 & 0.516 & 39498541 & 106.254 \\
+            mulsol.i.3 & 184 & 3916 & 24 & \textbf{26}$^{\circ}$ & 39 & \textbf{26} & 26 & 26 & 0 & 429079 & 5.033 & \textbf{26} & 26 & 26 & 0 & 9921507 & 78.471 \\
+            mulsol.i.5 & 186 & 3973 & 24 & \textbf{26}$^{\circ}$ & 39 & \textbf{26} & 26 & 26 & 0 & 429079 & 4.239 & \textbf{26} & 26 & 26 & 0 & 9924726 & 77.467 \\
+            myciel7 & 191 & 2360 & 5 & \textbf{13}$^{\circ}$ & 98 & 16 & 16 & 16 & 0 & 468469 & 4.193 & \textbf{13} & 13.5 & 13.5 & 0.527 & 39500047 & 176.251 \\
+            c-fat200-1 & 200 & 1534 & 24 & \textbf{37}$^{\circ}$ & 185 & \textbf{37} & 37 & 37 & 0 & 468233 & 3.026 & \textbf{37} & 37 & 37 & 0 & 39517821 & 173.236 \\
+            c-fat200-5 & 200 & 8473 & 6 & \textbf{7}$^{\circ}$ & 116 & \textbf{7} & 7 & 7 & 0 & 429079 & 9.303 & \textbf{7} & 7 & 7 & 0 & 9913806 & 147.931 \\
+            brock200\_3 & 200 & 12048 & 4 & \textbf{7}$^{\circ}$ & 68 & 8 & 8.5 & 8.5 & 0.527 & 1429545 & 40.617 & \textbf{7} & 7.9 & 8 & 0.568 & 40626709 & 424.477 \\
+            sanr200\_0.7 & 200 & 13868 & 4 & \textbf{6}$^{\circ}$ & 41 & 7 & 7 & 7 & 0 & 429197 & 10.433 & 7 & 7 & 7 & 0 & 9159363 & 911.148 \\
+            san200\_0.7\_1 & 200 & 13930 & 4 & \textbf{6}$^{\circ}$ & 47 & \textbf{6} & 6.1 & 6 & 0.316 & 1179045 & 27.57 & \textbf{6} & 6 & 6 & 0 & 9909289 & 328.973 \\
+            san200\_0.7\_2 & 200 & 13930 & 4 & \textbf{6}$^{\circ}$ & 38 & 7 & 7 & 7 & 0 & 429197 & 10.439 & 7 & 7 & 7 & 0 & 9909220 & 236.949 \\
+            zeroin.i.1 & 211 & 4100 & 174 & \textbf{175}$^{\circ}$ & 187 & 176 & 176 & 176 & 0 & 429079 & 4.983 & \textbf{175} & 175.1 & 175 & 0.316 & 36152120 & 895.495 \\
+            queen16\_16 & 256 & 6320 & 10 & \textbf{20}$^{m}$ & 199 & 30 & 32.4 & 33 & 1.506 & 1805295 & 77.613 & 22 & 23.3 & 23.5 & 0.823 & 59760027 & 579.785 \\
+            hamming8-4 & 256 & 20864 & 5 & \textbf{6}$^{\circ}$ & 95 & 10 & 10.5 & 10.5 & 0.527 & 1220795 & 45.061 & \textbf{6} & 6 & 6 & 0 & 9904949 & 143.819 \\
+            hamming8-2 & 256 & 31616 & 4 & \textbf{4}$^{\circ}$ & 11 & \textbf{4} & 4 & 4 & 0 & 468469 & 19.631 & \textbf{4} & 4 & 4 & 0 & 9908433 & 309.743 \\
+            flat300\_28\_0 & 300 & 21695 & 5 & \textbf{10}$^{m}$ & 140 & 11 & 11 & 11 & 0 & 512933 & 30.62 & \textbf{10} & 10.7 & 11 & 0.483 & 8035191 & 1014.212 \\
+            p\_hat300-3 & 300 & 33390 & 4 & \textbf{5}$^{\circ}$ & 35 & 6 & 6 & 6 & 0 & 510455 & 38.959 & 6 & 6 & 6 & 0 & 24142839 & 885.944 \\
+            san400\_0.5\_1 & 400 & 39900 & 5 & \textbf{8}$^{m}$ & 177 & \textbf{8} & 8 & 8 & 0 & 429197 & 30.597 & \textbf{8} & 8 & 8 & 0 & 9910900 & 908.958 \\
+            san400\_0.7\_1 & 400 & 55860 & 4 & \textbf{6}$^{m}$ & 101 & \textbf{6} & 6.8 & 7 & 0.422 & 1472239 & 192.314 & \textbf{6} & 6.8 & 7 & 0.422 & 6541305 & 935.432 \\
+            gen400\_p0.9\_55 & 400 & 71820 & 4 & \textbf{4}$^{\circ}$ & 27 & 5 & 5 & 5 & 0 & 429197 & 71.868 & 5 & 5 & 5 & 0 & 5421590 & 912.283 \\
+            le450\_5a & 450 & 5714 & 22 & \textbf{65}$^{m}$ & 410 & 77 & 79 & 79 & 1.826 & 1972295 & 32.476 & 75 & 77.6 & 77.5 & 2.171 & 61990878 & 905.338 \\
+            \bottomrule
+        \end{tabular}
+    }{
+    \Fonte{Autor (2026).}
+}
+\end{table}
+
+\begin{table}[h!]
+    \scriptsize
+    \captionsetup{width=\linewidth}
+    \Caption{\label{tab:dimacs_resultados_definitivo_parte_2} Resumo dos resultados computacionais. Legenda: $G$ representa o grafo; $n=|V|$; $m=|E|$; $z_{PLI}$ e o valor obtido pelo PLIB; $z^*$ e o melhor valor obtido; $\bar{z}$ e a media; $\tilde{z}$ e a mediana; $\sigma_z$ e o desvio padrao; $a^*$ e o numero de avaliacoes da melhor rodada; $t^*$ e o tempo da melhor rodada; $z_{PLI}^{\circ}$ indica otimalidade comprovada pelo PLIB e $z_{PLI}^{m}$ indica melhor valor reportado sem certificado de otimalidade; AT representa ACO\_R+TS e HR representa HHO+RVNS; valores em negrito indicam o menor valor entre PLIB e metaheuristicas. Parte 2 de 2.}
+    \IBGEtab{}{
+        \begin{tabular}{llllllllllllllllll}
+            \toprule
+            $G$ & $n$ & $m$ & LB & $z_{PLI}$ & UB & AT $z^*$ & AT $\bar{z}$ & AT $\tilde{z}$ & AT $\sigma_z$ & AT $a^*$ & AT $t^*$ & HR $z^*$ & HR $\bar{z}$ & HR $\tilde{z}$ & HR $\sigma_z$ & HR $a^*$ & HR $t^*$ \\
+            \midrule \midrule
+            le450\_5b & 450 & 5734 & 22 & \textbf{66}$^{m}$ & 410 & 78 & 80.9 & 81 & 1.37 & 1888795 & 36.025 & 76 & 79 & 79 & 1.333 & 42870857 & 363.878 \\
+            le450\_25b & 450 & 8263 & 10 & \textbf{83}$^{\circ}$ & 341 & 86 & 88.5 & 88 & 1.841 & 1471295 & 33.283 & 91 & 92.5 & 92.5 & 1.65 & 47367389 & 902.3 \\
+            le450\_15d & 450 & 16750 & 8 & \textbf{25}$^{m}$ & 314 & 32 & 32.2 & 32 & 0.422 & 1471059 & 71.816 & 29 & 32.3 & 32.5 & 1.494 & 25256846 & 901.838 \\
+            le450\_25c & 450 & 17343 & 6 & \textbf{31}$^{\circ}$ & 273 & 39 & 40 & 40 & 0.667 & 1554795 & 62.327 & 37 & 38.9 & 39 & 1.197 & 22634488 & 910.078 \\
+            c-fat500-1 & 500 & 4459 & 49 & \textbf{80}$^{\circ}$ & 482 & \textbf{80} & 80 & 80 & 0 & 470947 & 8.891 & \textbf{80} & 80 & 80 & 0 & 11410850 & 68.495 \\
+            DSJR500.1 & 500 & 3555 & 40 & \textbf{110}$^{\circ}$ & 477 & 116 & 117.8 & 117.5 & 1.229 & 2807295 & 39.334 & 118 & 120 & 120 & 1.247 & 65742061 & 902.451 \\
+            p\_hat500-2 & 500 & 62946 & 4 & \textbf{8}$^{\circ}$ & 113 & 10 & 10.1 & 10 & 0.316 & 802233 & 129.236 & 9 & 10 & 10 & 0.667 & 13647092 & 908.22 \\
+            DSJC500.5 & 500 & 62624 & 5 & \textbf{10}$^{m}$ & 216 & 12 & 12 & 12 & 0 & 468469 & 71.424 & 11 & 11.1 & 11 & 0.316 & 10654488 & 915.181 \\
+            DSJC500.9 & 500 & 112437 & 4 & \textbf{5}$^{\circ}$ & 31 & \textbf{5} & 5 & 5 & 0 & 429433 & 114.158 & \textbf{5} & 5 & 5 & 0 & 3173279 & 902.733 \\
+            inithx.i.2 & 645 & 13979 & 178 & \textbf{180}$^{\circ}$ & 193 & \textbf{180} & 180 & 180 & 0 & 429079 & 13.637 & \textbf{180} & 180 & 180 & 0 & 9925450 & 313.615 \\
+            brock800\_3 & 800 & 207333 & 4 & \textbf{8}$^{m}$ & 244 & 9 & 9 & 9 & 0 & 429197 & 282.856 & 9 & 9 & 9 & 0 & 2794068 & 989.053 \\
+            brock800\_4 & 800 & 207643 & 4 & \textbf{8}$^{m}$ & 237 & 9 & 9.1 & 9 & 0.316 & 429315 & 255.967 & 9 & 9 & 9 & 0 & 1676059 & 1043.039 \\
+            DSJC1000.1 & 1000 & 49629 & 17 & \textbf{50}$^{m}$ & 875 & 61 & 62.1 & 62 & 0.876 & 1721795 & 320.465 & 58 & 59.6 & 59 & 1.265 & 12148821 & 923.624 \\
+            p\_hat1000-2 & 1000 & 244799 & 4 & \textbf{9}$^{m}$ & 236 & 13 & 13 & 13 & 0 & 468469 & 338.909 & 11 & 12.6 & 13 & 0.699 & 2793369 & 1017.779 \\
+            flat1000\_50\_0 & 1000 & 245000 & 5 & \textbf{12}$^{m}$ & 482 & 14 & 14 & 14 & 0 & 468469 & 302.831 & \textbf{12} & 12.8 & 13 & 0.422 & 6911185 & 925.941 \\
+            DSJC1000.5 & 1000 & 249826 & 5 & \textbf{12}$^{m}$ & 451 & 13 & 13 & 13 & 0 & 468351 & 375.049 & \textbf{12} & 12.4 & 12 & 0.516 & 3168732 & 947.563 \\
+            DSJC1000.9 & 1000 & 449449 & 4 & \textbf{5}$^{m}$ & 78 & \textbf{5} & 5 & 5 & 0 & 469531 & 606.259 & \textbf{5} & 5.4 & 5 & 0.516 & 924798 & 1129.105 \\
+            hamming10-4 & 1024 & 434176 & 4 & \textbf{5}$^{\circ}$ & 178 & 10 & 10.3 & 10 & 0.483 & 843983 & 903.031 & \textbf{5} & 5 & 5 & 0 & 1671608 & 913.144 \\
+            p\_hat1500-3 & 1500 & 847244 & 4 & \textbf{6}$^{m}$ & 172 & 8 & 8 & 8 & 0 & 342983 & 923.04 & 7 & 7.9 & 8 & 0.316 & 551354 & 900.802 \\
+            keller6 & 3361 & 4619898 & 4 & 28$^{m}$ & 411 & 8 & 8.9 & 9 & 0.316 & 92483 & 1298.566 & \textbf{6} & 6.1 & 6 & 0.316 & 64954 & 902.108 \\
+            \bottomrule
+        \end{tabular}
+    }{
+    \Fonte{Autor (2026).}
+}
+\end{table}
+
+\begin{table}[h!]
+    \scriptsize
+    \captionsetup{width=\linewidth}
+    \Caption{\label{tab:gaps_dimacs_resultados_definitivo} Gaps das metaheuristicas em relacao ao PLIB. Legenda: $\Delta z = z^* - z_{PLI}$; $g = 100\Delta z / z_{PLI}$; para estes gaps, a referencia usada como limitante inferior e o valor do PLIB.}
+    \IBGEtab{}{
+        \begin{tabular}{lllll}
+            \toprule
+            $G$ & AT $\Delta z$ & AT $g$ (\%) & HR $\Delta z$ & HR $g$ (\%) \\
+            \midrule \midrule
+            myciel3 & 0 & 0.00 & 0 & 0.00 \\
+            queen5\_5 & 0 & 0.00 & 0 & 0.00 \\
+            queen7\_7 & 0 & 0.00 & 0 & 0.00 \\
+            hamming6-4 & 0 & 0.00 & 0 & 0.00 \\
+            johnson8-4-4 & 1 & 20.00 & 0 & 0.00 \\
+            david & 0 & 0.00 & 0 & 0.00 \\
+            myciel6 & 0 & 0.00 & 0 & 0.00 \\
+            johnson16-2-4 & 3 & 60.00 & 0 & 0.00 \\
+            queen11\_11 & 2 & 14.29 & 1 & 7.14 \\
+            DSJC125.5 & 1 & 12.50 & 0 & 0.00 \\
+            miles250 & 0 & 0.00 & 1 & 1.47 \\
+            mulsol.i.3 & 0 & 0.00 & 0 & 0.00 \\
+            mulsol.i.5 & 0 & 0.00 & 0 & 0.00 \\
+            myciel7 & 3 & 23.08 & 0 & 0.00 \\
+            c-fat200-1 & 0 & 0.00 & 0 & 0.00 \\
+            c-fat200-5 & 0 & 0.00 & 0 & 0.00 \\
+            brock200\_3 & 1 & 14.29 & 0 & 0.00 \\
+            sanr200\_0.7 & 1 & 16.67 & 1 & 16.67 \\
+            san200\_0.7\_1 & 0 & 0.00 & 0 & 0.00 \\
+            san200\_0.7\_2 & 1 & 16.67 & 1 & 16.67 \\
+            zeroin.i.1 & 1 & 0.57 & 0 & 0.00 \\
+            queen16\_16 & 10 & 50.00 & 2 & 10.00 \\
+            hamming8-4 & 4 & 66.67 & 0 & 0.00 \\
+            hamming8-2 & 0 & 0.00 & 0 & 0.00 \\
+            flat300\_28\_0 & 1 & 10.00 & 0 & 0.00 \\
+            p\_hat300-3 & 1 & 20.00 & 1 & 20.00 \\
+            san400\_0.5\_1 & 0 & 0.00 & 0 & 0.00 \\
+            san400\_0.7\_1 & 0 & 0.00 & 0 & 0.00 \\
+            gen400\_p0.9\_55 & 1 & 25.00 & 1 & 25.00 \\
+            le450\_5a & 12 & 18.46 & 10 & 15.38 \\
+            le450\_5b & 12 & 18.18 & 10 & 15.15 \\
+            le450\_25b & 3 & 3.61 & 8 & 9.64 \\
+            le450\_15d & 7 & 28.00 & 4 & 16.00 \\
+            le450\_25c & 8 & 25.81 & 6 & 19.35 \\
+            c-fat500-1 & 0 & 0.00 & 0 & 0.00 \\
+            DSJR500.1 & 6 & 5.45 & 8 & 7.27 \\
+            p\_hat500-2 & 2 & 25.00 & 1 & 12.50 \\
+            DSJC500.5 & 2 & 20.00 & 1 & 10.00 \\
+            DSJC500.9 & 0 & 0.00 & 0 & 0.00 \\
+            inithx.i.2 & 0 & 0.00 & 0 & 0.00 \\
+            brock800\_3 & 1 & 12.50 & 1 & 12.50 \\
+            brock800\_4 & 1 & 12.50 & 1 & 12.50 \\
+            DSJC1000.1 & 11 & 22.00 & 8 & 16.00 \\
+            p\_hat1000-2 & 4 & 44.44 & 2 & 22.22 \\
+            flat1000\_50\_0 & 2 & 16.67 & 0 & 0.00 \\
+            DSJC1000.5 & 1 & 8.33 & 0 & 0.00 \\
+            DSJC1000.9 & 0 & 0.00 & 0 & 0.00 \\
+            hamming10-4 & 5 & 100.00 & 0 & 0.00 \\
+            p\_hat1500-3 & 2 & 33.33 & 1 & 16.67 \\
+            keller6 & -20 & -71.43 & -22 & -78.57 \\
+            \bottomrule
+        \end{tabular}
+    }{
+    \Fonte{Autor (2026).}
+}
+\end{table}

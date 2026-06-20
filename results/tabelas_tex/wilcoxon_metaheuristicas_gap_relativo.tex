@@ -1,0 +1,19 @@
+\begin{table}[h!]
+    \scriptsize
+    \captionsetup{width=\linewidth}
+    \Caption{\label{tab:wilcoxon_metaheuristicas} Teste de Wilcoxon pareado entre as meta-heuristicas sobre gaps relativos. A comparacao principal usa $g^*$, o gap relativo do melhor valor obtido. Legenda: AT representa ACO\_R+TS e HR representa HHO+RVNS; Var. indica a variavel testada; $N$ e o numero de pares de instancias; AT $<$ e HR $<$ indicam em quantas instancias cada metodo obteve menor gap; $=$ indica empates; AT $\tilde{g}$ e HR $\tilde{g}$ sao os gaps medianos; $\widetilde{\Delta g}_{HR-AT}$ e a mediana das diferencas pareadas $g_{HR}-g_{AT}$, de modo que valores positivos favorecem AT e valores negativos favorecem HR; $W$ e a estatistica do teste; $p$ e o valor-p. O valor-p mede a evidencia contra a hipotese nula de que as diferencas pareadas tem mediana nula; usualmente, $p<0{,}05$ indica diferenca estatisticamente significativa.}
+    \IBGEtab{}{
+        \begin{tabular}{lllllllllll}
+            \toprule
+            Conj. & Var. & $N$ & AT $<$ & HR $<$ & $=$ & AT $\tilde{g}$ & HR $\tilde{g}$ & $\widetilde{\Delta g}_{HR-AT}$ & $W$ & $p$ \\
+            \midrule \midrule
+            TODOS & $g^*$ & 130 & 56 & 35 & 39 & 0.0000 & 1.0506 & 0.0000 & 2030 & 0.8031 \\
+            CUBIC & $g^*$ & 30 & 30 & 0 & 0 & -0.6819 & 0.9161 & 1.7100 & 0 & 1.73e-06 \\
+            DIMACS & $g^*$ & 50 & 3 & 23 & 24 & 11.2500 & 0.0000 & 0.0000 & 12 & 3.28e-05 \\
+            HB & $g^*$ & 50 & 23 & 12 & 15 & 1.3454 & 1.5244 & 0.0000 & 155 & 0.0088 \\
+            \bottomrule
+        \end{tabular}
+    }{
+    \Fonte{Autor (2026).}
+}
+\end{table}

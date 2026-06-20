@@ -8,9 +8,5 @@ x_int           "--x-int "                  i    (10, 500)
 gens            "--gens "                   i    (500, 5000)
 stagnation      "--stagnation "             i    (300, 1000)
 
-[forbidden]
-(elite + mutants >= 1.0) |
-(populations > 1 & x_m >= (elite * pop))
-
 [global]
 digits = 4
