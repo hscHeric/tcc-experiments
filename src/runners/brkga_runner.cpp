@@ -149,6 +149,7 @@ int main(int argc, char* argv[]) {
     }
     validate_brkga_params(params);
   } catch (const CLI::ValidationError& e) {
+    std::cerr << e.what() << '\n';
     return 1;
   } catch (const CLI::ParseError& e) {
     return app.exit(e);
@@ -337,9 +338,7 @@ int main(int argc, char* argv[]) {
     return 1;
   }
 
-  // #ifdef NDEBUG
-  //   std::cout << global_best_fitness << '\n';
-  // #endif
-  //
+  std::cout << global_best_fitness << '\n';
+
   return 0;
 }
