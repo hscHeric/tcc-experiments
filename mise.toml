@@ -109,9 +109,13 @@ run = "python python/scripts/run_experiments.py experiments/configs/aco_ts.json"
 description = "Executa os experimentos do HHO+RVNS, retomando resultados ja computados"
 run = "python python/scripts/run_experiments.py experiments/configs/hho_rvns.json"
 
+[tasks."brkga-experiments"]
+description = "Executa os experimentos do BRKGA, retomando resultados ja computados"
+run = "python python/scripts/run_experiments.py experiments/configs/brkga.json"
+
 [tasks.experiments]
-description = "Executa todos os ACO+TS e depois todos os HHO+RVNS, retomando resultados ja computados"
-run = "python python/scripts/run_experiments.py experiments/configs/aco_ts.json experiments/configs/hho_rvns.json --summary results/experiments/summary.csv"
+description = "Executa todos os ACO+TS, HHO+RVNS e BRKGA, retomando resultados ja computados"
+run = "python python/scripts/run_experiments.py experiments/configs/aco_ts.json experiments/configs/hho_rvns.json experiments/configs/brkga.json --summary results/experiments/summary.csv"
 
 [tasks.default]
 description = "Executa a task padrao de experimentos"

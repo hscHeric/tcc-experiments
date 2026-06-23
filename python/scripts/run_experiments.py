@@ -16,6 +16,24 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 
 RUNNERS = {
+    "brkga": {
+        "binary": "brkga_runner",
+        "options": {
+            "attempts": "--attempts",
+            "population": "--pop",
+            "elite_fraction": "--elite",
+            "mutant_fraction": "--mutants",
+            "inheritance_probability": "--rho",
+            "populations": "--populations",
+            "threads": "--threads",
+            "max_generations": "--gens",
+            "max_time_seconds": "--time",
+            "max_stagnation": "--stagnation",
+            "exchange_m": "--x-m",
+            "exchange_interval": "--x-int",
+            "seed": "--seed",
+        },
+    },
     "aco_ts": {
         "binary": "aco_ts_runner",
         "options": {

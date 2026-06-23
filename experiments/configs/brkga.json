@@ -1,0 +1,35 @@
+{
+  "output_dir": "results/experiments/brkga",
+  "difficulty_files": [
+    "results/pli/CUBIC/cubic_results.csv",
+    "results/pli/DIMACS/dimacs_resultados.csv",
+    "results/pli/HB/harwell_boieng_results.csv"
+  ],
+  "graphs": {
+    "files": [],
+    "globs": [
+      "data/instances/CUBIC/*.col",
+      "data/instances/DIMACS/*.col",
+      "data/instances/HB/*.col"
+    ]
+  },
+  "algorithms": {
+    "brkga": {
+      "enabled": true,
+      "params": {
+        "attempts": 10,
+        "population": 2774,
+        "elite_fraction": 0.1355,
+        "mutant_fraction": 0.1453,
+        "inheritance_probability": 0.5815,
+        "populations": 3,
+        "threads": 8,
+        "max_generations": 2547,
+        "max_time_seconds": 900,
+        "max_stagnation": 654,
+        "exchange_m": 11,
+        "exchange_interval": 312
+      }
+    }
+  }
+}
