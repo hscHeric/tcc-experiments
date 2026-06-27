@@ -30,6 +30,9 @@ wheels/
 # IDEs
 .vscode/
 .idea/
+.cache/
+.agents/
+.codex/
 *.swp
 *.swo
 *~
@@ -50,6 +53,13 @@ compile_commands.json
 
 # Logs
 *.log
+
+# Artefatos derivados (recriados por `mise run results-reproduce`)
+results/csvs_definitivos/
+results/graficos/
+results/instance_characterization/
+results/tabelas_tex/
+results/experiments/summary.csv
 
 # OS
 .DS_Store

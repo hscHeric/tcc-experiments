@@ -15,7 +15,7 @@ Heuristic = Callable[[nx.Graph], Optional[Labeling]]  # retorna rotulação ou N
 @dataclass(frozen=True)
 class SolveConfig:
     time_limit_s: int = 900
-    solver: str = "cbc"  # "cbc" ou "gurobi"
+    solver: str = "gurobi"
     tee: bool = False
 
     # warm start acoplável
@@ -42,7 +42,7 @@ def _pick_solver(cfg: SolveConfig) -> Tuple[str, pyo.SolverFactory]:
         solver.options["TimeLimit"] = cfg.time_limit_s
         return "gurobi", solver
 
-    raise ValueError(f"Solver inválido: {cfg.solver}. Use 'cbc' ou 'gurobi'.")
+    raise ValueError(f"Solver inválido: {cfg.solver}. Use 'gurobi'.")
 
 
 def _label_cost(labeling: Labeling) -> int:

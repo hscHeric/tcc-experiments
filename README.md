@@ -1,183 +1,113 @@
-# tcc-experiments
+# Experimentos do MR3DP
 
-Projeto de experimentos do TCC com implementacoes em C++ e scripts auxiliares em Python.
+Implementações, instâncias, resultados brutos e pipeline reproduzível dos
+experimentos para o Problema de Dominação Romana 3.
 
-## Clone
+O repositório não gera texto narrativo. Os scripts produzem somente dados
+estruturados (`.csv`), tabelas (`.tex`) e gráficos (`.png`).
+
+## Estrutura
+
+```text
+data/instances/                   instâncias CUBIC, DIMACS e HB
+experiments/configs/              configurações finais das meta-heurísticas
+experiments/tuning/               cenários e parâmetros do irace
+src/                              implementações e executores C++
+python/pli/                       modelo exato e executor BIP
+python/scripts/                   executor das meta-heurísticas
+python/scripts/analysis/          análises e geradores de artefatos
+python/scripts/utils/             conversores e utilitários de grafos
+results/pli/                      resultados brutos do BIP
+results/experiments/              resultados brutos das meta-heurísticas
+results/tuning/                   resultados brutos da calibração
+results/instance_characterization/ CSVs de caracterização (gerados)
+results/csvs_definitivos/         CSVs e testes estatísticos (gerados)
+results/tabelas_tex/              tabelas LaTeX (geradas)
+results/graficos/                 gráficos (gerados)
+```
+
+## Requisitos
+
+- Git com suporte a submódulos;
+- compilador C++20 com OpenMP;
+- CMake 3.20+, Conan 2 e Ninja;
+- Python 3.13 e as dependências de `requirements.txt`;
+- Gurobi com licença válida apenas para reexecutar o modelo exato;
+- R e irace apenas para refazer a calibração.
+
+O `mise.toml` fixa as versões das principais ferramentas.
+
+## Configuração
 
 ```bash
 git clone --recurse-submodules git@github.com:hscHeric/tcc-experiments.git
 cd tcc-experiments
-```
-
-Se voce ja clonou sem os submodulos:
-
-```bash
-git submodule update --init --recursive
-```
-
-## Requirements
-
-Para compilar a parte em C++ voce precisa de:
-
-- `git`
-- `cmake` 3.20+
-- `conan` 2.x
-- compilador com suporte a `C++23`
-- suporte a OpenMP
-
-Opcionalmente, o projeto tambem pode ser compilado pelas tarefas do
-[`mise`](https://mise.jdx.dev/). O arquivo `mise.toml` ja declara as
-ferramentas usadas no desenvolvimento, incluindo `cmake`, `conan`, `ninja` e
-`python`.
-
-Para os scripts Python:
-
-- `python` 3.x
-- dependencias do arquivo `requirements.txt`
-
-Instalacao das dependencias Python:
-
-```bash
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Build
-
-Ha duas formas equivalentes de compilar: usando as tarefas do `mise` ou
-chamando `conan` e `cmake` manualmente.
-
-### Usando mise
-
-Build `Debug`:
+Se o clone já foi feito sem os submódulos:
 
 ```bash
-mise run build-debug
+git submodule update --init --recursive
 ```
 
-Build `Release`:
+## Reproduzir os artefatos
+
+Com `mise`:
+
+```bash
+mise run results-reproduce
+```
+
+Sem `mise`:
+
+```bash
+python python/scripts/analysis/characterize_instances.py
+python python/scripts/analysis/generate_result_csvs.py
+python python/scripts/analysis/generate_tex_tables.py results/tabelas_tex
+python python/scripts/analysis/generate_plots.py
+python python/scripts/analysis/validate_results.py --include-derived
+```
+
+O pipeline recria os CSVs derivados, executa Friedman e Wilcoxon, gera as
+tabelas e os gráficos e, ao final, confere quantidades, extensões e
+consistência entre os conjuntos.
+
+Os artefatos derivados são ignorados pelo Git. Somente os resultados brutos
+em `results/pli`, `results/experiments` e `results/tuning` são versionados.
+
+## Reexecutar os experimentos
 
 ```bash
 mise run build-release
+mise run pli
+mise run experiments
+mise run results-reproduce
 ```
 
-Tambem existem tarefas para compilar apenas um runner especifico:
-
-```bash
-mise run build-brkga-debug
-mise run build-brkga-release
-
-mise run build-brkga-mp-ipr-debug
-mise run build-brkga-mp-ipr-release
-
-mise run build-acots-debug
-mise run build-acots-release
-
-mise run build-hhorvns-debug
-mise run build-hhorvns-release
-```
-
-### Manualmente com Conan e CMake
-
-Build `Debug`:
-
-```bash
-conan install . --output-folder=. --build=missing -s build_type=Debug
-cmake --fresh --preset conan-debug
-cmake --build --preset conan-debug
-```
-
-Build `Release`:
-
-```bash
-conan install . --output-folder=. --build=missing -s build_type=Release
-cmake -S . -B build/Release \
-  -DCMAKE_TOOLCHAIN_FILE=build/Release/generators/conan_toolchain.cmake \
-  -DCMAKE_BUILD_TYPE=Release
-cmake --build build/Release
-```
-
-Para compilar somente um alvo, informe o target no comando de build:
-
-```bash
-cmake --build --preset conan-debug --target brkga_runner
-cmake --build build/Release --target brkga_runner
-```
-
-Os executaveis sao gerados dentro da pasta do tipo de build:
-
-- `build/Debug/brkga_runner`
-- `build/Debug/brkga_mp_ipr_runner`
-- `build/Debug/aco_ts_runner`
-- `build/Debug/hho_rvns_runner`
-- `build/Release/brkga_runner`
-- `build/Release/brkga_mp_ipr_runner`
-- `build/Release/aco_ts_runner`
-- `build/Release/hho_rvns_runner`
-
-O build `Debug` usa `-O0 -g3` e, quando disponivel, ativa sanitizers de
-address/undefined. O build `Release` usa `-O3 -march=native -DNDEBUG`.
-
-## Experimentos ACO+TS e HHO+RVNS
-
-Os lotes de experimentos podem ser configurados em JSON. Cada algoritmo tem o
-seu proprio arquivo de configuracao:
-
-- `experiments/configs/aco_ts.json`
-- `experiments/configs/hho_rvns.json`
-
-Cada arquivo contem:
-
-- `output_dir`: pasta onde os resultados JSON e o resumo CSV serao salvos.
-- `difficulty_files`: CSVs do PLI usados para ordenar os grafos do mais dificil
-  para o mais facil pela coluna `Tempo (s)`.
-- `graphs.files`: lista explicita de grafos.
-- `graphs.globs`: padroes para selecionar varios grafos, por exemplo
-  `data/instances/DIMACS/*.col`.
-- `algorithms.<algoritmo>.params`: parametros especificos do runner.
-
-Os parametros dos algoritmos ficam separados porque ACO+TS e HHO+RVNS nao usam
-as mesmas opcoes. Por exemplo, ACO+TS usa `archive_size`, `ants`, `q`, `xi`,
-`ts_iterations`, `ts_neighborhood_size` e `ts_tabu_tenure`; HHO+RVNS usa
-`agents`, `rvns_iterations` e `rvns_k_max`.
-
-Por padrao, o script sempre retoma de onde parou: se o JSON de um grafo ja
-existe e esta completo, ele pula esse grafo e mantem o resultado computado. Se
-um JSON estiver incompleto ou corrompido, o grafo e executado novamente. Para
-forcar reexecucao de tudo, use `--no-skip-existing`.
-
-Os arquivos de configuracao nao passam `seed` por padrao. Assim, os runners
-usam a seed aleatoria interna. Para uma execucao reprodutivel, adicione
-`"seed": 123` no bloco `params` do algoritmo desejado.
+Os experimentos finais usam os arquivos em `experiments/configs/` e produzem
+10 execuções por método e instância. O executor das meta-heurísticas retoma
+resultados completos existentes; use `--no-skip-existing` para forçar uma nova
+execução.
 
 Para conferir os comandos sem executar:
 
 ```bash
-python python/scripts/run_experiments.py experiments/configs/aco_ts.json --dry-run
-python python/scripts/run_experiments.py experiments/configs/hho_rvns.json --dry-run
+python python/scripts/run_metaheuristic_experiments.py \
+  experiments/configs/aco_ts.json --dry-run
 ```
 
-Para executar usando as tasks do `mise`:
+## Tarefas úteis
 
 ```bash
+mise run build-debug
+mise run build-release
 mise run experiments
-mise run aco-ts-experiments
-mise run hho-rvns-experiments
+mise run results-characterization
+mise run results-csvs
+mise run results-tables
+mise run results-plots
+mise run results-verify
 ```
-
-A task padrao `experiments` executa primeiro todos os grafos do ACO+TS, do mais
-dificil para o mais facil, e depois todos os grafos do HHO+RVNS na mesma ordem.
-A retomada continua ativa por padrao e pula cada resultado JSON que ja estiver
-completo.
-
-Ou diretamente pelo script:
-
-```bash
-python python/scripts/run_experiments.py experiments/configs/aco_ts.json experiments/configs/hho_rvns.json --summary results/experiments/summary.csv
-python python/scripts/run_experiments.py experiments/configs/aco_ts.json
-python python/scripts/run_experiments.py experiments/configs/hho_rvns.json
-```
-
-Ao final, cada par algoritmo/grafo gera um JSON proprio e um `summary.csv` na
-pasta definida em `output_dir`.

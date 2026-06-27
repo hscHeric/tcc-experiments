@@ -14,7 +14,7 @@ CXX = "/usr/bin/g++"
 [tasks.pli]
 description = "Executa o PLI em todas as instâncias (necessário licença do Gurobi)"
 run = """
-python python/pli/run.py \
+python python/pli/run_exact_experiments.py \
 --input data/instances \
 --output results/pli \
 --time-limit 900 \
@@ -24,7 +24,7 @@ python python/pli/run.py \
 [tasks.pli-debug]
 description = "Executa o PLI com log detalhado (necessário licença do Gurobi)"
 run = """
-python python/pli/run.py \
+python python/pli/run_exact_experiments.py \
 --input data/instances \
 --output results/pli \
 --time-limit 900 \
@@ -90,11 +90,11 @@ ln -sfn build/Debug/compile_commands.json compile_commands.json
 """
 
 [tasks."tune-aco-ts"]
-description = "Executa o tuning do irace para o algoritmo ACO+TS com 8 threads"
+description = "Executa o tuning do irace para o algoritmo HHO+RVNS com 8 threads"
 run = "cd experiments/tuning/aco_ts && irace --scenario scenario.txt >> output.tuning.txt"
 
 [tasks."tune-hho-rvns"]
-description = "Executa o tuning do irace para o algoritmo ACO+TS com 8 threads"
+description = "Executa o tuning do irace para o algoritmo BRKGA com 8 threads"
 run = "cd experiments/tuning/hho_rvns && irace --scenario scenario.txt >> output.tuning.txt"
 
 [tasks."tune-brkga"]
@@ -103,19 +103,49 @@ run = "cd experiments/tuning/brkga && irace --scenario scenario.txt >> output.tu
 
 [tasks."aco-ts-experiments"]
 description = "Executa os experimentos do ACO+TS, retomando resultados ja computados"
-run = "python python/scripts/run_experiments.py experiments/configs/aco_ts.json"
+run = "python python/scripts/run_metaheuristic_experiments.py experiments/configs/aco_ts.json"
 
 [tasks."hho-rvns-experiments"]
 description = "Executa os experimentos do HHO+RVNS, retomando resultados ja computados"
-run = "python python/scripts/run_experiments.py experiments/configs/hho_rvns.json"
+run = "python python/scripts/run_metaheuristic_experiments.py experiments/configs/hho_rvns.json"
 
 [tasks."brkga-experiments"]
 description = "Executa os experimentos do BRKGA, retomando resultados ja computados"
-run = "python python/scripts/run_experiments.py experiments/configs/brkga.json"
+run = "python python/scripts/run_metaheuristic_experiments.py experiments/configs/brkga.json"
 
 [tasks.experiments]
 description = "Executa todos os ACO+TS, HHO+RVNS e BRKGA, retomando resultados ja computados"
-run = "python python/scripts/run_experiments.py experiments/configs/aco_ts.json experiments/configs/hho_rvns.json experiments/configs/brkga.json --summary results/experiments/summary.csv"
+run = "python python/scripts/run_metaheuristic_experiments.py experiments/configs/aco_ts.json experiments/configs/hho_rvns.json experiments/configs/brkga.json --summary results/experiments/summary.csv"
+
+[tasks."results-characterization"]
+description = "Gera os CSVs de caracterizacao das instancias"
+run = "python python/scripts/analysis/characterize_instances.py"
+
+[tasks."results-csvs"]
+description = "Gera os CSVs definitivos e estatisticos"
+run = "python python/scripts/analysis/generate_result_csvs.py"
+
+[tasks."results-tables"]
+description = "Gera as tabelas LaTeX a partir dos CSVs"
+run = "python python/scripts/analysis/generate_tex_tables.py results/tabelas_tex"
+
+[tasks."results-plots"]
+description = "Gera os graficos a partir dos CSVs"
+run = "python python/scripts/analysis/generate_plots.py"
+
+[tasks."results-verify"]
+description = "Valida os dados brutos e os artefatos derivados"
+run = "python python/scripts/analysis/validate_results.py"
+
+[tasks."results-reproduce"]
+description = "Regera e valida todos os artefatos derivados"
+run = """
+python python/scripts/analysis/characterize_instances.py
+python python/scripts/analysis/generate_result_csvs.py
+python python/scripts/analysis/generate_tex_tables.py results/tabelas_tex
+python python/scripts/analysis/generate_plots.py
+python python/scripts/analysis/validate_results.py --include-derived
+"""
 
 [tasks.default]
 description = "Executa a task padrao de experimentos"
