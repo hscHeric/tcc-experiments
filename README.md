@@ -1,9 +1,9 @@
 # Experimentos do MR3DP
 
 Implementações, instâncias, resultados brutos e pipeline reproduzível dos
-experimentos para o Problema de Dominação Romana 3.
+experimentos para o Problema de Dominação {3}-Romana.
 
-O repositório não gera texto narrativo. Os scripts produzem somente dados
+Os scripts produzem somente dados
 estruturados (`.csv`), tabelas (`.tex`) e gráficos (`.png`).
 
 ## Estrutura
